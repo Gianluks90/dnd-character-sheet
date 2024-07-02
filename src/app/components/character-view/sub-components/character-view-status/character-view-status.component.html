@@ -130,11 +130,11 @@
             @if (risorsa.valoreMassimo > 10) {
             <div class="risorsa-container">
                 <div class="risorsa-title">{{risorsa.nome}}</div>
-                <div class="risorsa-quantity">{{risorsa.valoreAttuale}}</div>
                 <span class="resource-circle"
-                    [ngClass]="{'active-static': risorsa.valoreAttuale > 0, 'not-active-static': risorsa.valoreAttuale <= 0}"
-                    [style.color]="risorsa.color">•</span>
-
+                [ngClass]="{'active-static': risorsa.valoreAttuale > 0, 'not-active-static': risorsa.valoreAttuale <= 0}"
+                [style.color]="risorsa.color">•</span>
+                <div class="risorsa-quantity">{{risorsa.valoreAttuale}}</div>
+                
                 <div class="material-symbols-outlined icon-button" (click)="increaseResource(i)">add</div>
                 <div class="material-symbols-outlined icon-button" (click)="reduceResource(i)">remove</div>
                 <div *ngIf="risorsa.isTemporary" class="material-symbols-outlined icon-button" (click)="removeResource(i)" matTooltip="Elimina risorsa" matTooltipPosition="above">close</div>

@@ -45,6 +45,8 @@ export class CharacterViewStatusComponent {
     this.characterData = character;
     this.dadiVitaData = character.parametriVitali.dadiVita;
     this.risorseAggiuntiveData = character.informazioniBase.risorseAggiuntive;
+    console.log(this.risorseAggiuntiveData);
+    
     this.ispirazione = {
       color: 'yellow',
       nome: 'Ispirazione',
