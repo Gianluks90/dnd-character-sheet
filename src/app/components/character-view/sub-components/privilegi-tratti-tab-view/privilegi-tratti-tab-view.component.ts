@@ -56,30 +56,4 @@ export class PrivilegiTrattiTabViewComponent {
       detail.open = false;
     });
   }
-
-  public composeClassString(classe: any): string {
-    const result: string = '';
-    return classe.nome + (classe.sottoclasse !== '' ? ` (${classe.sottoclasse})` : '') + ' di ' + classe.livello + '° livello';
-  }
-
-  public getBonusString(bonus: any): string {
-    switch (bonus.element) {
-      case 'forza':
-      case 'destrezza':
-      case 'costituzione':
-      case 'intelligenza':
-      case 'saggezza':
-      case 'carisma':
-        return `Punteggio di caratteristica (${bonus.element}) ${bonus.value > 0 ? '+' : ''}${bonus.value}`;
-      case 'CA':
-        return `Classe Armatura ${bonus.value > 0 ? '+' : ''}${bonus.value}`;
-      case 'iniziativa':
-        return `Iniziativa ${bonus.value > 0 ? '+' : ''}${bonus.value}`;
-      case 'velocità':
-        return `Velocità ${bonus.value > 0 ? '+' : ''}${bonus.value}m (${bonus.value/1.5} spazio/i)`;
-      case 'punti ferita':
-        return `Punti Ferita Massimi ${bonus.value > 0 ? '+' : ''}${bonus.value}`;
-    }
-    return '';
-  }
 }

@@ -130,7 +130,6 @@ export class CampaignViewComponent {
 
   @ViewChild('tabGroup') tabGroup: any;
   public onCharEmitted(charId: string) {
-    console.log('sono il DM', charId);
     this.selectedChar = this.charData.find((char) => char.id === charId);
     this.tabGroup.selectedIndex = 2;
   }

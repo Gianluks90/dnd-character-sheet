@@ -4,7 +4,7 @@
     <div *ngFor="let c of classiData">
         <!-- <div as-pill>{{c.nome}} <span *ngIf="c.sottoclasse !== ''">({{c.sottoclasse}}) </span> di
             {{c.livello}}° livello</div> -->
-            <div as-pill>{{composeClassString(c)}}</div>
+            <div as-pill>{{c | composeClassString}}</div>
     </div>
 </div>
 }
@@ -25,7 +25,7 @@
             <div class="pt-bonus-title">Bonus</div>
             <div class="pt-bonus-container">
                 @for (b of pt.bonuses; track $index) {
-                    <div class="pt-bonus">{{getBonusString(b)}}</div>
+                    <div class="pt-bonus">{{b | bonusString}}</div>
                 } 
             </div>
         }

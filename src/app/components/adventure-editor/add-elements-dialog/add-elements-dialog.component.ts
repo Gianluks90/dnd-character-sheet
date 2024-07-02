@@ -27,9 +27,7 @@ export class AddElementsDialogComponent {
       type: ['', Validators.required],
       bookmarked: false
     });
-
-    console.log(this.data.resources);
-
+    
     if (this.data.element) {
       switch (this.data.element.type) {
         case 'title':

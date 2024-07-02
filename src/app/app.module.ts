@@ -117,6 +117,9 @@ import { AdventureViewComponent } from './components/adventure-view/adventure-vi
 import { NewAdventureChapterDialogComponent } from "./components/adventure-editor/new-adventure-chapter-dialog/new-adventure-chapter-dialog.component";
 import { AddElementsDialogComponent } from './components/adventure-editor/add-elements-dialog/add-elements-dialog.component';
 import { DiceRollerComponent } from './components/utilities/dice-roller/dice-roller.component';
+import { BonusStringPipe } from "./pipes/bonus-string.pipe";
+import { ComposeClassStringPipe } from "./pipes/compose-class-string.pipe";
+import { ComposeCharInfoStringPipe } from './pipes/compose-char-info-string.pipe';
 
 @NgModule({ declarations: [
         // MAIN COMPONENTS
@@ -239,7 +242,12 @@ import { DiceRollerComponent } from './components/utilities/dice-roller/dice-rol
         AdventureViewComponent,
         NewAdventureChapterDialogComponent,
         AddElementsDialogComponent,
-        DiceRollerComponent
+        DiceRollerComponent,
+
+        // PIPES
+        BonusStringPipe,
+        ComposeClassStringPipe,
+        ComposeCharInfoStringPipe
     ],
     bootstrap: [AppComponent], imports: [SharedModule,
         BrowserModule,

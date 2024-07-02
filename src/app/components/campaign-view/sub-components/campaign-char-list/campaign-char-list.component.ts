@@ -74,7 +74,6 @@ export class CampaignCharListComponent {
     if (!this.isOwnerData) {
       window.open(`https://adventurer-studio.web.app/#/view/${charId}`, '_blank');
     } else {
-      console.log('sono il DM');
       this.selectCharEmitter.emit(charId);
     }
   }

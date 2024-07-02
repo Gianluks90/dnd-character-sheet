@@ -216,8 +216,6 @@ export class EquipmentComponent {
       // console.log(result);
 
       if (result && result.status === 'success') {
-        console.log('result', result);
-        
         this.wearedItems = [...new Set(result.weared)] as Item[];
         if (result.sets && result.sets.length > 0) {
           this.wearedItems.push(result.sets[0].mainHand);

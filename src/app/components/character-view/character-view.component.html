@@ -18,10 +18,10 @@
                     <div class="character-name">{{!isMobile && character.informazioniBase.nomePersonaggioEsteso !== '' ? character.informazioniBase.nomePersonaggioEsteso :
                         character.informazioniBase.nomePersonaggio}}</div>
                 </div>
-                <div>{{composeCharInfoString()}}</div>
+                <div>{{character | composeCharInfoString}}</div>
                 <div *ngFor="let cl of character.informazioniBase.classi">
                     <!-- <div class="character-class">{{cl.nome}} {{cl.livello}}° LV<span *ngIf="cl.sottoclasse != ''">, {{cl.sottoclasse}}</span></div> -->
-                    <div class="character-class">{{cl.nome}} {{cl.livello}}° LV {{cl.sottoclasse !== '' && !isMobile ? cl.sottoclasse : ''}}</div>
+                    <div class="character-class">{{cl | composeClassString}}</div>
                 </div>
             </div>
         </div>

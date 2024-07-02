@@ -47,7 +47,6 @@ export class FormService {
   }
 
   public async saveDraft(charId: string, form: FormGroup): Promise<void> {
-    console.log('Form',form);
     const docRef = doc(this.firebaseService.database, 'characters', charId);
     return await setDoc(docRef, {
       ...form.value,
