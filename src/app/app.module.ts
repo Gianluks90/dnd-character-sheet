@@ -52,7 +52,7 @@ import { InventoryComponent } from "./components/utilities/inventory/inventory.c
 import { AddItemDialogComponent } from "./components/utilities/inventory/add-item-dialog/add-item-dialog.component";
 import { SettingsTabViewComponent } from './components/character-view/sub-components/settings-tab-view/settings-tab-view.component';
 import { HealthBarComponent } from './components/utilities/health-bar/health-bar.component';
-import { MoneyComponent } from "./components/utilities/money/money.component";
+// import { MoneyComponent } from "./components/utilities/money/money.component";
 import { ItemInfoSheetComponent } from './components/utilities/inventory/item-info-sheet/item-info-sheet.component';
 import { CampaignListComponent } from './components/campaign-list/campaign-list.component';
 import { AddCampaignDialogComponent } from './components/campaign-list/add-campaign-dialog/add-campaign-dialog.component';
@@ -77,9 +77,6 @@ import { NewChapterDialogComponent } from './components/campaign-view/sub-compon
 import { ArchiveStoryDialogComponent } from './components/campaign-view/sub-components/campaign-story-tab/archive-story-dialog/archive-story-dialog.component';
 import { ArchiveQuestDialogComponent } from './components/campaign-view/sub-components/campaign-quests-tab/archive-quest-dialog/archive-quest-dialog.component';
 import { ArchiveAchievementDialogComponent } from './components/campaign-view/sub-components/campaign-achievements-tab/archive-achievement-dialog/archive-achievement-dialog.component';
-import { NpcsComponent } from './components/utilities/npcs/npcs.component';
-import { AddNpcDialogComponent } from './components/utilities/npcs/add-npc-dialog/add-npc-dialog.component';
-import { AddOrganizationDialogComponent } from './components/utilities/npcs/add-organization-dialog/add-organization-dialog.component';
 import { CompanionTabViewComponent } from './components/character-view/sub-components/companion-tab-view/companion-tab-view.component';
 import { CampaignNpcTabComponent } from './components/campaign-view/sub-components/campaign-npc-tab/campaign-npc-tab.component';
 import { MasterScreenTabComponent } from './components/campaign-view/sub-components/master-screen-tab/master-screen-tab.component';
@@ -91,12 +88,7 @@ import { EditStoryDialogComponent } from './components/character-view/sub-compon
 import { EditPrivilegioTrattoDialogComponent } from './components/character-view/sub-components/privilegi-tratti-tab-view/edit-privilegio-tratto-dialog/edit-privilegio-tratto-dialog.component';
 import { CampaignCharTabComponent } from './components/campaign-view/sub-components/campaign-char-tab/campaign-char-tab.component';
 import { RemoveCampaignDialogComponent } from './components/campaign-view/sub-components/campaign-settings-tab/remove-campaign-dialog/remove-campaign-dialog.component';
-import { MoneyControllerComponent } from './components/utilities/money-controller/money-controller.component';
-import { EditMoneyControllerDialogComponent } from './components/utilities/money-controller/edit-money-controller-dialog/edit-money-controller-dialog.component';
 import { AddResourceDialogComponent } from './components/character-view/sub-components/character-view-status/add-resource-dialog/add-resource-dialog.component';
-import { ItemTooltipComponent } from './components/utilities/item-tooltip/item-tooltip.component';
-import { EquipmentComponent } from './components/utilities/equipment/equipment.component';
-import { ManageEquipDialogComponent } from './components/utilities/equipment/manage-equip-dialog/manage-equip-dialog.component';
 import { DescriptionTooltipComponent } from './components/utilities/description-tooltip/description-tooltip.component';
 import { InventoryCampaignComponent } from './components/utilities/inventory-campaign/inventory-campaign.component';
 import { ExchangeDialogComponent } from './components/utilities/inventory-campaign/exchange-dialog/exchange-dialog.component';
@@ -120,15 +112,21 @@ import { DiceRollerComponent } from './components/utilities/dice-roller/dice-rol
 import { BonusStringPipe } from "./pipes/bonus-string.pipe";
 import { ComposeClassStringPipe } from "./pipes/compose-class-string.pipe";
 import { ComposeCharInfoStringPipe } from './pipes/compose-char-info-string.pipe';
+import { SharedUtilitisModule } from "./modules/shared-utilitis/shared-utilitis.module";
+import { SharedCharacterModule } from "./modules/shared-character/shared-character.module";
+import { SharedCampaignModule } from "./modules/shared-campaign/shared-campaign.module";
+import { SharedAdventureModule } from "./modules/shared-adventure/shared-adventure.module";
 
 @NgModule({ declarations: [
         // MAIN COMPONENTS
         AppComponent,
         AuthComponent,
         HomePageComponent,
+
         // VIEWS COMPONENTS
         SidenavComponent,
         SettingsDialogComponent,
+
         // DIALOG COMPONENTS
         DeleteCharacterDialogComponent,
         CompleteCharacterDialogComponent,
@@ -139,22 +137,28 @@ import { ComposeCharInfoStringPipe } from './pipes/compose-char-info-string.pipe
         DeleteCampaignDialogComponent,
         AddSpellDialogComponent,
         TicketCampaignDialogComponent,
+
         // UTILITIES COMPONENTS
-        MoneyComponent,
-        SnackbarComponent,
-        HealthPointDialogComponent,
-        MoneyDialogComponent,
-        InventoryComponent,
-        AddItemDialogComponent,
-        HealthBarComponent,
-        ItemTooltipComponent,
-        EquipmentComponent,
-        ManageEquipDialogComponent,
-        MoneyControllerComponent,
-        EditMoneyControllerDialogComponent,
-        NpcsComponent,
-        AddNpcDialogComponent,
-        AddOrganizationDialogComponent,
+        // MoneyComponent,
+        // SnackbarComponent,
+        // HealthPointDialogComponent,
+        // MoneyDialogComponent,
+        // InventoryComponent,
+        // AddItemDialogComponent,
+        // HealthBarComponent,
+        // ItemTooltipComponent,
+        // EquipmentComponent,
+        // ManageEquipDialogComponent,
+        // MoneyControllerComponent,
+        // EditMoneyControllerDialogComponent,
+        // NpcsComponent,
+        // AddNpcDialogComponent,
+        // AddOrganizationDialogComponent,
+        // DiceRollerComponent,
+        // DescriptionTooltipComponent,
+        // InventoryCampaignComponent,
+        // DocumentDialogComponent,
+
         // FORM CREATE COMPONENTS AND SUB-COMPONENTS
         FormCreateComponent,
         // sub-components
@@ -169,6 +173,7 @@ import { ComposeCharInfoStringPipe } from './pipes/compose-char-info-string.pipe
         BackgroundComponent,
         StoriaComponent,
         TrucchettiIncantesimiComponent,
+
         // FORM LEVEL UP COMPONENTS AND SUB-COMPONENTS
         FormLevelUpComponent,
         // sub-components
@@ -180,52 +185,56 @@ import { ComposeCharInfoStringPipe } from './pipes/compose-char-info-string.pipe
         CompetenzeLinguaggiLevelUpComponent,
         PrivilegiTrattiLevelUpComponent,
         TrucchettiIncantesimiLevelUpComponent,
+
         // CHARACTER VIEW COMPONENT AND SUB-COMPONENTS
-        CharacterViewComponent,
+        // CharacterViewComponent,
         // sub-components
-        CharacterViewStatusComponent,
-        PrivilegiTrattiTabViewComponent,
-        EquipaggiamentoTabViewComponent,
-        AbilitaTabViewComponent,
-        DescrizioneBackgroundTabViewComponent,
-        TrucchettiIncantesimiTabViewComponent,
-        SettingsTabViewComponent,
-        ItemInfoSheetComponent,
-        AttacchiTabViewComponent,
-        AddAttackDialogComponent,
+        // CharacterViewStatusComponent,
+        // PrivilegiTrattiTabViewComponent,
+        // EquipaggiamentoTabViewComponent,
+        // AbilitaTabViewComponent,
+        // DescrizioneBackgroundTabViewComponent,
+        // TrucchettiIncantesimiTabViewComponent,
+        // SettingsTabViewComponent,
+        // ItemInfoSheetComponent,
+        // AttacchiTabViewComponent,
+        // EditPrivilegioTrattoDialogComponent,
+        // AddAttackDialogComponent,
+        // CompanionTabViewComponent,
+
         // CAMPAIGN COMPONENTS AND SUB-COMPONENTS
-        CampaignListComponent,
-        CampaignViewComponent,
+        // CampaignListComponent,
+        // CampaignViewComponent,
         // sub-components
-        CampaignCharListComponent,
-        CampaignStoryTabComponent,
-        AddStoryDialogComponent,
-        CampaignSettingsTabComponent,
-        CharacterBottomSheetComponent,
-        CampaignQuestsTabComponent,
-        AddQuestDialogComponent,
-        CampaignEntriesTabComponent,
-        AddEntryDialogComponent,
-        CampaignAchievementsTabComponent,
-        AddAchievementDialogComponent,
-        NewChapterDialogComponent,
-        ArchiveStoryDialogComponent,
-        ArchiveQuestDialogComponent,
-        ArchiveAchievementDialogComponent,
-        CompanionTabViewComponent,
-        CampaignNpcTabComponent,
-        MasterScreenTabComponent,
-        RemoveCharDialogComponent,
-        CampaignInventoryTabComponent,
-        NextSessionDialogComponent,
-        EditStoryDialogComponent,
-        EditPrivilegioTrattoDialogComponent,
-        CampaignCharTabComponent,
-        RemoveCampaignDialogComponent,
-        AddResourceDialogComponent,
-        DescriptionTooltipComponent,
-        InventoryCampaignComponent,
-        ExchangeDialogComponent,
+        // CampaignCharListComponent,
+        // CampaignStoryTabComponent,
+        // AddStoryDialogComponent,
+        // CampaignSettingsTabComponent,
+        // CharacterBottomSheetComponent,
+        // CampaignQuestsTabComponent,
+        // AddQuestDialogComponent,
+        // CampaignEntriesTabComponent,
+        // AddEntryDialogComponent,
+        // CampaignAchievementsTabComponent,
+        // AddAchievementDialogComponent,
+        // NewChapterDialogComponent,
+        // ArchiveStoryDialogComponent,
+        // ArchiveQuestDialogComponent,
+        // ArchiveAchievementDialogComponent,
+        // CampaignNpcTabComponent,
+        // MasterScreenTabComponent,
+        // RemoveCharDialogComponent,
+        // CampaignInventoryTabComponent,
+        // NextSessionDialogComponent,
+        // EditStoryDialogComponent,
+        // CampaignEncounterTabComponent,
+        // NewEncounterDialogComponent,
+        // CampaignCharTabComponent,
+        // RemoveCampaignDialogComponent,
+        // AddResourceDialogComponent,
+        // ExchangeDialogComponent,
+
+        //resource component
         ResourcesPageComponent,
         AddResourceItemDialogComponent,
         AddResourceSpellDialogComponent,
@@ -233,32 +242,36 @@ import { ComposeCharInfoStringPipe } from './pipes/compose-char-info-string.pipe
         AddAddonsResourcesDialogComponent,
         AddOrganizationsResourcesDialogComponent,
         ManageResourcesDialogComponent,
-        DocumentDialogComponent,
-        CampaignEncounterTabComponent,
-        NewEncounterDialogComponent,
-        AdventuresPageComponent,
-        NewAdventureDialogComponent,
-        AdventureEditorComponent,
-        AdventureViewComponent,
-        NewAdventureChapterDialogComponent,
-        AddElementsDialogComponent,
-        DiceRollerComponent,
+
+        // adventure component
+        // AdventuresPageComponent,
+        // NewAdventureDialogComponent,
+        // AdventureEditorComponent,
+        // AdventureViewComponent,
+        // NewAdventureChapterDialogComponent,
+        // AddElementsDialogComponent,
 
         // PIPES
-        BonusStringPipe,
-        ComposeClassStringPipe,
-        ComposeCharInfoStringPipe
+        // BonusStringPipe,
+        // ComposeClassStringPipe,
+        // ComposeCharInfoStringPipe
     ],
-    bootstrap: [AppComponent], imports: [SharedModule,
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
-        ServiceWorkerModule.register('ngsw-worker.js', {
-            enabled: !isDevMode(),
-            // Register the ServiceWorker as soon as the application is stable
-            // or after 30 seconds (whichever comes first).
-            registrationStrategy: 'registerWhenStable:30000'
-        })], providers: [SidenavService, { provide: MAT_DATE_LOCALE, useValue: 'it-IT' }, provideHttpClient(withInterceptorsFromDi())] })
+    bootstrap: [AppComponent],
+    imports: [
+      SharedModule,
+      SharedUtilitisModule,
+      SharedCharacterModule,
+      SharedAdventureModule,
+      SharedCampaignModule,
+      BrowserModule,
+      BrowserAnimationsModule,
+      AppRoutingModule,
+      FormsModule,
+      ReactiveFormsModule,
+      ServiceWorkerModule.register('ngsw-worker.js', {
+          enabled: !isDevMode(),
+          // Register the ServiceWorker as soon as the application is stable
+          // or after 30 seconds (whichever comes first).
+          registrationStrategy: 'registerWhenStable:30000'
+      })], providers: [SidenavService, { provide: MAT_DATE_LOCALE, useValue: 'it-IT' }, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
