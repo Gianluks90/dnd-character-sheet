@@ -481,6 +481,11 @@ details[as-inner-details] {
   margin: 4px;
 }
 
+details[as-details]>div[as-pills-container] {
+  margin: 4px;
+  text-transform: capitalize;
+}
+
 details[as-details]>summary {
   list-style: none;
 }
@@ -584,6 +589,7 @@ div[as-pill] {
   padding: 6px 24px;
   text-align: center;
   border-radius: 12px;
+  opacity: 0.9;
 
   .material-symbols-outlined {
     font-size: 1rem;
@@ -604,6 +610,7 @@ div[as-mini-pill] {
   text-align: center;
   border-radius: 12px;
   font-size: smaller;
+  opacity: 0.9;
 
   .material-symbols-outlined {
     font-size: 1rem;

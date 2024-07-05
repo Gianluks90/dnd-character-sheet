@@ -2,6 +2,7 @@ import { Component, Inject, effect } from '@angular/core';
 import { AbstractControl, FormBuilder, ValidatorFn, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Item } from 'src/app/models/item';
+import { CampaignService } from 'src/app/services/campaign.service';
 import { CharacterService } from 'src/app/services/character.service';
 
 @Component({
@@ -18,7 +19,11 @@ export class ExchangeDialogComponent {
   public validItems: Item[] = [];
   public characters: any[] = [];
 
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: { selectedChar: any, characters: any[] }, private charService: CharacterService) {
+  constructor(
+    private fb: FormBuilder, 
+    @Inject(MAT_DIALOG_DATA) public data: { selectedChar: any, characters: any[] }, 
+    private charService: CharacterService,
+    private campaignService: CampaignService) {
     this.characters = this.data.characters;
     this.form = this.fb.group({
       items: [[], [Validators.required, this.arrayNotEmptyValidator()]],
@@ -56,41 +61,60 @@ export class ExchangeDialogComponent {
     if (!receiver) return;
     const items = this.form.value.items;
     if (!Array.isArray(items)) return;
+    if (receiver !== 'deposito') {
+      items.forEach((item: any) => {
+        item.previousOwner = {
+          id: this.data.selectedChar.id,
+          name: this.data.selectedChar.informazioniBase.nomePersonaggio,
+          imgUrl: this.data.selectedChar.informazioniBase.urlImmaginePersonaggio
+        };
+        // Controlla se il receiver ha già l'item
+        const receiverItem = receiver.equipaggiamento?.find((i: any) => i.id === item.id);
+        if (receiverItem) {
+          // Incrementa la quantità se l'item esiste già
+          receiverItem.quantity += 1;
+        } else {
+          // Aggiungi l'item se non esiste
+          receiver.equipaggiamento.push({ ...item, quantity: 1 });
+        }
+  
+        // Trova l'item nel personaggio selezionato e decrementa la quantità
+        const selectedCharItem = this.data.selectedChar.equipaggiamento?.find((i: any) => i.id === item.id);
+        if (selectedCharItem) {
+          selectedCharItem.quantity -= 1;
+        }
+      });
+  
+      // Aggiorna l'inventario per entrambi i personaggi
+      const requests = [];
+      requests.push(this.charService.updateInventory(receiver.id, receiver.equipaggiamento));
+      requests.push(this.charService.updateInventory(this.data.selectedChar.id, this.data.selectedChar.equipaggiamento));
+  
+      Promise.all(requests).then(() => {
+        this.resetForm();
+      });
+    } else {
+      const requests = [];
+      items.forEach((item: any) => {
+        item.id = this.randomId();
+        item.previousOwner = {
+          id: this.data.selectedChar.id,
+          name: this.data.selectedChar.informazioniBase.nomePersonaggio,
+          imgUrl: this.data.selectedChar.informazioniBase.urlImmaginePersonaggio
+        };
+        requests.push(this.campaignService.addCommonItem(window.location.href.split('/').pop(), item));
+        const selectedCharItem = this.data.selectedChar.equipaggiamento?.find((i: any) => i.id === item.id);
+        if (selectedCharItem) {
+          selectedCharItem.quantity = 0;
+        }
+      });
+      requests.push(this.charService.updateInventory(this.data.selectedChar.id, this.data.selectedChar.equipaggiamento));
+      
 
-    items.forEach((item: any) => {
-      // Controlla se il receiver ha già l'item
-      const receiverItem = receiver.equipaggiamento?.find((i: any) => i.id === item.id);
-      if (receiverItem) {
-        // Incrementa la quantità se l'item esiste già
-        receiverItem.quantity += 1;
-      } else {
-        // Aggiungi l'item se non esiste
-        receiver.equipaggiamento.push({ ...item, quantity: 1 });
-      }
-
-      // Trova l'item nel personaggio selezionato e decrementa la quantità
-      const selectedCharItem = this.data.selectedChar.equipaggiamento?.find((i: any) => i.id === item.id);
-      if (selectedCharItem) {
-        selectedCharItem.quantity -= 1;
-        // if (selectedCharItem.quantity === 0) {
-        //   // Rimuovi l'item se la quantità è 0 (opzionale, dipende dai requisiti)
-        //   const index = this.data.selectedChar.equipaggiamento.indexOf(selectedCharItem);
-        //   if (index > -1) {
-        //     this.data.selectedChar.equipaggiamento.splice(index, 1);
-        //   }
-        // }
-      }
-    });
-
-    // Aggiorna l'inventario per entrambi i personaggi
-    const requests = [];
-    requests.push(this.charService.updateInventory(receiver.id, receiver.equipaggiamento));
-    requests.push(this.charService.updateInventory(this.data.selectedChar.id, this.data.selectedChar.equipaggiamento));
-
-    Promise.all(requests).then(() => {
-      // Resetta il form alla fine, se necessario
-      this.resetForm();
-    });
+      Promise.all(requests).then(() => {
+        this.resetForm();
+      });
+    }
 
     // this.charService.updateInventory(receiver.id, receiver.equipaggiamento).then(() => {
     //   this.charService.updateInventory(this.data.selectedChar.id, this.data.selectedChar.equipaggiamento);
@@ -98,6 +122,10 @@ export class ExchangeDialogComponent {
 
     // Resetta il form alla fine, se necessario
     // this.resetForm();
+  }
+
+  private randomId(): string {
+    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
   }
 
 

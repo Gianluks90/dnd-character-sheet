@@ -44,6 +44,7 @@ export class CampaignService {
       organizations: [],
       addons: [],
       inventory: [],
+      commonInventory: [],
       archive: [],
       encounter: {
         list: [],
@@ -393,6 +394,22 @@ export class CampaignService {
     const docRef = doc(this.firebaseService.database, 'campaigns', id);
     return await setDoc(docRef, {
       inventory: inventory,
+      lastUpdate: new Date()
+    }, { merge: true });
+  }
+
+  public async addCommonItem(id: string, item: any): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', id);
+    return await setDoc(docRef, {
+      commonInventory: arrayUnion(item),
+      lastUpdate: new Date()
+    }, { merge: true });
+  }
+
+  public async updateCommonInventory(id: string, deposit: any[]): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', id);
+    return await setDoc(docRef, {
+      commonInventory: deposit,
       lastUpdate: new Date()
     }, { merge: true });
   }

@@ -39,8 +39,16 @@ export class InventoryCampaignComponent {
   public itemResources: Item[] = [];
 
   public inventoryData: Item[] = [];
-  @Input() set inventory(inventory: Item[]) {
-    this.inventoryData = inventory;
+  public commonInventoryData: Item[] = [];
+  public somethingToReclame: boolean = false;
+  // @Input() set inventory(inventory: Item[]) {
+  //   this.inventoryData = inventory;
+  //   this.sortInventory();
+  // }
+
+  @Input() set campaign(campaign: any) {
+    this.inventoryData = campaign.inventory || [];
+    this.commonInventoryData = campaign.commonInventory || [];
     this.sortInventory();
   }
 
@@ -52,6 +60,14 @@ export class InventoryCampaignComponent {
         return 1;
       }
     });
+    this.commonInventoryData.sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+    this.inventoryData.find((item) => item.quantity > 0 && item.visible) ? this.somethingToReclame = true : this.somethingToReclame = false;
   }
 
   public filterSearch(event: any) {
@@ -114,7 +130,7 @@ export class InventoryCampaignComponent {
       width: window.innerWidth < 500 ? '90%' : '60%',
       autoFocus: false,
       disableClose: true,
-      data: { inventory: this.inventoryData, isOwner: this.isOwnerData }
+      data: { inventory: this.inventoryData, isOwner: this.isOwnerData, createdBy: this.selectedCharData?.id || '' }
     }).afterClosed().subscribe((result: any) => {
       if (result.status === 'success') {
         this.campaignService.addItemInventory(window.location.href.split('/').pop(), result.item);
@@ -144,7 +160,7 @@ export class InventoryCampaignComponent {
     });
   }
 
-  public openInfoSheet(item: Item, index: number) {
+  public openInfoSheet(item: Item, index: number, deposit: boolean) {
     this.bottomSheet.open(ItemInfoSheetComponent, {
       // disableClose: true,
       panelClass: 'item-info-sheet',
@@ -159,22 +175,39 @@ export class InventoryCampaignComponent {
         this.inventoryData.splice(index, 1);
         this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
       }
+
       if (result && result.status === 'reclamed' && this.selectedCharData) {
         const itemExists = this.selectedCharData.equipaggiamento.find((item) => item.id === result.item.id);
         if (itemExists) {
           this.selectedCharData.equipaggiamento.find((item) => item.id === result.item.id).quantity += result.quantity;
           this.characterService.updateInventory(this.selectedCharData.id, this.selectedCharData.equipaggiamento).then(() => {
-            this.inventoryData[index].quantity -= result.quantity;
-            this.inventoryData[index].visible = this.inventoryData[index].quantity > 0;
-            this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+            if (!deposit) {
+              this.inventoryData[index].quantity -= result.quantity;
+              this.inventoryData[index].visible = this.inventoryData[index].quantity > 0;
+              this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+            } else {
+              this.commonInventoryData[index].quantity -= result.quantity;
+              if (this.commonInventoryData[index].quantity === 0) {
+                this.commonInventoryData.splice(index, 1); // Use splice instead of slice
+              }
+              this.campaignService.updateCommonInventory(window.location.href.split('/').pop(), this.commonInventoryData);
+            }
           });
         } else {
           const resultItem = { ...result.item };
           resultItem.quantity = result.quantity;
           this.characterService.addItemInventory(this.selectedCharData.id, resultItem).then(() => {
-            this.inventoryData[index].quantity -= result.quantity;
-            this.inventoryData[index].visible = this.inventoryData[index].quantity > 0;
-            this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+            if (!deposit) {
+              this.inventoryData[index].quantity -= result.quantity;
+              this.inventoryData[index].visible = this.inventoryData[index].quantity > 0;
+              this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+            } else {
+              this.commonInventoryData[index].quantity -= result.quantity;
+              if (this.commonInventoryData[index].quantity === 0) {
+                this.commonInventoryData.splice(index, 1); // Use splice instead of slice
+              }
+              this.campaignService.updateCommonInventory(window.location.href.split('/').pop(), this.commonInventoryData);
+            }
           });
         }
       }

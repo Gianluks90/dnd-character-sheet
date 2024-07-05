@@ -241,7 +241,7 @@ import { SharedAdventureModule } from "./modules/shared-adventure/shared-adventu
         AddAlliesResourcesDialogComponent,
         AddAddonsResourcesDialogComponent,
         AddOrganizationsResourcesDialogComponent,
-        ManageResourcesDialogComponent,
+        ManageResourcesDialogComponent
 
         // adventure component
         // AdventuresPageComponent,

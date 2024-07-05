@@ -17,25 +17,45 @@
             <div class="material-symbols-outlined">add</div>
         </button>
     </div>
-    <div class="items-container">
+    <div as-subtitle>Deposito</div>
+    <div class="items-container deposit-container" [ngClass]="{'empty-deposit': commonInventoryData.length <= 0}">
+        @if (commonInventoryData && commonInventoryData.length > 0) {
+        <div class="items-icon-container">
+            <div class="item-card" *ngFor="let i of commonInventoryData; let j = index;" (click)="openInfoSheet(i, j, true)"
+                (mouseover)="showTooltip($event, i)" (mouseleave)="hideTooltip()">
+                <img class="image-icon" [src]="i.icon" alt="" [ngStyle]="{'border-color': setColor(i.rarity)}"
+                    [ngClass]="{'emptyStack': i.quantity <= 0}">
+        
+                <!-- Tooltip -->
+                <app-item-tooltip id="item-tooltip" [item]="i" *ngIf="showItemTooltip && i === currentTooltipItem"
+                    class="tooltip"
+                    [ngStyle]="{'top.px': tooltipPosition.top, 'left.px': tooltipPosition.left}"></app-item-tooltip>
+            </div>
+        </div>
+        } @else {
+        <div as-description-text>Nessun oggetto nel deposito.</div>
+        }
+    </div>
+    <div as-subtitle *ngIf="isOwnerData && !somethingToReclame">Inventario</div>
+    <div as-subtitle *ngIf="somethingToReclame">{{isOwnerData ? 'Oggetti da reclamare' : 'Reclama oggetto/i'}}</div>
+    <div class="items-container" [ngClass]="{'empty-deposit': !somethingToReclame && !isOwnerData}">
         @if (inventoryData.length > 0) {
         <div class="items-icon-container">
             <div class="item-card" *ngFor="let i of inventoryData; let j = index;" [hidden]="i.filtered"
-                [ngClass]="{ 'not-visible': !i.visible && !isOwnerData }" (click)="openInfoSheet(i, j)"
+                [ngClass]="{ 'not-visible': !i.visible && !isOwnerData }" (click)="openInfoSheet(i, j, false)"
                 (mouseover)="showTooltip($event, i)" (mouseleave)="hideTooltip()">
 
                 @if (i.visible || isOwnerData) {
                 <img class="image-icon" [src]="i.icon" alt="" [ngStyle]="{'border-color': setColor(i.rarity)}"
                     [ngClass]="{'emptyStack': i.quantity <= 0}">
-                @if (!i.visible) {
-                <mat-icon class="visibility-icon">visibility_off</mat-icon>
-                }
+                    @if (!i.visible) {
+                        <mat-icon class="visibility-icon">visibility_off</mat-icon>
+                    }
                 }
 
                 <!-- Tooltip -->
                 <app-item-tooltip id="item-tooltip" [item]="i" *ngIf="showItemTooltip && i === currentTooltipItem"
-                    class="tooltip"
-                    [ngStyle]="{'top.px': tooltipPosition.top, 'left.px': tooltipPosition.left}"></app-item-tooltip>
+                    class="tooltip" [ngStyle]="{'top.px': tooltipPosition.top, 'left.px': tooltipPosition.left}"></app-item-tooltip>
             </div>
         </div>
         } @else {

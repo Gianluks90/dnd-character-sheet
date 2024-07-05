@@ -214,6 +214,9 @@
     .character-info-container {
         gap: 0;
         font-size: x-small;
+        padding: 4px;
+        box-sizing: border-box;
+        margin: 0;
     }
 
     .character-name {
@@ -222,6 +225,10 @@
 
     .character-name::first-letter {
         font-size: medium;
+    }
+
+    .character-class {
+        font-size: x-small;
     }
 }
 

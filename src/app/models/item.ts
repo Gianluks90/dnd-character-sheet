@@ -41,6 +41,8 @@ export class Item {
     consumable: boolean = false;
     visible: boolean = false;
     notEditable: boolean = false;
+    createdBy: string = '';
+    previousOwner: any = null;
 
     constructor() {}
 
@@ -90,6 +92,8 @@ export class Item {
             consumable: false,
             visible: false,
             notEditable: false,
+            createdBy: '',
+            previousOwner: null,
         }
     }
 }

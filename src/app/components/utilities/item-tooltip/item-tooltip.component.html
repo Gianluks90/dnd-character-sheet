@@ -25,6 +25,12 @@
     <div class="tooltip-traits-label"
         *ngIf="(itemData.weaponProperties && itemData.weaponProperties.length > 0) || itemData.traits.length > 0 || itemData.artifactProperties.length > 0">
         {{getPropsString(itemData)}}</div>
+    @if (itemData.previousOwner && (itemData.createdBy && itemData.createdBy !== itemData.previousOwner.id)) {
+        <div class="previous-owner-container">
+            <img [src]="itemData.previousOwner.imgUrl" referrerpolicy="no-referrer">
+            <div class="previous-owner-name">Appartenuto a <strong>{{itemData.previousOwner.name}}</strong>.</div>
+        </div>
+    }
 </div>
 <div class="tooltip-footer">
     <div class="tooltip-quantity" *ngIf="itemData.quantity > 0">Quantità: {{itemData.quantity}}</div>

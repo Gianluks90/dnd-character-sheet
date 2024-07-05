@@ -137,3 +137,24 @@
         height: 16px;
     }
 }
+
+.previous-owner-container {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    align-content: center;
+    gap: 4px;
+
+    &>img {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        border: 2px solid lightgray;
+    }
+}
+
+.previous-owner-name {
+    font-size: small;
+    opacity: 0.8;
+}
+
+

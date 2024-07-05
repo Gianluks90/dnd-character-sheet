@@ -62,7 +62,7 @@ export class InventoryComponent {
       width: window.innerWidth < 768 ? '90%' : '60%',
       autoFocus: false,
       disableClose: true,
-      data: { inventory: this.inventoryData, isOwner: this.isOwnerData }
+      data: { inventory: this.inventoryData, isOwner: this.isOwnerData, createdBy: this.selectedCharData?.id || '' }
     }).afterClosed().subscribe((result: any) => {
       if (result.status === 'success') {
         this.characterService.addItemInventory(window.location.href.split('/').pop(), result.item);

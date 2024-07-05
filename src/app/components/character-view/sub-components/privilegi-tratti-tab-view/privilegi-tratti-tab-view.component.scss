@@ -103,12 +103,18 @@
     border-radius: 4px;
 }
 
-.pt-bonus-title {
-    font-weight: bold;
-    border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
-    padding: 4px;
-}
 
 .pt-bonus-container {
-    padding: 4px;
+    padding: 8px;
+    background-color: #212121;
+    opacity: 0.9;
+    color: whitesmoke;
+    border-radius: 8px;
+    margin: 8px;
+}
+
+.pt-bonus-title {
+    font-weight: bold;
+    border-bottom: 1px solid;
+    margin-bottom: 4px;
 }

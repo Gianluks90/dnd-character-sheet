@@ -18,12 +18,18 @@
     @if (pt.tag === '') {
     <details as-details id="details-t">
         <summary as-summary>{{pt.nome}}</summary>
-        <div class="pt-type">{{pt.tipologia}}<span *ngIf="pt.riferimento && pt.riferimento !== ''">,
-                {{pt.riferimento}}</span></div>
+        <div as-pills-container>
+            <div as-mini-pill>{{pt.tipologia}}</div>
+            <div as-mini-pill *ngIf="pt.riferimento && pt.riferimento !== ''">{{pt.riferimento}}</div>
+        </div>
+        <!-- <div class="pt-type">{{pt.tipologia}}
+            <span *ngIf="pt.riferimento && pt.riferimento !== ''">,
+                {{pt.riferimento}}</span>
+            </div> -->
         <div class="pt-description">{{pt.descrizione}}</div>
         @if(pt.bonuses && pt.bonuses.length > 0) {
-            <div class="pt-bonus-title">Bonus</div>
             <div class="pt-bonus-container">
+                <div class="pt-bonus-title">Bonus</div>
                 @for (b of pt.bonuses; track $index) {
                     <div class="pt-bonus">{{b | bonusString}}</div>
                 } 
@@ -43,8 +49,12 @@
     <div *ngFor="let pt of privilegiTrattiData; let j = index">
         <details *ngIf="pt.tag.toLowerCase() === t" as-details id="details-t">
             <summary as-summary>{{pt.nome}}</summary>
-            <div class="pt-type">{{pt.tipologia}}<span *ngIf="pt.riferimento && pt.riferimento !== ''">,
-                    {{pt.riferimento}}</span></div>
+            <div as-pills-container>
+                <div as-mini-pill>{{pt.tipologia}}</div>
+                <div as-mini-pill *ngIf="pt.riferimento && pt.riferimento !== ''">{{pt.riferimento}}</div>
+            </div>
+            <!-- <div class="pt-type">{{pt.tipologia}}<span *ngIf="pt.riferimento && pt.riferimento !== ''">,
+                    {{pt.riferimento}}</span></div> -->
             <div class="pt-description">{{pt.descrizione}}</div>
             <div as-buttons-container as-buttons-container-details>
                 <button as-btn (click)="openEditDialog(j)">

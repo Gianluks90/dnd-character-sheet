@@ -1,18 +1,21 @@
 <div mat-dialog-title class="dialog-title">Scambio oggetti</div>
 <div mat-dialog-content class="dialog-content" [formGroup]="form">
-    <div as-description-text>Utilizza questo strumento per trasferire uno o più oggetti del tuo inventario a quelli di un
-        altro personaggio.</div>
+    <div as-description-text>Utilizza questo strumento per trasferire uno o più oggetti del tuo inventario a quelli di
+        un altro personaggio. Puoi anche selezionare "Deposito" per mettere da parte oggetti che non trovi utili al momento
+        o semplicemente per fare un po' di ordine. Se lasci oggetti al Deposito l'interà quantità del o dei
+        corrispondenti elementi verrà trasferita.</div>
     <div class="line-container">
         <mat-form-field color="accent" appearance="outline" class="line-input">
-            <mat-label>Oggetti</mat-label>
+            <mat-label>Oggetto/i</mat-label>
             <mat-select formControlName="items" multiple>
                 <mat-option *ngFor="let i of validItems" [value]="i">{{i.name}}</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-icon>arrow_right</mat-icon>
         <mat-form-field color="accent" appearance="outline" class="line-input">
-            <mat-label>Personaggio</mat-label>
+            <mat-label>Destinatario</mat-label>
             <mat-select formControlName="receiver">
+                <mat-option value="deposito">Deposito</mat-option>
                 <mat-option *ngFor="let c of characters" [value]="c">{{c.informazioniBase.nomePersonaggio}}</mat-option>
             </mat-select>
         </mat-form-field>

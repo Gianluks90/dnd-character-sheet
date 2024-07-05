@@ -46,12 +46,13 @@ export class SettingsDialogComponent {
     //   // allcharacters.push(characters[0]);
     //   allcharacters.forEach(character => {
     //     // if (character.id === 'TghUf9a989N9iMWKTGb0tsAv0L12-17') {
-    //       character.equipaggiamento.forEach((item) => {
-    //         item.weared = false;
-    //         item.id = Math.random().toString(36).substring(2);
+    //       character.equipaggiamento.map((item) => {
+    //         item.createdBy = character.id;
+    //         item.previousOwner = null;
+    //         return item;
     //       })
     //       this.characterService.updateInventory(character.id, character.equipaggiamento).then(() => {
-    //         this.characterService.adminCharUpdate(character.id);
+    //         // this.characterService.adminCharUpdate(character.id);
     //       });
     //     // }
     //   });

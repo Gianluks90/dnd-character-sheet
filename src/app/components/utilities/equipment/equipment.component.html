@@ -48,7 +48,7 @@
                 <div class="damage-line" (click)="rollFromSheet(getHitCheckString(setIndex), 'tiro per colpire')">
                     <div class="parameter-label">Tiro per colpire</div>
                     <div class="damage-label">
-                        <img class="dice-icon" src="./assets/dice/dice-d20-black.svg"> {{getHitCheckString(setIndex)}}
+                        <div class="material-symbols-outlined">casino</div> {{getHitCheckString(setIndex)}}
                     </div>
                 </div>
                 <div class="damage-line" (click)="rollFromSheet((setsData[setIndex].versatile ? getDiceFormula(setsData[setIndex].mainHand.versatileDice, setsData[setIndex].skill, setsData[setIndex].mainHand.extraDamages) : 
@@ -56,7 +56,7 @@
                 (getDiceFormula(setsData[setIndex].mainHand.damageFormula, setsData[setIndex].skill, setsData[setIndex].mainHand.extraDamages) || '1'))), 'tiro per i danni')">
                     <div class="parameter-label">Tiro per i danni</div>
                     <div class="damage-label">
-                        <img class="dice-icon" src="./assets/dice/dice-d20-black.svg">{{
+                        <div class="material-symbols-outlined">casino</div> {{
                                 (setsData[setIndex].versatile ? getDiceFormula(setsData[setIndex].mainHand.versatileDice, setsData[setIndex].skill, setsData[setIndex].mainHand.extraDamages) : 
                                 (setsData[setIndex].dualWield ? getDiceFormula(setsData[setIndex].mainHand.damageFormula + '+' + setsData[setIndex].offHand.damageFormula, setsData[setIndex].skill) :
                                 (getDiceFormula(setsData[setIndex].mainHand.damageFormula, setsData[setIndex].skill, setsData[setIndex].mainHand.extraDamages) || '1'))

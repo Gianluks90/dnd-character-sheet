@@ -1,16 +1,5 @@
 <div class="main-container" [ngStyle]="{'height': isCampaign ? 'auto' : '100%'}">
-    <!-- <div class="search-container">
-        @if (isOwnerData || !isCampaign) {
-            @if (isOwnerData && isCampaign) {
-                <mat-form-field appearance="outline" class="search-input" color="accent">
-                    <mat-icon matPrefix>search</mat-icon>
-                    <input matInput type="text" (keyup)="filterSearch($event)">
-                </mat-form-field>
-            }
-            <button as-mini-circle-btn (click)="openAddItemDialog()"><div class="material-symbols-outlined">add</div></button>
-        }
-    </div> -->
-    <div as-mini-buttons-container>
+    <div as-mini-buttons-container *ngIf="!isCampaign">
         <button as-mini-circle-btn [disabled]="!isResources" (click)="openResourcesDialog()">
             <div class="material-symbols-outlined">create_new_folder</div>
         </button>
@@ -20,60 +9,19 @@
     </div>
     <div class="items-container">
         @if (inventoryData.length > 0) {
-            <div class="items-icon-container">
-                <div class="item-card" 
-                *ngFor="let i of inventoryData; let j = index;" 
-                [hidden]="i.filtered || (selectedCharData && selectedCharData.status.useOpacityInventoryRule && i.quantity <= 0)" 
-                (click)="openInfoSheet(i, j)"
-                (mouseover)="showTooltip($event, i)" (mouseleave)="hideTooltip()">
-                    <!-- @if (isCampaign) { -->
-                        <!-- SONO NELLA CAMPAIGN VIEW -->
-                        <!-- @if (i.visible || isOwnerData) { -->
-                            <!-- <img class="image-icon" [src]="i.icon" alt="" [ngStyle]="{'border-color': setColor(i.rarity)}" [ngClass]="{'emptyStack': i.quantity <= 0}">
-                            @if (!i.visible) {
-                                <mat-icon class="visibility-icon">visibility_off</mat-icon>
-                            } -->
-                        <!-- } -->
-                    <!-- } @else { -->
-                        <!-- SONO NELLA CHAR VIEW -->
-                        <img class="image-icon" [src]="i.icon" alt="" [ngStyle]="{'border-color': setColor(i.rarity)}" [ngClass]="{'emptyStack': i.quantity <= 0}">
-                    <!-- } -->
-                    <!-- Tooltip -->
-                    <app-item-tooltip id="item-tooltip" [item]="i" *ngIf="showItemTooltip && i === currentTooltipItem" class="tooltip" [ngStyle]="{'top.px': tooltipPosition.top, 'left.px': tooltipPosition.left}"></app-item-tooltip>
-                </div>
+        <div class="items-icon-container">
+            <div class="item-card" *ngFor="let i of inventoryData; let j = index;"
+                [hidden]="i.filtered || (selectedCharData && selectedCharData.status.useOpacityInventoryRule && i.quantity <= 0)"
+                (click)="openInfoSheet(i, j)" (mouseover)="showTooltip($event, i)" (mouseleave)="hideTooltip()">
+                <img class="image-icon" [src]="i.icon" alt="" [ngStyle]="{'border-color': setColor(i.rarity)}"
+                    [ngClass]="{'emptyStack': i.quantity <= 0}">
+                <app-item-tooltip id="item-tooltip" [item]="i" *ngIf="showItemTooltip && i === currentTooltipItem"
+                    class="tooltip"
+                    [ngStyle]="{'top.px': tooltipPosition.top, 'left.px': tooltipPosition.left}"></app-item-tooltip>
             </div>
+        </div>
         } @else {
-            <div *ngIf="inventoryData.length === 0">Nessun oggetto nell'inventario</div>
+        <div *ngIf="inventoryData.length === 0">Nessun oggetto nell'inventario</div>
         }
     </div>
 </div>
-
-<!-- <div class="items-container">
-    @if (inventoryData.length > 0) {
-        @for (i of inventoryData; track j; let j = $index) {
-            @if (isCampaign) {
-                @if (i.visible || isOwnerData) {
-                    <div [hidden]="i.filtered" (click)="openInfoSheet(i, j)">
-                        @if (!i.visible) {
-                            <mat-icon class="visibility-icon">visibility_off</mat-icon>
-                        }
-                        <img class="image-icon" [src]="i.icon" alt="" [ngStyle]="{'border-color': setColor(i.rarity)}" [ngClass]="{'emptyStack': i.quantity <= 0}" matTooltip="{{i.name}}" matTooltipPosition="above">
-                        <span class="quantity-value">{{i.quantity}}</span>
-                        <span class="weared-label" *ngIf="i.weared">E</span>
-                    </div>
-                }
-            } @else {
-                <div class="items-icon-container" >
-                    <div [hidden]="i.filtered" (click)="openInfoSheet(i, j)">
-                        <img class="image-icon" [src]="i.icon" alt="" [ngStyle]="{'border-color': setColor(i.rarity)}" [ngClass]="{'emptyStack': i.quantity <= 0}" matTooltip="{{i.name}}" matTooltipPosition="above">
-                        <span class="quantity-value">{{i.quantity}}</span>
-                        <span class="weared-label" *ngIf="i.weared">E</span>
-                    </div>
-                </div>
-            }
-        }
-    } @else {
-        <div *ngIf="inventoryData.length === 0">Nessun oggetto nell'inventario</div>
-    }
-    
-</div> -->
