@@ -98,7 +98,7 @@
                 radio_button_unchecked</div>
             <div class="material-symbols-outlined material-no-fill" *ngIf="a.value && !a.maestria">radio_button_checked</div>
             <div class="material-symbols-outlined" *ngIf="a.maestria">stars</div>
-            <div class="a-label">{{a.name}} ({{a.short}})
+            <div class="a-label">{{a.name | capitalizeString}} ({{a.short}})
                 <!-- <span class="proficiency-identifier" *ngIf="a.value" matTooltip="Competente" matTooltipPosition="above">•</span> -->
             </div>
             <div class="a-value">{{a.mod}}</div>

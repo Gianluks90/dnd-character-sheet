@@ -19,6 +19,8 @@ import { ComposeClassStringPipe } from 'src/app/pipes/compose-class-string.pipe'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedUtilitisModule } from '../shared-utilitis/shared-utilitis.module';
 import { CompanionTabViewComponent } from 'src/app/components/character-view/sub-components/companion-tab-view/companion-tab-view.component';
+import { CapitalizeStringPipe } from 'src/app/pipes/capitalize-string.pipe';
+import { SharedPipesModule } from '../shared-pipes/shared-pipes.module';
 
 
 const components = [CharacterViewComponent]
@@ -42,9 +44,10 @@ const subcomponents = [
   declarations: [
     ...components,
     ...subcomponents,
-    BonusStringPipe,
-    ComposeClassStringPipe,
-    ComposeCharInfoStringPipe
+    // BonusStringPipe,
+    // ComposeClassStringPipe,
+    // ComposeCharInfoStringPipe,
+    // CapitalizeStringPipe
   ],
   imports: [
     CommonModule,
@@ -52,6 +55,7 @@ const subcomponents = [
     SharedUtilitisModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedPipesModule
   ],
   exports:[
     ...components,

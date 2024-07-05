@@ -35,6 +35,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedUtilitisModule } from '../shared-utilitis/shared-utilitis.module';
 import { SharedAdventureModule } from '../shared-adventure/shared-adventure.module';
+import { SharedPipesModule } from '../shared-pipes/shared-pipes.module';
 
 
 
@@ -86,6 +87,7 @@ const subComponents = [
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedPipesModule
   ],
   exports:[
     ...components,

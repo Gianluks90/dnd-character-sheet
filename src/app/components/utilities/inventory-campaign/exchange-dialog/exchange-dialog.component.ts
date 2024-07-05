@@ -14,7 +14,13 @@ export class ExchangeDialogComponent {
 
   public form = this.fb.group({
     items: [],
-    receiver: [null, Validators.required]
+    receiver: [null, Validators.required],
+    exchangeMoney: [false],
+    MP: [0, Validators.min(0)],
+    MO: [0, Validators.min(0)],
+    ME: [0, Validators.min(0)],
+    MA: [0, Validators.min(0)],
+    MR: [0, Validators.min(0)],
   });
   public validItems: Item[] = [];
   public characters: any[] = [];
@@ -27,7 +33,21 @@ export class ExchangeDialogComponent {
     this.characters = this.data.characters;
     this.form = this.fb.group({
       items: [[], [Validators.required, this.arrayNotEmptyValidator()]],
-      receiver: [null, Validators.required]
+      receiver: [null, Validators.required],
+      exchangeMoney: [false],
+      MP: [0, Validators.min(0)],
+      MO: [0, Validators.min(0)],
+      ME: [0, Validators.min(0)],
+      MA: [0, Validators.min(0)],
+      MR: [0, Validators.min(0)],
+    });
+    this.form.get('receiver')?.valueChanges.subscribe((value: any) => {
+      if (value === 'deposito') {
+        this.form.get('exchangeMoney')?.setValue(false);
+        this.form.get('exchangeMoney')?.disable();
+      } else {
+        this.form.get('exchangeMoney')?.enable();
+      }
     });
     this.validItems = this.data.selectedChar.equipaggiamento.filter((item: any) => !item.weared && item.quantity > 0);
   }
@@ -84,9 +104,26 @@ export class ExchangeDialogComponent {
           selectedCharItem.quantity -= 1;
         }
       });
+      const requests = [];
+
+      if (this.form.get('exchangeMoney')?.value) {
+        receiver.denaro.MP += this.form.get('MP')?.value;
+        receiver.denaro.MO += this.form.get('MO')?.value;
+        receiver.denaro.ME += this.form.get('ME')?.value;
+        receiver.denaro.MA += this.form.get('MA')?.value;
+        receiver.denaro.MR += this.form.get('MR')?.value;
+
+        this.data.selectedChar.denaro.MP -= this.form.get('MP')?.value;
+        this.data.selectedChar.denaro.MO -= this.form.get('MO')?.value;
+        this.data.selectedChar.denaro.ME -= this.form.get('ME')?.value;
+        this.data.selectedChar.denaro.MA -= this.form.get('MA')?.value;
+        this.data.selectedChar.denaro.MR -= this.form.get('MR')?.value;
+
+        requests.push(this.charService.updateMoney(receiver.id, receiver.denaro));
+        requests.push(this.charService.updateMoney(this.data.selectedChar.id, this.data.selectedChar.denaro));
+      }
   
       // Aggiorna l'inventario per entrambi i personaggi
-      const requests = [];
       requests.push(this.charService.updateInventory(receiver.id, receiver.equipaggiamento));
       requests.push(this.charService.updateInventory(this.data.selectedChar.id, this.data.selectedChar.equipaggiamento));
   

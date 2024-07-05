@@ -109,16 +109,19 @@ import { AdventureViewComponent } from './components/adventure-view/adventure-vi
 import { NewAdventureChapterDialogComponent } from "./components/adventure-editor/new-adventure-chapter-dialog/new-adventure-chapter-dialog.component";
 import { AddElementsDialogComponent } from './components/adventure-editor/add-elements-dialog/add-elements-dialog.component';
 import { DiceRollerComponent } from './components/utilities/dice-roller/dice-roller.component';
-import { BonusStringPipe } from "./pipes/bonus-string.pipe";
-import { ComposeClassStringPipe } from "./pipes/compose-class-string.pipe";
-import { ComposeCharInfoStringPipe } from './pipes/compose-char-info-string.pipe';
 import { SharedUtilitisModule } from "./modules/shared-utilitis/shared-utilitis.module";
 import { SharedCharacterModule } from "./modules/shared-character/shared-character.module";
 import { SharedCampaignModule } from "./modules/shared-campaign/shared-campaign.module";
 import { SharedAdventureModule } from "./modules/shared-adventure/shared-adventure.module";
 
-@NgModule({ declarations: [
-        // MAIN COMPONENTS
+@NgModule({
+    declarations: [
+        // PIPES
+        // BonusStringPipe,
+        // ComposeClassStringPipe,
+        // ComposeCharInfoStringPipe,
+        // CapitalizeStringPipe,
+        // MAIN COMPONENTS©
         AppComponent,
         AuthComponent,
         HomePageComponent,
@@ -241,7 +244,7 @@ import { SharedAdventureModule } from "./modules/shared-adventure/shared-adventu
         AddAlliesResourcesDialogComponent,
         AddAddonsResourcesDialogComponent,
         AddOrganizationsResourcesDialogComponent,
-        ManageResourcesDialogComponent
+        ManageResourcesDialogComponent,
 
         // adventure component
         // AdventuresPageComponent,
@@ -251,27 +254,25 @@ import { SharedAdventureModule } from "./modules/shared-adventure/shared-adventu
         // NewAdventureChapterDialogComponent,
         // AddElementsDialogComponent,
 
-        // PIPES
-        // BonusStringPipe,
-        // ComposeClassStringPipe,
-        // ComposeCharInfoStringPipe
+
     ],
     bootstrap: [AppComponent],
     imports: [
-      SharedModule,
-      SharedUtilitisModule,
-      SharedCharacterModule,
-      SharedAdventureModule,
-      SharedCampaignModule,
-      BrowserModule,
-      BrowserAnimationsModule,
-      AppRoutingModule,
-      FormsModule,
-      ReactiveFormsModule,
-      ServiceWorkerModule.register('ngsw-worker.js', {
-          enabled: !isDevMode(),
-          // Register the ServiceWorker as soon as the application is stable
-          // or after 30 seconds (whichever comes first).
-          registrationStrategy: 'registerWhenStable:30000'
-      })], providers: [SidenavService, { provide: MAT_DATE_LOCALE, useValue: 'it-IT' }, provideHttpClient(withInterceptorsFromDi())] })
+        SharedModule,
+        SharedUtilitisModule,
+        SharedCharacterModule,
+        SharedAdventureModule,
+        SharedCampaignModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            // Register the ServiceWorker as soon as the application is stable
+            // or after 30 seconds (whichever comes first).
+            registrationStrategy: 'registerWhenStable:30000'
+        })], providers: [SidenavService, { provide: MAT_DATE_LOCALE, useValue: 'it-IT' }, provideHttpClient(withInterceptorsFromDi())]
+})
 export class AppModule { }

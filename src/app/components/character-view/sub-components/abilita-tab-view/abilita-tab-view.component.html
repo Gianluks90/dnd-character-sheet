@@ -1,4 +1,5 @@
-<div as-section-title>Competenze Abilità</div>
+<div as-section-title>Competenze</div>
+<div as-subtitle>Abilità</div>
 <div class="section-header">
     <!-- <mat-slide-toggle class="last-toggle" color="accent" (change)="showSkillInfo($event)">
         <div class="toggle-label">Info abilità</div>
@@ -20,7 +21,7 @@
             <div class="material-symbols-outlined" *ngIf="a.maestria"
                 (mouseover)="tooltip.showTooltip($event, 'center', a.maestria, 'm-tooltip')"
                 (mouseleave)="tooltip.hideTooltip()">stars</div>
-            <div class="a-name">{{capitalizeSkillName(a.name)}} ({{a.short}})
+            <div class="a-name">{{a.name | capitalizeString}} ({{a.short}})
                 <!-- <span matTooltip="Competenza" matTooltipPosition="right" *ngIf="a.value && !a.maestria">•</span>
                 <span class="a-master" matTooltip="Maestria" matTooltipPosition="right" *ngIf="a.maestria">★</span> -->
                 <!-- <span class="material-symbols-outlined a-master" *ngIf="a.value && !a.maestria"
@@ -39,7 +40,7 @@
     }
 </div>
 <div *ngIf="competenzeData">
-    <div as-section-title>Altre competenze</div>
+    <!-- <div as-section-title>Altre competenze</div> -->
     @if(competenzeData.linguaggi.length > 0) {
     <div as-subtitle>Linguaggi</div>
     <div class="competenze-container">

@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DescriptionTooltipService } from 'src/app/components/utilities/description-tooltip/description-tooltip.service';
 import { DiceRollerComponent } from 'src/app/components/utilities/dice-roller/dice-roller.component';
+import { CapitalizeStringPipe } from 'src/app/pipes/capitalize-string.pipe';
 
 @Component({
   selector: 'app-abilita-tab-view',
@@ -131,9 +132,9 @@ export class AbilitaTabViewComponent {
     this.showInfo = !this.showInfo;
   }
 
-  public capitalizeSkillName(name: string): string {
-    return name.charAt(0).toUpperCase() + name.slice(1);
-  }
+  // public capitalizeSkillName(name: string): string {
+  //   return name.charAt(0).toUpperCase() + name.slice(1);
+  // }
 
   public getEvenLine(index: number): boolean {
     if (window.innerWidth < 1500) {

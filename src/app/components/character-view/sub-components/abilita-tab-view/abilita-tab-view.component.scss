@@ -27,7 +27,7 @@
 }
 
 .a-container {
-    padding: 6px;
+    padding: 12px;
     width: 100%;
     cursor: pointer;
     border: 1px solid;
@@ -35,23 +35,20 @@
     box-sizing: border-box;
 
     &:hover {
+        animation: invertColorOnHover 0.5s ease forwards;
+    }
+}
+
+@keyframes invertColorOnHover {
+    0% {
+        background-color: whitesmoke;
+        color: #212121;
+    }
+    100% {
         background-color: #212121;
         color: whitesmoke; 
     }
 }
-
-// .a-container:nth-child(even) {
-//     background-color: #f2f2f2;
-// }
-
-// .even-a {
-//     background-color: #f2f2f2;
-
-// }
-
-// .a-container.last-item {
-//     margin-bottom: 12px;
-// }
 
 .a-inner-container {
     display: flex;

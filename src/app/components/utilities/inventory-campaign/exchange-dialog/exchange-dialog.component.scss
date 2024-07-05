@@ -26,3 +26,25 @@
     flex-grow: 1;
     min-width: 30%;
 }
+
+.money-line {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+@media screen and (max-width: 768px) {
+    .money-line {
+        flex-direction: column;
+        gap: 8px;
+
+        &>mat-form-field {
+            width: 100%;
+        }
+    }
+
+    .arrow-right {
+        display: none;
+    }
+    
+}

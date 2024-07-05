@@ -1,4 +1,4 @@
-<div mat-dialog-title class="dialog-title">Scambio oggetti</div>
+<div mat-dialog-title class="dialog-title">Invio oggetto/i</div>
 <div mat-dialog-content class="dialog-content" [formGroup]="form">
     <div as-description-text>Utilizza questo strumento per trasferire uno o più oggetti del tuo inventario a quelli di
         un altro personaggio. Puoi anche selezionare "Deposito" per mettere da parte oggetti che non trovi utili al momento
@@ -11,7 +11,7 @@
                 <mat-option *ngFor="let i of validItems" [value]="i">{{i.name}}</mat-option>
             </mat-select>
         </mat-form-field>
-        <mat-icon>arrow_right</mat-icon>
+        <mat-icon class="arrow-right">arrow_right</mat-icon>
         <mat-form-field color="accent" appearance="outline" class="line-input">
             <mat-label>Destinatario</mat-label>
             <mat-select formControlName="receiver">
@@ -20,6 +20,31 @@
             </mat-select>
         </mat-form-field>
     </div>
+    <mat-checkbox formControlName="exchangeMoney" color="accent">Invia denaro</mat-checkbox>
+    @if (form.get('exchangeMoney').value) {
+        <div class="money-line">
+            <mat-form-field color="accent" appearance="outline">
+                <mat-label>Rame</mat-label>
+                <input matInput formControlName="MR" type="number" min="0" [max]="data.selectedChar?.denaro.MR">
+            </mat-form-field>
+            <mat-form-field color="accent" appearance="outline">
+                <mat-label>Argento</mat-label>
+                <input matInput formControlName="MA" type="number" min="0" [max]="data.selectedChar?.denaro.MA">
+            </mat-form-field>
+            <mat-form-field color="accent" appearance="outline">
+                <mat-label>Electrum</mat-label>
+                <input matInput formControlName="ME" type="number" min="0" [max]="data.selectedChar?.denaro.ME">
+            </mat-form-field>
+            <mat-form-field color="accent" appearance="outline">
+                <mat-label>Oro</mat-label>
+                <input matInput formControlName="MO" type="number" min="0" [max]="data.selectedChar?.denaro.MO">
+            </mat-form-field>
+            <mat-form-field color="accent" appearance="outline">
+                <mat-label>Platino</mat-label>
+                <input matInput formControlName="MP" type="number" min="0" [max]="data.selectedChar?.denaro.MP">
+            </mat-form-field>
+        </div>
+    }
     <div as-buttons-container>
         <button as-btn [disabled]="!form.dirty" (click)="resetForm()">
             <div class="material-symbols-outlined">clear</div>

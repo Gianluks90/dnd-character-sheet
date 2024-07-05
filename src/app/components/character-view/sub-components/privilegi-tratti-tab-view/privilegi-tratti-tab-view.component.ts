@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EditPrivilegioTrattoDialogComponent } from './edit-privilegio-tratto-dialog/edit-privilegio-tratto-dialog.component';
 import { CharacterService } from 'src/app/services/character.service';
+import { BonusStringPipe } from 'src/app/pipes/bonus-string.pipe';
 
 @Component({
   selector: 'app-privilegi-tratti-tab-view',
