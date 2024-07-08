@@ -56,6 +56,14 @@
             <!-- <div class="pt-type">{{pt.tipologia}}<span *ngIf="pt.riferimento && pt.riferimento !== ''">,
                     {{pt.riferimento}}</span></div> -->
             <div class="pt-description">{{pt.descrizione}}</div>
+            @if(pt.bonuses && pt.bonuses.length > 0) {
+                <div class="pt-bonus-container">
+                    <div class="pt-bonus-title">Bonus</div>
+                    @for (b of pt.bonuses; track $index) {
+                        <div class="pt-bonus">{{b | bonusString}}</div>
+                    } 
+                </div>
+            }
             <div as-buttons-container as-buttons-container-details>
                 <button as-btn (click)="openEditDialog(j)">
                     <div class="material-symbols-outlined">edit</div> Modifica

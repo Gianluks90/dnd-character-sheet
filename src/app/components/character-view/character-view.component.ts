@@ -55,7 +55,10 @@ export class CharacterViewComponent {
       if (!this.character) return;
       this.verifyEditMode();
       this.calcCA();
-      this.calcBonus();
+
+      setTimeout(() => {
+        this.calcBonus();
+      }, 100);
 
       this.http.get('./assets/settings/inclusivityFlags.json').subscribe((data: any[]) => {
         this.prideFlag = data.find((flag) => flag.name === this.character.status.prideFlag) || null;
@@ -73,7 +76,7 @@ export class CharacterViewComponent {
       this.charId = window.location.href.split('/').pop();
     }
 
-    
+
   }
 
   @Input() public set characterId(id: string) {
@@ -117,7 +120,7 @@ export class CharacterViewComponent {
   }
 
   private calcBonus() {
-    const bonuses = this.character.privilegiTratti.flatMap((privilegioTratto: any) => privilegioTratto.bonuses).filter((bonus: any) => bonus !== undefined);
+    const bonuses = this.character.privilegiTratti.reduce((acc: any[], privilegioTratto: any) => acc.concat(privilegioTratto.bonuses), []).filter((bonus: any) => bonus !== undefined);
     bonuses.forEach((bonus: any) => {
       if (bonus.element === 'punti ferita') {
         this.character.parametriVitali.massimoPuntiFerita += bonus.value;

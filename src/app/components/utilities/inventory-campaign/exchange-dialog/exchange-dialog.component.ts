@@ -60,22 +60,6 @@ export class ExchangeDialogComponent {
     };
   }
 
-  // public exchange() {
-  //   const receiver = this.form.get('receiver').value as any;
-  //   if (!receiver) return;
-  //   this.form.value.items.forEach((item: any) => {
-  //     if (receiver.equipaggiamento.find((i: any) => i.name === item.name)) {
-  //       receiver.equipaggiamento.find((i: any) => i.id === item.id).quantity += 1;
-  //     } else {
-  //       receiver.equipaggiamento.push({...item, quantity: 1});
-  //     }
-  //     this.data.selectedChar.equipaggiamento.find((i: any) => i.id === item.id).quantity -= 1;
-  //   });
-  //   this.charService.updateInventory(receiver.id, receiver.equipaggiamento);
-  //   this.charService.updateInventory(this.data.selectedChar.id, this.data.selectedChar.equipaggiamento);
-  //   // this.resetForm(); // Alla fine
-  // }
-
   public exchange() {
     const receiver = this.form.get('receiver')?.value as any;
     if (!receiver) return;
@@ -83,11 +67,13 @@ export class ExchangeDialogComponent {
     if (!Array.isArray(items)) return;
     if (receiver !== 'deposito') {
       items.forEach((item: any) => {
-        item.previousOwner = {
-          id: this.data.selectedChar.id,
-          name: this.data.selectedChar.informazioniBase.nomePersonaggio,
-          imgUrl: this.data.selectedChar.informazioniBase.urlImmaginePersonaggio
-        };
+        if (!item.previousOwner || item.previousOwner.id === '') {
+          item.previousOwner = {
+            id: this.data.selectedChar.id,
+            name: this.data.selectedChar.informazioniBase.nomePersonaggio,
+            imgUrl: this.data.selectedChar.informazioniBase.urlImmaginePersonaggio
+          };
+        }
         // Controlla se il receiver ha già l'item
         const receiverItem = receiver.equipaggiamento?.find((i: any) => i.id === item.id);
         if (receiverItem) {
@@ -133,7 +119,6 @@ export class ExchangeDialogComponent {
     } else {
       const requests = [];
       items.forEach((item: any) => {
-        item.id = this.randomId();
         item.previousOwner = {
           id: this.data.selectedChar.id,
           name: this.data.selectedChar.informazioniBase.nomePersonaggio,
@@ -152,19 +137,7 @@ export class ExchangeDialogComponent {
         this.resetForm();
       });
     }
-
-    // this.charService.updateInventory(receiver.id, receiver.equipaggiamento).then(() => {
-    //   this.charService.updateInventory(this.data.selectedChar.id, this.data.selectedChar.equipaggiamento);
-    // });
-
-    // Resetta il form alla fine, se necessario
-    // this.resetForm();
   }
-
-  private randomId(): string {
-    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-  }
-
 
   public resetForm() {
     this.form.reset();

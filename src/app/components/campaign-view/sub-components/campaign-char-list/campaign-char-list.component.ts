@@ -37,11 +37,13 @@ export class CampaignCharListComponent {
     this.charData = characters;
     this.playersNumber = characters.playersNumber;
     this.userFirst();
-    this.calcPassiveSkills();
-    this.calcCA();
     this.calcMoney();
     this.calcInspiration();
-    this.calcPF();
+    this.calcPassiveSkills();
+    setTimeout(() => {
+      this.calcCA();
+      this.calcPF();
+    }, 100);
   }
 
   public isOwnerData: boolean = false;
@@ -95,13 +97,14 @@ export class CampaignCharListComponent {
 
   private calcCA(): void {
     this.charData.forEach(char => {
-      const bonuses = char.privilegiTratti.flatMap((privilegioTratto: any) => privilegioTratto.bonuses).filter((bonus: any) => bonus !== undefined);
+      // const bonuses = char.privilegiTratti.flatMap((privilegioTratto: any) => privilegioTratto.bonuses).filter((bonus: any) => bonus !== undefined);
+      const bonuses = char.privilegiTratti.reduce((acc: any[], privilegioTratto: any) => acc.concat(privilegioTratto.bonuses || []), []).filter((bonus: any) => bonus !== undefined);      
       char.CA = 10 + Math.floor((char.caratteristiche.destrezza - 10) / 2);
       char.equipaggiamento.forEach(item => {
-        if (item.category.includes('Armatura') && item.weared) {
+        if (item.category.toLowerCase().includes('armatura') && item.weared) {
           char.CA = item.CA + (item.plusDexterity ? Math.floor((char.caratteristiche.destrezza - 10) / 2) : 0);
         }
-        if (item.category.includes('scudo') && item.weared) {
+        if (item.shield && item.weared) {
           char.shieldCA = '+' + item.CA;
         }
       })
@@ -149,7 +152,8 @@ export class CampaignCharListComponent {
   // char.parametriVitali.puntiFeritaAttuali}}/{{char.parametriVitali.massimoPuntiFerita
   public calcPF(): void {
     this.charData.forEach(char => {
-      const bonuses = char.privilegiTratti.flatMap((privilegioTratto: any) => privilegioTratto.bonuses).filter((bonus: any) => bonus !== undefined);
+      // const bonuses = char.privilegiTratti.flatMap((privilegioTratto: any) => privilegioTratto.bonuses).filter((bonus: any) => bonus !== undefined);
+      const bonuses = char.privilegiTratti.reduce((acc: any[], privilegioTratto: any) => acc.concat(privilegioTratto.bonuses || []), []).filter((bonus: any) => bonus !== undefined);      
       bonuses.forEach((bonus: any) => {
         if (bonus.element === 'punti ferita') {
           char.parametriVitali.massimoPuntiFerita += bonus.value;

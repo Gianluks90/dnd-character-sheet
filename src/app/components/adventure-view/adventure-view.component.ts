@@ -22,13 +22,15 @@ export class AdventureViewComponent {
         this.adventureData.chapters.forEach((chapter) => {
           const chapterIndex = this.adventureData.chapters.findIndex((c) => c.elements.some((element) => element.bookmarked)) || 0;
           const elementIndex = chapter.elements.findIndex((element) => element.bookmarked);
-          this.scrollToElement(chapterIndex, elementIndex);
+          setTimeout(() => {
+            this.scrollToElement(chapterIndex, elementIndex);
+          }, 100);
         });
       }, 1);
     }
     // this.createSubtitle();
   }
-  
+
 
   public editOrg(chapterIndex: number, elementIndex: number, orgIndex: number): void {
     const org = this.adventureData.chapters[chapterIndex].elements[elementIndex].organizations[orgIndex];

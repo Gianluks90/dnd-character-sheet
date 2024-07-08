@@ -1,13 +1,14 @@
-@defer (when user) {
+@if( user) {
   <div class="main-container">
     <div class="card-container">
       @for (c of characters; track c.id) {
       <div class="card-details">
         <div class="card-header">
-          <img class="immagine-personaggio" *ngIf="c.informazioniBase.urlImmaginePersonaggio != ''"
-            referrerpolicy="no-referrer" [src]="c.informazioniBase.urlImmaginePersonaggio">
-          <img class="immagine-personaggio" *ngIf="c.informazioniBase.urlImmaginePersonaggio == ''"
-            src="./assets/images/hero-placeholder.png">
+          @if (c.informazioniBase.urlImmaginePersonaggio != '') {
+            <img class="immagine-personaggio" [src]="c.informazioniBase.urlImmaginePersonaggio" referrerpolicy="no-referrer">
+          } @else {
+            <img class="immagine-personaggio" src="./assets/images/hero-placeholder.png">
+          }
           <div class="side-container">
             <div class="character-info-container">
               <div class="character-name">
@@ -91,7 +92,8 @@
       </div>
     }
   </div>
-}@error {
+}
+<!-- @error {
   <div class="error-container">
     <div class="error-message">Errore nel caricamento dell'utente. Riprovare.</div>
     <button as-btn (click)="reload()">
@@ -102,7 +104,7 @@
   <div class="loading-container">
     <div as-pill>Caricamento in corso...</div>
   </div>
-}
+} -->
 
 
 <app-description-tooltip id="add-tooltip" info="newChar" *ngIf="tooltip.show && tooltip.id === 'add-tooltip'"
