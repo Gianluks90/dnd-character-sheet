@@ -73,6 +73,11 @@
     <button as-btn mat-dialog-close>
         <div class="material-symbols-outlined">close</div> Annulla
     </button>
+    @if (data) {
+      <button as-btn as-btn-warn (click)="delete()">
+          <div class="material-symbols-outlined">delete</div> Elimina
+      </button>
+    }
     <button as-btn [disabled]="!form.valid" (click)="confirm()">
         <div class="material-symbols-outlined">done</div> Conferma
     </button>

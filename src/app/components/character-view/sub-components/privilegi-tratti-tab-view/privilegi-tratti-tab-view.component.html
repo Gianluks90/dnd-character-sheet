@@ -13,6 +13,11 @@
     <button as-mini-circle-btn (click)="collapseAll()">
         <div class="material-symbols-outlined">unfold_less</div>
     </button>
+    @if (!isCampaign) {
+        <button as-mini-circle-btn (click)="openAddDialog()">
+            <div class="material-symbols-outlined">add</div>
+        </button>
+    }
 </div>
 <div *ngFor="let pt of privilegiTrattiData; let i = index">
     @if (pt.tag === '') {

@@ -18,7 +18,7 @@ export class PrivilegiTrattiTabViewComponent {
   public classiData: any[] = [];
   public tags: string[] = [];
   public isCampaign: boolean = false;
-  constructor(private matDialog: MatDialog, private charService: CharacterService) { 
+  constructor(private matDialog: MatDialog, private charService: CharacterService) {
     this.isCampaign = window.location.href.includes('campaign-view');
   }
 
@@ -33,22 +33,43 @@ export class PrivilegiTrattiTabViewComponent {
     this.classiData = character.informazioniBase.classi;
   }
 
+  public openAddDialog(): void {
+    this.matDialog.open(EditPrivilegioTrattoDialogComponent, {
+      width: window.innerWidth < 768 ? '90%' : '60%',
+      autoFocus: false
+    }).afterClosed().subscribe((result: any) => {
+      if (result && result.status === 'success') {
+        this.charService.addPrivilegioTratto(this.charId, result.data);
+      }
+    });
+  }
+
   public openEditDialog(index: number): void {
     this.matDialog.open(EditPrivilegioTrattoDialogComponent, {
-      width: window.innerWidth < 600 ? '90%' : '60%',
+      width: window.innerWidth < 768 ? '90%' : '60%',
       autoFocus: false,
       data: {
         privilegioTratto: this.privilegiTrattiData[index],
       }
     }).afterClosed().subscribe((result: any) => {
-      if (result && result.status === 'success') {
-        this.privilegiTrattiData[index] = result.data;
-        this.tags = [...new Set(this.privilegiTrattiData.map((privilegioTratto: any) => privilegioTratto.tag.toLowerCase()))];
-        this.tags = this.tags.filter((tag: string) => tag !== '').sort();
-        this.charService.updatePrivilegiTratti(this.charId, this.privilegiTrattiData);
+      if (result) {
+        switch (result.status) {
+          case 'success':
+            this.privilegiTrattiData[index] = result.data;
+            this.tags = [...new Set(this.privilegiTrattiData.map((privilegioTratto: any) => privilegioTratto.tag.toLowerCase()))];
+            this.tags = this.tags.filter((tag: string) => tag !== '').sort();
+            this.charService.updatePrivilegiTratti(this.charId, this.privilegiTrattiData);
+            break;
+
+          case 'delete':
+            this.privilegiTrattiData.splice(index, 1);
+            this.tags = [...new Set(this.privilegiTrattiData.map((privilegioTratto: any) => privilegioTratto.tag.toLowerCase()))];
+            this.charService.updatePrivilegiTratti(this.charId, this.privilegiTrattiData);
+            break;
+        }
       }
     });
-  } 
+  }
 
   public collapseAll() {
     const details: NodeListOf<HTMLDetailsElement> = document.querySelectorAll('details');

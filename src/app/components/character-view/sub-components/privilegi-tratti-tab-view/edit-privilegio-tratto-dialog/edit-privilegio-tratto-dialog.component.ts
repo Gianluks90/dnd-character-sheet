@@ -21,19 +21,22 @@ export class EditPrivilegioTrattoDialogComponent {
       riferimento: [''],
       bonuses: this.fb.array([]),
     })
+    this.bonuses = this.fb.array([]);
+    this.bonuses = this.form.controls['bonuses'] as FormArray;
   }
 
   ngOnInit(): void {
-    // console.log(this.data.privilegioTratto);
-    this.form.patchValue(this.data.privilegioTratto);
-    this.bonuses = this.fb.array([]);
-    this.bonuses = this.form.controls['bonuses'] as FormArray;
-    if (this.data.privilegioTratto.bonuses) {
-      this.data.privilegioTratto.bonuses.forEach((bonus: any) => {
-        this.bonuses.push(this.fb.group(bonus));
-      });
+    if (this.data) {
+      // console.log(this.data.privilegioTratto);
+      this.form.patchValue(this.data.privilegioTratto);
+      this.bonuses = this.fb.array([]);
+      this.bonuses = this.form.controls['bonuses'] as FormArray;
+      if (this.data.privilegioTratto.bonuses) {
+        this.data.privilegioTratto.bonuses.forEach((bonus: any) => {
+          this.bonuses.push(this.fb.group(bonus));
+        });
+      }
     }
-
   }
 
   public addBonus(): void {
@@ -49,5 +52,9 @@ export class EditPrivilegioTrattoDialogComponent {
 
   public confirm(): void {
     this.dialogRef.close({ status: 'success', data: this.form.value });
+  }
+
+  public delete(): void {
+    this.dialogRef.close({ status: 'delete' });
   }
 }
