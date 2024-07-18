@@ -49,7 +49,7 @@
                 }
             </div>
         </div>
-        @if (encounterData.started && i === encounterData.activeIndex && isOwnerData) {
+        @if (encounterData.started && isOwnerData) {
             <div class="player-controller">
                 @if (e.type === 'enemy' && e.HP > 0) {
                     <div class="counter_span" [id]="'counter_' + i"></div>
@@ -60,9 +60,11 @@
                         <div class="material-symbols-outlined">add</div>
                     </button>
                 }
-                <button as-long-circle-btn (click)="nextActive()">
-                    <div class="material-symbols-outlined">arrow_forward</div> <div>Prossimo</div>
-                </button>
+                @if (i === encounterData.activeIndex) {
+                    <button as-long-circle-btn (click)="nextActive()">
+                        <div class="material-symbols-outlined">arrow_forward</div> <div>Prossimo</div>
+                    </button>
+                }
             </div>
         }
     }
