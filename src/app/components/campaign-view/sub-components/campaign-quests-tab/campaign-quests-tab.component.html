@@ -21,8 +21,9 @@
             <div class="story-item">
                 <details as-details [hidden]="quest.completed || (!quest.visible && !isOwnerData)">
                     <summary as-summary><mat-icon *ngIf="!quest.visible && isOwnerData">visibility_off</mat-icon>
-                        <div class="quest-title-label">{{quest.title}}</div>
+                        <div class="quest-title-label" [ngClass]="{'long-quest': quest.longQuest}">{{quest.title}}</div>
                     </summary>
+                    <div class="long-quest-label" *ngIf="quest.longQuest">Su più capitoli</div>
                     <div class="quest-description">{{quest.description}}</div>
                     @if (quest.steps.length > 0) {
                     <div class="progress-title">Progresso missione</div>

@@ -102,8 +102,20 @@
     margin-bottom: 4px;
 }
 
+.long-quest {
+    color: gold;
+}
+
+.long-quest-label {
+    font-size: small;
+    font-weight: bold;
+    margin-left: 8px;
+    color: goldenrod;
+}
+
 .quest-title-label {
     flex-grow: 1;
+    font-family: "Cinzel", serif;
 }
 
 .quest-description {

@@ -2,12 +2,12 @@
     <div class="home-container" >
         <div class="header-container">
             <div class="pride-flag-column">
-                <div class="red"></div>
+                <!-- <div class="red"></div>
                 <div class="orange"></div>
                 <div class="yellow"></div>
                 <div class="green"></div>
                 <div class="blue"></div>
-                <div class="purple"></div>
+                <div class="purple"></div> -->
             </div>
             <div class="header-info">
                 <div class="header-title">
@@ -20,8 +20,10 @@
                     @if (campaignData.nextSession) {
                         @if (campaignData.nextSession.toDate() > today){
                             <div>Prossima {{campaignData.nextSession.toDate() | date: 'dd/MM' }}</div>
-                        } @else {
+                        } @else if (campaignData.nextSession.toDate() === today) {
                             <div>Prossima prevista per oggi</div>
+                        } @else {
+                            <div>Prossima sessione da definire</div>
                         }
                     }
                 </div>

@@ -1,7 +1,8 @@
 <div mat-dialog-title class="dialog-title">{{data.quest ? 'Modifica' : 'Nuova'}} missione</div>
 <div mat-dialog-content class="dialog-content" [formGroup]="form">
     <div as-description-text>
-        Indica un <strong>titolo</strong> e una <strong>descrizione</strong> per la missione da svolgere. Se visibile i giocatori potranno vedere queste
+        Indica un <strong>titolo</strong> e una <strong>descrizione</strong> per la missione da svolgere. Se visibile i
+        giocatori potranno vedere queste
         informazioni, mentre il campo "Note del DM" è solo per te. Quando "Completata" compila anche la sezione
         aggiuntiva.
     </div>
@@ -19,30 +20,37 @@
         <textarea matInput formControlName="dmNotes" rows="5"></textarea>
     </mat-form-field>
     <mat-checkbox formControlName="visible" color="accent">Visibile</mat-checkbox>
+    <div as-description-text>
+        Puoi indicare che la missione è <strong>su più capitoli</strong> quando vuoi tracciarne il progresso senza mai
+        archiviarla al cambio di capitolo della campagna (funzione presente nelle impostazioni per allegerire la
+        gestione dei contenuti dopo molto tempo).
+    </div>
+    <mat-checkbox formControlName="longQuest" color="accent">Su più capitoli</mat-checkbox>
 
     <div as-subtitle>Progresso</div>
     @if (form.value.visible) {
-        <ng-container formArrayName="steps">
-            <ng-container class="action-container" *ngFor="let s of steps.controls; let i = index">
-                <div [formGroupName]="i" class="action-container">
-                    <mat-form-field class="line-input" color="accent" appearance="outline">
-                        <mat-label>Descrizione passo</mat-label>
-                        <input matInput formControlName="text">
-                        <mat-icon matSuffix (click)="removeStep(i)">close</mat-icon>
-                    </mat-form-field>
-                </div>
-            </ng-container>
+    <ng-container formArrayName="steps">
+        <ng-container class="action-container" *ngFor="let s of steps.controls; let i = index">
+            <div [formGroupName]="i" class="action-container">
+                <mat-form-field class="line-input" color="accent" appearance="outline">
+                    <mat-label>Descrizione passo</mat-label>
+                    <input matInput formControlName="text">
+                    <mat-icon matSuffix (click)="removeStep(i)">close</mat-icon>
+                </mat-form-field>
+            </div>
         </ng-container>
+    </ng-container>
 
-        <div as-buttons-container>
-            <button as-mini-circle-btn color="accent" (click)="addStep()">
-                <div class="material-symbols-outlined">add</div>
-            </button>
-        </div>
+    <div as-buttons-container>
+        <button as-mini-circle-btn color="accent" (click)="addStep()">
+            <div class="material-symbols-outlined">add</div>
+        </button>
+    </div>
     } @else {
-        <div as-description-text>Per poter tenere traccia dei passi effettuati dai giocatori, rendi prima la missione visibile.</div>
+    <div as-description-text>Per poter tenere traccia dei passi effettuati dai giocatori, rendi prima la missione
+        visibile.</div>
     }
-        
+
     <mat-checkbox formControlName="completed" color="accent">Completata</mat-checkbox>
     <mat-form-field color="accent" class="custom-form-field" appearance="outline" *ngIf="form.value.completed">
         <mat-label>Esito</mat-label>
@@ -57,6 +65,7 @@
         <div class="material-symbols-outlined">delete</div> Elimina
     </button>
     <button as-btn [disabled]="!form.valid" (click)="confirm()">
-        <div class="material-symbols-outlined">{{data.quest ? 'check' : 'add'}}</div> {{data.quest ? 'Modifica' : 'Aggiungi'}}
+        <div class="material-symbols-outlined">{{data.quest ? 'check' : 'add'}}</div> {{data.quest ? 'Modifica' :
+        'Aggiungi'}}
     </button>
 </div>

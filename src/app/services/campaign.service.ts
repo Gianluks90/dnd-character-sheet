@@ -440,21 +440,23 @@ export class CampaignService {
 
   public async newChapter(campId: string, campaignData: any, newTitle: string, newDescription: string): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'campaigns', campId);
+  
     const archive = {
       title: campaignData.title,
       description: campaignData.description,
       story: campaignData.story,
-      quests: campaignData.quests,
+      quests: campaignData.quests.filter((quest: any) => !quest.longQuest), 
       npcs: campaignData.npcs,
       rules: campaignData.rules,
       achievements: campaignData.achievements,
-    }
+    };
+  
     return await setDoc(docRef, {
       title: newTitle,
       description: newDescription,
       archive: arrayUnion(archive),
       story: [],
-      quests: [],
+      quests: campaignData.quests.filter((quest: any) => quest.longQuest),
       npcs: [],
       rules: [],
       achievements: [],

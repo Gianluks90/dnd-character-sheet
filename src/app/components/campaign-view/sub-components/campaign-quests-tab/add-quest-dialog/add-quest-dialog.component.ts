@@ -16,6 +16,7 @@ export class AddQuestDialogComponent {
     steps: this.fb.array([]),
     visible: false,
     completed: false,
+    longQuest: false,
     result: ''
   });
 
