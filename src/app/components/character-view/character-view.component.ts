@@ -9,6 +9,7 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { DiceRollerComponent } from '../utilities/dice-roller/dice-roller.component';
+import { CharRestDialogComponent } from './char-rest-dialog/char-rest-dialog.component';
 
 @Component({
   selector: 'app-character-view',
@@ -143,6 +144,17 @@ export class CharacterViewComponent {
         char: this.character,
         formula: null
       }
+    });
+  }
+
+  public openRestDialog() {
+    this.matDialog.open(CharRestDialogComponent, {
+      width: window.innerWidth < 768 ? '90%' : '500px',
+      autoFocus: false,
+      disableClose: true
+    }).afterClosed().subscribe((result) => {
+      if (result && result.status !== 'success') return;
+      this.characterService.longRest(this.character.id);
     });
   }
 }

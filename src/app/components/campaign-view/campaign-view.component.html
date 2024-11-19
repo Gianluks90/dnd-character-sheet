@@ -131,6 +131,9 @@
 
 @if (campaignData) {
     <div as-bottom-buttons-container as-bottom-right id="adventure-button">
+        <button as-bottom-btn (click)="fastNote()">
+            <div class="material-symbols-outlined">post_add</div>
+        </button>
         <button as-bottom-btn (click)="toggleNotification()">
             <div class="material-symbols-outlined">notifications</div>
         </button>

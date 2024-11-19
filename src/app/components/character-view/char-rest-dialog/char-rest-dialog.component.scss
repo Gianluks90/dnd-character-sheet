@@ -1,0 +1,32 @@
+.dialog-title {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .description {
+    opacity: 0.8;
+    font-size: small;
+  }
+  
+  .dialog-content {
+    width: 100%;
+  }
+  
+  .input-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .description {
+    margin-bottom: 8px;
+    text-align: justify;
+  }
+  
+  .custom-form-field {
+    width: 100%;
+  }
+  
+  mat-form-field {
+    // width: 100% !important;
+    margin-bottom: 12px;
+  }

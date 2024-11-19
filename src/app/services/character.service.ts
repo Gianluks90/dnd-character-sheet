@@ -444,6 +444,44 @@ export class CharacterService {
     });
   }
 
+  public async longRest(id: string): Promise<void> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    const dadiVita = this.character().parametriVitali.dadiVita.map((dado: any) => {
+      dado.used.fill(false);
+      return dado;
+    });
+    const parametriVitali = {
+      puntiFeritaAttuali: this.character().parametriVitali.massimoPuntiFerita,
+      puntiFeritaTemporaneiAttuali: 0,
+      dadiVita: dadiVita
+    };
+    const risorseAggiuntive = this.character().informazioniBase.risorseAggiuntive.map((resource: any) => {
+      if (resource.name !== 'Ispirazione') {
+        resource.used = (resource.used as Array<any>).fill(false);
+      }
+      return resource;
+    });
+    const magia = this.character().magia ? {
+      ...this.character().magia,
+      slotIncantesimi: this.character().magia.slotIncantesimi.map((slot: any) => {
+        slot.used.fill(false);
+        return slot;
+      }),
+    } : {};
+
+    return await setDoc(docRef, {
+      parametriVitali: parametriVitali,
+      informazioniBase: {
+        risorseAggiuntive: risorseAggiuntive
+      },
+      magia: magia
+    }, { merge: true });
+  }
+
+  public async shortRest(): Promise<void> {
+
+  }
+
   public async getRollTheme(): Promise<string> {
     const userId = getAuth().currentUser.uid;
     const docRef = doc(this.firebaseService.database, 'users', userId);

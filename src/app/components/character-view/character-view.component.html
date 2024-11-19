@@ -100,6 +100,9 @@
 </div>
 
 <div as-bottom-buttons-container as-bottom-right id="dice-button" *ngIf="!inCampaign">
+    <button as-bottom-btn (click)="openRestDialog()">
+        <div class="material-symbols-outlined">bedtime</div>
+    </button>
     <button as-bottom-btn (click)="openDiceRoller()">
         <div class="material-symbols-outlined">casino</div>
     </button>

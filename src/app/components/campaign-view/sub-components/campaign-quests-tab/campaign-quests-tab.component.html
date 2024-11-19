@@ -1,4 +1,4 @@
-<div as-section-title>Missioni</div>
+<!-- <div as-section-title>Missioni</div>
 <div as-description-text>
     Questo è l'elenco delle Missioni che il DM rivela man mano che vengono scoperte (le missioni variano a seconda della
     Campagna in corso).
@@ -92,5 +92,119 @@
                 <div as-description-text>Il DM non ha ancora rivelato nessuna missione completata.</div>
             }
         }
+    </div>
+</div> -->
+
+<div class="quest-main-container">
+    <div as-section-title>Missioni</div>
+    <div as-description-text>
+        Questo è l'elenco delle Missioni che il DM rivela man mano che vengono scoperte (le missioni variano a seconda
+        della
+        Campagna in corso).
+    </div>
+    <div as-mini-buttons-container>
+        <button as-mini-circle-btn (click)="openArchiveQuestsDialog()" [disabled]="archiveData.length === 0">
+            <div class="material-symbols-outlined">inventory_2</div>
+        </button>
+        <button as-mini-circle-btn (click)="collapseAll()">
+            <div class="material-symbols-outlined">unfold_less</div>
+        </button>
+        <button as-mini-circle-btn (click)="openQuestDialog()" *ngIf="isOwnerData">
+            <div class="material-symbols-outlined">add</div>
+        </button>
+    </div>
+    <div class="quests-category-container">
+        <div class="quest-container">
+            <div as-subtitle>Scoperte</div>
+            <div class="quest-list">
+                @for (quest of questsData; track i; let i = $index) {
+                <div class="story-item">
+                    <details as-details [hidden]="quest.completed || (!quest.visible && !isOwnerData)">
+                        <summary as-summary><mat-icon *ngIf="!quest.visible && isOwnerData">visibility_off</mat-icon>
+                            <div class="quest-title-label" [ngClass]="{'long-quest': quest.longQuest}">{{quest.title}}
+                            </div>
+                        </summary>
+                        <div class="long-quest-label" *ngIf="quest.longQuest">Su più capitoli</div>
+                        <div class="quest-description">{{quest.description}}</div>
+                        @if (quest.steps.length > 0) {
+                        <div class="progress-title">Progresso missione</div>
+                        <div class="sc-item-line">
+                            <ul class="sc-item-ul">
+                                @for (step of quest.steps; track $index) {
+                                <li>{{step.text}}</li>
+                                }
+                            </ul>
+                        </div>
+                        }
+
+
+                        @if (isOwnerData && quest.dmNotes !== '') {
+                        <div class="quest-dm-notes" *ngIf="isOwnerData"><strong>Note del DM</strong>: {{quest.dmNotes}}
+                        </div>
+                        }
+                        <div as-buttons-container as-buttons-container-details>
+                            <button as-btn *ngIf="isOwnerData" (click)="questToggleVisibility(i)">
+                                <div class="material-symbols-outlined">{{quest.visible ? 'visibility_off' :
+                                    'visibility'}}
+                                </div>
+                                <div>{{quest.visible ? 'Nascondi' : 'Rivela'}}</div>
+                            </button>
+                            <button as-btn (click)="openQuestDialog(quest, i)" *ngIf="isOwnerData">
+                                <div class="material-symbols-outlined">edit</div>
+                                <div>Modifica</div>
+                            </button>
+                        </div>
+                    </details>
+                </div>
+                }@empty {
+                @if (isOwnerData) {
+                <div as-description-text>Nessuna missione presente.</div>
+                }@else {
+                <div as-description-text>Il DM non ha ancora rivelato nessuna missione.</div>
+                }
+                }
+            </div>
+
+        </div>
+        <div class="quest-container">
+            <div as-subtitle>Completate</div>
+            <div class="quest-list">
+                @for (quest of questsData; track i; let i = $index) {
+                <div class="story-item">
+                    <details as-details [hidden]="!quest.completed || (!quest.visible && isOwnerData)">
+                        <summary as-summary><mat-icon *ngIf="!quest.visible && isOwnerData">visibility_off</mat-icon>
+                            <div class="quest-title-label">{{quest.title}}</div>
+                        </summary>
+                        <div class="quest-description">{{quest.description}}</div>
+                        @if (quest.steps.length > 0) {
+                        <div class="progress-title">Progresso missione</div>
+                        <div class="sc-item-line">
+                            <ul class="sc-item-ul">
+                                @for (step of quest.steps; track $index) {
+                                <li>{{step.text}}</li>
+                                }
+                            </ul>
+                        </div>
+                        }
+                        <div class="quest-description" *ngIf="quest.result"><strong>Completata</strong>:
+                            {{quest.result}}
+                        </div>
+                        <div as-buttons-container as-buttons-container-details>
+                            <button as-btn (click)="openQuestDialog(quest, i)" *ngIf="isOwnerData">
+                                <div class="material-symbols-outlined">edit</div>
+                                <div>Modifica</div>
+                            </button>
+                        </div>
+                    </details>
+                </div>
+                }@empty {
+                @if (isOwnerData) {
+                <div as-description-text>Nessuna missione presente.</div>
+                }@else {
+                <div as-description-text>Il DM non ha ancora rivelato nessuna missione completata.</div>
+                }
+                }
+            </div>
+        </div>
     </div>
 </div>

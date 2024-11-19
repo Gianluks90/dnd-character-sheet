@@ -113,6 +113,7 @@ import { SharedUtilitisModule } from "./modules/shared-utilitis/shared-utilitis.
 import { SharedCharacterModule } from "./modules/shared-character/shared-character.module";
 import { SharedCampaignModule } from "./modules/shared-campaign/shared-campaign.module";
 import { SharedAdventureModule } from "./modules/shared-adventure/shared-adventure.module";
+import { CharRestDialogComponent } from './components/character-view/char-rest-dialog/char-rest-dialog.component';
 
 @NgModule({
     declarations: [
@@ -245,6 +246,7 @@ import { SharedAdventureModule } from "./modules/shared-adventure/shared-adventu
         AddAddonsResourcesDialogComponent,
         AddOrganizationsResourcesDialogComponent,
         ManageResourcesDialogComponent,
+        CharRestDialogComponent,
 
         // adventure component
         // AdventuresPageComponent,

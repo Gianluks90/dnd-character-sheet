@@ -2,9 +2,7 @@ import { Component, ViewChild, effect } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { SidenavService } from 'src/app/services/sidenav.service';
-import { Platform } from '@angular/cdk/platform';
 import { TicketCampaignDialogComponent } from '../campaign-list/ticket-campaign-dialog/ticket-campaign-dialog.component';
-import { getAuth } from 'firebase/auth';
 import { CharacterService } from 'src/app/services/character.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { NextSessionDialogComponent } from './next-session-dialog/next-session-dialog.component';
@@ -15,6 +13,7 @@ import { AdventureService } from 'src/app/services/adventure.service';
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
 import { DiceRollerComponent } from '../utilities/dice-roller/dice-roller.component';
+import { AddEntryDialogComponent } from './sub-components/campaign-entries-tab/add-entry-dialog/add-entry-dialog.component';
 
 @Component({
   selector: 'app-campaign-view',
@@ -185,6 +184,18 @@ export class CampaignViewComponent {
         formula: null,
         extra: null
       }
+    });
+  }
+
+  public fastNote(): void {
+    this.matDialog.open(AddEntryDialogComponent, {
+      width: window.innerWidth < 768 ? '90%' : '500px',
+      autoFocus: false,
+      disableClose: true,
+      data: { entry: null }
+    }).afterClosed().subscribe((result: any) => {
+      if (result.status !== 'success') return;
+      this.campaignService.addEntry(window.location.href.split('/').pop(), result.entry);
     });
   }
 }

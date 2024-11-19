@@ -1,0 +1,26 @@
+<div mat-dialog-title class="dialog-title">Riposo lungo</div>
+<div mat-dialog-content class="dialog-content">
+    <div as-description-text>
+        Effettua un <strong>Riposo lungo</strong> (in accordo con il DM e il gruppo) per ripristinare i seguenti
+        elementi:
+    </div>
+    <ul>
+        <li>Punti ferita (verranno azzerati eventuali punti ferita temporanei)</li>
+        <li>Dadi vita</li>
+        <li>Risorse aggiuntive</li>
+        <li>Slot incantesimi</li>
+    </ul>
+    <div as-description-text>
+        <strong>Attenzione:</strong> funzionalità in fase di test, verranno riprostinati gli elementi sopra citati
+        automaticamente, anche quelli che per qualche regola non andrebbero ripristinati. La personalizzazione del
+        riposo è una funzione in via di sviluppo.
+    </div>
+</div>
+<div as-buttons-container mat-dialog-actions align="end">
+    <button as-btn mat-dialog-close>
+        <div class="material-symbols-outlined">close</div> Annulla
+    </button>
+    <button as-btn (click)="confirm()">
+        <div class="material-symbols-outlined">bedtime</div> Conferma
+    </button>
+</div>
