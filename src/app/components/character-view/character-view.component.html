@@ -68,7 +68,7 @@
                     <app-companion-tab-view [character]="character"></app-companion-tab-view>
                 </mat-tab>
     
-                <mat-tab [disabled]="!editMode">
+                <mat-tab [disabled]="!editMode || character.magia.classeIncantatore === ''">
                     <ng-template mat-tab-label>
                         <img src="./assets/tabs-icons/magic.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab6-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
                     </ng-template>
