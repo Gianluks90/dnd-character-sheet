@@ -219,7 +219,6 @@ export class AddElementsDialogComponent {
           this.form?.addControl('tags', this.fb.array([], Validators.minLength(1)));
           this.tags = this.form.get('tags') as FormArray;
           break;
-          
       }
     });
   }

@@ -391,6 +391,14 @@
     }
 }
 
+.expanded-sidenav {
+    width: 800px;
+}
+
+.icon-expanded {
+    transform: rotate(180deg);
+}
+
 @media screen and (max-width: 768px) {
     .adventure-sidenav-container {
         width: 90%;

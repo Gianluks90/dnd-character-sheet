@@ -35,6 +35,7 @@ export class CampaignViewComponent {
 
   public adventureData: any;
   public showAdventure: boolean = false;
+  public adventureExpanded: boolean = false;
   public showNotification: boolean = false;
 
   constructor(
@@ -197,5 +198,9 @@ export class CampaignViewComponent {
       if (result.status !== 'success') return;
       this.campaignService.addEntry(window.location.href.split('/').pop(), result.entry);
     });
+  }
+
+  public toggleSidenavExpanded(): void {
+    this.adventureExpanded = !this.adventureExpanded;
   }
 }

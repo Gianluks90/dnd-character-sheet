@@ -149,8 +149,11 @@
 }
 
 @if (adventureData && isOwner) {
-    <div class="adventure-sidenav-container" *ngIf="showAdventure" [ngClass]="{'opening-sidenav': showAdventure}">
+    <div class="adventure-sidenav-container" *ngIf="showAdventure" [ngClass]="{'opening-sidenav': showAdventure, 'expanded-sidenav': adventureExpanded}">
         <div as-mini-buttons-container>
+            <button as-mini-circle-btn (click)="toggleSidenavExpanded()">
+                <div class="material-symbols-outlined" [ngClass]="{'icon-expanded': !adventureExpanded}">start</div>
+            </button>
             <button as-long-circle-btn (click)="editAdventure()">
                 <div class="material-symbols-outlined">open_in_new</div> <div>Modifica</div>
             </button>
