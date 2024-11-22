@@ -17,11 +17,19 @@
             <mat-option value="list">Elenco</mat-option>
             <mat-option value="table">Tabella (2 colonne)</mat-option>
             <mat-option value="skill-check">Prova di Caratteristica</mat-option>
-            <mat-option value="organization">Organizzazione/i</mat-option>
-            <mat-option value="npc">PNG</mat-option>
-            <mat-option value="addon">Scheda/e Nemico/i</mat-option>
+            @if(data.resources.organizations.length > 0) {
+                <mat-option value="organization">Organizzazione/i</mat-option>
+            }
+            @if (data.resources.allies.length > 0) {
+                <mat-option value="npc">PNG</mat-option>
+            }
+            @if (data.resources.addons.length > 0) {
+                <mat-option value="addon">Scheda/e Nemico/i</mat-option>
+            }
             <mat-option value="encounter">Incontro</mat-option>
-            <mat-option value="item">Oggetto/i</mat-option>
+            @if (data.resources.items.length > 0) {
+                <mat-option value="item">Oggetto/i</mat-option>
+            }
             <mat-option value="quest">Missione</mat-option>
             <mat-option value="tag">Etichette</mat-option>
         </mat-select>
