@@ -59,19 +59,34 @@ export class CharacterService {
     return result;
   }
 
-  public getSignalCharacters(): void {
+  public getSignalCharacters(campaignId?: string): void {
     const docRef = collection(this.firebaseService.database, 'characters');
-    const unsub = onSnapshot(docRef, (snapshot) => {
-      const result: any[] = [];
-      snapshot.forEach(doc => {
-        const character = {
-          id: doc.id,
-          ...doc.data()
-        }
-        result.push(character);
+    if (campaignId) {
+      const filteredQuery = query(docRef, where('campaignId', '==', campaignId));
+      const unsub = onSnapshot(filteredQuery, (snapshot) => {
+        const result: any[] = [];
+        snapshot.forEach(doc => {
+          const character = {
+            id: doc.id,
+            ...doc.data()
+          }
+          result.push(character);
+        });
+        this.campaignCharacters.set(result);
       });
-      this.campaignCharacters.set(result);
-    });
+    } else {
+      const unsub = onSnapshot(docRef, (snapshot) => {
+        const result: any[] = [];
+        snapshot.forEach(doc => {
+          const character = {
+            id: doc.id,
+            ...doc.data()
+          }
+          result.push(character);
+        });
+        this.campaignCharacters.set(result);
+      });
+    }
   }
   
   // public getSignalCampaigns(): void {

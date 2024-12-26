@@ -53,7 +53,7 @@ export class CampaignViewComponent {
     effect(() => {
       this.user = this.firebaseService.userSignal();
       if (!this.user) return;
-      this.charService.getSignalCharacters();
+      this.charService.getSignalCharacters(window.location.href.split('campaign-view/').pop());
     });
 
     effect(() => {
