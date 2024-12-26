@@ -9,18 +9,17 @@
 
 .home-title {
   color: white;
-  font-family: Cinzel, serif;
-  font-size: x-large;
   text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.9);
   padding: 48px 24px;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: url("../../../assets/background_summer.jpg");
+  background-image: url("../../../assets/background_v2.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .user-box {
@@ -28,7 +27,7 @@
   width: 90%;
   padding: 4px;
   box-sizing: border-box;
-  margin-top: 12px;
+  margin: 12px 0;
 }
 
 .user-identity-container {
@@ -46,7 +45,7 @@
 .user-image {
   width: 52px;
   height: 52px;
-  border-radius: 8px;
+  border-radius: 50px;
 }
 
 .user-name {
@@ -120,4 +119,50 @@
   button {
     width: 100%;
   }
+}
+
+.app-title {
+  font-family: Cinzel, serif;
+  font-size: 2.5rem;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 0;
+  color: whitesmoke;
+  margin: 12px;
+}
+
+.app-title span {
+  font-family: Cinzel, serif;
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+.app-subtitle {
+  font-size: 1rem;
+  text-align: center;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1rem;
+  margin: -14px 0 0 0;
+  color: whitesmoke;
+}
+
+@media (max-width: 768px) {
+  .app-title {
+      font-size: 1rem;
+  }
+
+  .app-title span {
+      font-size: 2.5rem;
+  }
+
+  .app-subtitle {
+      font-size: 1.5rem;
+      letter-spacing: 0.5rem;
+  }
+}
+
+.app-caption {
+  color: whitesmoke;
+  text-align: center;
 }

@@ -1,46 +1,46 @@
 <div class="home-container">
-    <h1 class="title">Adventurer Studio</h1>
-    <h2 class="subtitle">
-        Crea personaggi e Campagne per il gioco di ruolo più famoso al mondo!
-    </h2>
-    <div class="dev-label" matTooltip="Attualmente in sviluppo, i contenuti sono limitati e le funzionalità in aggiornamento possono alterare il normale funzionamento del sistema (provocando anche perdita dei propri dati).">
+    <h1 class="app-title">A<span>dventure</span>R</h1>
+    <h2 class="montserrat-font app-subtitle">studio</h2>
+    <h3 class="montserrat-font app-caption">Crea i tuoi personaggi per il gioco di ruolo più famoso del mondo!</h3>
+
+    <div class="dev-label"
+        matTooltip="Attualmente in sviluppo, i contenuti sono limitati e le funzionalità in aggiornamento possono alterare il normale funzionamento del sistema (provocando anche perdita dei propri dati).">
         Dev v.26122024
     </div>
     <div class="buttons-container">
         <button as-btn routerLink="/characters">
-            <div class="material-symbols-outlined">description</div> <div>Personaggi</div>
+            <div class="material-symbols-outlined">description</div>
+            <div>Personaggi</div>
         </button>
         <button as-btn routerLink="/resources">
-            <div class="material-symbols-outlined">inventory_2</div> <div>Risorse</div>
+            <div class="material-symbols-outlined">inventory_2</div>
+            <div>Risorse</div>
         </button>
         <button as-btn routerLink="/campaigns">
-            <div class="material-symbols-outlined">people</div> <div>Campagne</div>
+            <div class="material-symbols-outlined">people</div>
+            <div>Campagne</div>
         </button>
         <button as-btn routerLink="/adventures">
-            <div class="material-symbols-outlined">map</div> <div>Avventure</div>
+            <div class="material-symbols-outlined">map</div>
+            <div>Avventure</div>
         </button>
     </div>
 </div>
 @if (showDisclaimer) {
-    <div class="disclaimer-footer">
-        <div class="disclaimer">
-            Questo lavoro include materiale del System Reference Document 5.1 (“SRD 5.1”) di Wizards of the Coast LLC
-            disponibile al <a href="https://dnd.wizards.com/it/resources/systems-reference-document">sito</a>.
-            L’SRD 5.1 è concesso in licenza sotto l’Attribuzione 4.0 Internazionale di Creative Commons disponibile al
-            <a href="https://creativecommons.org/licenses/by/4.0/legalcode.it">sito</a>.
-            Le icone sono tratte da <a href="https://game-icons.net/">game-icons.net</a>.
-        </div>
-        <button mat-icon-button color="accent" (click)="toggleDisclaimer()">
-            <mat-icon>close</mat-icon>
-        </button>
+<div class="disclaimer-footer">
+    <div class="disclaimer">
+        Questo lavoro include materiale del System Reference Document 5.1 (“SRD 5.1”) di Wizards of the Coast LLC
+        disponibile al <a href="https://dnd.wizards.com/it/resources/systems-reference-document">sito</a>.
+        L’SRD 5.1 è concesso in licenza sotto l’Attribuzione 4.0 Internazionale di Creative Commons disponibile al
+        <a href="https://creativecommons.org/licenses/by/4.0/legalcode.it">sito</a>.
+        Le icone sono tratte da <a href="https://game-icons.net/">game-icons.net</a>.
     </div>
+    <button mat-icon-button color="accent" (click)="toggleDisclaimer()">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
 } @else {
-    <button class="info-button" mat-icon-button color="accent" (click)="toggleDisclaimer()">
-        <mat-icon>info</mat-icon>
-    </button>
+<button class="info-button" mat-icon-button color="accent" (click)="toggleDisclaimer()">
+    <mat-icon>info</mat-icon>
+</button>
 }
-<!-- <div class="sidenav-buttons" id="menu-button">
-    <button class="step-button" mat-icon-button (click)="openSidenav()" matTooltip="Menu" matTooltipPosition="right">
-        <mat-icon>{{menuIcon}}</mat-icon>
-    </button>
-</div> -->

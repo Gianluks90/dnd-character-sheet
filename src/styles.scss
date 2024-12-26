@@ -98,6 +98,7 @@ $my-theme: mat.m2-define-light-theme((color: (primary: $my-primary,
 // OTHER RULES
 
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 html,
 body {
@@ -198,6 +199,13 @@ mat-bottom-sheet-container {
   margin: 0 !important;
   border-top-left-radius: 12px !important;
   border-top-right-radius: 12px !important;
+}
+
+.montserrat-font {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 // CUSTOM ATTRIBUTES =========================
@@ -331,7 +339,7 @@ button[as-btn] {
 
   min-width: 120px;
   min-height: 32px;
-  border-radius: 8px;
+  border-radius: 50px;
   padding: 8px 12px;
   display: flex;
   align-items: center;
@@ -343,6 +351,7 @@ button[as-btn] {
   cursor: pointer;
 
   &:hover {
+    transition: 0.4s;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.6);
   }
 }
@@ -418,10 +427,10 @@ button[as-bottom-btn] {
   background-color: #212121;
   color: whitesmoke;
 
-  height: 48px;
-  width: 48px;
+  height: 32px;
+  width: 32px;
 
-  border-radius: 8px;
+  border-radius: 50px;
   font-weight: bold;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
   
@@ -432,7 +441,7 @@ button[as-bottom-btn] {
   cursor: pointer;
 
   &>.material-symbols-outlined {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 }
 
