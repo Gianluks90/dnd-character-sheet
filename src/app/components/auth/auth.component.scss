@@ -3,6 +3,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  gap: 12px;
   justify-content: center;
   align-items: center;
   background-image: url("../../../assets/background_v2.jpg");
@@ -11,58 +12,112 @@
   background-size: cover;
 }
 
-.auth-title {
-  font-family: 'Cinzel', serif;
-  color: white;
-  font-size: 5rem;
-  margin-bottom: 24px;
-  text-shadow: 2px 2px 4px #000000;
-}
-
-.auth-description {
-  font-family: 'Times New Roman', Times, serif;
-  color: white;
-  font-size: 2rem;
-  margin-bottom: 24px;
-  text-shadow: 2px 2px 4px #000000;
+.app-title {
+  font-family: Cinzel, serif;
+  font-size: 5.5rem;
   text-align: center;
-  line-height: 1.2;
-  width: 40%;
+  font-weight: 600;
+  margin-bottom: 0;
+  color: whitesmoke;
+  margin: 12px;
+  text-shadow: 2px 2px 4px #000000;
 }
 
-.auth-subtitle {
-  font-family: 'Times New Roman', Times, serif;
-  color: white;
-  font-size: x-large;
+.app-title span {
+  font-family: Cinzel, serif;
+  font-size: 4rem;
+  letter-spacing: 1px;
 }
 
-@media screen and (max-width: 850px) {
-  .auth-title {
-    font-size: 3rem;
-    text-align: center;
-    line-height: 1em;
+.app-subtitle {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1rem;
+  margin: -14px 0 0 0;
+  color: whitesmoke;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+@media (max-width: 768px) {
+  .app-title {
+      font-size: 3rem;
   }
 
-  .auth-description {
-    width: 90%;
-    font-size: 1.2rem;
-    line-height: 1.5;
+  .app-title span {
+      font-size: 2.5rem;
+  }
+
+  .app-subtitle {
+      font-size: 1.5rem;
+      letter-spacing: 0.5rem;
   }
 }
+
+.app-caption {
+  color: whitesmoke;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .app-caption {
+      padding: 0 16px;
+  }  
+}
+
+// .auth-title {
+//   font-family: 'Cinzel', serif;
+//   color: white;
+//   font-size: 5rem;
+//   margin-bottom: 24px;
+//   text-shadow: 2px 2px 4px #000000;
+// }
+
+// .auth-description {
+//   font-family: 'Times New Roman', Times, serif;
+//   color: white;
+//   font-size: 2rem;
+//   margin-bottom: 24px;
+//   text-shadow: 2px 2px 4px #000000;
+//   text-align: center;
+//   line-height: 1.2;
+//   width: 40%;
+// }
+
+// .auth-subtitle {
+//   font-family: 'Times New Roman', Times, serif;
+//   color: white;
+//   font-size: x-large;
+// }
+
+// @media screen and (max-width: 850px) {
+//   .auth-title {
+//     font-size: 3rem;
+//     text-align: center;
+//     line-height: 1em;
+//   }
+
+//   .auth-description {
+//     width: 90%;
+//     font-size: 1.2rem;
+//     line-height: 1.5;
+//   }
+// }
 
 @media screen and (max-width: 500px) {
-  .auth-title {
-    font-size: 2.5rem;
-    text-align: center;
-    line-height: 1em;
-    margin-bottom: 20px;
-  }
+  // .auth-title {
+  //   font-size: 2.5rem;
+  //   text-align: center;
+  //   line-height: 1em;
+  //   margin-bottom: 20px;
+  // }
 
-  .auth-description {
-    width: 90%;
-    font-size: 1.2rem;
-    line-height: 1.5;
-  }
+  // .auth-description {
+  //   width: 90%;
+  //   font-size: 1.2rem;
+  //   line-height: 1.5;
+  // }
 
   button {
     width: 80%;

@@ -17,6 +17,7 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 export class CampaignListComponent {
 
   public user: AdventurerUser | null;
+  public favCamp: any | null = null;
   public ownedCampaigns: any[] | null;
   public partecipantCampaigns: any[] | null;
   public today: Date = new Date();
@@ -27,7 +28,7 @@ export class CampaignListComponent {
     public sidenavService: SidenavService, 
     private campaignService: CampaignService, 
     private dialog: MatDialog) {
-    effect(() => {
+    effect(async () => {
       this.user = this.firebaseService.userSignal();
       if (window.innerWidth < 768) {
         this.isMobile = true;
@@ -41,6 +42,7 @@ export class CampaignListComponent {
             this.sortCampaignsByLastUpdate(this.ownedCampaigns);
             this.sortCampaignsByLastUpdate(this.partecipantCampaigns);
           });
+          this.favCamp = this.user.favoriteCampaign !== '' ? await this.campaignService.getCampaignById(this.user.favoriteCampaign) : null;
         }
       }
     });
@@ -72,7 +74,6 @@ export class CampaignListComponent {
   }
 
   public deleteCampaigns(id: string) {
-
     this.dialog.open(DeleteCampaignDialogComponent, {
       width: window.innerWidth < 768 ? '90%' : '50%',
       autoFocus: false,
@@ -94,6 +95,12 @@ export class CampaignListComponent {
       if (result && result.status === 'success') {
         window.location.reload();
       }
+    });
+  }
+
+  public async setCampaingAsFavorite(id: string) {
+    await this.campaignService.setCampaignAsFavorite(id).then(async () => {
+      this.favCamp = await this.campaignService.getCampaignById(id);
     });
   }
 

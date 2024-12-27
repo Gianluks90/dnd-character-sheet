@@ -17,6 +17,10 @@
                 <div as-pill *ngIf="c.nextSession && c.nextSession < today">Prossima sessione {{c.nextSession.toDate() | date: 'dd/MM'}}</div>
               </div>
               <div as-buttons-container>
+                <button as-btn [disabled]="favCamp && favCamp.id === c.id" (click)="setCampaingAsFavorite(c.id)">
+                  <div class="material-symbols-outlined">star</div>
+                  {{favCamp && favCamp.id === c.id ? 'Preferita' : 'Rendi preferita'}}
+                </button>
                 <button as-btn [routerLink]="'/campaign-view/' + c.id">
                   <div class="material-symbols-outlined">{{c.status.statusMessage === 'In corso' ? 'play_arrow' : 'settings'}}</div> <div>{{c.status.statusMessage === 'In corso' ? 'Gioca' : 'Prepara'}}</div>
                 </button>
@@ -46,6 +50,10 @@
                 <div as-pill>{{c.status.statusMessage}}</div>
               </div>
               <div as-buttons-container>
+                <button as-btn [disabled]="favCamp && favCamp.id === c.id" (click)="setCampaingAsFavorite(c.id)">
+                  <div class="material-symbols-outlined">star</div>
+                  {{favCamp && favCamp.id === c.id ? 'Preferita' : 'Rendi preferita'}}
+                </button>
                 <button as-btn [routerLink]="'/campaign-view/' + c.id">
                   <div class="material-symbols-outlined">play_arrow</div> <div>Gioca</div>
                 </button>

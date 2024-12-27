@@ -108,11 +108,11 @@ export class SettingsTabViewComponent {
     this.charService.updateOpacityInventoryRule(window.location.href.split('/').pop()!, event.target.checked);
   } 
 
-  public setFavoriteChar() {
-    this.charService.setFavoriteCharacter(this.charData.id);
-    setTimeout(() => {
-      window.location.reload();
-    }, 100);
+  public async setFavoriteChar() {
+    await this.charService.setFavoriteCharacter(this.charData.id);
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 100);
   }
 
   public parseExport() {

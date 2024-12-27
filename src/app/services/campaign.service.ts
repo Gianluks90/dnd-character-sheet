@@ -141,7 +141,7 @@ export class CampaignService {
     const docRef = doc(this.firebaseService.database, 'campaigns', id);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-      return docSnap.data();
+      return {...docSnap.data(), id: docSnap.id};
     }
   }
 
@@ -483,5 +483,12 @@ export class CampaignService {
         }, { merge: true });
       });
     });
+  }
+
+  public async setCampaignAsFavorite(campId: string): Promise<void> {
+    const userRef = doc(this.firebaseService.database, 'users', this.user.id);
+    return await setDoc(userRef, {
+      favoriteCampaign: campId
+    }, { merge: true });
   }
 }

@@ -12,13 +12,66 @@
             <div class="material-symbols-outlined">description</div>
             <div>Personaggi</div>
         </button>
-        <button as-btn routerLink="/resources">
-            <div class="material-symbols-outlined">inventory_2</div>
-            <div>Risorse</div>
+        @if (user && user.favoriteCharacter !== '') {
+            @defer (when favChar) {
+            <button as-btn [routerLink]="['/view', favChar.id]">
+                <div class="material-symbols-outlined">star</div>
+                <div>{{favChar.informazioniBase.nomePersonaggio}}</div>
+            </button>
+            } @placeholder {
+            <button as-btn disabled>
+                Cerco...
+            </button>
+            } @loading (minimum 1s) {
+            <button as-btn disabled>
+                <div class="material-symbols-outlined material-icon-spin">progress_activity</div>
+            </button>
+            } @error {
+            <button as-btn disabled>
+                <div class="material-symbols-outlined">error</div>
+            </button>
+            }
+        } @else {
+        <button as-btn routerLink="/characters" disabled>
+            <div class="material-symbols-outlined">star</div>
+            <div>Nessun preferito</div>
         </button>
+        }
+
         <button as-btn routerLink="/campaigns">
             <div class="material-symbols-outlined">people</div>
             <div>Campagne</div>
+        </button>
+        @if (user && user.favoriteCampaign !== '') {
+            @defer (when favCamp) {
+            <button as-btn [routerLink]="['/campaign-view', favCamp.id]">
+                <div class="material-symbols-outlined">star</div>
+                <div>{{favCamp.title | slice:0:10}}{{favCamp.title.length > 10 ? '...' : ''}}</div>
+            </button>
+            } @placeholder {
+            <button as-btn disabled>
+                Cerco...
+            </button>
+            } @loading (minimum 1s) {
+            <button as-btn disabled>
+                <div class="material-symbols-outlined material-icon-spin">progress_activity</div>
+            </button>
+            } @error {
+            <button as-btn disabled>
+                <div class="material-symbols-outlined">error</div>
+            </button>
+            }
+        } @else {
+        <button as-btn routerLink="/campaigns" disabled>
+            <div class="material-symbols-outlined">close</div>
+            <div>Nessuna preferita</div>
+        </button>
+        }
+    </div>
+    <div class="buttons-container">
+        <button as-btn routerLink="/resources">
+            <div class="material-symbols-outlined">inventory_2</div>
+            <div>Risorse</div>
         </button>
         <button as-btn routerLink="/adventures">
             <div class="material-symbols-outlined">map</div>

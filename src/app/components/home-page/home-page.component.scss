@@ -1,3 +1,16 @@
+// .blurred-background {
+//     background-image: url("../../../assets/background_summer.jpg");
+//     background-position: center;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     filter: blur(10px);
+//     -webkit-filter: blur(10px);
+//     height: 100vh;
+//     width: 100vw;
+//     position: fixed;
+//     z-index: -1;
+// }
+
 .home-container {
     width: 100vw;
     height: 100vh;
@@ -130,7 +143,7 @@
 .buttons-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    width: 50%;
+    width: 40%;
     gap: 8px;
 }
 

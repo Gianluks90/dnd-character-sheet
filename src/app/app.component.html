@@ -1,19 +1,10 @@
-<div class="blurred-background">
-</div>
-
-<mat-drawer-container class="main" >
+<mat-drawer-container class="main">
   <mat-drawer #drawer class="drawer-container" mode="over" autoFocus="false">
     <app-sidenav></app-sidenav>
   </mat-drawer>
   <mat-drawer-content class="drawer-inner-container">
-      <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
   </mat-drawer-content>
 </mat-drawer-container>
-
-<!-- <button mat-icon-button class="menu-button" (click)="drawer.toggle()" *ngIf="authGuardService.authStatus">
-  <mat-icon *ngIf="!drawer.opened">menu</mat-icon>
-  <mat-icon *ngIf="drawer.opened">close</mat-icon>
-</button> -->
-
-<!-- <canvas id="dddice"></canvas> -->
-<!-- <canvas id="dddiceCampaign"></canvas> -->
+<div class="blurred-background">
+</div>

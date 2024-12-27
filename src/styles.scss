@@ -218,12 +218,26 @@ mat-bottom-sheet-container {
     'GRAD' 0,
     'opsz' 24;
   font-size: 1.2rem;
+  // margin-top: 2px;
 }
 
 // Da aggiungere alle icone che vogliamo senza riempimento.
 .material-no-fill {
   font-variation-settings:
   'FILL' 0,
+}
+
+.material-icon-spin {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .material-mini {
@@ -405,7 +419,7 @@ a[as-btn-link] {
 
 div[as-bottom-buttons-container] {
   position: fixed;
-  bottom: 16px;
+  bottom: 32px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -413,11 +427,11 @@ div[as-bottom-buttons-container] {
 }
 
 div[as-bottom-buttons-container][as-bottom-left] {
-  left: 16px;
+  left: 24px;
 }
 
 div[as-bottom-buttons-container][as-bottom-right] {
-  right: 16px;
+  right: 24px;
 }
 
 button[as-bottom-btn] {
@@ -460,11 +474,11 @@ button[as-bottom-btn][disabled] {
 
 @media screen and (max-width: 768px) {
   div[as-bottom-buttons-container][as-bottom-left] {
-    left: 8px;
+    left: 12px;
   }
   
   div[as-bottom-buttons-container][as-bottom-right] {
-    right: 8px;
+    right: 12px;
   }
 }
 
@@ -727,4 +741,10 @@ input:checked+span[as-slider]:before {
 input[disabled]+span[as-slider] {
   opacity: 0.5;
   cursor: default;
+}
+
+// MATERIAL OVERIDES =========================
+
+.mat-mdc-dialog-surface, .mdc-dialog__surface {
+  border-radius: 12px !important;
 }

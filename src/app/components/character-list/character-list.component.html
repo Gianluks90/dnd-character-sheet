@@ -38,29 +38,42 @@
               </button>
               }
               @case(1){
-              <button as-btn [routerLink]="'/create/' + c.id">
+              <!-- <button as-btn [routerLink]="'/create/' + c.id">
                 <div class="material-symbols-outlined">edit</div>
                 <div>Modifica</div>
+              </button> -->
+              <button as-mini-circle-btn [routerLink]="'/create/' + c.id">
+                <div class="material-symbols-outlined">edit</div>
               </button>
               }
               @case(2){
-              <button as-btn [routerLink]="'/view/' + c.id">
+              <!-- <button as-btn [routerLink]="'/view/' + c.id">
                 <div class="material-symbols-outlined material-no-fill">visibility</div>
                 <div>Visualizza</div>
+              </button> -->
+              <button as-mini-circle-btn [routerLink]="'/view/' + c.id">
+                <div class="material-symbols-outlined">visibility</div>
               </button>
               }
               }
-              <div class="second-buttons">
-                <button as-btn [routerLink]="'/levelup/' + c.id"
+              <!-- <div class="second-buttons"> -->
+                <!-- <button as-btn [routerLink]="'/levelup/' + c.id"
                   [disabled]="c.status.statusCode !== 2 || c.informazioniBase.livello == 20">
                   <div class="material-symbols-outlined">trending_up</div>
                   <div>LV+</div>
+                </button> -->
+                <button as-mini-circle-btn [routerLink]="'/levelup/' + c.id"
+                  [disabled]="c.status.statusCode !== 2 || c.informazioniBase.livello == 20">
+                  <div class="material-symbols-outlined">trending_up</div>
                 </button>
-                <button as-btn as-btn-warn (click)="deleteCharacter(c.id)">
+                <!-- <button as-btn as-btn-warn (click)="deleteCharacter(c.id)">
                   <div class="material-symbols-outlined">delete</div>
                   <div>Elimina</div>
+                </button> -->
+                <button as-mini-circle-btn as-btn-warn (click)="deleteCharacter(c.id)">
+                  <div class="material-symbols-outlined">delete</div>
                 </button>
-              </div>
+              <!-- </div> -->
             </div>
           </div>
         </div>
