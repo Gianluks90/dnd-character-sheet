@@ -357,6 +357,13 @@
                                     @if (e.result !== '') {
                                         <div class="quest-result">{{e.result}}</div>
                                     }
+                                    @if (adventureConnected) {
+                                        <div class="quest-button-container">
+                                            <button as-mini-circle-btn (click)="addQuestToCampaign(e)" [disabled]="!campaign.quests.includes(e.title)">
+                                                <div class="material-symbols-outlined">add</div>
+                                            </button>
+                                        </div>
+                                    }
                                 </div>
                             </details>
                         </div>

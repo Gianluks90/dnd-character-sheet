@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddOrganizationDialogComponent } from '../utilities/npcs/add-organization-dialog/add-organization-dialog.component';
 import { AdventureService } from 'src/app/services/adventure.service';
 import { AddNpcDialogComponent } from '../utilities/npcs/add-npc-dialog/add-npc-dialog.component';
+import { CampaignService } from 'src/app/services/campaign.service';
 
 @Component({
   selector: 'app-adventure-view',
@@ -12,25 +13,43 @@ import { AddNpcDialogComponent } from '../utilities/npcs/add-npc-dialog/add-npc-
 })
 export class AdventureViewComponent {
 
-  constructor(private dialog: MatDialog, private adventureService: AdventureService) { }
+  constructor(private dialog: MatDialog, private adventureService: AdventureService, private campService: CampaignService) { }
+
+  public adventureConnected: boolean = false;
+  public campaign: any = null;
 
   public adventureData: Adventure | null = null;
   @Input() set adventure(adventure: Adventure) {
     this.adventureData = adventure;
     if (this.adventureData) {
-      setTimeout(() => {
-        this.adventureData.chapters.forEach((chapter) => {
-          const chapterIndex = this.adventureData.chapters.findIndex((c) => c.elements.some((element) => element.bookmarked)) || 0;
-          const elementIndex = chapter.elements.findIndex((element) => element.bookmarked);
-          setTimeout(() => {
-            this.scrollToElement(chapterIndex, elementIndex);
-          }, 100);
-        });
-      }, 1);
+      this.checkConnection().then(() => {
+        setTimeout(() => {
+          this.adventureData.chapters.forEach((chapter) => {
+            const chapterIndex = this.adventureData.chapters.findIndex((c) => c.elements.some((element) => element.bookmarked)) || 0;
+            const elementIndex = chapter.elements.findIndex((element) => element.bookmarked);
+            setTimeout(() => {
+              this.scrollToElement(chapterIndex, elementIndex);
+            }, 100);
+          });
+        }, 1);
+      });
     }
     // this.createSubtitle();
   }
 
+  public async checkConnection(): Promise<void> {
+    const campaignId: string = window.location.href.split('/campaign-view/').pop() || null;
+    if (campaignId) {
+      await this.campService.getCampaignById(campaignId).then((campaign) => {
+        if (campaign.adventure === this.adventureData.id) {
+          this.adventureConnected = true;
+          this.campaign = campaign;
+          console.log('Connected to campaign:', campaign);
+          
+        }
+      });
+    }
+  }
 
   public editOrg(chapterIndex: number, elementIndex: number, orgIndex: number): void {
     const org = this.adventureData.chapters[chapterIndex].elements[elementIndex].organizations[orgIndex];
@@ -123,6 +142,16 @@ export class AdventureViewComponent {
     if (bookmarkIndex !== -1) {
       const element = document.getElementById(`elem_${chapterIndex}_${bookmarkIndex}`);
       element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  public addQuestToCampaign(quest: any): void {
+    const questToAdd = {
+      ...quest,
+      steps: []
+    };
+    if (!(this.campaign.quests as any[]).includes(quest.title)) {
+      this.campService.addQuest(this.campaign.id, questToAdd);
     }
   }
 

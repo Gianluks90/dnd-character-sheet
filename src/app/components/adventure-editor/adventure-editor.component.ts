@@ -48,8 +48,8 @@ export class AdventureEditorComponent {
   public subtitle: string = '';
   public createSubtitle(): void {
     const result: string[] = [];
-    result.push('Editor avventura');
-    result.push(this.adventureData.chapters.length + ' ' + (this.adventureData.chapters.length === 1 ? 'capitolo' : 'capitoli'));
+    result.push('Editor campagna');
+    result.push(this.adventureData.chapters.length + ' ' + (this.adventureData.chapters.length === 1 ? 'avventura' : 'avventure'));
     result.push('aggiornata il ' + new Date(this.adventureData.status.lastUpdate.seconds * 1000).toLocaleDateString('it-IT', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }));
     this.subtitle = result.join(', ');
   }

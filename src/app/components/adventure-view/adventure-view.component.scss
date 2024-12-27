@@ -533,3 +533,9 @@ details[open]>summary::after {
 .pills-container {
     margin-bottom: 0 !important;
 }
+
+.quest-button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
