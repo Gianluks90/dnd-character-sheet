@@ -137,7 +137,7 @@
 .long-quest-label {
     font-size: small;
     font-weight: bold;
-    margin-left: 8px;
+    padding: 8px;
     color: goldenrod;
 }
 
@@ -184,6 +184,7 @@ details[open]>summary::after {
     margin-left: 8px;
     font-weight: bold;
     opacity: 0.8;
+    border-bottom: 1px dotted rgba($color: #000000, $alpha: .2)
 }
 
 .sc-item-line {
@@ -199,4 +200,11 @@ details[open]>summary::after {
 
 .sc-item-ul>li {
     opacity: 0.8;
+}
+
+.next-objective-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 8px;
 }

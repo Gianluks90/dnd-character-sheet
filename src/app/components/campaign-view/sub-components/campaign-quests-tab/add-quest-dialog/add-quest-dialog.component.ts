@@ -13,6 +13,7 @@ export class AddQuestDialogComponent {
     description: ['', Validators.required],
     dmNotes: '',
     lastUpdate: new Date(),
+    nextObjective: '',
     steps: this.fb.array([]),
     visible: false,
     completed: false,

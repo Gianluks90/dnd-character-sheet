@@ -20,15 +20,26 @@
         <textarea matInput formControlName="dmNotes" rows="5"></textarea>
     </mat-form-field>
     <mat-checkbox formControlName="visible" color="accent">Visibile</mat-checkbox>
+    <div as-label>Missione multi avventura</div>
     <div as-description-text>
-        Puoi indicare che la missione è <strong>su più capitoli</strong> quando vuoi tracciarne il progresso senza mai
-        archiviarla al cambio di capitolo della campagna (funzione presente nelle impostazioni per allegerire la
+        Puoi indicare che la missione è <strong>Multi-Avventura</strong> quando vuoi tracciarne il progresso senza che 
+        venga archiviata al progredire della Campagna (funzione "Prossima avventura" presente nelle impostazioni per allegerire la
         gestione dei contenuti dopo molto tempo).
     </div>
-    <mat-checkbox formControlName="longQuest" color="accent">Su più capitoli</mat-checkbox>
+    <mat-checkbox formControlName="longQuest" color="accent">Attiva</mat-checkbox>
 
     <div as-subtitle>Progresso</div>
+    <div as-label>Prossimo obbiettivo</div>
+    <div as-description-text>Indica nel <strong>Prossimo obbiettivo</strong> (opzionalmente) ciò che i giocatori devono
+        fare per proseguire, può aiutarli nell'eventualità sia trascorso molto tempo dall'ultima sessione. Utilizza
+        invece nei <strong>Passi</strong> per tenere traccia di ciò che è stato fatto finora. Ricorda che ognuno di
+        questi due elementi è visibile ai giocatori.</div>
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-label>Descrizione obbiettivo</mat-label>
+        <input matInput formControlName="nextObjective">
+    </mat-form-field>
     @if (form.value.visible) {
+    <div as-label>Passi</div>
     <ng-container formArrayName="steps">
         <ng-container class="action-container" *ngFor="let s of steps.controls; let i = index">
             <div [formGroupName]="i" class="action-container">

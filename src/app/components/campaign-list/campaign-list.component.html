@@ -13,7 +13,7 @@
                 <div as-pill>
                   <div class="material-symbols-outlined">person</div> {{c.characters.length}}
                 </div>
-                <div as-pill>Capitolo {{c.archive.length +1}}</div>
+                <div as-pill>Avventura {{c.archive.length +1}}</div>
                 <div as-pill *ngIf="c.nextSession && c.nextSession < today">Prossima sessione {{c.nextSession.toDate() | date: 'dd/MM'}}</div>
               </div>
               <div as-buttons-container>

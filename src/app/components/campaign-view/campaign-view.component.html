@@ -15,7 +15,7 @@
                 </div>
                 <div class="title-subtitle">
                     <!-- <div>Stato: {{campaignData.status.statusMessage}}</div> -->
-                    <div *ngIf="campaignData.archive">Capitolo {{campaignData.archive.length +1}}</div>
+                    <div *ngIf="campaignData.archive">Avventura {{campaignData.archive.length +1}}</div>
                     <div>Sessioni {{sessionNumber}}</div>
                     @if (campaignData.nextSession) {
                         @if (campaignData.nextSession.toDate() > today){

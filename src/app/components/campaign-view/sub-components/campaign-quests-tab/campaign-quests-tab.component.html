@@ -124,8 +124,15 @@
                             <div class="quest-title-label" [ngClass]="{'long-quest': quest.longQuest}">{{quest.title}}
                             </div>
                         </summary>
-                        <div class="long-quest-label" *ngIf="quest.longQuest">Su più capitoli</div>
+                        <div class="long-quest-label" *ngIf="quest.longQuest">Multi-avventura</div>
+                        <div class="progress-title">Descrizione</div>
                         <div class="quest-description">{{quest.description}}</div>
+                        @if (quest.nextObjective && quest.nextObjective !== '') {
+                            <div class="next-objective-container">
+                                <div class="material-symbols-outlined">stat_0</div>
+                                <div>{{quest.nextObjective}}</div>
+                            </div>
+                        }
                         @if (quest.steps.length > 0) {
                         <div class="progress-title">Progresso missione</div>
                         <div class="sc-item-line">
@@ -175,7 +182,15 @@
                         <summary as-summary><mat-icon *ngIf="!quest.visible && isOwnerData">visibility_off</mat-icon>
                             <div class="quest-title-label">{{quest.title}}</div>
                         </summary>
+                        <div class="long-quest-label" *ngIf="quest.longQuest">Multi-avventura</div>
+                        <div class="progress-title">Descrizione</div>
                         <div class="quest-description">{{quest.description}}</div>
+                        @if (quest.nextObjective && quest.nextObjective !== '') {
+                            <div class="next-objective-container">
+                                <div class="material-symbols-outlined">stat_0</div>
+                                <div>{{quest.nextObjective}}</div>
+                            </div>
+                        }
                         @if (quest.steps.length > 0) {
                         <div class="progress-title">Progresso missione</div>
                         <div class="sc-item-line">
