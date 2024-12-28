@@ -139,6 +139,7 @@ export class AdventureViewComponent {
   }
 
   private scrollToElement(chapterIndex: number, bookmarkIndex: number): void {
+    if (window.location.href.includes('adventures')) return;
     if (bookmarkIndex !== -1) {
       const element = document.getElementById(`elem_${chapterIndex}_${bookmarkIndex}`);
       element.scrollIntoView({ behavior: 'smooth', block: 'center' });
