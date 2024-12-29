@@ -368,6 +368,10 @@ button[as-btn] {
     transition: 0.4s;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.6);
   }
+
+  .material-symbols-outlined {
+    color: whitesmoke;
+  }
 }
 
 button[as-long-circle-btn] {
@@ -741,6 +745,11 @@ input:checked+span[as-slider]:before {
 input[disabled]+span[as-slider] {
   opacity: 0.5;
   cursor: default;
+}
+
+div[as-divider] {
+  border-bottom: 1px dotted rgba($color: #212121, $alpha: 0.3);
+  margin: 8px 0;
 }
 
 // MATERIAL OVERIDES =========================

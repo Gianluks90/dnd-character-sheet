@@ -1,0 +1,16 @@
+<div mat-dialog-title class="dialog-title">{{data.condition.name}}</div>
+<div mat-dialog-content class="dialog-content">
+    <div as-description-text>
+        {{data.condition.description}}
+    </div>
+</div>
+<div mat-dialog-actions align="end" class="buttons-container">
+    <button as-btn as-btn-warn (click)="delete()">
+        <div class="material-symbols-outlined">delete</div>
+        <div>Elimina</div>
+    </button>
+    <button as-btn mat-dialog-close>
+        <div class="material-symbols-outlined">close</div>
+        <div>Annulla</div>
+    </button>
+</div>

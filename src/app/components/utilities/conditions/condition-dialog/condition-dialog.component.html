@@ -1,0 +1,85 @@
+<div mat-dialog-title class="dialog-title">Nuova condizione</div>
+<div mat-dialog-content class="dialog-content">
+    <div as-description-text>
+        Assegna una o più condizioni {{data.characters.length > 1 ? 'a uno o più personaggi' : 'a ' +
+        data.characters[0].informazioniBase.nomePersonaggio}}. Se non
+        trovi quella che stai cercando nell'elenco puoi sempre crearne una inserendo un nome e una descrizione del suo
+        effetto oltre a scegliere un'icona.
+    </div>
+    <form [formGroup]="form" class="form-container">
+        @if (data.characters.length > 1) {
+        <mat-form-field class="line-input" color="accent" appearance="outline">
+
+            <mat-label>Personaggio/i</mat-label>
+            <mat-select formControlName="characters" multiple>
+                @for(char of data.characters; track char.id) {
+                <mat-option [value]="char">
+                    <div class="condition-option">
+                        <img src="{{char.informazioniBase.urlImmaginePersonaggio}}" class="character-option-icon" />
+                        <span>{{char.informazioniBase.nomePersonaggio}}</span>
+                    </div>
+                </mat-option>
+                }
+                <!-- <mat-option *ngFor="let character of data.characters" [value]="character.id">
+                    {{character.informazioniBase.nomePersonaggio}}
+                </mat-option> -->
+            </mat-select>
+        </mat-form-field>
+        }
+        <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Condizione/i</mat-label>
+            <mat-select formControlName="conditions" multiple>
+                @for(condition of conditions; track $index) {
+                <mat-option [value]="condition">
+                    <div class="condition-option">
+                        <img src="{{condition.icon}}" class="condition-option-icon" />
+                        <span>{{condition.name}}</span>
+                    </div>
+                </mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+        <mat-checkbox class="bulleted-checkbox" color="accent" formControlName="custom">Condizione
+            personalizzata</mat-checkbox>
+    </form>
+    @if(form.value.custom) {
+    <div as-description-text>
+        Inserisci le informazioni richieste dopodichè premi <strong>Aggiungi</strong>. Questa azione inserirà la
+        condizioine nell'elenco precedente, pronta per essere assegnata, in fondo alla lista.
+    </div>
+    <form [formGroup]="conditionForm">
+        <mat-form-field class="custom-form-field" color="accent" appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="name" />
+        </mat-form-field>
+        <mat-form-field class="custom-form-field" color="accent" appearance="outline">
+            <mat-label>Descrizione</mat-label>
+            <input matInput formControlName="description" />
+        </mat-form-field>
+        <!-- <mat-checkbox formControlName="isPermanent">La condizione è permanente.</mat-checkbox> -->
+        <div as-label>Icona</div>
+        <div class="icon-picker-container">
+            @for(icon of conditionsIcons; track i; let i = $index) {
+            <img [ngClass]="{'selected' : conditionForm.value.icon === icon.url}" [src]="icon.url" alt=""
+                (click)="selectIcon(i)">
+            }
+        </div>
+    </form>
+    <div class="buttons-container">
+        <button as-btn (click)="addCustomCondition()" [disabled]="!conditionForm.valid">
+            <div class="material-symbols-outlined">add</div>
+            <div>Aggiungi</div>
+        </button>
+    </div>
+    }
+</div>
+<div mat-dialog-actions align="end" class="buttons-container">
+    <button as-btn mat-dialog-close>
+        <div class="material-symbols-outlined">close</div>
+        <div>Annulla</div>
+    </button>
+    <button as-btn (click)="confirm()" [disabled]="!form.valid">
+        <div class="material-symbols-outlined">done</div>
+        <div>Conferma</div>
+    </button>
+</div>

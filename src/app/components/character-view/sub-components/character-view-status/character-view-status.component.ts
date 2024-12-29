@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddResourceDialogComponent } from './add-resource-dialog/add-resource-dialog.component';
 import { DescriptionTooltipService } from 'src/app/components/utilities/description-tooltip/description-tooltip.service';
 import { DiceRollerComponent } from 'src/app/components/utilities/dice-roller/dice-roller.component';
+import { ConditionDialogComponent } from 'src/app/components/utilities/conditions/condition-dialog/condition-dialog.component';
+import { ConditionInfoDialogComponent } from 'src/app/components/utilities/conditions/condition-info-dialog/condition-info-dialog.component';
 
 @Component({
   selector: 'app-character-view-status',
@@ -238,6 +240,37 @@ export class CharacterViewStatusComponent {
         char: this.characterData,
         formula: formula,
         extra: extra
+      }
+    });
+  }
+
+  public newCondition(): void {
+    this.matDialog.open(ConditionDialogComponent, {
+      width: window.innerWidth < 768 ? '90%' : '500px',
+      autoFocus: false,
+      disableClose: true,
+      data: {
+        characters: [this.characterData]
+      }
+    });
+  }
+
+  public conditionInfo(condition: any): void {
+    this.matDialog.open(ConditionInfoDialogComponent, {
+      width: window.innerWidth < 768 ? '90%' : '500px',
+      autoFocus: false,
+      disableClose: true,
+      data: {
+        condition: condition
+      }
+    }).afterClosed().subscribe((result: any) => {
+      if (result && result.status === 'delete') {
+        const charConditions = this.characterData.parametriVitali.conditions;
+        const index = charConditions.findIndex((c: any) => c.name === condition.name);
+        if (index > -1) {
+          charConditions.splice(index, 1);
+          this.charService.updateCharacterConditions(this.characterData.id, charConditions);
+        }
       }
     });
   }

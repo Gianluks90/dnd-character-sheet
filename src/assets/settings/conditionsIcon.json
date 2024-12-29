@@ -1,0 +1,101 @@
+[
+    {
+        "url": "./assets/icons/conditions/accuracy.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/bleeding.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/blind.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/blocked.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/burned.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/changed.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/charmed.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/concentration.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/confused.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/dead.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/deafened.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/enhanced.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/enrage.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/fear.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/full.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/height.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/iced.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/invisible.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/knockout.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/licantropy.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/lucky.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/muted.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/overloaded.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/petrified.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/poisoned.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/prone.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/shocked.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/sleeping.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/sprint.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/sticky-boot.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/stoned.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/surprised.svg"
+    },
+    {
+        "url": "./assets/icons/conditions/vampirism.svg"
+    }
+]

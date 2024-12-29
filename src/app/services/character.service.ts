@@ -198,12 +198,24 @@ export class CharacterService {
     }, { merge: true });
   }
 
+  public async updateCharacterConditions(id: string, conditions: any[]): Promise<void> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      parametriVitali: {
+        conditions: conditions
+      }
+    }, { merge: true });
+  }
+
   // Cambiare i parametri da aggiornare su tutti i PG a piacere prima di lanciare il comando.
   public async adminCharUpdate(id: string, equip?: any[]): Promise<any> {
     const ref = doc(this.firebaseService.database, 'characters', id);
     return await setDoc(ref, {
       // sets: [],
-      equipaggiamento: equip,
+      // equipaggiamento: equip,
+      parametriVitali: {
+        conditions: []
+      }
       // status: {
       //   usePrideRule: true
       // }

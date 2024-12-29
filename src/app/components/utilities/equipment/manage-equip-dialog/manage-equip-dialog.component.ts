@@ -59,9 +59,9 @@ export class ManageEquipDialogComponent {
           skill: [set.skill, Validators.required],
           mainHand: [mainHandItem], // Utilizza direttamente l'oggetto Item
           offHand: [offHandItem], // Utilizza direttamente l'oggetto Item
-          proficient: [set.proficient] || false,
-          dualWield: [set.dualWield] || false,
-          versatile: [set.versatile] || false
+          proficient: [set.proficient || false],
+          dualWield: [set.dualWield || false],
+          versatile: [set.versatile || false]
         }));
       });
     }

@@ -76,8 +76,6 @@ export class CharacterViewComponent {
     if (this.charId === '' && !window.location.href.includes('campaign-view')) {
       this.charId = window.location.href.split('/').pop();
     }
-
-
   }
 
   @Input() public set characterId(id: string) {

@@ -136,7 +136,7 @@
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    gap: 16px;
+    gap: 12px;
 }
 
 .pf-icon {
@@ -413,5 +413,19 @@ span {
 
     .grid-item {
         font-size: medium;
+    }
+}
+
+.conditions-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+
+    &>.condition-icon {
+        height: 32px;
+        width: 32px;
+        border-radius: 50px;
     }
 }

@@ -1,0 +1,15 @@
+.dialog-title {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.dialog-content {
+    width: 100%;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    width: 100%;
+}

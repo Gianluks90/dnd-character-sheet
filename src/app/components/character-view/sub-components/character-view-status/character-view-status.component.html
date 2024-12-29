@@ -110,6 +110,20 @@
     <div class="pf-line">
         <app-health-bar class="health-bar-component" [char]="characterData" [editMode]="editModeData"></app-health-bar>
     </div>
+    <div class="conditions-container">
+        @if (characterData.parametriVitali.conditions && characterData.parametriVitali.conditions.length > 0) {
+            @for(cond of characterData.parametriVitali.conditions; track i; let i = $index) {
+                <img src="{{cond.icon}}" class="condition-icon" (click)="conditionInfo(cond)">
+            } 
+            <button as-mini-circle-btn (click)="newCondition()">
+                <div class="material-symbols-outlined">add</div>
+            </button>
+        } @else {
+            <button as-btn (click)="newCondition()">
+                <div class="material-symbols-outlined">add</div> Condizione
+            </button>
+        }
+    </div>
     <div class="equip-parameter-container">
         <app-equipment [character]="characterData" [editMode]="editModeData"></app-equipment>
     </div>

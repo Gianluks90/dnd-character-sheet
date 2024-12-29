@@ -114,6 +114,8 @@ import { SharedCharacterModule } from "./modules/shared-character/shared-charact
 import { SharedCampaignModule } from "./modules/shared-campaign/shared-campaign.module";
 import { SharedAdventureModule } from "./modules/shared-adventure/shared-adventure.module";
 import { CharRestDialogComponent } from './components/character-view/char-rest-dialog/char-rest-dialog.component';
+import { ConditionDialogComponent } from './components/utilities/conditions/condition-dialog/condition-dialog.component';
+import { ConditionInfoDialogComponent } from './components/utilities/conditions/condition-info-dialog/condition-info-dialog.component';
 
 @NgModule({
     declarations: [
@@ -247,6 +249,8 @@ import { CharRestDialogComponent } from './components/character-view/char-rest-d
         AddOrganizationsResourcesDialogComponent,
         ManageResourcesDialogComponent,
         CharRestDialogComponent,
+        ConditionDialogComponent,
+        ConditionInfoDialogComponent,
 
         // adventure component
         // AdventuresPageComponent,
