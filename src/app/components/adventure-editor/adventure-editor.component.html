@@ -27,6 +27,12 @@
                         <button as-mini-circle-btn (click)="editChapter(i)">
                             <div class="material-symbols-outlined">edit</div>
                         </button>
+                        <button as-mini-circle-btn (click)="moveChapter(i, 'up')">
+                            <div class="material-symbols-outlined">vertical_align_top</div>
+                        </button>
+                        <button as-mini-circle-btn (click)="moveChapter(i, 'down')">
+                            <div class="material-symbols-outlined">vertical_align_bottom</div>
+                        </button>
                         <button as-mini-circle-btn [ngClass]="{'icon-bookmarked': c.bookmarked}" (click)="chapterBookmarkToggle(i)">
                             <div class="material-symbols-outlined">bookmark</div>
                         </button>

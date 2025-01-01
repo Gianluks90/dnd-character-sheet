@@ -146,6 +146,15 @@ export class AdventureEditorComponent {
     this.adventureService.updateChapters(this.adventureData.id, this.adventureData.chapters);
   }
 
+  public moveChapter(index: number, direction: 'up' | 'down'): void {
+    const chapter = this.adventureData.chapters[index];
+    this.adventureData.chapters.splice(index, 1);
+    this.adventureData.chapters.splice(direction === 'up' ? index - 1 : index + 1, 0, chapter);
+    // this.adventureService.updateChapters(this.adventureData.id, this.adventureData.chapters);
+    console.log(this.adventureData.chapters);
+    
+  }x
+
   public elementBookmarkToggle(chapterIndex: number, index: number): void {
     this.adventureData.chapters[chapterIndex].elements.map((element, i) => {
       if (i === index) {
