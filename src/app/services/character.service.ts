@@ -62,7 +62,7 @@ export class CharacterService {
   public getSignalCharacters(campaignId?: string): void {
     const docRef = collection(this.firebaseService.database, 'characters');
     if (campaignId) {
-      const filteredQuery = query(docRef, where('campaignId', '==', campaignId));
+      const filteredQuery = query(docRef, where('campaign.id', '==', campaignId));
       const unsub = onSnapshot(filteredQuery, (snapshot) => {
         const result: any[] = [];
         snapshot.forEach(doc => {
@@ -126,6 +126,10 @@ export class CharacterService {
     return await setDoc(docRef, {
       ...form.value,
       campaignId: '',
+      campaign: {
+        id: '',
+        status: 'inactive'
+      },
       id: newCharacterId,
       status: {
         creationDate: new Date(),
@@ -208,14 +212,18 @@ export class CharacterService {
   }
 
   // Cambiare i parametri da aggiornare su tutti i PG a piacere prima di lanciare il comando.
-  public async adminCharUpdate(id: string, equip?: any[]): Promise<any> {
+  public async adminCharUpdate(id: string, equip?: any[], campId?: string): Promise<any> {
     const ref = doc(this.firebaseService.database, 'characters', id);
     return await setDoc(ref, {
       // sets: [],
       // equipaggiamento: equip,
-      parametriVitali: {
-        conditions: []
-      }
+      // parametriVitali: {
+      //   conditions: []
+      // }
+      // campaign: {
+      //   id: campId,
+      //   status: 'active'
+      // }
       // status: {
       //   usePrideRule: true
       // }
@@ -545,6 +553,35 @@ export class CharacterService {
     } else {
       return false;
     }
+  }
+
+  public async disableCharCampaign(charId: string): Promise<void> {
+    const docRef = doc(this.firebaseService.database, 'characters', charId);
+    return await setDoc(docRef, {
+      campaign: {
+        status: 'inactive'
+      }
+    }, { merge: true });
+  }
+
+  public async enableCharCampaign(charId: string, campId: string): Promise<void> {
+    const docRef = doc(this.firebaseService.database, 'characters', charId);
+    return await setDoc(docRef, {
+      campaign: {
+        id: campId,
+        status: 'active'
+      }
+    }, { merge: true });
+  }
+
+  public async removeCharCampaign(charId: string): Promise<void> {
+    const docRef = doc(this.firebaseService.database, 'characters', charId);
+    return await setDoc(docRef, {
+      campaign: {
+        id: '',
+        status: 'inactive'
+      }
+    }, { merge: true });
   }
 
 }

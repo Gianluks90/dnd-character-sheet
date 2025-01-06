@@ -25,6 +25,7 @@ export class CampaignViewComponent {
 
   public campaignData: any;
   public charData: any[] = [];
+  public activeCharacters: any[] = [];
   public logsData: any;
   public logs: any[] = [];
   public selectedLog: any = null;
@@ -61,7 +62,9 @@ export class CampaignViewComponent {
       if (!this.charData && !this.user) return;
 
       const id = window.location.href.split('campaign-view/').pop();
-      this.charData = this.charData.filter((char: any) => char.campaignId === id);
+      this.charData = this.charData.filter((char: any) => char.campaign.id === id);
+      this.activeCharacters = this.charData.filter((char: any) => char.campaign.status === 'active');
+      
       this.charData.sort((a, b) => a.informazioniBase.nomePersonaggio.localeCompare(b.informazioniBase.nomePersonaggio));
       this.charData.forEach((char) => {
         if (char.status.userId === this.user.id) {
@@ -70,7 +73,7 @@ export class CampaignViewComponent {
       });
 
       // if (!this.campaignData) {
-      this.campaignService.getSignalSingleCampaing(id);
+      this.campaignService.getSignalSingleCampaign(id);
       // }
     });
 
@@ -125,7 +128,18 @@ export class CampaignViewComponent {
         }
       }
     });
+    
+    effect(() => {
+      if (this.charData && this.campaignData) {
+        if(this.campaignData.disabledCharacters && this.campaignData.disabledCharacters.length > 0) {
+          this.charData = this.charData.filter((char: any) => {
+            return !this.campaignData.disabledCharacters.find((disabled: any) => disabled.id === char.id);
+          });
+        }
+      }
+    });
   }
+
 
 
   @ViewChild('tabGroup') tabGroup: any;

@@ -59,6 +59,7 @@
     flex-direction: column;
     gap: 8px;
     margin-bottom: 20px;
+    align-items: center;
 }
 
 .story-title {
@@ -80,6 +81,7 @@
     margin-bottom: 12px;
     white-space: pre-wrap;
     text-align: justify;
+    max-width: 700px;
 }
 
 .story-number-container {

@@ -359,7 +359,7 @@
                                     }
                                     @if (adventureConnected) {
                                         <div class="quest-button-container">
-                                            <button as-mini-circle-btn (click)="addQuestToCampaign(e)" [disabled]="!campaign.quests.includes(e.title)">
+                                            <button as-mini-circle-btn (click)="addQuestToCampaign(e)" [disabled]="campaign.quests | questsCheck: e.title">
                                                 <div class="material-symbols-outlined">add</div>
                                             </button>
                                         </div>

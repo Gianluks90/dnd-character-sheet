@@ -116,6 +116,7 @@ import { SharedAdventureModule } from "./modules/shared-adventure/shared-adventu
 import { CharRestDialogComponent } from './components/character-view/char-rest-dialog/char-rest-dialog.component';
 import { ConditionDialogComponent } from './components/utilities/conditions/condition-dialog/condition-dialog.component';
 import { ConditionInfoDialogComponent } from './components/utilities/conditions/condition-info-dialog/condition-info-dialog.component';
+import { SharedPipesModule } from "./modules/shared-pipes/shared-pipes.module";
 
 @NgModule({
     declarations: [
@@ -124,7 +125,8 @@ import { ConditionInfoDialogComponent } from './components/utilities/conditions/
         // ComposeClassStringPipe,
         // ComposeCharInfoStringPipe,
         // CapitalizeStringPipe,
-        // MAIN COMPONENTS©
+
+        // MAIN COMPONENTS
         AppComponent,
         AuthComponent,
         HomePageComponent,
@@ -260,7 +262,6 @@ import { ConditionInfoDialogComponent } from './components/utilities/conditions/
         // NewAdventureChapterDialogComponent,
         // AddElementsDialogComponent,
 
-
     ],
     bootstrap: [AppComponent],
     imports: [
@@ -269,6 +270,7 @@ import { ConditionInfoDialogComponent } from './components/utilities/conditions/
         SharedCharacterModule,
         SharedAdventureModule,
         SharedCampaignModule,
+        // SharedPipesModule,
         BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,

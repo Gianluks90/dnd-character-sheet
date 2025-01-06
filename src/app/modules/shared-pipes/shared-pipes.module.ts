@@ -4,8 +4,7 @@ import { BonusStringPipe } from 'src/app/pipes/bonus-string.pipe';
 import { CapitalizeStringPipe } from 'src/app/pipes/capitalize-string.pipe';
 import { ComposeCharInfoStringPipe } from 'src/app/pipes/compose-char-info-string.pipe';
 import { ComposeClassStringPipe } from 'src/app/pipes/compose-class-string.pipe';
-
-
+import { QuestsCheckPipe } from 'src/app/pipes/quest-check.pipe';
 
 @NgModule({
   declarations: [
@@ -13,12 +12,16 @@ import { ComposeClassStringPipe } from 'src/app/pipes/compose-class-string.pipe'
     ComposeClassStringPipe,
     ComposeCharInfoStringPipe,
     CapitalizeStringPipe,
+    // QuestCheckPipe
+    QuestsCheckPipe
   ],
   exports: [
     BonusStringPipe,
     ComposeClassStringPipe,
     ComposeCharInfoStringPipe,
-    CapitalizeStringPipe
+    CapitalizeStringPipe,
+    // QuestCheckPipe
+    QuestsCheckPipe
   ],
   imports: [
     CommonModule

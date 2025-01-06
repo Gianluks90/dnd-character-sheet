@@ -45,6 +45,10 @@ export class SettingsDialogComponent {
     //   allcharacters = characters;
     //   // allcharacters.push(characters[0]);
     //   allcharacters.forEach(character => {
+    //     // character.campaign = {
+    //     //   id: character.campaignId,
+    //     //   status: 'active'
+    //     // }
     //     // if (character.id === 'TghUf9a989N9iMWKTGb0tsAv0L12-17') {
     //       // character.equipaggiamento.map((item) => {
     //       //   item.createdBy = character.id;
@@ -52,7 +56,7 @@ export class SettingsDialogComponent {
     //       //   return item;
     //       // })
     //       // this.characterService.updateInventory(character.id, character.equipaggiamento).then(() => {
-    //         this.characterService.adminCharUpdate(character.id);
+    //         this.characterService.adminCharUpdate(character.id, [], character.campaignId);
     //       // });
     //     // }
     //   });
@@ -61,6 +65,7 @@ export class SettingsDialogComponent {
 
   // COMMENTARE PER INTERO IL METODO PER EVITARE DI RESETTARE LE CAMPAGNE
   public resetStatusCampaigns() {
+    // this.campaignService.updateAllCampaigns();
     // let allCampaigns = []
     // this.campaignService.getAllCampaigns().then((campaigns) => {
     //   campaigns.forEach(campaign => {

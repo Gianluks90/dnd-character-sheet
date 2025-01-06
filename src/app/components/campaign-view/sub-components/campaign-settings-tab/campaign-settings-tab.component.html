@@ -45,9 +45,9 @@
     <mat-form-field color="accent" class="custom-form-field" appearance="outline">
         <mat-label>Avventura connessa</mat-label>
         <mat-select formControlName="adventure">
-        @for (a of adventures; track a.id) {
+            @for (a of adventures; track a.id) {
             <mat-option [value]="a.id">{{a.title}}</mat-option>
-        }
+            }
         </mat-select>
     </mat-form-field>
     <div as-buttons-container>
@@ -100,9 +100,12 @@
 <div as-description-text>
     In questa sezione puoi esportare un backup dell'intera campagna in formato JSON oltre ad altre collezioni di dati
     minori (schede, npc, inventario, ecc...) sempre nello stesso formato. Ad eccezione per il backup generale, gli altri
-    file possono essere usati per importare i dati in un'altra campagna (per voi stessi o per un altro DM in difficoltà). Gli
-    elementi importati non sostituiranno i precedenti venendo aggiunti a quelli già presenti, tuttavia elementi con nomi uguali a
-    quelli già presenti verranno ignorati. Il <strong>Cestino</strong> elimina dal database l'intera sezione ma non prima di aver
+    file possono essere usati per importare i dati in un'altra campagna (per voi stessi o per un altro DM in
+    difficoltà). Gli
+    elementi importati non sostituiranno i precedenti venendo aggiunti a quelli già presenti, tuttavia elementi con nomi
+    uguali a
+    quelli già presenti verranno ignorati. Il <strong>Cestino</strong> elimina dal database l'intera sezione ma non
+    prima di aver
     effettuato il backup della stessa.
 </div>
 <div as-description-text>
@@ -135,7 +138,8 @@
             </button>
         </a>
         <a as-btn-link href="" target="_blank" id="delete-addons">
-            <button as-mini-circle-btn as-btn-warn (click)="emptySection('addons')" [disabled]="campaignData.addons.length <= 0">
+            <button as-mini-circle-btn as-btn-warn (click)="emptySection('addons')"
+                [disabled]="campaignData.addons.length <= 0">
                 <div class="material-symbols-outlined">delete</div>
             </button>
         </a>
@@ -149,12 +153,14 @@
         </button>
         <input hidden #input_inventory type="file" accept=".json" (change)="importJSON('inventory', $event)">
         <a as-btn-link href="" target="_blank" id="export-inventory">
-            <button as-mini-circle-btn (click)="exportJSON('inventory')" [disabled]="campaignData.inventory.length <= 0">
+            <button as-mini-circle-btn (click)="exportJSON('inventory')"
+                [disabled]="campaignData.inventory.length <= 0">
                 <div class="material-symbols-outlined">download</div>
             </button>
         </a>
         <a as-btn-link href="" target="_blank" id="delete-inventory">
-            <button as-mini-circle-btn as-btn-warn (click)="emptySection('inventory')" [disabled]="campaignData.inventory.length <= 0">
+            <button as-mini-circle-btn as-btn-warn (click)="emptySection('inventory')"
+                [disabled]="campaignData.inventory.length <= 0">
                 <div class="material-symbols-outlined">delete</div>
             </button>
         </a>
@@ -173,7 +179,8 @@
             </button>
         </a>
         <a as-btn-link href="" target="_blank" id="delete-allies">
-            <button as-mini-circle-btn as-btn-warn (click)="emptySection('allies')" [disabled]="campaignData.allies.length <= 0">
+            <button as-mini-circle-btn as-btn-warn (click)="emptySection('allies')"
+                [disabled]="campaignData.allies.length <= 0">
                 <div class="material-symbols-outlined">delete</div>
             </button>
         </a>
@@ -187,34 +194,63 @@
         </button>
         <input hidden #input_organizations type="file" accept=".json" (change)="importJSON('organizations', $event)">
         <a as-btn-link href="" target="_blank" id="export-organizations">
-            <button as-mini-circle-btn (click)="exportJSON('organizations')" [disabled]="campaignData.organizations.length <= 0">
+            <button as-mini-circle-btn (click)="exportJSON('organizations')"
+                [disabled]="campaignData.organizations.length <= 0">
                 <div class="material-symbols-outlined">download</div>
             </button>
         </a>
         <a as-btn-link href="" target="_blank" id="delete-organizations">
-            <button as-mini-circle-btn as-btn-warn (click)="emptySection('organizations')" [disabled]="campaignData.organizations.length <= 0">
+            <button as-mini-circle-btn as-btn-warn (click)="emptySection('organizations')"
+                [disabled]="campaignData.organizations.length <= 0">
                 <div class="material-symbols-outlined">delete</div>
             </button>
         </a>
     </div>
 </div>
-<div as-subtitle>Gestione personaggi iscritti</div>
+<div as-subtitle>Gestisci partecipanti</div>
 <div as-description-text>
-    Seleziona dall'elenco uno dei personaggi che, per qualsiasi motivo, deve essere rimosso dalla Campagna. Premi il
-    tasto con il "cestino" dopodichè "Conferma" per concludere l'operazione. <strong>L'azione è irreversibile.</strong>
+    Puoi rendere inattivi personaggi che hanno abbandonato temporaneamente la Campagna per far si che le loro
+    informazioni non compaiano più nelle altre schermate. Potrai rimuoverli definitivamente nell'elenco successivo
+    tramite il tasto apposito (cestino).
 </div>
 <div class="characters-container">
     @for (char of charData; track i; let i = $index) {
+    @if (char.campaign.status === 'active') {
     <div class="char-line" [ngStyle]="{'background-color': $even ? 'whitesmoke' : 'white'}">
         <img class="char-image" [src]="char.informazioniBase.urlImmaginePersonaggio" alt="">
         <div class="char-name">{{char.informazioniBase.nomePersonaggio}}</div>
+        <button as-mini-circle-btn (click)="openDisableCharDialog(i)">
+            <div class="material-symbols-outlined">keyboard_double_arrow_down</div>
+        </button>
+    </div>
+    }
+    }
+</div>
+<!-- @if (campaignData.disabledCharacters && campaignData.disabledCharacters.length > 0) { -->
+<div as-subtitle>Personaggi inattivi</div>
+<div as-description-text>
+    Qui puoi riabilitare un personaggio precedentemente disabilitato o rimuoverlo definitivamente dalla Campagna.
+</div>
+@for (char of charData; track i; let i = $index) {
+@if (char.campaign.status === 'inactive') {
+<div class="char-line" [ngStyle]="{'background-color': $even ? 'whitesmoke' : 'white'}">
+    <img class="char-image" [src]="char.informazioniBase.urlImmaginePersonaggio" alt="">
+    <div class="char-name">{{char.informazioniBase.nomePersonaggio}}</div>
+    <!-- <button as-mini-circle-btn (click)="openDisableCharDialog(i)">
+                    <div class="material-symbols-outlined">close</div>
+                </button> -->
+    <div as-mini-buttons-container>
+        <button as-mini-circle-btn (click)="enableChar(i)">
+            <div class="material-symbols-outlined">keyboard_double_arrow_up</div>
+        </button>
         <button as-mini-circle-btn as-btn-warn (click)="openRemoveCharDialog(i)">
             <div class="material-symbols-outlined">delete</div>
         </button>
     </div>
-    }
-
 </div>
+}
+}
+<!-- } -->
 <div as-subtitle>Elimina campagna</div>
 <div as-description-text>
     Una volta confermata la cancellazione perderai ogni dato relativo alla Campagna. I personaggi iscritti, se presenti,

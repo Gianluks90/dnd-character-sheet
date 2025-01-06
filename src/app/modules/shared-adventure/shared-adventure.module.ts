@@ -9,6 +9,7 @@ import { NewAdventureDialogComponent } from 'src/app/components/adventures-page/
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { SharedPipesModule } from '../shared-pipes/shared-pipes.module';
 
 const components = [
   AdventuresPageComponent,
@@ -28,6 +29,7 @@ const components = [
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    SharedPipesModule
   ],
   exports: [...components]
 })

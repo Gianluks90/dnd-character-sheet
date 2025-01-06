@@ -51,7 +51,8 @@ export class TicketCampaignDialogComponent {
         this.checked = true;
         this.characterService.getCharactersByUserId(this.user.id).then((result) => {
           result.map((character) => {
-            if (character.campaignId !== '') return;
+            // if (character.campaignId !== '') return;
+            if (character.campaign.id !== '') return;
             this.characters.push({
               name: character.informazioniBase.nomePersonaggio,
               id: character.id

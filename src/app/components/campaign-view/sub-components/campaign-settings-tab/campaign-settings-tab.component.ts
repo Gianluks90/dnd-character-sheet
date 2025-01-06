@@ -9,6 +9,7 @@ import { RemoveCampaignDialogComponent } from './remove-campaign-dialog/remove-c
 import { Router } from '@angular/router';
 import { AdventureService } from 'src/app/services/adventure.service';
 import { getAuth } from 'firebase/auth';
+import { CharacterService } from 'src/app/services/character.service';
 
 @Component({
   selector: 'app-campaign-settings-tab',
@@ -19,7 +20,7 @@ export class CampaignSettingsTabComponent {
 
   constructor(
     private campaignService: CampaignService,
-    private firebaseService: FirebaseService,
+    private charService: CharacterService,
     private adventureService: AdventureService,
     private matDialog: MatDialog,
     private fb: FormBuilder,
@@ -73,18 +74,37 @@ export class CampaignSettingsTabComponent {
     });
   }
 
+  public openDisableCharDialog(index: number): void {
+    this.matDialog.open(RemoveCharDialogComponent, {
+      width: window.innerWidth < 768 ? '80%' : '50%',
+      autoFocus: false,
+      disableClose: true,
+      data: { disablingChar: true }
+    }).afterClosed().subscribe((result: any) => {
+      if (result && result == 'disable') {
+        const char = this.charData[index];
+        this.charService.disableCharCampaign(char.id).then(() => {
+          console.log('Char disabled');
+        });
+      }
+    });
+  }
+
+  public enableChar(index: number): void {
+    this.charService.enableCharCampaign(this.charData[index].id, this.campaignData.id).then(() => {
+      console.log('Char enabled');
+    });
+  }  
+
   public openRemoveCharDialog(index: number): void {
     this.matDialog.open(RemoveCharDialogComponent, {
       width: window.innerWidth < 768 ? '80%' : '50%',
       autoFocus: false,
       disableClose: true
     }).afterClosed().subscribe((result: any) => {
-      if (result !== 'success') return;
-      const charId = this.charData[index].id;
-      const character = this.campaignData.characters.find((char: any) => char.id === charId);
-      this.campaignService.removeChar(this.campaignData.id, character).then(() => {
-        console.log('Char removed');
-      });
+      if (result !== 'delete') return;
+      const char = this.charData[index];
+      this.campaignService.removeChar(this.campaignData.id, char);
     });
   }
 

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-remove-char-dialog',
@@ -8,9 +8,15 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class RemoveCharDialogComponent {
   
-  constructor(public dialogRef: MatDialogRef<RemoveCharDialogComponent>) {}
+  constructor(
+    public dialogRef: MatDialogRef<RemoveCharDialogComponent>, 
+    @Inject(MAT_DIALOG_DATA) public data: {disablingChar: boolean}) {}
+
+  public disable() {
+    this.dialogRef.close('disable');
+  }
 
   public confirm() {
-    this.dialogRef.close('success');
+    this.dialogRef.close('delete');
   }
 }

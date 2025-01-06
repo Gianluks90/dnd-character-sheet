@@ -44,6 +44,8 @@ export class AdventureViewComponent {
         if (campaign.adventure === this.adventureData.id) {
           this.adventureConnected = true;
           this.campaign = campaign;
+          console.log(campaign.quests.some((quest: any) => quest.title.includes("l'antico amuleto")));
+          
           console.log('Connected to campaign:', campaign);
           
         }

@@ -1,14 +1,26 @@
-<div mat-dialog-title class="dialog-title">Rimuovi personaggio</div>
+<div mat-dialog-title class="dialog-title">{{data.disablingChar ? 'Disabilita' : 'Elimina'}} personaggio</div>
 <div mat-dialog-content class="dialog-content">
-    <div as-description-text>
-        Stai per rimuovere uno dei personaggi presenti in questa campagna, ogni traccia delle attività di quel Personaggio su questa campagna sarà rimossa. Procedere?
-    </div>
+    @if (data.disablingChar) {
+        <div as-description-text>
+            Stai per disabilitare uno dei personaggi presenti in questa campagna, il personaggio non sarà più visibile ma tutte le sue attività rimarranno presenti. Procedere?
+        </div>
+    } @else {
+        <div as-description-text>
+            Stai per rimuovere uno dei personaggi presenti in questa campagna, ogni traccia delle attività di quel Personaggio su questa campagna sarà rimossa. Procedere?
+        </div>
+    }
 </div>
 <div as-buttons-container mat-dialog-actions align="end">
     <button as-btn mat-dialog-close>
         <div class="material-symbols-outlined">close</div> <div>Annulla</div>
     </button>
-    <button as-btn as-btn-warn (click)="confirm()">
-        <div class="material-symbols-outlined">warning</div> <div>Conferma</div>
-    </button>
+    @if (data.disablingChar) {
+        <button as-btn as-btn-warn (click)="disable()">
+            <div class="material-symbols-outlined">warning</div> <div>Disabilita</div>
+        </button>
+    } @else {
+        <button as-btn as-btn-warn (click)="confirm()">
+            <div class="material-symbols-outlined">warning</div> <div>Conferma</div>
+        </button>
+    }
 </div>

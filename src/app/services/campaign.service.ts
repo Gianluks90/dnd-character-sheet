@@ -1,7 +1,6 @@
 import { Injectable, WritableSignal, effect, signal } from '@angular/core';
 import { FirebaseService } from './firebase.service';
-import { addDoc, arrayRemove, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, query, setDoc, where } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
+import { arrayRemove, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, query, setDoc, where } from 'firebase/firestore';
 import { FormGroup } from '@angular/forms';
 import { AdventurerUser } from '../models/adventurerUser';
 
@@ -31,6 +30,7 @@ export class CampaignService {
       dmName: infoCampaign.dmName,
       partecipants: [],
       characters: [],
+      disabledCharacters: [],
       chapterUrl: infoCampaign.chapterUrl || '',
       description: infoCampaign.description || '',
       createdAt: new Date(),
@@ -67,6 +67,25 @@ export class CampaignService {
         logs: [],
         campId: newCampaignId
       });
+    });
+  }
+
+  public async updateAllCampaigns(): Promise<void> {
+    const ref = collection(this.firebaseService.database, 'campaigns');
+    const docs = await getDocs(ref);
+    docs.forEach(async (doc) => {
+      const campaign = doc.data();
+      const updatedCharacters = campaign['characters'].map((char: any) => {
+        return {
+          ...char,
+          active: true
+        };
+      });
+      const docRef = doc.ref;
+      await setDoc(docRef, {
+        characters: updatedCharacters,
+        lastUpdate: new Date()
+      }, { merge: true });
     });
   }
 
@@ -141,29 +160,11 @@ export class CampaignService {
     const docRef = doc(this.firebaseService.database, 'campaigns', id);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-      return {...docSnap.data(), id: docSnap.id};
+      return { ...docSnap.data(), id: docSnap.id };
     }
   }
 
-  // public getSignalCampaigns(campId: string): void {
-  //   const ref = collection(this.firebaseService.database, 'campaigns');
-  //   const q = query(ref, where('ownerId', '==', campId));
-  //   const unsub = onSnapshot(q, (snapshot) => {
-  //     const result: any[] = [];
-  //     snapshot.forEach(doc => {
-  //       const campaign = {
-  //         id: doc.id,
-  //         ...doc.data()
-  //       }
-  //       result.push(campaign);
-  //     });
-  //     this.campaigns.set(result);
-  //     console.log('Campaigns', result);
-      
-  //   });
-  // }
-
-  public getSignalSingleCampaing(campId: string): void {
+  public getSignalSingleCampaign(campId: string): void {
     const docRef = doc(this.firebaseService.database, 'campaigns', campId);
     const unsub = onSnapshot(docRef, (doc) => {
       if (doc.exists()) {
@@ -175,24 +176,6 @@ export class CampaignService {
       }
     });
   }
-
-
-  // public getSignalCharacters(ids: string[]): void {
-  //   const docRef = collection(this.firebaseService.database, 'characters');
-  //   const unsub = onSnapshot(docRef, (snapshot) => {
-  //     const result: any[] = [];
-  //     snapshot.forEach(doc => {
-  //       const character = {
-  //         id: doc.id,
-  //         ...doc.data()
-  //       }
-  //       if (ids.includes(character.id)) {
-  //         result.push(character);
-  //       }
-  //     });
-  //     this.campaignCharacters.set(result);
-  //   });
-  // }
 
   public async checkCampaign(id: string, password: string): Promise<boolean> {
     const docRef = doc(this.firebaseService.database, 'campaigns', id);
@@ -211,12 +194,16 @@ export class CampaignService {
     const heroRef = doc(this.firebaseService.database, 'characters', heroId);
     const heroSnap = await getDoc(heroRef).then(async char => {
       await setDoc(heroRef, {
-        campaignId: campId
+        campaignId: campId,
+        campaign: {
+          id: campId,
+          status: 'active'
+        }
       }, { merge: true });
 
       const docRef = doc(this.firebaseService.database, 'campaigns', campId);
       return await setDoc(docRef, {
-        characters: arrayUnion({id: char.id, url: char.data()['informazioniBase'].urlImmaginePersonaggio, userId: char.data()['status'].userId}),
+        characters: arrayUnion({ id: char.id, url: char.data()['informazioniBase'].urlImmaginePersonaggio, userId: char.data()['status'].userId, active: true }),
         partecipants: arrayUnion(userId),
         lastUpdate: new Date(),
         status: {
@@ -440,17 +427,17 @@ export class CampaignService {
 
   public async newChapter(campId: string, campaignData: any, newTitle: string, newDescription: string): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'campaigns', campId);
-  
+
     const archive = {
       title: campaignData.title,
       description: campaignData.description,
       story: campaignData.story,
-      quests: campaignData.quests.filter((quest: any) => !quest.longQuest), 
+      quests: campaignData.quests.filter((quest: any) => !quest.longQuest),
       npcs: campaignData.npcs,
       rules: campaignData.rules,
       achievements: campaignData.achievements,
     };
-  
+
     return await setDoc(docRef, {
       title: newTitle,
       description: newDescription,
@@ -468,7 +455,10 @@ export class CampaignService {
     // 1. Rimuove dal Character il CampaignId
     const charRef = doc(this.firebaseService.database, 'characters', char.id);
     return setDoc(charRef, {
-      campaignId: ''
+      campaign: {
+        id: '',
+        status: 'inactive'
+      }
     }, { merge: true }).then(() => {
       // 2. Rimuove dallo User il CampaignId nell'array campaignAsPartecipant
       const userRef = doc(this.firebaseService.database, 'users', char.userId);
@@ -483,6 +473,20 @@ export class CampaignService {
         }, { merge: true });
       });
     });
+  }
+
+  public async disableChar(campaign: any, char: any): Promise<void> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', campaign.id);
+    return await setDoc(docRef, {
+      disabledCharacters: arrayUnion(char.id),
+    }, { merge: true });
+  }
+
+  public async enableChar(campaign: any, char: any): Promise<void> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', campaign.id);
+    return await setDoc(docRef, {
+      disabledCharacters: arrayRemove(char.id),
+    }, { merge: true });
   }
 
   public async setCampaignAsFavorite(campId: string): Promise<void> {
