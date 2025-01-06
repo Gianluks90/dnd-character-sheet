@@ -175,7 +175,6 @@ export class InventoryCampaignComponent {
         this.inventoryData.splice(index, 1);
         this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
       }
-
       if (result && result.status === 'reclamed' && this.selectedCharData) {
         const itemExists = this.selectedCharData.equipaggiamento.find((item) => item.id === result.item.id);
         if (itemExists) {
@@ -214,6 +213,16 @@ export class InventoryCampaignComponent {
       if (result && result.status === 'consumed') {
         this.inventoryData[index].quantity--;
         this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+      }
+      if (result && result.status === 'duplicate') {
+        this.inventoryData.push({
+          ...result.item,
+          name: result.item.name + ' (Copia)',
+          id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+          quantity: 0,
+          visible: false
+        });
+        this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
       }
     });
   }

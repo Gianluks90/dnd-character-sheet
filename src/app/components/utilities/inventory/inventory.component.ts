@@ -148,6 +148,18 @@ export class InventoryComponent {
         this.inventoryData[index].quantity--;
         this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
       }
+
+      if (result && result.status === 'duplicate') {
+        console.log(result);
+        
+        this.characterService.addItemInventory(window.location.href.split('/').pop(), {
+          ...result.item,
+          name: result.item.name + ' (Copia)',
+          id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+          quantity: 1
+        });
+        this.sortInventory();
+      }
       // if (result && result.status === 'equipped') {
       //   // Se è uno scudo
       //   if (this.inventoryData[index].shield) {

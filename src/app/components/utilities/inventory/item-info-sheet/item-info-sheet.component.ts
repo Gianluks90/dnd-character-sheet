@@ -45,6 +45,9 @@ export class ItemInfoSheetComponent {
       if (result.status === 'deleted') {
         this.sheetRef.dismiss({ status: 'deleted', item: result.item });
       }
+      if (result.status === 'duplicate') {
+        this.sheetRef.dismiss({ status: 'duplicate', item: result.item });
+      }
     })
   }
 

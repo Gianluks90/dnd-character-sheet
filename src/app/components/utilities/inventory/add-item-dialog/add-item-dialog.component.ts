@@ -97,6 +97,13 @@ export class AddItemDialogComponent {
 
   }
 
+  public duplicate() {
+    this.dialogRef.close({
+      status: 'duplicate',
+      item: this.form.value
+    })
+  }
+
   confirm() {
     if (this.data.item) {
       this.dialogRef.close({

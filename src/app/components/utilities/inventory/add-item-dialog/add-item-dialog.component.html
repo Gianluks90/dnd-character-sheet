@@ -373,6 +373,11 @@
   <button as-btn mat-dialog-close>
     <div class="material-symbols-outlined">close</div><div>Chiudi</div>
   </button>
+  @if (data.item) {
+    <button as-btn (click)="duplicate()">
+      <div class="material-symbols-outlined">control_point_duplicate</div><div>Duplica</div>
+    </button>
+  }
   <button *ngIf="data.item && !showDeleteButton" as-btn (click)="showDelete()" >
     <div class="material-symbols-outlined">delete</div><div>Elimina</div>  
   </button>
