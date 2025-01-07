@@ -55,28 +55,24 @@ export class CharacterViewNextService {
   }
 
   public calcBonuses(char: any) {
+    const character: any = char;
     const bonuses = char.privilegiTratti.reduce((acc: any[], privilegioTratto: any) => acc.concat(privilegioTratto.bonuses), []).filter((bonus: any) => bonus !== undefined) as any[];
-    let parametriVitali: any = {
-      massimoPuntiFerita: 0,
-    }
-    let velocita: number = 0;
 
     bonuses.forEach((b: any) => {
       if (b.element === 'punti ferita') {
-        parametriVitali.massimoPuntiFerita = b.value; 
-        if (parametriVitali.puntiFeritaAttuali > parametriVitali.massimoPuntiFerita) {
-          parametriVitali.puntiFeritaAttuali = parametriVitali.massimoPuntiFerita;
+        character.parametriVitali.massimoPuntiFerita = b.value; 
+        if (character.parametriVitali.puntiFeritaAttuali > character.parametriVitali.massimoPuntiFerita) {
+          character.parametriVitali.puntiFeritaAttuali = character.parametriVitali.massimoPuntiFerita;
         }
       }
       if (b.element === 'velocità') {
-        velocita = b.value;
+        character.velocita = b.value;
       }
+      if (b.element === 'iniziativa') {
+        character.iniziativa = b.value;
+      }
+      character.caratteristiche[b.element] ? character.caratteristiche[b.element] += b.value : null;
     });
-    
-    return {
-      parametriVitali,
-      velocita
-    }
-  
+    return character;
   }
 }

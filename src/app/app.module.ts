@@ -118,6 +118,7 @@ import { ConditionDialogComponent } from './components/utilities/conditions/cond
 import { ConditionInfoDialogComponent } from './components/utilities/conditions/condition-info-dialog/condition-info-dialog.component';
 import { SharedPipesModule } from "./modules/shared-pipes/shared-pipes.module";
 import { CharacterViewNextComponent } from './components/character-view-next/character-view-next.component';
+import { SkillContainerComponent } from './components/utilities/skill-container/skill-container.component';
 
 @NgModule({
     declarations: [

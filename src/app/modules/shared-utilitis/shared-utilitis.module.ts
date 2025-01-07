@@ -21,6 +21,7 @@ import { DiceRollerComponent } from 'src/app/components/utilities/dice-roller/di
 import { DescriptionTooltipComponent } from 'src/app/components/utilities/description-tooltip/description-tooltip.component';
 import { InventoryCampaignComponent } from 'src/app/components/utilities/inventory-campaign/inventory-campaign.component';
 import { DocumentDialogComponent } from 'src/app/components/utilities/inventory/item-info-sheet/document-dialog/document-dialog.component';
+import { SkillContainerComponent } from 'src/app/components/utilities/skill-container/skill-container.component';
 
 const components = [
   MoneyComponent,
@@ -42,6 +43,7 @@ const components = [
   DescriptionTooltipComponent,
   InventoryCampaignComponent,
   DocumentDialogComponent,
+  SkillContainerComponent
 ]
 
 @NgModule({

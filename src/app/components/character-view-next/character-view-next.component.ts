@@ -55,11 +55,11 @@ export class CharacterViewNextComponent {
       this.character.CA = resultCA.CA;
       this.character.CAShield = resultCA.CAShield;
 
-      const resultBonuses: any = this.charViewNextService.calcBonuses(this.character);
-      this.character.parametriVitali = {
-        massimoPuntiFerita: this.character.parametriVitali.massimoPuntiFerita += resultBonuses.parametriVitali.massimoPuntiFerita,
-        velocità: this.character.parametriVitali.velocità += resultBonuses.parametriVitali.velocità,
-      }
+      this.character = this.charViewNextService.calcBonuses(this.character);
+      // this.character.parametriVitali = {
+      //   massimoPuntiFerita: this.character.parametriVitali.massimoPuntiFerita += resultBonuses.parametriVitali.massimoPuntiFerita,
+      //   velocità: this.character.parametriVitali.velocità += resultBonuses.parametriVitali.velocità,
+      // }
 
       this.http.get('./assets/settings/inclusivityFlags.json').subscribe((data: any[]) => {
         this.prideFlag = data.find((flag) => flag.name === this.character.status.prideFlag) || null as PrideFlag;

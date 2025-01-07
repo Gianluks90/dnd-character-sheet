@@ -65,6 +65,7 @@ export class CharacterViewComponent {
       this.http.get('./assets/settings/inclusivityFlags.json').subscribe((data: any[]) => {
         this.prideFlag = data.find((flag) => flag.name === this.character.status.prideFlag) || null;
       });
+      console.log('CharacterViewComponent', this.character.caratteristiche);
     });
 
     if (window.location.href.includes('campaign-view/')) {
@@ -77,6 +78,8 @@ export class CharacterViewComponent {
     if (this.charId === '' && !window.location.href.includes('campaign-view')) {
       this.charId = window.location.href.split('/').pop();
     }
+
+    
   }
 
   @Input() public set characterId(id: string) {
@@ -121,6 +124,8 @@ export class CharacterViewComponent {
 
   private calcBonus() {
     const bonuses = this.character.privilegiTratti.reduce((acc: any[], privilegioTratto: any) => acc.concat(privilegioTratto.bonuses), []).filter((bonus: any) => bonus !== undefined);
+    console.log(bonuses);
+    
     bonuses.forEach((bonus: any) => {
       if (bonus.element === 'punti ferita') {
         this.character.parametriVitali.massimoPuntiFerita += bonus.value;

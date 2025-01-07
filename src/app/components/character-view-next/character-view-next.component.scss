@@ -109,21 +109,25 @@ $img-size-small: 90px;
     align-items: center;
     box-shadow: 0px 0px 5px 0px $box-shadow-color;
     width: 100%;
-    height: $header-height;
+    height: calc($header-height + 8px);
+    padding: 8px;
+    box-sizing: border-box;
 }
 
 @media screen and (max-width: 768px) {
     .char-next-info-header {
-        // height: $header-height-small;
-
-        // &>img {
-        //     width: $img-size-small;
-        // }
-
         &>.view-next-actions {
             grid-template-columns: repeat(2, 1fr);
             gap: $gap-small;
             padding-right: $padding-small;
+        }
+    }
+
+    .char-next-parameters-header {
+        height: auto;
+
+        &>app-skill-container {
+            width: 100%;
         }
     }
 }

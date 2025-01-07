@@ -1,0 +1,9 @@
+<div class="skills-main-container">
+    @for (s of skills; track $index) {
+        <div class="skill-container">
+            <div class="skill-label">{{s.label}}</div>
+            <div class="skill-value">{{s.value}}</div>
+            <div class="skill-modifier">{{s.modifier > 0 ? '+' + s.modifier : s.modifier}}</div>
+        </div>
+    }
+</div>
