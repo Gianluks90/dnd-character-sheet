@@ -21,14 +21,26 @@ $img-size-small: 90px;
     box-sizing: border-box;
 }
 
-.char-next-info-header {
+.header-main-container {
     background-color: rgba(#212121, 0.9);
     color: white;
-    display: flex;
-    align-items: center;
     box-shadow: 0px 0px 5px 0px $box-shadow-color;
+    display: flex;
+    justify-content: center;
+}
+
+.second-header {
+    background-color: rgba(#212121, 0.8) !important;
+}
+
+.char-next-info-header {
     width: 100%;
     height: $header-height;
+    display: flex;
+    align-items: center;
+    max-width: 1440px;
+    padding: 0 8px;
+    box-sizing: border-box;
 
     &>img {
         width: $img-size;
@@ -52,10 +64,12 @@ $img-size-small: 90px;
 
     &>.pride-flag-column {
         display: flex;
-        width: 8px;
+        width: 10px;
         height: 100%;
         flex-direction: column;
         align-self: flex-end;
+        padding: 1px;
+        box-sizing: border-box;
 
         &>div {
             width: 100%;
@@ -103,19 +117,126 @@ $img-size-small: 90px;
 }
 
 .char-next-parameters-header {
-    background-color: rgba(#212121, 0.8);
     color: white;
     display: flex;
+    gap: 12px;
     align-items: center;
-    box-shadow: 0px 0px 5px 0px $box-shadow-color;
     width: 100%;
     height: calc($header-height + 8px);
     padding: 8px;
     box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    max-width: 1440px;
+}
+
+.parameter-grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    height: 100%;
+    width: 100%;
+
+    &>section {
+        display: flex;
+        gap: 8px;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.parameter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    min-width: 106px;
+    flex-grow: 1;
+}
+
+.parameter-label {
+    text-transform: uppercase;
+    background-color: #efefef;
+    color: black;
+    padding: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.parameter-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 8px 0;
+    box-sizing: border-box;
+    border-left: 1px solid #efefef;
+    border-right: 1px solid #efefef;
+    border-bottom: 1px solid #efefef;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.parameter-inner-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border-left: 1px solid #efefef;
+    border-right: 1px solid #efefef;
+    border-bottom: 1px solid #efefef;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+
+
+}
+
+.heart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    height: 100%;
+
+    &>.heart-value {
+        font-size: 1.8rem;
+    }
+}
+
+.parameter-inner-container:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: background-color 0.5s;
+}
+
+.expanded-container {
+    width: 100%;
+    min-height: 80px;
+}
+
+.main-content-container {
+    background-color: red;
+    height: 100%;
+    width: 100%;
 }
 
 @media screen and (max-width: 768px) {
     .char-next-info-header {
+        position: fixed;
+        top: 0;
+        z-index: 1;
+        background-color: #212121;
+
         &>.view-next-actions {
             grid-template-columns: repeat(2, 1fr);
             gap: $gap-small;
@@ -123,11 +244,20 @@ $img-size-small: 90px;
         }
     }
 
+    .second-header {
+        margin-top: 100px;
+    }
+
     .char-next-parameters-header {
         height: auto;
+        flex-direction: column;
 
         &>app-skill-container {
             width: 100%;
         }
+    }
+
+    .parameter-grid-container {
+        grid-template-columns: repeat(1, 1fr);
     }
 }

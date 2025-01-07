@@ -119,6 +119,7 @@ import { ConditionInfoDialogComponent } from './components/utilities/conditions/
 import { SharedPipesModule } from "./modules/shared-pipes/shared-pipes.module";
 import { CharacterViewNextComponent } from './components/character-view-next/character-view-next.component';
 import { SkillContainerComponent } from './components/utilities/skill-container/skill-container.component';
+import { CharacterViewNextContentComponent } from './components/character-view-next/character-view-next-content/character-view-next-content.component';
 
 @NgModule({
     declarations: [
@@ -254,7 +255,7 @@ import { SkillContainerComponent } from './components/utilities/skill-container/
         ManageResourcesDialogComponent,
         CharRestDialogComponent,
         ConditionDialogComponent,
-        ConditionInfoDialogComponent
+        ConditionInfoDialogComponent,
 
         // adventure component
         // AdventuresPageComponent,

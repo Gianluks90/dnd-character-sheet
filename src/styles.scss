@@ -767,5 +767,16 @@ div[as-divider] {
 // MATERIAL OVERIDES =========================
 
 .mat-mdc-dialog-surface, .mdc-dialog__surface {
-  border-radius: 12px !important;
+  border-radius: 0px !important;
+}
+
+.mat-mdc-dialog-title, .mdc-dialog__title, .dialog-title {
+  background-color: #212121;
+  color: #fff !important;
+  font-family: 'Cinzel', serif !important;
+  margin-bottom: 12px !important;
+}
+
+.as-dialog-backdrop {
+  backdrop-filter: blur(4px);
 }

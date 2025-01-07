@@ -488,6 +488,7 @@ export class CharacterService {
     const parametriVitali = {
       puntiFeritaAttuali: this.character().parametriVitali.massimoPuntiFerita,
       puntiFeritaTemporaneiAttuali: 0,
+      massimoPuntiFeritaTemporanei: 0,
       dadiVita: dadiVita
     };
     const risorseAggiuntive = this.character().informazioniBase.risorseAggiuntive.map((resource: any) => {

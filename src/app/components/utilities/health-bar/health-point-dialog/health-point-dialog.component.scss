@@ -27,6 +27,7 @@
 
 .pf-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
     margin: 0 20px;
     gap: 8px;
@@ -36,7 +37,7 @@
     display: flex;
     gap: 4px;
     align-items: center;
-    // width: 50%;
+    width: 100%;
     flex-grow: 1;
 }
 
@@ -75,6 +76,7 @@
 .input-pf-container{
     display: flex;
     // width: 50%;
+    flex-direction: column;
     align-items: center;
     gap: 8px;
     flex-grow: 1;
@@ -82,6 +84,7 @@
 
 .health-buttons-container {
     display: flex;
+    align-self: flex-end;
     gap: 8px;
 }
 
@@ -115,10 +118,10 @@
         flex-direction: column;
     }
 
-    .health-buttons-container {
-        width: 100%;
-        justify-content: space-between;
-    }
+    // .health-buttons-container {
+    //     width: 100%;
+    //     justify-content: space-between;
+    // }
 
     .hp-button {
         flex-grow: 1;

@@ -9,6 +9,7 @@ import { DiceRollerComponent } from '../utilities/dice-roller/dice-roller.compon
 import { CharacterViewNextService } from './character-view-next.service';
 import { HttpClient } from '@angular/common/http';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { HealthPointDialogComponent } from '../utilities/health-bar/health-point-dialog/health-point-dialog.component';
 
 interface PrideFlag {
   name: string;
@@ -53,20 +54,15 @@ export class CharacterViewNextComponent {
 
       const resultCA: any = this.charViewNextService.calcCA(this.character);
       this.character.CA = resultCA.CA;
-      this.character.CAShield = resultCA.CAShield;
+      this.character.CAShield = resultCA.CAShield.replace(' ', '');
 
       this.character = this.charViewNextService.calcBonuses(this.character);
-      // this.character.parametriVitali = {
-      //   massimoPuntiFerita: this.character.parametriVitali.massimoPuntiFerita += resultBonuses.parametriVitali.massimoPuntiFerita,
-      //   velocità: this.character.parametriVitali.velocità += resultBonuses.parametriVitali.velocità,
-      // }
 
       this.http.get('./assets/settings/inclusivityFlags.json').subscribe((data: any[]) => {
         this.prideFlag = data.find((flag) => flag.name === this.character.status.prideFlag) || null as PrideFlag;
       });
 
       console.log(this.character);
-
     });
 
     if (window.location.href.includes('campaign-view/')) {
@@ -95,6 +91,7 @@ export class CharacterViewNextComponent {
     this.matDialog.open(DiceRollerComponent, {
       width: window.innerWidth < 768 ? '90%' : '500px',
       autoFocus: false,
+      backdropClass: 'as-dialog-backdrop',
       disableClose: true,
       data: {
         char: this.character,
@@ -107,10 +104,32 @@ export class CharacterViewNextComponent {
     this.matDialog.open(CharRestDialogComponent, {
       width: window.innerWidth < 768 ? '90%' : '500px',
       autoFocus: false,
+      backdropClass: 'as-dialog-backdrop',
       disableClose: true
     }).afterClosed().subscribe((result) => {
-      if (result && result.status !== 'success') return;
-      this.charService.longRest(this.character.id);
+      if (result && result.status == 'success') {
+        this.charService.longRest(this.character.id);
+      }
+    });
+  }
+
+  public openHealthDialog() {
+    this.matDialog.open(HealthPointDialogComponent, {
+      width: window.innerWidth < 768 ? '90%' : '500px',
+      autoFocus: false,
+      backdropClass: 'as-dialog-backdrop',
+      data: {
+        parametriVitali: {
+          pf: this.character.parametriVitali.puntiFeritaAttuali,
+          pfMax: this.character.parametriVitali.massimoPuntiFerita,
+          pft: this.character.parametriVitali.puntiFeritaTemporaneiAttuali,
+          pftMax: this.character.parametriVitali.massimoPuntiFeritaTemporanei
+        }
+      }
+    }).afterClosed().subscribe((result: any) => {
+      if (result && result.status === 'success') {
+        this.charService.updateCharacterPFById(this.character.id, result.newValue);
+      }
     });
   }
 }

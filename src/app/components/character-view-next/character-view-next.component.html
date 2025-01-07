@@ -1,28 +1,32 @@
 @if (user && character) {
-    @let info = character.informazioniBase;
-    <div class="char-next-container">
+@let info = character.informazioniBase;
+<div class="char-next-container">
+    <div class="header-main-container">
         <div class="char-next-info-header">
             @if (prideFlag) {
-                <div class="pride-flag-column" *ngIf="character.status.usePrideRule">
-                    @for (color of prideFlag.colors; track $index) {
-                        <div [ngStyle]="{'background-color': color}" class="pride-flag-color"></div>
-                    }
-                </div>
+            <div class="pride-flag-column" *ngIf="character.status.usePrideRule">
+                @for (color of prideFlag.colors; track $index) {
+                <div [ngStyle]="{'background-color': color}" class="pride-flag-color"></div>
+                }
+            </div>
             }
-            <img [src]="info.urlImmaginePersonaggio !== '' ? info.urlImmaginePersonaggio : './assets/images/hero-placeholder.png'">
+            <img
+                [src]="info.urlImmaginePersonaggio !== '' ? info.urlImmaginePersonaggio : './assets/images/hero-placeholder.png'">
             <div class="char-info-container">
                 <div class="name-container">
-                    <div class="material-symbols-outlined material-no-fill" [ngClass]="{'inspired': !character.ispirazione}">{{character.ispirazione ? 'brightness_empty' : 'award_star'}}</div>
+                    <div class="material-symbols-outlined material-no-fill"
+                        [ngClass]="{'inspired': !character.ispirazione}">{{character.ispirazione ? 'brightness_empty' :
+                        'award_star'}}</div>
                     <div class="char-name">{{!isMobile && info.nomePersonaggioEsteso !== '' ?
                         info.nomePersonaggioEsteso :
                         info.nomePersonaggio}}</div>
                 </div>
                 @if (!isMobile) {
-                    <div class="char-info">{{character | composeCharInfoString}}</div>
+                <div class="char-info">{{character | composeCharInfoString}}</div>
                 }
                 @let classi = info.classi;
                 @for (cl of classi; track $index) {
-                    <div class="char-info">{{cl | composeClassString}}</div>
+                <div class="char-info">{{cl | composeClassString}}</div>
                 }
             </div>
             <div class="flex-divider"></div>
@@ -41,8 +45,52 @@
                 </button>
             </div>
         </div>
+    </div>
+    <div class="header-main-container second-header">
         <div class="char-next-parameters-header">
             <app-skill-container [char]="character"></app-skill-container>
+            <div class="parameter-grid-container">
+                <section>
+                    <div class="parameter-container">
+                        <div class="parameter-label">Compentenza</div>
+                        <div class="parameter-value">{{character.tiriSalvezza.bonusCompetenza > 0 ? '+' +
+                            character.tiriSalvezza.bonusCompetenza : character.tiriSalvezza.bonusCompetenza}}</div>
+                    </div>
+                    <div class="parameter-container">
+                        <div class="parameter-label">Velocità</div>
+                        <div class="parameter-value">{{character.velocita}}m</div>
+                    </div>
+                    <div class="parameter-container">
+                        <div class="parameter-label">CA</div>
+                        <div class="parameter-value">{{character.CA}} <span>{{character.shieldCA !== '' ?
+                                character.CAShield : ''}}</span></div>
+                    </div>
+                </section>
+                <section>
+                    @let params = character.parametriVitali;
+                    <div class="parameter-container expanded-container">
+                        <div class="parameter-label">Punti ferita</div>
+                        <div class="parameter-inner-container" (click)="openHealthDialog()">
+                            <div class="heart-container">
+                                <div class="material-symbols-outlined">favorite</div>
+                                <div class="heart-value">
+                                    <span>{{params.puntiFeritaAttuali}}</span>/<span>{{params.massimoPuntiFerita}}</span>
+                                </div>
+                                @if (params.puntiFeritaTemporaneiAttuali > 0) {
+                                <div class="material-symbols-outlined">hourglass</div>
+                                <div class="heart-value">
+                                    <span>{{params.puntiFeritaTemporaneiAttuali}}</span>
+                                </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
     </div>
+    <div class="main-content-container">
+        <app-character-view-next-content [character]="character"></app-character-view-next-content>
+    </div>
+</div>
 }
