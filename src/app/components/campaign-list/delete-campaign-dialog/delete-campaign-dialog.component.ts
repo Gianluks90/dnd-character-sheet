@@ -6,9 +6,10 @@ import { CharacterService } from 'src/app/services/character.service';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
-  selector: 'app-delete-campaign-dialog',
-  templateUrl: './delete-campaign-dialog.component.html',
-  styleUrl: './delete-campaign-dialog.component.scss'
+    selector: 'app-delete-campaign-dialog',
+    templateUrl: './delete-campaign-dialog.component.html',
+    styleUrl: './delete-campaign-dialog.component.scss',
+    standalone: false
 })
 export class DeleteCampaignDialogComponent {
 

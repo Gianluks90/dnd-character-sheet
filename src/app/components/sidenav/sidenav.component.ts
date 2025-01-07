@@ -10,9 +10,10 @@ import { AdventurerUser, Role } from 'src/app/models/adventurerUser';
 import { CampaignService } from 'src/app/services/campaign.service';
 
 @Component({
-  selector: 'app-sidenav',
-  templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.scss']
+    selector: 'app-sidenav',
+    templateUrl: './sidenav.component.html',
+    styleUrls: ['./sidenav.component.scss'],
+    standalone: false
 })
 export class SidenavComponent {
 

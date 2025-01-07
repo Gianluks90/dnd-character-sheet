@@ -6,9 +6,10 @@ import { CompleteCharacterDialogComponent } from '../../form-create/complete-cha
 import { CharacterService } from 'src/app/services/character.service';
 
 @Component({
-  selector: 'app-complete-level-up-dialog',
-  templateUrl: './complete-level-up-dialog.component.html',
-  styleUrls: ['./complete-level-up-dialog.component.scss']
+    selector: 'app-complete-level-up-dialog',
+    templateUrl: './complete-level-up-dialog.component.html',
+    styleUrls: ['./complete-level-up-dialog.component.scss'],
+    standalone: false
 })
 export class CompleteLevelUpDialogComponent {
   public form = this.fb.group({

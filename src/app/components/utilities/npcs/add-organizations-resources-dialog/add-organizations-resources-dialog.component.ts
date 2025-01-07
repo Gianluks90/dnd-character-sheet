@@ -4,9 +4,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NPC } from 'src/app/models/npcModel';
 
 @Component({
-  selector: 'app-add-organizations-resources-dialog',
-  templateUrl: './add-organizations-resources-dialog.component.html',
-  styleUrl: './add-organizations-resources-dialog.component.scss'
+    selector: 'app-add-organizations-resources-dialog',
+    templateUrl: './add-organizations-resources-dialog.component.html',
+    styleUrl: './add-organizations-resources-dialog.component.scss',
+    standalone: false
 })
 export class AddOrganizationsResourcesDialogComponent {
   constructor(

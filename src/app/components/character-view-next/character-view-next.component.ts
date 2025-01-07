@@ -17,9 +17,10 @@ interface PrideFlag {
 }
 
 @Component({
-  selector: 'app-character-view-next',
-  templateUrl: './character-view-next.component.html',
-  styleUrl: './character-view-next.component.scss'
+    selector: 'app-character-view-next',
+    templateUrl: './character-view-next.component.html',
+    styleUrl: './character-view-next.component.scss',
+    standalone: false
 })
 export class CharacterViewNextComponent {
   public user: AdventurerUser | null;

@@ -12,9 +12,10 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-form',
-  templateUrl: './form-create.component.html',
-  styleUrls: ['./form-create.component.scss']
+    selector: 'app-form',
+    templateUrl: './form-create.component.html',
+    styleUrls: ['./form-create.component.scss'],
+    standalone: false
 })
 export class FormCreateComponent implements OnInit {
 

@@ -4,9 +4,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
-  selector: 'app-money-dialog',
-  templateUrl: './money-dialog.component.html',
-  styleUrls: ['./money-dialog.component.scss']
+    selector: 'app-money-dialog',
+    templateUrl: './money-dialog.component.html',
+    styleUrls: ['./money-dialog.component.scss'],
+    standalone: false
 })
 export class MoneyDialogComponent {
 

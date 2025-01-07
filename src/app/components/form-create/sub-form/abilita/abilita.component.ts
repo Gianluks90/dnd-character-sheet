@@ -3,9 +3,10 @@ import { FormGroup } from '@angular/forms';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
-  selector: 'app-abilita',
-  templateUrl: './abilita.component.html',
-  styleUrls: ['./abilita.component.scss']
+    selector: 'app-abilita',
+    templateUrl: './abilita.component.html',
+    styleUrls: ['./abilita.component.scss'],
+    standalone: false
 })
 export class AbilitaComponent {
 

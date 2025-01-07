@@ -6,9 +6,10 @@ import { CharacterService } from 'src/app/services/character.service';
 import { DescriptionTooltipService } from '../description-tooltip/description-tooltip.service';
 
 @Component({
-  selector: 'app-health-bar',
-  templateUrl: './health-bar.component.html',
-  styleUrl: './health-bar.component.scss'
+    selector: 'app-health-bar',
+    templateUrl: './health-bar.component.html',
+    styleUrl: './health-bar.component.scss',
+    standalone: false
 })
 
 export class HealthBarComponent {

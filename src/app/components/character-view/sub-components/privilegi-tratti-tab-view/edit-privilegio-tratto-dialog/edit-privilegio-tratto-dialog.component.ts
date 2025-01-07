@@ -3,9 +3,10 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-edit-privilegio-tratto-dialog',
-  templateUrl: './edit-privilegio-tratto-dialog.component.html',
-  styleUrl: './edit-privilegio-tratto-dialog.component.scss'
+    selector: 'app-edit-privilegio-tratto-dialog',
+    templateUrl: './edit-privilegio-tratto-dialog.component.html',
+    styleUrl: './edit-privilegio-tratto-dialog.component.scss',
+    standalone: false
 })
 export class EditPrivilegioTrattoDialogComponent {
 

@@ -12,9 +12,10 @@ import { getAuth } from 'firebase/auth';
 import { CharacterService } from 'src/app/services/character.service';
 
 @Component({
-  selector: 'app-campaign-settings-tab',
-  templateUrl: './campaign-settings-tab.component.html',
-  styleUrl: './campaign-settings-tab.component.scss'
+    selector: 'app-campaign-settings-tab',
+    templateUrl: './campaign-settings-tab.component.html',
+    styleUrl: './campaign-settings-tab.component.scss',
+    standalone: false
 })
 export class CampaignSettingsTabComponent {
 

@@ -16,9 +16,10 @@ import { ManageResourcesDialogComponent } from './manage-resources-dialog/manage
 import { Platform } from '@angular/cdk/platform';
 
 @Component({
-  selector: 'app-resources-page',
-  templateUrl: './resources-page.component.html',
-  styleUrl: './resources-page.component.scss'
+    selector: 'app-resources-page',
+    templateUrl: './resources-page.component.html',
+    styleUrl: './resources-page.component.scss',
+    standalone: false
 })
 export class ResourcesPageComponent {
 

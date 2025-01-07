@@ -5,9 +5,10 @@ import { EditMoneyControllerDialogComponent } from './edit-money-controller-dial
 import { DescriptionTooltipService } from '../description-tooltip/description-tooltip.service';
 
 @Component({
-  selector: 'app-money-controller',
-  templateUrl: './money-controller.component.html',
-  styleUrl: './money-controller.component.scss'
+    selector: 'app-money-controller',
+    templateUrl: './money-controller.component.html',
+    styleUrl: './money-controller.component.scss',
+    standalone: false
 })
 export class MoneyControllerComponent {
   constructor(private fb: FormBuilder, private matDialog: MatDialog, public tooltip: DescriptionTooltipService) {}

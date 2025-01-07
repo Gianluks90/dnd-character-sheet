@@ -5,9 +5,10 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
-  selector: 'app-linguaggi-competenze',
-  templateUrl: './linguaggi-competenze.component.html',
-  styleUrls: ['./linguaggi-competenze.component.scss'],
+    selector: 'app-linguaggi-competenze',
+    templateUrl: './linguaggi-competenze.component.html',
+    styleUrls: ['./linguaggi-competenze.component.scss'],
+    standalone: false
 })
 export class LinguaggiCompetenzeComponent {
   public group: FormGroup | null = null;

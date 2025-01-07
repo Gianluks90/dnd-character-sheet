@@ -6,9 +6,10 @@ import { EditStoryDialogComponent } from './edit-story-dialog/edit-story-dialog.
 import { CharacterService } from 'src/app/services/character.service';
 
 @Component({
-  selector: 'app-descrizione-background-tab-view',
-  templateUrl: './descrizione-background-tab-view.component.html',
-  styleUrls: ['./descrizione-background-tab-view.component.scss']
+    selector: 'app-descrizione-background-tab-view',
+    templateUrl: './descrizione-background-tab-view.component.html',
+    styleUrls: ['./descrizione-background-tab-view.component.scss'],
+    standalone: false
 })
 export class DescrizioneBackgroundTabViewComponent {
 

@@ -12,9 +12,10 @@ import { getAuth } from 'firebase/auth';
 import { ResourcesService } from '../../resources-page/resources.service';
 
 @Component({
-  selector: 'app-inventory-campaign',
-  templateUrl: './inventory-campaign.component.html',
-  styleUrl: './inventory-campaign.component.scss'
+    selector: 'app-inventory-campaign',
+    templateUrl: './inventory-campaign.component.html',
+    styleUrl: './inventory-campaign.component.scss',
+    standalone: false
 })
 export class InventoryCampaignComponent {
 

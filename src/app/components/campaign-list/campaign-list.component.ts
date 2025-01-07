@@ -10,9 +10,10 @@ import { AdventurerUser } from 'src/app/models/adventurerUser';
 import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
-  selector: 'app-campaign-list',
-  templateUrl: './campaign-list.component.html',
-  styleUrl: './campaign-list.component.scss'
+    selector: 'app-campaign-list',
+    templateUrl: './campaign-list.component.html',
+    styleUrl: './campaign-list.component.scss',
+    standalone: false
 })
 export class CampaignListComponent {
 

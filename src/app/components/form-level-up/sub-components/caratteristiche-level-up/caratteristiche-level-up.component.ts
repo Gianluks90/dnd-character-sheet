@@ -3,9 +3,10 @@ import { FormGroup } from '@angular/forms';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
-  selector: 'app-caratteristiche-level-up',
-  templateUrl: './caratteristiche-level-up.component.html',
-  styleUrls: ['./caratteristiche-level-up.component.scss']
+    selector: 'app-caratteristiche-level-up',
+    templateUrl: './caratteristiche-level-up.component.html',
+    styleUrls: ['./caratteristiche-level-up.component.scss'],
+    standalone: false
 })
 export class CaratteristicheLevelUpComponent {
   public group: FormGroup | null = null;

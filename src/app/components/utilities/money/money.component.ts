@@ -5,9 +5,10 @@ import { FormService } from 'src/app/services/form.service';
 import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
-  selector: 'app-money',
-  templateUrl: './money.component.html',
-  styleUrls: ['./money.component.scss'],
+    selector: 'app-money',
+    templateUrl: './money.component.html',
+    styleUrls: ['./money.component.scss'],
+    standalone: false
 })
 export class MoneyComponent {
 

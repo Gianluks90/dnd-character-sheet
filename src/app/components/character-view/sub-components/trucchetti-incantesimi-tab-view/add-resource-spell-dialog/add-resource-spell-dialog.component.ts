@@ -4,9 +4,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Spell } from 'src/app/models/spell';
 
 @Component({
-  selector: 'app-add-resource-spell-dialog',
-  templateUrl: './add-resource-spell-dialog.component.html',
-  styleUrl: './add-resource-spell-dialog.component.scss'
+    selector: 'app-add-resource-spell-dialog',
+    templateUrl: './add-resource-spell-dialog.component.html',
+    styleUrl: './add-resource-spell-dialog.component.scss',
+    standalone: false
 })
 export class AddResourceSpellDialogComponent {
   constructor(

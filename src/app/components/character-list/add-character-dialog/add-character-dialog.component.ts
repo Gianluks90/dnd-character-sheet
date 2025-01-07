@@ -6,9 +6,10 @@ import { CharacterService } from 'src/app/services/character.service';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
-  selector: 'app-add-character-dialog',
-  templateUrl: './add-character-dialog.component.html',
-  styleUrls: ['./add-character-dialog.component.scss']
+    selector: 'app-add-character-dialog',
+    templateUrl: './add-character-dialog.component.html',
+    styleUrls: ['./add-character-dialog.component.scss'],
+    standalone: false
 })
 export class AddCharacterDialogComponent {
 

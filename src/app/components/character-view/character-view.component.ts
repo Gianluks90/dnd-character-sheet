@@ -12,9 +12,10 @@ import { DiceRollerComponent } from '../utilities/dice-roller/dice-roller.compon
 import { CharRestDialogComponent } from './char-rest-dialog/char-rest-dialog.component';
 
 @Component({
-  selector: 'app-character-view',
-  templateUrl: './character-view.component.html',
-  styleUrls: ['./character-view.component.scss']
+    selector: 'app-character-view',
+    templateUrl: './character-view.component.html',
+    styleUrls: ['./character-view.component.scss'],
+    standalone: false
 })
 export class CharacterViewComponent {
 

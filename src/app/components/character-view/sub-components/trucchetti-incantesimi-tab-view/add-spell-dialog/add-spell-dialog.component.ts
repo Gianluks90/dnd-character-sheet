@@ -6,9 +6,10 @@ import { AddItemDialogComponent } from 'src/app/components/utilities/inventory/a
 import { Spell } from 'src/app/models/spell';
 
 @Component({
-  selector: 'app-add-spell-dialog',
-  templateUrl: './add-spell-dialog.component.html',
-  styleUrl: './add-spell-dialog.component.scss'
+    selector: 'app-add-spell-dialog',
+    templateUrl: './add-spell-dialog.component.html',
+    styleUrl: './add-spell-dialog.component.scss',
+    standalone: false
 })
 export class AddSpellDialogComponent {
 

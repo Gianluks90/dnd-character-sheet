@@ -5,9 +5,10 @@ import { FormService } from 'src/app/services/form.service';
 import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
-  selector: 'app-informazioni-base-level-up',
-  templateUrl: './informazioni-base-level-up.component.html',
-  styleUrls: ['./informazioni-base-level-up.component.scss']
+    selector: 'app-informazioni-base-level-up',
+    templateUrl: './informazioni-base-level-up.component.html',
+    styleUrls: ['./informazioni-base-level-up.component.scss'],
+    standalone: false
 })
 export class InformazioniBaseLevelUpComponent {
 

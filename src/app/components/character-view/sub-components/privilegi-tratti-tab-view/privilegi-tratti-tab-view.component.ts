@@ -5,9 +5,10 @@ import { CharacterService } from 'src/app/services/character.service';
 import { BonusStringPipe } from 'src/app/pipes/bonus-string.pipe';
 
 @Component({
-  selector: 'app-privilegi-tratti-tab-view',
-  templateUrl: './privilegi-tratti-tab-view.component.html',
-  styleUrls: ['./privilegi-tratti-tab-view.component.scss']
+    selector: 'app-privilegi-tratti-tab-view',
+    templateUrl: './privilegi-tratti-tab-view.component.html',
+    styleUrls: ['./privilegi-tratti-tab-view.component.scss'],
+    standalone: false
 })
 export class PrivilegiTrattiTabViewComponent {
 

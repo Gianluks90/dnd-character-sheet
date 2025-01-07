@@ -3,9 +3,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-new-chapter-dialog',
-  templateUrl: './new-chapter-dialog.component.html',
-  styleUrl: './new-chapter-dialog.component.scss'
+    selector: 'app-new-chapter-dialog',
+    templateUrl: './new-chapter-dialog.component.html',
+    styleUrl: './new-chapter-dialog.component.scss',
+    standalone: false
 })
 export class NewChapterDialogComponent {
 

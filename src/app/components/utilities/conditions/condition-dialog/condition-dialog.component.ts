@@ -11,9 +11,10 @@ interface Condition {
 }
 
 @Component({
-  selector: 'app-condition-dialog',
-  templateUrl: './condition-dialog.component.html',
-  styleUrl: './condition-dialog.component.scss'
+    selector: 'app-condition-dialog',
+    templateUrl: './condition-dialog.component.html',
+    styleUrl: './condition-dialog.component.scss',
+    standalone: false
 })
 
 export class ConditionDialogComponent {

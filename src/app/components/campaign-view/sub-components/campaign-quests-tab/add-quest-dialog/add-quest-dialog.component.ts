@@ -3,9 +3,10 @@ import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-add-quest-dialog',
-  templateUrl: './add-quest-dialog.component.html',
-  styleUrl: './add-quest-dialog.component.scss'
+    selector: 'app-add-quest-dialog',
+    templateUrl: './add-quest-dialog.component.html',
+    styleUrl: './add-quest-dialog.component.scss',
+    standalone: false
 })
 export class AddQuestDialogComponent {
   public form = this.fb.group({

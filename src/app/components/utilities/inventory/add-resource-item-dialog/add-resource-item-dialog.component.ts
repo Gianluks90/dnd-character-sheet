@@ -4,9 +4,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Item } from 'src/app/models/item';
 
 @Component({
-  selector: 'app-add-resource-item-dialog',
-  templateUrl: './add-resource-item-dialog.component.html',
-  styleUrl: './add-resource-item-dialog.component.scss'
+    selector: 'app-add-resource-item-dialog',
+    templateUrl: './add-resource-item-dialog.component.html',
+    styleUrl: './add-resource-item-dialog.component.scss',
+    standalone: false
 })
 export class AddResourceItemDialogComponent {
 

@@ -13,9 +13,10 @@ import { AddOrganizationsResourcesDialogComponent } from './add-organizations-re
 import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
-  selector: 'app-npcs',
-  templateUrl: './npcs.component.html',
-  styleUrl: './npcs.component.scss'
+    selector: 'app-npcs',
+    templateUrl: './npcs.component.html',
+    styleUrl: './npcs.component.scss',
+    standalone: false
 })
 export class NpcsComponent {
 

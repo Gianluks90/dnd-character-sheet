@@ -2,9 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-master-screen-tab',
-  templateUrl: './master-screen-tab.component.html',
-  styleUrl: './master-screen-tab.component.scss'
+    selector: 'app-master-screen-tab',
+    templateUrl: './master-screen-tab.component.html',
+    styleUrl: './master-screen-tab.component.scss',
+    standalone: false
 })
 export class MasterScreenTabComponent {
 

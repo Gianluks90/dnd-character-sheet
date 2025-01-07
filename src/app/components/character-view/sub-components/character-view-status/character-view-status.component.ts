@@ -10,9 +10,10 @@ import { ConditionDialogComponent } from 'src/app/components/utilities/condition
 import { ConditionInfoDialogComponent } from 'src/app/components/utilities/conditions/condition-info-dialog/condition-info-dialog.component';
 
 @Component({
-  selector: 'app-character-view-status',
-  templateUrl: './character-view-status.component.html',
-  styleUrls: ['./character-view-status.component.scss']
+    selector: 'app-character-view-status',
+    templateUrl: './character-view-status.component.html',
+    styleUrls: ['./character-view-status.component.scss'],
+    standalone: false
 })
 export class CharacterViewStatusComponent {
 

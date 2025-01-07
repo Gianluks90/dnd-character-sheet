@@ -4,9 +4,10 @@ import { getAuth } from 'firebase/auth';
 import { Item } from 'src/app/models/item';
 
 @Component({
-  selector: 'app-document-dialog',
-  templateUrl: './document-dialog.component.html',
-  styleUrl: './document-dialog.component.scss'
+    selector: 'app-document-dialog',
+    templateUrl: './document-dialog.component.html',
+    styleUrl: './document-dialog.component.scss',
+    standalone: false
 })
 export class DocumentDialogComponent {
   constructor(private dialogRef: MatDialogRef<DocumentDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: { item: Item }) {}

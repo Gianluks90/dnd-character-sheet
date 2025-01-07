@@ -4,9 +4,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AdventurerUser } from 'src/app/models/adventurerUser';
 
 @Component({
-  selector: 'app-manage-resources-dialog',
-  templateUrl: './manage-resources-dialog.component.html',
-  styleUrl: './manage-resources-dialog.component.scss'
+    selector: 'app-manage-resources-dialog',
+    templateUrl: './manage-resources-dialog.component.html',
+    styleUrl: './manage-resources-dialog.component.scss',
+    standalone: false
 })
 export class ManageResourcesDialogComponent {
   constructor(private resService: ResourcesService, @Inject(MAT_DIALOG_DATA) public data: { user: AdventurerUser }) { }

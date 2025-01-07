@@ -4,9 +4,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
-  selector: 'app-health-point-dialog',
-  templateUrl: './health-point-dialog.component.html',
-  styleUrls: ['./health-point-dialog.component.scss']
+    selector: 'app-health-point-dialog',
+    templateUrl: './health-point-dialog.component.html',
+    styleUrls: ['./health-point-dialog.component.scss'],
+    standalone: false
 })
 export class HealthPointDialogComponent {
 

@@ -6,9 +6,10 @@ import { FormService } from 'src/app/services/form.service';
 import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
-  selector: 'app-add-organization-dialog',
-  templateUrl: './add-organization-dialog.component.html',
-  styleUrl: './add-organization-dialog.component.scss'
+    selector: 'app-add-organization-dialog',
+    templateUrl: './add-organization-dialog.component.html',
+    styleUrl: './add-organization-dialog.component.scss',
+    standalone: false
 })
 export class AddOrganizationDialogComponent {
 

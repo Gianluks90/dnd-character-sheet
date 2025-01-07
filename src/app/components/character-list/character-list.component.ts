@@ -9,9 +9,10 @@ import { DescriptionTooltipService } from '../utilities/description-tooltip/desc
 import { AdventurerUser } from 'src/app/models/adventurerUser';
 
 @Component({
-  selector: 'app-character-list',
-  templateUrl: './character-list.component.html',
-  styleUrls: ['./character-list.component.scss']
+    selector: 'app-character-list',
+    templateUrl: './character-list.component.html',
+    styleUrls: ['./character-list.component.scss'],
+    standalone: false
 })
 export class CharacterListComponent {
 

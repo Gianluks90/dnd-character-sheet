@@ -9,9 +9,10 @@ import { CharacterService } from 'src/app/services/character.service';
 import { Item } from 'src/app/models/item';
 
 @Component({
-  selector: 'app-equipaggiamento-tab-view',
-  templateUrl: './equipaggiamento-tab-view.component.html',
-  styleUrls: ['./equipaggiamento-tab-view.component.scss']
+    selector: 'app-equipaggiamento-tab-view',
+    templateUrl: './equipaggiamento-tab-view.component.html',
+    styleUrls: ['./equipaggiamento-tab-view.component.scss'],
+    standalone: false
 })
 export class EquipaggiamentoTabViewComponent {
 

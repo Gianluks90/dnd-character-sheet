@@ -3,9 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-edit-story-dialog',
-  templateUrl: './edit-story-dialog.component.html',
-  styleUrl: './edit-story-dialog.component.scss'
+    selector: 'app-edit-story-dialog',
+    templateUrl: './edit-story-dialog.component.html',
+    styleUrl: './edit-story-dialog.component.scss',
+    standalone: false
 })
 export class EditStoryDialogComponent {
   public form: FormGroup;

@@ -2,9 +2,10 @@ import { D } from '@angular/cdk/keycodes';
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-description-tooltip',
-  templateUrl: './description-tooltip.component.html',
-  styleUrl: './description-tooltip.component.scss'
+    selector: 'app-description-tooltip',
+    templateUrl: './description-tooltip.component.html',
+    styleUrl: './description-tooltip.component.scss',
+    standalone: false
 })
 export class DescriptionTooltipComponent {
 

@@ -4,9 +4,10 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { CampaignService } from 'src/app/services/campaign.service';
 
 @Component({
-  selector: 'app-next-session-dialog',
-  templateUrl: './next-session-dialog.component.html',
-  styleUrl: './next-session-dialog.component.scss'
+    selector: 'app-next-session-dialog',
+    templateUrl: './next-session-dialog.component.html',
+    styleUrl: './next-session-dialog.component.scss',
+    standalone: false
 })
 export class NextSessionDialogComponent {
   public form: FormGroup = new FormGroup({});

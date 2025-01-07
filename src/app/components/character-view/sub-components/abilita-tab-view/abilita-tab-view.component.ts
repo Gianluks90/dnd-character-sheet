@@ -6,9 +6,10 @@ import { DiceRollerComponent } from 'src/app/components/utilities/dice-roller/di
 import { CapitalizeStringPipe } from 'src/app/pipes/capitalize-string.pipe';
 
 @Component({
-  selector: 'app-abilita-tab-view',
-  templateUrl: './abilita-tab-view.component.html',
-  styleUrls: ['./abilita-tab-view.component.scss']
+    selector: 'app-abilita-tab-view',
+    templateUrl: './abilita-tab-view.component.html',
+    styleUrls: ['./abilita-tab-view.component.scss'],
+    standalone: false
 })
 export class AbilitaTabViewComponent {
 

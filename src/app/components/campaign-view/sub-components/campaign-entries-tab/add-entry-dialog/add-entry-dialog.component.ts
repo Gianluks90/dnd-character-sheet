@@ -4,9 +4,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { getAuth } from 'firebase/auth';
 
 @Component({
-  selector: 'app-add-entry-dialog',
-  templateUrl: './add-entry-dialog.component.html',
-  styleUrl: './add-entry-dialog.component.scss'
+    selector: 'app-add-entry-dialog',
+    templateUrl: './add-entry-dialog.component.html',
+    styleUrl: './add-entry-dialog.component.scss',
+    standalone: false
 })
 export class AddEntryDialogComponent {
 

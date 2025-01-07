@@ -4,9 +4,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NPC } from 'src/app/models/npcModel';
 
 @Component({
-  selector: 'app-add-addons-resources-dialog',
-  templateUrl: './add-addons-resources-dialog.component.html',
-  styleUrl: './add-addons-resources-dialog.component.scss'
+    selector: 'app-add-addons-resources-dialog',
+    templateUrl: './add-addons-resources-dialog.component.html',
+    styleUrl: './add-addons-resources-dialog.component.scss',
+    standalone: false
 })
 export class AddAddonsResourcesDialogComponent {
   constructor(

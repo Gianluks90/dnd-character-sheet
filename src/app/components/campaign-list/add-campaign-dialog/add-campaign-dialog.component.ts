@@ -5,9 +5,10 @@ import { FormService } from 'src/app/services/form.service';
 import { AddCharacterDialogComponent } from '../../character-list/add-character-dialog/add-character-dialog.component';
 
 @Component({
-  selector: 'app-add-campaign-dialog',
-  templateUrl: './add-campaign-dialog.component.html',
-  styleUrl: './add-campaign-dialog.component.scss'
+    selector: 'app-add-campaign-dialog',
+    templateUrl: './add-campaign-dialog.component.html',
+    styleUrl: './add-campaign-dialog.component.scss',
+    standalone: false
 })
 export class AddCampaignDialogComponent {
 

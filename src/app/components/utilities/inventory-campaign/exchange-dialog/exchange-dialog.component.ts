@@ -6,9 +6,10 @@ import { CampaignService } from 'src/app/services/campaign.service';
 import { CharacterService } from 'src/app/services/character.service';
 
 @Component({
-  selector: 'app-exchange-dialog',
-  templateUrl: './exchange-dialog.component.html',
-  styleUrl: './exchange-dialog.component.scss'
+    selector: 'app-exchange-dialog',
+    templateUrl: './exchange-dialog.component.html',
+    styleUrl: './exchange-dialog.component.scss',
+    standalone: false
 })
 export class ExchangeDialogComponent {
 

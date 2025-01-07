@@ -4,9 +4,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CharacterService } from 'src/app/services/character.service';
 
 @Component({
-  selector: 'app-add-resource-dialog',
-  templateUrl: './add-resource-dialog.component.html',
-  styleUrl: './add-resource-dialog.component.scss'
+    selector: 'app-add-resource-dialog',
+    templateUrl: './add-resource-dialog.component.html',
+    styleUrl: './add-resource-dialog.component.scss',
+    standalone: false
 })
 export class AddResourceDialogComponent {
   public form: FormGroup;

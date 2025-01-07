@@ -3,9 +3,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-add-story-dialog',
-  templateUrl: './add-story-dialog.component.html',
-  styleUrl: './add-story-dialog.component.scss'
+    selector: 'app-add-story-dialog',
+    templateUrl: './add-story-dialog.component.html',
+    styleUrl: './add-story-dialog.component.scss',
+    standalone: false
 })
 export class AddStoryDialogComponent {
 

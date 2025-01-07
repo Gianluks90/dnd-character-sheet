@@ -11,9 +11,10 @@ import { AddElementsDialogComponent } from './add-elements-dialog/add-elements-d
 import { ResourcesService } from '../resources-page/resources.service';
 
 @Component({
-  selector: 'app-adventure-editor',
-  templateUrl: './adventure-editor.component.html',
-  styleUrl: './adventure-editor.component.scss'
+    selector: 'app-adventure-editor',
+    templateUrl: './adventure-editor.component.html',
+    styleUrl: './adventure-editor.component.scss',
+    standalone: false
 })
 export class AdventureEditorComponent {
   public user: AdventurerUser | null;

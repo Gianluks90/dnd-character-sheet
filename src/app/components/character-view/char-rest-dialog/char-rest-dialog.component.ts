@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-char-rest-dialog',
-  templateUrl: './char-rest-dialog.component.html',
-  styleUrl: './char-rest-dialog.component.scss'
+    selector: 'app-char-rest-dialog',
+    templateUrl: './char-rest-dialog.component.html',
+    styleUrl: './char-rest-dialog.component.scss',
+    standalone: false
 })
 export class CharRestDialogComponent {
   constructor(

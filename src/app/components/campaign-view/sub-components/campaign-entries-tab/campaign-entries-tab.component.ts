@@ -6,9 +6,10 @@ import { AddEntryDialogComponent } from './add-entry-dialog/add-entry-dialog.com
 import { getAuth } from 'firebase/auth';
 
 @Component({
-  selector: 'app-campaign-entries-tab',
-  templateUrl: './campaign-entries-tab.component.html',
-  styleUrl: './campaign-entries-tab.component.scss'
+    selector: 'app-campaign-entries-tab',
+    templateUrl: './campaign-entries-tab.component.html',
+    styleUrl: './campaign-entries-tab.component.scss',
+    standalone: false
 })
 export class CampaignEntriesTabComponent {
 

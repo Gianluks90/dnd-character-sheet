@@ -3,9 +3,10 @@ import { FormGroup } from '@angular/forms';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
-  selector: 'app-tiri-salvezza',
-  templateUrl: './tiri-salvezza.component.html',
-  styleUrls: ['./tiri-salvezza.component.scss']
+    selector: 'app-tiri-salvezza',
+    templateUrl: './tiri-salvezza.component.html',
+    styleUrls: ['./tiri-salvezza.component.scss'],
+    standalone: false
 })
 export class TiriSalvezzaComponent {
 

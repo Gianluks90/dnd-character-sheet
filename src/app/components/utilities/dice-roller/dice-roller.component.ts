@@ -4,9 +4,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
-  selector: 'app-dice-roller',
-  templateUrl: './dice-roller.component.html',
-  styleUrls: ['./dice-roller.component.scss']
+    selector: 'app-dice-roller',
+    templateUrl: './dice-roller.component.html',
+    styleUrls: ['./dice-roller.component.scss'],
+    standalone: false
 })
 export class DiceRollerComponent {
 

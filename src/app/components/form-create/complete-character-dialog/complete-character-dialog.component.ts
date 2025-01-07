@@ -5,9 +5,10 @@ import { CharacterService } from 'src/app/services/character.service';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
-  selector: 'app-complete-character-dialog',
-  templateUrl: './complete-character-dialog.component.html',
-  styleUrls: ['./complete-character-dialog.component.scss']
+    selector: 'app-complete-character-dialog',
+    templateUrl: './complete-character-dialog.component.html',
+    styleUrls: ['./complete-character-dialog.component.scss'],
+    standalone: false
 })
 export class CompleteCharacterDialogComponent {
 

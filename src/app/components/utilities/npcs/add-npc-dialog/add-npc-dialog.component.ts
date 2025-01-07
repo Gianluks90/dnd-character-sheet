@@ -6,9 +6,10 @@ import { FormService } from 'src/app/services/form.service';
 import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
-  selector: 'app-add-npc-dialog',
-  templateUrl: './add-npc-dialog.component.html',
-  styleUrl: './add-npc-dialog.component.scss'
+    selector: 'app-add-npc-dialog',
+    templateUrl: './add-npc-dialog.component.html',
+    styleUrl: './add-npc-dialog.component.scss',
+    standalone: false
 })
 export class AddNpcDialogComponent {
 

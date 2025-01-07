@@ -4,9 +4,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Item } from 'src/app/models/item';
 
 @Component({
-  selector: 'app-manage-equip-dialog',
-  templateUrl: './manage-equip-dialog.component.html',
-  styleUrl: './manage-equip-dialog.component.scss'
+    selector: 'app-manage-equip-dialog',
+    templateUrl: './manage-equip-dialog.component.html',
+    styleUrl: './manage-equip-dialog.component.scss',
+    standalone: false
 })
 export class ManageEquipDialogComponent {
 

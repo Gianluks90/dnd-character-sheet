@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-campaign-npc-tab',
-  templateUrl: './campaign-npc-tab.component.html',
-  styleUrl: './campaign-npc-tab.component.scss'
+    selector: 'app-campaign-npc-tab',
+    templateUrl: './campaign-npc-tab.component.html',
+    styleUrl: './campaign-npc-tab.component.scss',
+    standalone: false
 })
 export class CampaignNpcTabComponent {
 

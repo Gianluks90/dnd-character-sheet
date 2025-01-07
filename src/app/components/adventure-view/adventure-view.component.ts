@@ -7,9 +7,10 @@ import { AddNpcDialogComponent } from '../utilities/npcs/add-npc-dialog/add-npc-
 import { CampaignService } from 'src/app/services/campaign.service';
 
 @Component({
-  selector: 'app-adventure-view',
-  templateUrl: './adventure-view.component.html',
-  styleUrl: './adventure-view.component.scss'
+    selector: 'app-adventure-view',
+    templateUrl: './adventure-view.component.html',
+    styleUrl: './adventure-view.component.scss',
+    standalone: false
 })
 export class AdventureViewComponent {
 

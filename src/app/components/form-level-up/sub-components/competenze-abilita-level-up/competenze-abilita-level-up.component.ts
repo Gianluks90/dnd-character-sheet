@@ -3,9 +3,10 @@ import { FormGroup } from '@angular/forms';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
-  selector: 'app-competenze-abilita-level-up',
-  templateUrl: './competenze-abilita-level-up.component.html',
-  styleUrls: ['./competenze-abilita-level-up.component.scss']
+    selector: 'app-competenze-abilita-level-up',
+    templateUrl: './competenze-abilita-level-up.component.html',
+    styleUrls: ['./competenze-abilita-level-up.component.scss'],
+    standalone: false
 })
 export class CompetenzeAbilitaLevelUpComponent {
 

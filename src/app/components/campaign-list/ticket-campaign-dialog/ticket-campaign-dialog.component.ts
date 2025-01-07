@@ -14,9 +14,10 @@ export interface Character {
 }
 
 @Component({
-  selector: 'app-ticket-campaign-dialog',
-  templateUrl: './ticket-campaign-dialog.component.html',
-  styleUrl: './ticket-campaign-dialog.component.scss'
+    selector: 'app-ticket-campaign-dialog',
+    templateUrl: './ticket-campaign-dialog.component.html',
+    styleUrl: './ticket-campaign-dialog.component.scss',
+    standalone: false
 })
 export class TicketCampaignDialogComponent {
 

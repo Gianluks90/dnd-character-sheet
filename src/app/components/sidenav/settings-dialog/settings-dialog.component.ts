@@ -7,9 +7,10 @@ import { CharacterService } from 'src/app/services/character.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
-  selector: 'app-settings-dialog',
-  templateUrl: './settings-dialog.component.html',
-  styleUrl: './settings-dialog.component.scss'
+    selector: 'app-settings-dialog',
+    templateUrl: './settings-dialog.component.html',
+    styleUrl: './settings-dialog.component.scss',
+    standalone: false
 })
 export class SettingsDialogComponent {
 

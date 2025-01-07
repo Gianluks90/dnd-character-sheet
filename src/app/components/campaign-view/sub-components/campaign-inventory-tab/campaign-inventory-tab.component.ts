@@ -2,9 +2,10 @@ import { Component, Input } from '@angular/core';
 import { getAuth } from 'firebase/auth';
 
 @Component({
-  selector: 'app-campaign-inventory-tab',
-  templateUrl: './campaign-inventory-tab.component.html',
-  styleUrl: './campaign-inventory-tab.component.scss'
+    selector: 'app-campaign-inventory-tab',
+    templateUrl: './campaign-inventory-tab.component.html',
+    styleUrl: './campaign-inventory-tab.component.scss',
+    standalone: false
 })
 export class CampaignInventoryTabComponent {
   

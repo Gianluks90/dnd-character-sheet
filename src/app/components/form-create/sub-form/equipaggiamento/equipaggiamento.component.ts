@@ -4,9 +4,10 @@ import { Item } from 'src/app/models/item';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
-  selector: 'app-equipaggiamento',
-  templateUrl: './equipaggiamento.component.html',
-  styleUrls: ['./equipaggiamento.component.scss']
+    selector: 'app-equipaggiamento',
+    templateUrl: './equipaggiamento.component.html',
+    styleUrls: ['./equipaggiamento.component.scss'],
+    standalone: false
 })
 export class EquipaggiamentoComponent {
   public equipaggiamentoGroup: Item[] = [];

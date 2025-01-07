@@ -5,9 +5,10 @@ import { Attack } from 'src/app/models/attack';
 import { CharacterService } from 'src/app/services/character.service';
 
 @Component({
-  selector: 'app-attacchi-tab-view',
-  templateUrl: './attacchi-tab-view.component.html',
-  styleUrl: './attacchi-tab-view.component.scss'
+    selector: 'app-attacchi-tab-view',
+    templateUrl: './attacchi-tab-view.component.html',
+    styleUrl: './attacchi-tab-view.component.scss',
+    standalone: false
 })
 export class AttacchiTabViewComponent {
 

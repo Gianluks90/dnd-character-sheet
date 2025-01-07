@@ -11,9 +11,10 @@ import { SidenavService } from 'src/app/services/sidenav.service';
 import { CompleteLevelUpDialogComponent } from './complete-level-up-dialog/complete-level-up-dialog.component';
 
 @Component({
-  selector: 'app-form-level-up',
-  templateUrl: './form-level-up.component.html',
-  styleUrls: ['./form-level-up.component.scss']
+    selector: 'app-form-level-up',
+    templateUrl: './form-level-up.component.html',
+    styleUrls: ['./form-level-up.component.scss'],
+    standalone: false
 })
 export class FormLevelUpComponent {
 

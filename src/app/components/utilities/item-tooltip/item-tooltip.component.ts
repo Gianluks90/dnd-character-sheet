@@ -2,9 +2,10 @@ import { Component, Input } from '@angular/core';
 import { Item } from 'src/app/models/item';
 
 @Component({
-  selector: 'app-item-tooltip',
-  templateUrl: './item-tooltip.component.html',
-  styleUrl: './item-tooltip.component.scss'
+    selector: 'app-item-tooltip',
+    templateUrl: './item-tooltip.component.html',
+    styleUrl: './item-tooltip.component.scss',
+    standalone: false
 })
 export class ItemTooltipComponent {
 

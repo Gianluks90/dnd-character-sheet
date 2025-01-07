@@ -4,9 +4,10 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
-  selector: 'app-trucchetti-incantesimi',
-  templateUrl: './trucchetti-incantesimi.component.html',
-  styleUrls: ['./trucchetti-incantesimi.component.scss']
+    selector: 'app-trucchetti-incantesimi',
+    templateUrl: './trucchetti-incantesimi.component.html',
+    styleUrls: ['./trucchetti-incantesimi.component.scss'],
+    standalone: false
 })
 export class TrucchettiIncantesimiComponent {
 

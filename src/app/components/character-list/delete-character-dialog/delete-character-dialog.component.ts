@@ -5,9 +5,10 @@ import { CharacterService } from 'src/app/services/character.service';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
-  selector: 'app-delete-character-dialog',
-  templateUrl: './delete-character-dialog.component.html',
-  styleUrls: ['./delete-character-dialog.component.scss']
+    selector: 'app-delete-character-dialog',
+    templateUrl: './delete-character-dialog.component.html',
+    styleUrls: ['./delete-character-dialog.component.scss'],
+    standalone: false
 })
 export class DeleteCharacterDialogComponent {
 

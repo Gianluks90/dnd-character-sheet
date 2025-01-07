@@ -11,9 +11,10 @@ import { getAuth } from 'firebase/auth';
 import { AddResourceItemDialogComponent } from './add-resource-item-dialog/add-resource-item-dialog.component';
 
 @Component({
-  selector: 'app-inventory',
-  templateUrl: './inventory.component.html',
-  styleUrl: './inventory.component.scss'
+    selector: 'app-inventory',
+    templateUrl: './inventory.component.html',
+    styleUrl: './inventory.component.scss',
+    standalone: false
 })
 export class InventoryComponent {
 

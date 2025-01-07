@@ -8,9 +8,10 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { DiceRollerComponent } from '../dice-roller/dice-roller.component';
 
 @Component({
-  selector: 'app-equipment',
-  templateUrl: './equipment.component.html',
-  styleUrl: './equipment.component.scss'
+    selector: 'app-equipment',
+    templateUrl: './equipment.component.html',
+    styleUrl: './equipment.component.scss',
+    standalone: false
 })
 export class EquipmentComponent {
 

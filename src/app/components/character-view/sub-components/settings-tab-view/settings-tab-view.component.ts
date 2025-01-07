@@ -8,9 +8,10 @@ import { CharacterService } from 'src/app/services/character.service';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
-  selector: 'app-settings-tab-view',
-  templateUrl: './settings-tab-view.component.html',
-  styleUrl: './settings-tab-view.component.scss'
+    selector: 'app-settings-tab-view',
+    templateUrl: './settings-tab-view.component.html',
+    styleUrl: './settings-tab-view.component.scss',
+    standalone: false
 })
 export class SettingsTabViewComponent {
 

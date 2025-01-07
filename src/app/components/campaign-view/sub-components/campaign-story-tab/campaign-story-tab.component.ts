@@ -7,9 +7,10 @@ import { ArchiveStoryDialogComponent } from './archive-story-dialog/archive-stor
 import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
-  selector: 'app-campaign-story-tab',
-  templateUrl: './campaign-story-tab.component.html',
-  styleUrl: './campaign-story-tab.component.scss'
+    selector: 'app-campaign-story-tab',
+    templateUrl: './campaign-story-tab.component.html',
+    styleUrl: './campaign-story-tab.component.scss',
+    standalone: false
 })
 export class CampaignStoryTabComponent {
 

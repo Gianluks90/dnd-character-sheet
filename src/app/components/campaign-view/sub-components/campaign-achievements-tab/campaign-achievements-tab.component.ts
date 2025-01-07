@@ -8,9 +8,10 @@ import { getAuth } from 'firebase/auth';
 import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
-  selector: 'app-campaign-achievements-tab',
-  templateUrl: './campaign-achievements-tab.component.html',
-  styleUrl: './campaign-achievements-tab.component.scss'
+    selector: 'app-campaign-achievements-tab',
+    templateUrl: './campaign-achievements-tab.component.html',
+    styleUrl: './campaign-achievements-tab.component.scss',
+    standalone: false
 })
 export class CampaignAchievementsTabComponent {
 

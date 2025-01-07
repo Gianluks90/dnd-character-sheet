@@ -5,9 +5,10 @@ import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
-  selector: 'app-parametri-vitali',
-  templateUrl: './parametri-vitali.component.html',
-  styleUrls: ['./parametri-vitali.component.scss']
+    selector: 'app-parametri-vitali',
+    templateUrl: './parametri-vitali.component.html',
+    styleUrls: ['./parametri-vitali.component.scss'],
+    standalone: false
 })
 export class ParametriVitaliComponent {
   public group: FormGroup | null = null;

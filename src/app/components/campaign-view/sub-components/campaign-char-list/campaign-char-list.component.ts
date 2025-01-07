@@ -9,9 +9,10 @@ import { DescriptionTooltipService } from 'src/app/components/utilities/descript
 import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
-  selector: 'app-campaign-char-list',
-  templateUrl: './campaign-char-list.component.html',
-  styleUrl: './campaign-char-list.component.scss'
+    selector: 'app-campaign-char-list',
+    templateUrl: './campaign-char-list.component.html',
+    styleUrl: './campaign-char-list.component.scss',
+    standalone: false
 })
 export class CampaignCharListComponent {
 

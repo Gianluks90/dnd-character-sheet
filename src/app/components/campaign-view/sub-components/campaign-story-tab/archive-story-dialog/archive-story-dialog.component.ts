@@ -2,9 +2,10 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-archive-story-dialog',
-  templateUrl: './archive-story-dialog.component.html',
-  styleUrl: './archive-story-dialog.component.scss'
+    selector: 'app-archive-story-dialog',
+    templateUrl: './archive-story-dialog.component.html',
+    styleUrl: './archive-story-dialog.component.scss',
+    standalone: false
 })
 export class ArchiveStoryDialogComponent {
 

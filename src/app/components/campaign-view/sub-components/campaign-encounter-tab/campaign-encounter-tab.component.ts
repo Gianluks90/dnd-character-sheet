@@ -6,9 +6,10 @@ import { CampaignService } from 'src/app/services/campaign.service';
 import { J } from '@angular/cdk/keycodes';
 
 @Component({
-  selector: 'app-campaign-encounter-tab',
-  templateUrl: './campaign-encounter-tab.component.html',
-  styleUrls: ['./campaign-encounter-tab.component.scss']
+    selector: 'app-campaign-encounter-tab',
+    templateUrl: './campaign-encounter-tab.component.html',
+    styleUrls: ['./campaign-encounter-tab.component.scss'],
+    standalone: false
 })
 export class CampaignEncounterTabComponent {
 

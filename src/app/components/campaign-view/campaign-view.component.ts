@@ -16,9 +16,10 @@ import { DiceRollerComponent } from '../utilities/dice-roller/dice-roller.compon
 import { AddEntryDialogComponent } from './sub-components/campaign-entries-tab/add-entry-dialog/add-entry-dialog.component';
 
 @Component({
-  selector: 'app-campaign-view',
-  templateUrl: './campaign-view.component.html',
-  styleUrl: './campaign-view.component.scss'
+    selector: 'app-campaign-view',
+    templateUrl: './campaign-view.component.html',
+    styleUrl: './campaign-view.component.scss',
+    standalone: false
 })
 export class CampaignViewComponent {
   public user: AdventurerUser | null;

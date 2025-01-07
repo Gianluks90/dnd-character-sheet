@@ -5,9 +5,10 @@ import { FormService } from 'src/app/services/form.service';
 import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
-  selector: 'app-informazioni-base',
-  templateUrl: './informazioni-base.component.html',
-  styleUrls: ['./informazioni-base.component.scss'],
+    selector: 'app-informazioni-base',
+    templateUrl: './informazioni-base.component.html',
+    styleUrls: ['./informazioni-base.component.scss'],
+    standalone: false
 })
 export class InformazioniBaseComponent {
   public groupInfo: FormGroup | null = null;

@@ -3,9 +3,10 @@ import { FormGroup } from '@angular/forms';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
-  selector: 'app-background',
-  templateUrl: './background.component.html',
-  styleUrls: ['./background.component.scss']
+    selector: 'app-background',
+    templateUrl: './background.component.html',
+    styleUrls: ['./background.component.scss'],
+    standalone: false
 })
 export class BackgroundComponent {
   public groupInfo: FormGroup | null = null;

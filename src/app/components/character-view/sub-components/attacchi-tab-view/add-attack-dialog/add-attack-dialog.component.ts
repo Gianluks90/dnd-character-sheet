@@ -5,9 +5,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Attack } from 'src/app/models/attack';
 
 @Component({
-  selector: 'app-add-attack-dialog',
-  templateUrl: './add-attack-dialog.component.html',
-  styleUrl: './add-attack-dialog.component.scss'
+    selector: 'app-add-attack-dialog',
+    templateUrl: './add-attack-dialog.component.html',
+    styleUrl: './add-attack-dialog.component.scss',
+    standalone: false
 })
 export class AddAttackDialogComponent {
 

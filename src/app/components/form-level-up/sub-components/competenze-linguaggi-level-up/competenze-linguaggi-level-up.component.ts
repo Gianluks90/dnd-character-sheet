@@ -5,9 +5,10 @@ import { MatChipInputEvent, MatChipEditedEvent } from '@angular/material/chips';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
-  selector: 'app-competenze-linguaggi-level-up',
-  templateUrl: './competenze-linguaggi-level-up.component.html',
-  styleUrls: ['./competenze-linguaggi-level-up.component.scss']
+    selector: 'app-competenze-linguaggi-level-up',
+    templateUrl: './competenze-linguaggi-level-up.component.html',
+    styleUrls: ['./competenze-linguaggi-level-up.component.scss'],
+    standalone: false
 })
 export class CompetenzeLinguaggiLevelUpComponent {
   public group: FormGroup | null = null;

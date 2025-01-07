@@ -3,9 +3,10 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-new-encounter-dialog',
-  templateUrl: './new-encounter-dialog.component.html',
-  styleUrl: './new-encounter-dialog.component.scss'
+    selector: 'app-new-encounter-dialog',
+    templateUrl: './new-encounter-dialog.component.html',
+    styleUrl: './new-encounter-dialog.component.scss',
+    standalone: false
 })
 export class NewEncounterDialogComponent {
 

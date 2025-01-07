@@ -9,9 +9,10 @@ import { getAuth } from 'firebase/auth';
 import { AddResourceSpellDialogComponent } from './add-resource-spell-dialog/add-resource-spell-dialog.component';
 
 @Component({
-  selector: 'app-trucchetti-incantesimi-tab-view',
-  templateUrl: './trucchetti-incantesimi-tab-view.component.html',
-  styleUrls: ['./trucchetti-incantesimi-tab-view.component.scss']
+    selector: 'app-trucchetti-incantesimi-tab-view',
+    templateUrl: './trucchetti-incantesimi-tab-view.component.html',
+    styleUrls: ['./trucchetti-incantesimi-tab-view.component.scss'],
+    standalone: false
 })
 export class TrucchettiIncantesimiTabViewComponent {
 

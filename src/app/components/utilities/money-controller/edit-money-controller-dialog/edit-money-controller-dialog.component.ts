@@ -4,9 +4,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CharacterService } from 'src/app/services/character.service';
 
 @Component({
-  selector: 'app-edit-money-controller-dialog',
-  templateUrl: './edit-money-controller-dialog.component.html',
-  styleUrl: './edit-money-controller-dialog.component.scss'
+    selector: 'app-edit-money-controller-dialog',
+    templateUrl: './edit-money-controller-dialog.component.html',
+    styleUrl: './edit-money-controller-dialog.component.scss',
+    standalone: false
 })
 export class EditMoneyControllerDialogComponent {
   public form: FormGroup;

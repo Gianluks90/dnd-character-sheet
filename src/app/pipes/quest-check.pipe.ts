@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'questsCheck'
+    name: 'questsCheck',
+    standalone: false
 })
 export class QuestsCheckPipe implements PipeTransform {
   transform(quests: any[], title: string): boolean {

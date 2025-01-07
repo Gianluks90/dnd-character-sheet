@@ -3,9 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { DiceRollerComponent } from 'src/app/components/utilities/dice-roller/dice-roller.component';
 
 @Component({
-  selector: 'app-campaign-char-tab',
-  templateUrl: './campaign-char-tab.component.html',
-  styleUrl: './campaign-char-tab.component.scss'
+    selector: 'app-campaign-char-tab',
+    templateUrl: './campaign-char-tab.component.html',
+    styleUrl: './campaign-char-tab.component.scss',
+    standalone: false
 })
 export class CampaignCharTabComponent {
 

@@ -5,9 +5,10 @@ import { FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-add-item-dialog',
-  templateUrl: './add-item-dialog.component.html',
-  styleUrl: './add-item-dialog.component.scss'
+    selector: 'app-add-item-dialog',
+    templateUrl: './add-item-dialog.component.html',
+    styleUrl: './add-item-dialog.component.scss',
+    standalone: false
 })
 export class AddItemDialogComponent {
 

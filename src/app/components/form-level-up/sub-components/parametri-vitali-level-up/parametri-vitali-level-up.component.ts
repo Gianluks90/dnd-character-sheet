@@ -3,9 +3,10 @@ import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
-  selector: 'app-parametri-vitali-level-up',
-  templateUrl: './parametri-vitali-level-up.component.html',
-  styleUrls: ['./parametri-vitali-level-up.component.scss']
+    selector: 'app-parametri-vitali-level-up',
+    templateUrl: './parametri-vitali-level-up.component.html',
+    styleUrls: ['./parametri-vitali-level-up.component.scss'],
+    standalone: false
 })
 export class ParametriVitaliLevelUpComponent {
 

@@ -6,9 +6,10 @@ import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 
 @Component({
-  selector: 'app-add-elements-dialog',
-  templateUrl: './add-elements-dialog.component.html',
-  styleUrl: './add-elements-dialog.component.scss'
+    selector: 'app-add-elements-dialog',
+    templateUrl: './add-elements-dialog.component.html',
+    styleUrl: './add-elements-dialog.component.scss',
+    standalone: false
 })
 export class AddElementsDialogComponent {
 

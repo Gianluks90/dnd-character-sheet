@@ -8,9 +8,10 @@ import { DocumentDialogComponent } from './document-dialog/document-dialog.compo
 import { CampaignService } from 'src/app/services/campaign.service';
 
 @Component({
-  selector: 'app-item-info-sheet',
-  templateUrl: './item-info-sheet.component.html',
-  styleUrl: './item-info-sheet.component.scss',
+    selector: 'app-item-info-sheet',
+    templateUrl: './item-info-sheet.component.html',
+    styleUrl: './item-info-sheet.component.scss',
+    standalone: false
 })
 export class ItemInfoSheetComponent {
 

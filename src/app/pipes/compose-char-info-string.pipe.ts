@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'composeCharInfoString'
+    name: 'composeCharInfoString',
+    standalone: false
 })
 export class ComposeCharInfoStringPipe implements PipeTransform {
 

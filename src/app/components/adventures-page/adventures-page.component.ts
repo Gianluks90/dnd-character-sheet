@@ -8,9 +8,10 @@ import { SidenavService } from 'src/app/services/sidenav.service';
 import { NewAdventureDialogComponent } from './new-adventure-dialog/new-adventure-dialog.component';
 
 @Component({
-  selector: 'app-adventures-page',
-  templateUrl: './adventures-page.component.html',
-  styleUrl: './adventures-page.component.scss'
+    selector: 'app-adventures-page',
+    templateUrl: './adventures-page.component.html',
+    styleUrl: './adventures-page.component.scss',
+    standalone: false
 })
 export class AdventuresPageComponent {
 

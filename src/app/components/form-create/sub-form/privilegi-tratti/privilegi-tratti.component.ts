@@ -3,9 +3,10 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
-  selector: 'app-privilegi-tratti',
-  templateUrl: './privilegi-tratti.component.html',
-  styleUrls: ['./privilegi-tratti.component.scss']
+    selector: 'app-privilegi-tratti',
+    templateUrl: './privilegi-tratti.component.html',
+    styleUrls: ['./privilegi-tratti.component.scss'],
+    standalone: false
 })
 export class PrivilegiTrattiComponent {
 
