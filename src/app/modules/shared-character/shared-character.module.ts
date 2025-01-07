@@ -21,9 +21,10 @@ import { SharedUtilitisModule } from '../shared-utilitis/shared-utilitis.module'
 import { CompanionTabViewComponent } from 'src/app/components/character-view/sub-components/companion-tab-view/companion-tab-view.component';
 import { CapitalizeStringPipe } from 'src/app/pipes/capitalize-string.pipe';
 import { SharedPipesModule } from '../shared-pipes/shared-pipes.module';
+import { CharacterViewNextComponent } from 'src/app/components/character-view-next/character-view-next.component';
 
 
-const components = [CharacterViewComponent]
+const components = [CharacterViewComponent, CharacterViewNextComponent]
 const subcomponents = [
   CharacterViewStatusComponent,
   PrivilegiTrattiTabViewComponent,

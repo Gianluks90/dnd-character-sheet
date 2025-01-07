@@ -117,6 +117,7 @@ import { CharRestDialogComponent } from './components/character-view/char-rest-d
 import { ConditionDialogComponent } from './components/utilities/conditions/condition-dialog/condition-dialog.component';
 import { ConditionInfoDialogComponent } from './components/utilities/conditions/condition-info-dialog/condition-info-dialog.component';
 import { SharedPipesModule } from "./modules/shared-pipes/shared-pipes.module";
+import { CharacterViewNextComponent } from './components/character-view-next/character-view-next.component';
 
 @NgModule({
     declarations: [
@@ -252,7 +253,7 @@ import { SharedPipesModule } from "./modules/shared-pipes/shared-pipes.module";
         ManageResourcesDialogComponent,
         CharRestDialogComponent,
         ConditionDialogComponent,
-        ConditionInfoDialogComponent,
+        ConditionInfoDialogComponent
 
         // adventure component
         // AdventuresPageComponent,

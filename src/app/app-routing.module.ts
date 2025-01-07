@@ -12,6 +12,7 @@ import { HomePageComponent } from "./components/home-page/home-page.component";
 import { ResourcesPageComponent } from "./components/resources-page/resources-page.component";
 import { AdventuresPageComponent } from "./components/adventures-page/adventures-page.component";
 import { AdventureEditorComponent } from "./components/adventure-editor/adventure-editor.component";
+import { CharacterViewNextComponent } from "./components/character-view-next/character-view-next.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'create/:id', component: FormCreateComponent, canActivate: [AuthGuardService] },
   { path: 'levelup/:id', component: FormLevelUpComponent, canActivate: [AuthGuardService]},
   { path: 'view/:id', component: CharacterViewComponent, canActivate: [AuthGuardService] },
+  { path: 'view-next/:id', component: CharacterViewNextComponent, canActivate: [AuthGuardService] },
   { path: 'characters', component: CharacterListComponent, canActivate: [AuthGuardService] },
   { path: 'campaigns', component: CampaignListComponent, canActivate: [AuthGuardService] },
   { path: 'campaign-view/:id', component: CampaignViewComponent, canActivate: [AuthGuardService] },

@@ -1,0 +1,129 @@
+// Variables
+$box-shadow-color: rgba(0, 0, 0, 0.5);
+$char-name-font: 'Cinzel', serif;
+$char-name-size: large;
+$char-name-first-letter-size: xx-large;
+$char-info-opacity: 0.8;
+$icon-size: x-large;
+$gap-large: 12px;
+$gap-small: 8px;
+$padding-large: 24px;
+$padding-small: 12px;
+$header-height: 100px;
+$header-height-small: 90px;
+$img-size: 100px;
+$img-size-small: 90px;
+
+.char-next-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.char-next-info-header {
+    background-color: rgba(#212121, 0.9);
+    color: white;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 0px 5px 0px $box-shadow-color;
+    width: 100%;
+    height: $header-height;
+
+    &>img {
+        width: $img-size;
+        height: 100%;
+        padding: 1px;
+        object-fit: cover;
+        object-position: top;
+        box-sizing: border-box;
+    }
+
+    &>.flex-divider {
+        flex-grow: 1;
+    }
+
+    &>.view-next-actions {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        padding-right: $padding-large;
+        gap: $gap-large;
+    }
+
+    &>.pride-flag-column {
+        display: flex;
+        width: 8px;
+        height: 100%;
+        flex-direction: column;
+        align-self: flex-end;
+
+        &>div {
+            width: 100%;
+            opacity: 0.9;
+        }
+
+        &>.pride-flag-color {
+            flex-grow: 1;
+        }
+    }
+
+    &>.char-info-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 2px;
+        margin-left: $gap-large;
+
+        &>.name-container {
+            display: flex;
+            gap: $gap-small;
+            align-items: center;
+
+            &>.char-name {
+                font-size: $char-name-size;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                font-family: $char-name-font;
+
+                &::first-letter {
+                    font-size: $char-name-first-letter-size;
+                }
+            }
+
+            &>.char-info {
+                opacity: $char-info-opacity;
+            }
+
+            &>.material-symbols-outlined {
+                font-size: $icon-size;
+            }
+        }
+    }
+}
+
+.char-next-parameters-header {
+    background-color: rgba(#212121, 0.8);
+    color: white;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 0px 5px 0px $box-shadow-color;
+    width: 100%;
+    height: $header-height;
+}
+
+@media screen and (max-width: 768px) {
+    .char-next-info-header {
+        // height: $header-height-small;
+
+        // &>img {
+        //     width: $img-size-small;
+        // }
+
+        &>.view-next-actions {
+            grid-template-columns: repeat(2, 1fr);
+            gap: $gap-small;
+            padding-right: $padding-small;
+        }
+    }
+}

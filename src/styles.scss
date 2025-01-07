@@ -149,6 +149,12 @@ app-character-view {
   width: 100% !important;
 }
 
+app-character-view-next {
+  display: flex;
+  justify-content: center;
+  width: 100% !important;
+}
+
 app-adventures-page {
   display: flex;
   width: 100% !important;
@@ -219,6 +225,10 @@ mat-bottom-sheet-container {
     'opsz' 24;
   font-size: 1.2rem;
   // margin-top: 2px;
+}
+
+.symbols-90deg {
+  transform: rotate(90deg);
 }
 
 // Da aggiungere alle icone che vogliamo senza riempimento.
@@ -294,7 +304,7 @@ button[as-mini-circle-btn] {
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  // justify-content: center;
 
   cursor: pointer;
 
