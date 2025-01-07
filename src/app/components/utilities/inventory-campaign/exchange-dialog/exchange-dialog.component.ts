@@ -16,7 +16,7 @@ export class ExchangeDialogComponent {
   public form = this.fb.group({
     items: [],
     receiver: [null, Validators.required],
-    exchangeMoney: [false],
+    exchangeMoney: [false as boolean],
     MP: [0, Validators.min(0)],
     MO: [0, Validators.min(0)],
     ME: [0, Validators.min(0)],
@@ -35,7 +35,7 @@ export class ExchangeDialogComponent {
     this.form = this.fb.group({
       items: [[], [Validators.required, this.arrayNotEmptyValidator()]],
       receiver: [null, Validators.required],
-      exchangeMoney: [false],
+      exchangeMoney: [false as boolean],
       MP: [0, Validators.min(0)],
       MO: [0, Validators.min(0)],
       ME: [0, Validators.min(0)],

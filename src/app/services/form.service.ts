@@ -174,7 +174,7 @@ export class FormService {
       // if (model[key] instanceof Array) {
       //   formGroup.setControl(key, this.fb.array(model[key].map((m: any) => this.createFormGroup(m))));
       if (model[key] instanceof FormArray) {
-        const array = this.fb.array(model[key].map((m: any) => this.createFormGroup(m)));
+        const array = this.fb.array((model[key] as unknown as any[]).map((m: any) => this.createFormGroup(m)));
         formGroup.addControl(key, array);
       } else if (model[key] instanceof Array) {
         const array = this.fb.array(model[key]);

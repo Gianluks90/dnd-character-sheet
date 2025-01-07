@@ -1,4 +1,5 @@
 @if (user && character) {
+    @let info = character.informazioniBase;
     <div class="char-next-container">
         <div class="char-next-info-header">
             @if (prideFlag) {
@@ -8,18 +9,19 @@
                     }
                 </div>
             }
-            <img [src]="character.informazioniBase.urlImmaginePersonaggio !== '' ? character.informazioniBase.urlImmaginePersonaggio : './assets/images/hero-placeholder.png'">
+            <img [src]="info.urlImmaginePersonaggio !== '' ? info.urlImmaginePersonaggio : './assets/images/hero-placeholder.png'">
             <div class="char-info-container">
                 <div class="name-container">
                     <div class="material-symbols-outlined material-no-fill" [ngClass]="{'inspired': !character.ispirazione}">{{character.ispirazione ? 'brightness_empty' : 'award_star'}}</div>
-                    <div class="char-name">{{!isMobile && character.informazioniBase.nomePersonaggioEsteso !== '' ?
-                        character.informazioniBase.nomePersonaggioEsteso :
-                        character.informazioniBase.nomePersonaggio}}</div>
+                    <div class="char-name">{{!isMobile && info.nomePersonaggioEsteso !== '' ?
+                        info.nomePersonaggioEsteso :
+                        info.nomePersonaggio}}</div>
                 </div>
                 @if (!isMobile) {
                     <div class="char-info">{{character | composeCharInfoString}}</div>
                 }
-                @for (cl of character.informazioniBase.classi; track $index) {
+                @let classi = info.classi;
+                @for (cl of classi; track $index) {
                     <div class="char-info">{{cl | composeClassString}}</div>
                 }
             </div>
@@ -44,11 +46,3 @@
         </div>
     </div>
 }
-
-<!-- <div as-bottom-buttons-container as-bottom-left id="menu-button" *ngIf="!inCampaign">
-    
-</div>
-
-<div as-bottom-buttons-container as-bottom-right id="dice-button" *ngIf="!inCampaign">
-   
-</div> -->
