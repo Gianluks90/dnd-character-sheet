@@ -1,0 +1,30 @@
+<div class="save-throws-container">
+    <div as-section-title>Tiri salvezza</div>
+    @for(st of saveThrows; track $index) {
+        @if (st.proficient || showAllSaveThrows) {
+            <div class="item-container" (click)="openDiceRoller('1d20+' + st.value, 'salvezza su ' + st.label)">
+                <div class="material-symbols-outlined" [ngClass]="{'material-no-fill': !st.proficient}">circle</div>
+                <p class="item-label">{{st.label}}</p>
+                <p class="item-value">{{st.value > 0 ? '+ ' + st.value : st.value}}</p>
+            </div>
+        }
+    }
+    <div class="show-more-container" (click)="toggleSaveThrows()">
+        <div class="material-symbols-outlined">{{showAllSaveThrows ? 'visibility_off' : 'visibility'}}</div> <p>{{showAllSaveThrows ? 'Nascondi superflui' : 'Mostra tutti'}}</p>
+    </div>
+</div>
+<div class="skills-container">
+    <div as-section-title>Abilità e competenze</div>
+    @for (s of characterData.competenzaAbilita; track $index) {
+        @if (s.proficient || s.mastered || showAllSkills) {
+            <div class="item-container" (click)="openDiceRoller('1d20+' + s.modifier, 'su ' + s.label)">
+                <div class="material-symbols-outlined" [ngClass]="{'material-no-fill': !s.proficient}">circle</div>
+                <p class="item-label">{{s.label}} ({{s.param}})</p>
+                <p class="item-value">{{s.modifier > 0 ? '+ ' + s.modifier : s.modifier}}</p>
+            </div>
+        }
+    }
+    <div class="show-more-container" (click)="toggleSkills()">
+        <div class="material-symbols-outlined">{{showAllSkills ? 'visibility_off' : 'visibility'}}</div> <p>{{showAllSkills ? 'Nascondi senza competenza' : 'Mostra tutte'}}</p>
+    </div>
+</div>

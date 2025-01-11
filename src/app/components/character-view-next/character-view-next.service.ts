@@ -3,6 +3,41 @@ import { AdventurerUser } from 'src/app/models/adventurerUser';
 import { Item } from 'src/app/models/item';
 import { CampaignService } from 'src/app/services/campaign.service';
 
+interface Skill {
+  param: string;
+  label: string;
+  proficient: boolean;
+  mastered: boolean;
+  modifier: number;
+}
+
+const SKILL_TO_ATTRIBUTE_MAP: { [skill: string]: string } = {
+  acrobazia: 'destrezza',
+  addestrareAnimali: 'saggezza',
+  arcano: 'intelligenza',
+  atletica: 'forza',
+  furtivita: 'destrezza',
+  indagare: 'intelligenza',
+  inganno: 'carisma',
+  intimidire: 'carisma',
+  intrattenere: 'carisma',
+  intuizione: 'saggezza',
+  medicina: 'saggezza',
+  natura: 'intelligenza',
+  percezione: 'saggezza',
+  persuasione: 'carisma',
+  rapiditaDiMano: 'destrezza',
+  religione: 'intelligenza',
+  sopravvivenza: 'saggezza',
+  storia: 'intelligenza',
+};
+
+const LABEL_OVERRIDES: { [key: string]: string } = {
+  furtività: "furtività", // Aggiunto l'accento
+  addestrareAnimali: "addestrare animali", // Spazio
+  rapiditaDiMano: "rapidità di mano", // Accento e spazio
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -74,5 +109,42 @@ export class CharacterViewNextService {
       character.caratteristiche[b.element] ? character.caratteristiche[b.element] += b.value : null;
     });
     return character;
+  }
+
+  calcSkills(char: any): Skill[] {
+    const result: Skill[] = [];
+    const proficiencyBonus = char.tiriSalvezza.bonusCompetenza;
+  
+    const LABEL_OVERRIDES: { [key: string]: string } = {
+      furtivita: "furtività",
+      addestrareAnimali: "addestrare animali",
+      rapiditaDiMano: "rapidità di mano",
+    };
+  
+    for (const [skill, attribute] of Object.entries(SKILL_TO_ATTRIBUTE_MAP)) {
+      const proficient = char.competenzaAbilita[skill] || false;
+      const mastered = char.competenzaAbilita[`maestria${skill.charAt(0).toUpperCase() + skill.slice(1)}`] || false;
+  
+      // Calcolo del modificatore della caratteristica
+      const attributeValue = char.caratteristiche[attribute] || 10; // Default a 10
+      const modifier =
+        Math.floor((attributeValue - 10) / 2) +
+        (proficient ? proficiencyBonus : 0) +
+        (mastered ? proficiencyBonus : 0);
+  
+      // Applica l'override del label, se presente
+      const label = LABEL_OVERRIDES[skill] || skill;
+  
+      result.push({
+        param: attribute.charAt(0).toUpperCase() + attribute.slice(1, 3),
+        label,
+        proficient,
+        mastered,
+        modifier,
+      });
+    }
+  
+    console.log("result", result);
+    return result;
   }
 }

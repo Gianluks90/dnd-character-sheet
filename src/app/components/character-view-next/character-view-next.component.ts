@@ -58,11 +58,13 @@ export class CharacterViewNextComponent {
 
       this.character = this.charViewNextService.calcBonuses(this.character);
 
+      this.character.competenzaAbilita = this.charViewNextService.calcSkills(this.character);
+      console.log('character', this.character);
+      
+
       this.http.get('./assets/settings/inclusivityFlags.json').subscribe((data: any[]) => {
         this.prideFlag = data.find((flag) => flag.name === this.character.status.prideFlag) || null as PrideFlag;
       });
-
-      console.log(this.character);
     });
 
     if (window.location.href.includes('campaign-view/')) {
@@ -79,8 +81,6 @@ export class CharacterViewNextComponent {
 
   @Input() public set characterId(id: string) {
     this.characterIdData = id;
-    console.log(this.characterIdData);
-
   }
 
   public openSidenav() {

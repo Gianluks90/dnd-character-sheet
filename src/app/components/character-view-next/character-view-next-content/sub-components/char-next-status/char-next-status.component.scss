@@ -1,0 +1,50 @@
+.save-throws-container, .skills-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 8px;
+
+    &>.item-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        align-items: center;
+        padding: 8px;
+        border: 1px solid white;
+        border-radius: 4px;
+
+        &>p {
+            margin: 0;
+        }
+
+        &>.item-label {
+            flex-grow: 1;
+        }
+
+        &>.item-label::first-letter {
+            text-transform: uppercase;
+        }
+        &>.material-symbols-outlined {
+            font-size: .8rem !important;
+        }
+    }
+
+    .item-container:hover {
+        background-color: rgba($color: white, $alpha: 0.3);
+        transition: background-color 0.3s;
+        cursor: pointer;
+    }
+
+    .show-more-container {
+        margin-top: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+
+        &>p {
+            margin: 0;
+        }
+    }
+}
+

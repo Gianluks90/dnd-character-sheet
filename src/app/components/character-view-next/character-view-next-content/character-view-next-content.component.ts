@@ -12,4 +12,9 @@ export class CharacterViewNextContentComponent {
   @Input() set character(character: any) {
     this.characterData = character;
   }
+
+  public editModeData: boolean = false;
+  @Input() set editMode(editMode: boolean) {
+    this.editModeData = editMode;
+  }
 }

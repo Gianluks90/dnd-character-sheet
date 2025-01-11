@@ -1,1 +1,7 @@
-<p>character-view-next-content works!</p>
+<div class="next-content-main-container">
+    <div class="status-column" [ngStyle]="{'background-color': characterData.status.sheetColor || '#212121', 'color': characterData.status.textColor || '#fff'}">
+        <app-char-next-status [char]="characterData" [edit]="editModeData"></app-char-next-status>
+    </div>
+    <div class="second-column"></div>
+    <div class="third-column"></div>
+</div> 

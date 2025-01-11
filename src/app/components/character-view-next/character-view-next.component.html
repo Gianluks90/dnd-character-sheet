@@ -49,48 +49,48 @@
     <div class="header-main-container second-header">
         <div class="char-next-parameters-header">
             <app-skill-container [char]="character"></app-skill-container>
-            <div class="parameter-grid-container">
-                <section>
-                    <div class="parameter-container">
-                        <div class="parameter-label">Compentenza</div>
-                        <div class="parameter-value">{{character.tiriSalvezza.bonusCompetenza > 0 ? '+' +
-                            character.tiriSalvezza.bonusCompetenza : character.tiriSalvezza.bonusCompetenza}}</div>
-                    </div>
-                    <div class="parameter-container">
-                        <div class="parameter-label">Velocità</div>
-                        <div class="parameter-value">{{character.velocita}}m</div>
-                    </div>
-                    <div class="parameter-container">
-                        <div class="parameter-label">CA</div>
-                        <div class="parameter-value">{{character.CA}} <span>{{character.shieldCA !== '' ?
-                                character.CAShield : ''}}</span></div>
-                    </div>
-                </section>
-                <section>
-                    @let params = character.parametriVitali;
-                    <div class="parameter-container expanded-container">
-                        <div class="parameter-label">Punti ferita</div>
-                        <div class="parameter-inner-container" (click)="openHealthDialog()">
-                            <div class="heart-container">
-                                <div class="material-symbols-outlined">favorite</div>
-                                <div class="heart-value">
-                                    <span>{{params.puntiFeritaAttuali}}</span>/<span>{{params.massimoPuntiFerita}}</span>
-                                </div>
-                                @if (params.puntiFeritaTemporaneiAttuali > 0) {
-                                <div class="material-symbols-outlined">hourglass</div>
-                                <div class="heart-value">
-                                    <span>{{params.puntiFeritaTemporaneiAttuali}}</span>
-                                </div>
-                                }
+            <!-- <div class="parameter-grid-container"> -->
+            <div class="parameters">
+                <div class="parameter-container">
+                    <div class="parameter-label">Compentenza</div>
+                    <div class="parameter-value">{{character.tiriSalvezza.bonusCompetenza > 0 ? '+' +
+                        character.tiriSalvezza.bonusCompetenza : character.tiriSalvezza.bonusCompetenza}}</div>
+                </div>
+                <div class="parameter-container">
+                    <div class="parameter-label">Velocità</div>
+                    <div class="parameter-value">{{character.velocita}}m</div>
+                </div>
+                <div class="parameter-container">
+                    <div class="parameter-label">CA</div>
+                    <div class="parameter-value">{{character.CA}} <span>{{character.shieldCA !== '' ?
+                            character.CAShield : ''}}</span></div>
+                </div>
+            </div>
+            <div class="health-points">
+                @let params = character.parametriVitali;
+                <div class="parameter-container expanded-container">
+                    <div class="parameter-label">Punti ferita</div>
+                    <div class="parameter-inner-container" (click)="openHealthDialog()">
+                        <div class="heart-container">
+                            <div class="material-symbols-outlined">favorite</div>
+                            <div class="heart-value">
+                                <span>{{params.puntiFeritaAttuali}}</span>/<span>{{params.massimoPuntiFerita}}</span>
                             </div>
+                            @if (params.puntiFeritaTemporaneiAttuali > 0) {
+                            <div class="material-symbols-outlined">hourglass</div>
+                            <div class="heart-value">
+                                <span>{{params.puntiFeritaTemporaneiAttuali}}</span>
+                            </div>
+                            }
                         </div>
                     </div>
-                </section>
+                </div>
             </div>
+            <!-- </div> -->
         </div>
     </div>
     <div class="main-content-container">
-        <app-character-view-next-content [character]="character"></app-character-view-next-content>
+        <app-character-view-next-content [character]="character" [editMode]="editMode"></app-character-view-next-content>
     </div>
 </div>
 }

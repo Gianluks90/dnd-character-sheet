@@ -1,4 +1,7 @@
-<div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor && !isCampaign ? characterData.status.sheetTitleColor : '#212121'}">Caratteristiche</div>
+<!-- @defer (when characterData) { -->
+<div as-section-title
+    [ngStyle]="{'color': characterData.status.sheetTitleColor && !isCampaign ? characterData.status.sheetTitleColor : '#212121'}">
+    Caratteristiche</div>
 <div class="caratteristiche-main-container">
     <div class="caratteristiche-line">
         <div class="caratteristiche-container">
@@ -37,91 +40,98 @@
     </div>
 </div>
 
-<div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor && !isCampaign ? characterData.status.sheetTitleColor : '#212121'}">Tiri salvezza</div>
+<div as-section-title
+    [ngStyle]="{'color': characterData.status.sheetTitleColor && !isCampaign ? characterData.status.sheetTitleColor : '#212121'}">
+    Tiri salvezza</div>
 <div class="bonus-competenza">
     <div>Bonus Competenza</div>
     <div class="bonus-value">+ {{characterData.tiriSalvezza.bonusCompetenza}}</div>
 </div>
 <div class="caratteristiche-main-container">
     <div class="caratteristiche-line">
-        <div class="ts" 
-            (click)="rollFromSheet('1d20+'+initTiroSalvezza('forza'), 'tiro salvezza (forza)')">
+        <div class="ts" (click)="rollFromSheet('1d20+'+initTiroSalvezza('forza'), 'tiro salvezza (forza)')">
             <div class="ts-label">
                 FOR
             </div>
             <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.forza}"
-            (mouseover)="tooltip.showTooltip($event, 'center', characterData.tiriSalvezza.forza, 'ts-tooltip')" (mouseleave)="tooltip.hideTooltip()">
+                (mouseover)="tooltip.showTooltip($event, 'center', characterData.tiriSalvezza.forza, 'ts-tooltip')"
+                (mouseleave)="tooltip.hideTooltip()">
                 {{initTiroSalvezza('forza')}}</div>
         </div>
-        <div class="ts" 
-            (click)="rollFromSheet('1d20+'+initTiroSalvezza('destrezza'), 'tiro salvezza (destrezza)')">
+        <div class="ts" (click)="rollFromSheet('1d20+'+initTiroSalvezza('destrezza'), 'tiro salvezza (destrezza)')">
             <div class="ts-label">
                 DES
             </div>
             <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.destrezza}"
-            (mouseover)="tooltip.showTooltip($event, 'center', characterData.tiriSalvezza.destrezza, 'ts-tooltip')" (mouseleave)="tooltip.hideTooltip()">
+                (mouseover)="tooltip.showTooltip($event, 'center', characterData.tiriSalvezza.destrezza, 'ts-tooltip')"
+                (mouseleave)="tooltip.hideTooltip()">
                 {{initTiroSalvezza('destrezza')}}</div>
         </div>
-        <div class="ts" 
+        <div class="ts"
             (click)="rollFromSheet('1d20+'+initTiroSalvezza('costituzione'), 'tiro salvezza (costituzione)')">
             <div class="ts-label">
                 COS
             </div>
             <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.costituzione}"
-            (mouseover)="tooltip.showTooltip($event, 'center', characterData.tiriSalvezza.costituzione, 'ts-tooltip')" (mouseleave)="tooltip.hideTooltip()">
+                (mouseover)="tooltip.showTooltip($event, 'center', characterData.tiriSalvezza.costituzione, 'ts-tooltip')"
+                (mouseleave)="tooltip.hideTooltip()">
                 {{initTiroSalvezza('costituzione')}}</div>
         </div>
     </div>
     <div class="caratteristiche-line">
-        <div class="ts" 
+        <div class="ts"
             (click)="rollFromSheet('1d20+'+initTiroSalvezza('intelligenza'), 'tiro salvezza (intelligenza)')">
             <div class="ts-label">
                 INT
             </div>
             <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.intelligenza}"
-            (mouseover)="tooltip.showTooltip($event, 'center', characterData.tiriSalvezza.intelligenza, 'ts-tooltip')" (mouseleave)="tooltip.hideTooltip()">
+                (mouseover)="tooltip.showTooltip($event, 'center', characterData.tiriSalvezza.intelligenza, 'ts-tooltip')"
+                (mouseleave)="tooltip.hideTooltip()">
                 {{initTiroSalvezza('intelligenza')}}
             </div>
         </div>
-        <div class="ts" 
-            (click)="rollFromSheet('1d20+'+initTiroSalvezza('saggezza'), 'tiro salvezza (saggezza)')">
+        <div class="ts" (click)="rollFromSheet('1d20+'+initTiroSalvezza('saggezza'), 'tiro salvezza (saggezza)')">
             <div class="ts-label">
                 SAG
             </div>
             <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.saggezza}"
-            (mouseover)="tooltip.showTooltip($event, 'center', characterData.tiriSalvezza.saggezza, 'ts-tooltip')" (mouseleave)="tooltip.hideTooltip()">
+                (mouseover)="tooltip.showTooltip($event, 'center', characterData.tiriSalvezza.saggezza, 'ts-tooltip')"
+                (mouseleave)="tooltip.hideTooltip()">
                 {{initTiroSalvezza('saggezza')}}</div>
         </div>
-        <div class="ts"
-            (click)="rollFromSheet('1d20+'+initTiroSalvezza('carisma'), 'tiro salvezza (carisma)')">
+        <div class="ts" (click)="rollFromSheet('1d20+'+initTiroSalvezza('carisma'), 'tiro salvezza (carisma)')">
             <div class="ts-label">
                 CAR
             </div>
             <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.carisma}"
-            (mouseover)="tooltip.showTooltip($event, 'center', characterData.tiriSalvezza.carisma, 'ts-tooltip')" (mouseleave)="tooltip.hideTooltip()">
+                (mouseover)="tooltip.showTooltip($event, 'center', characterData.tiriSalvezza.carisma, 'ts-tooltip')"
+                (mouseleave)="tooltip.hideTooltip()">
                 {{initTiroSalvezza('carisma')}}</div>
         </div>
     </div>
-    <app-description-tooltip id="ts-tooltip" info="competenzaTS" *ngIf="tooltip.show && tooltip.id === 'ts-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>
+    <app-description-tooltip id="ts-tooltip" info="competenzaTS" *ngIf="tooltip.show && tooltip.id === 'ts-tooltip'"
+        [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>
 </div>
 
-<div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor && !isCampaign ? characterData.status.sheetTitleColor : '#212121'}">Parametri vitali</div>
+<div as-section-title
+    [ngStyle]="{'color': characterData.status.sheetTitleColor && !isCampaign ? characterData.status.sheetTitleColor : '#212121'}">
+    Parametri vitali</div>
 <div class="punti-ferita-container">
     <div class="pf-line">
         <app-health-bar class="health-bar-component" [char]="characterData" [editMode]="editModeData"></app-health-bar>
     </div>
     <div class="conditions-container">
         @if (characterData.parametriVitali.conditions && characterData.parametriVitali.conditions.length > 0) {
-            @for(cond of characterData.parametriVitali.conditions; track i; let i = $index) {
-                <img src="{{cond.icon}}" class="condition-icon" (click)="conditionInfo(cond)">
-            } 
-            <button as-mini-circle-btn (click)="newCondition()">
-                <div class="material-symbols-outlined">add</div>
-            </button>
+        @for(cond of characterData.parametriVitali.conditions; track i; let i = $index) {
+        <img src="{{cond.icon}}" class="condition-icon" (click)="conditionInfo(cond)">
+        }
+        <button as-mini-circle-btn (click)="newCondition()">
+            <div class="material-symbols-outlined">add</div>
+        </button>
         } @else {
-            <button as-btn (click)="newCondition()">
-                <div class="material-symbols-outlined">add</div> Condizione
-            </button>
+        <button as-btn (click)="newCondition()">
+            <div class="material-symbols-outlined">add</div> Condizione
+        </button>
         }
     </div>
     <div class="equip-parameter-container">
@@ -129,7 +139,9 @@
     </div>
 </div>
 @if(editModeData) {
-<div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor && !isCampaign ? characterData.status.sheetTitleColor : '#212121'}">Dadi vita</div>
+<div as-section-title
+    [ngStyle]="{'color': characterData.status.sheetTitleColor && !isCampaign ? characterData.status.sheetTitleColor : '#212121'}">
+    Dadi vita</div>
 <div class="dice-container">
     <div *ngFor="let d of dadiVitaData; let i = index;">
         <img *ngFor="let used of d.used; let j = index;" src="{{'./assets/dice/dice-' + d.tipologia + '.svg'}}"
@@ -138,20 +150,23 @@
 </div>
 
 <ng-container>
-    <div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor && !isCampaign ? characterData.status.sheetTitleColor : '#212121'}">Risorse aggiuntive</div>
+    <div as-section-title
+        [ngStyle]="{'color': characterData.status.sheetTitleColor && !isCampaign ? characterData.status.sheetTitleColor : '#212121'}">
+        Risorse aggiuntive</div>
     <div class="risorse-container-line">
         <div *ngFor="let risorsa of risorseAggiuntiveData; let i = index;">
             @if (risorsa.valoreMassimo > 10) {
             <div class="risorsa-container">
                 <div class="risorsa-title">{{risorsa.nome}}</div>
                 <span class="resource-circle"
-                [ngClass]="{'active-static': risorsa.valoreAttuale > 0, 'not-active-static': risorsa.valoreAttuale <= 0}"
-                [style.color]="risorsa.color">•</span>
+                    [ngClass]="{'active-static': risorsa.valoreAttuale > 0, 'not-active-static': risorsa.valoreAttuale <= 0}"
+                    [style.color]="risorsa.color">•</span>
                 <div class="risorsa-quantity">{{risorsa.valoreAttuale}}</div>
-                
+
                 <div class="material-symbols-outlined icon-button" (click)="increaseResource(i)">add</div>
                 <div class="material-symbols-outlined icon-button" (click)="reduceResource(i)">remove</div>
-                <div *ngIf="risorsa.isTemporary" class="material-symbols-outlined icon-button" (click)="removeResource(i)" matTooltip="Elimina risorsa" matTooltipPosition="above">close</div>
+                <div *ngIf="risorsa.isTemporary" class="material-symbols-outlined icon-button"
+                    (click)="removeResource(i)" matTooltip="Elimina risorsa" matTooltipPosition="above">close</div>
             </div>
             } @else {
             <div class="risorsa-container">
@@ -159,14 +174,15 @@
                 <div *ngFor="let used of risorsa.used; let j = index" [style.color]="risorsa.color"
                     class="resource-circle" [ngClass]="{'active': !used, 'used': used}" (click)="useRisorsa(i, j)">•
                 </div>
-                <div *ngIf="risorsa.isTemporary" class="material-symbols-outlined icon-button" (click)="removeResource(i)" matTooltip="Elimina risorsa" matTooltipPosition="above">close</div>
+                <div *ngIf="risorsa.isTemporary" class="material-symbols-outlined icon-button"
+                    (click)="removeResource(i)" matTooltip="Elimina risorsa" matTooltipPosition="above">close</div>
             </div>
             }
         </div>
         <div class="risorsa-container">
             <div class="risorsa-title">{{ispirazione.nome}}</div>
-            <div *ngFor="let used of ispirazione.used; let j = index" [style.color]="ispirazione.color" class="resource-circle"
-                [ngClass]="{'active': !used, 'used': used}" (click)="usaIspirazione()">•</div>
+            <div *ngFor="let used of ispirazione.used; let j = index" [style.color]="ispirazione.color"
+                class="resource-circle" [ngClass]="{'active': !used, 'used': used}" (click)="usaIspirazione()">•</div>
         </div>
         <button as-mini-circle-btn (click)="newAdditionalResource()">
             <div class="material-symbols-outlined">add</div>
@@ -175,9 +191,19 @@
 </ng-container>
 }
 
-<div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor && !isCampaign ? characterData.status.sheetTitleColor : '#212121'}">Prove passive</div>
+<div as-section-title
+    [ngStyle]="{'color': characterData.status.sheetTitleColor && !isCampaign ? characterData.status.sheetTitleColor : '#212121'}">
+    Prove passive</div>
 <div class="passive-grid">
-    <div class="grid-item"><div class="material-symbols-outlined">visibility</div><span>Percezione</span> {{percezionePassiva}}</div>
-    <div class="grid-item"><div class="material-symbols-outlined material-no-fill">neurology</div> <span>Intuizione</span>{{intuizionePassiva}}</div>
-    <div class="grid-item"><div class="material-symbols-outlined material-no-fill">search</div> <span>Indagare</span> {{indagarePassiva}}</div>
+    <div class="grid-item">
+        <div class="material-symbols-outlined">visibility</div><span>Percezione</span> {{percezionePassiva}}
+    </div>
+    <div class="grid-item">
+        <div class="material-symbols-outlined material-no-fill">neurology</div>
+        <span>Intuizione</span>{{intuizionePassiva}}
+    </div>
+    <div class="grid-item">
+        <div class="material-symbols-outlined material-no-fill">search</div> <span>Indagare</span> {{indagarePassiva}}
+    </div>
 </div>
+<!-- } -->
