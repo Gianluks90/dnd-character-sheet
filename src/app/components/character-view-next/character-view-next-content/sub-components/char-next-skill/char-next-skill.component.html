@@ -14,7 +14,7 @@
     </div>
 </div>
 <div class="skills-container">
-    <div as-section-title>Abilità e competenze</div>
+    <div as-section-title>Abilità</div>
     @for (s of characterData.competenzaAbilita; track $index) {
         @if (s.proficient || s.mastered || showAllSkills) {
             <div class="item-container" (click)="openDiceRoller('1d20+' + s.modifier, 'su ' + s.label)">
@@ -22,9 +22,57 @@
                 <p class="item-label">{{s.label}} ({{s.param}})</p>
                 <p class="item-value">{{s.modifier > 0 ? '+ ' + s.modifier : s.modifier}}</p>
             </div>
+            <!-- <p>{{s.description}}</p> -->
         }
     }
     <div class="show-more-container" (click)="toggleSkills()">
         <div class="material-symbols-outlined">{{showAllSkills ? 'visibility_off' : 'visibility'}}</div> <p>{{showAllSkills ? 'Nascondi senza competenza' : 'Mostra tutte'}}</p>
+    </div>
+</div>
+<div class="skill-container">
+    <div as-section-title>Competenze</div>
+    <div as-subtitle>Linguaggi</div>
+    <div class="proficient-container">
+        @let languages = characterData.altreCompetenze.linguaggi;
+        @if (languages) {
+            @for (l of languages; track $index) {
+                <p>{{l}}</p>
+            } @empty {
+                <p>Nessuno</p>
+            }
+        }
+    </div>
+    <div as-subtitle>Armature</div>
+    <div class="proficient-container">
+        @let armature = characterData.altreCompetenze.armature;
+        @if (armature) {
+            @for (a of armature; track $index) {
+                <p>{{a}}</p>
+            } @empty {
+                <p>Nessuna</p>
+            }
+        }
+    </div>
+    <div as-subtitle>Armi</div>
+    <div class="proficient-container">
+        @let weapons = characterData.altreCompetenze.armi;
+        @if (weapons) {
+            @for (w of weapons; track $index) {
+                <p>{{w}}</p>
+            } @empty {
+                <p>Nessuna</p>
+            }
+        }
+    </div>
+    <div as-subtitle>Strumenti</div>
+    <div class="proficient-container">
+        @let tools = characterData.altreCompetenze.strumenti;
+        @if (tools) {
+            @for (t of tools; track $index) {
+                <p>{{t}}</p>
+            } @empty {
+                <p>Nessuno</p>
+            }
+        }
     </div>
 </div>

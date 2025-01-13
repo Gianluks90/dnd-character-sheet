@@ -3,13 +3,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { DiceRollerComponent } from 'src/app/components/utilities/dice-roller/dice-roller.component';
 
 @Component({
-  selector: 'app-char-next-status',
+  selector: 'app-char-next-skill',
   standalone: false,
   
-  templateUrl: './char-next-status.component.html',
-  styleUrl: './char-next-status.component.scss'
+  templateUrl: './char-next-skill.component.html',
+  styleUrl: './char-next-skill.component.scss'
 })
-export class CharNextStatusComponent {
+export class CharNextSkillComponent {
     public characterData: any;
     public saveThrows: any[] = [];
     public showAllSaveThrows: boolean = false;
@@ -43,7 +43,6 @@ export class CharNextStatusComponent {
           value: this.characterData.tiriSalvezza[p] ? Math.floor((this.characterData.caratteristiche[p] - 10) / 2) + proficiencyBonus : Math.floor((this.characterData.caratteristiche[p] - 10) / 2)
         });
       });
-      console.log('saveThrows', this.saveThrows);
     }
 
     public toggleSaveThrows(): void {

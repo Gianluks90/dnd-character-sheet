@@ -58,7 +58,10 @@ export class CharacterViewNextComponent {
 
       this.character = this.charViewNextService.calcBonuses(this.character);
 
-      this.character.competenzaAbilita = this.charViewNextService.calcSkills(this.character);
+      this.charViewNextService.calcSkills(this.character).subscribe((skills: any) => {
+        this.character.competenzaAbilita = skills;
+      });
+      // this.character.competenzaAbilita = this.charViewNextService.calcSkills(this.character);
       console.log('character', this.character);
       
 

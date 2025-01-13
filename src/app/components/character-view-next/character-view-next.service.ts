@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map, Observable } from 'rxjs';
 import { AdventurerUser } from 'src/app/models/adventurerUser';
 import { Item } from 'src/app/models/item';
 import { CampaignService } from 'src/app/services/campaign.service';
@@ -9,6 +11,7 @@ interface Skill {
   proficient: boolean;
   mastered: boolean;
   modifier: number;
+  description?: string;
 }
 
 const SKILL_TO_ATTRIBUTE_MAP: { [skill: string]: string } = {
@@ -44,7 +47,8 @@ const LABEL_OVERRIDES: { [key: string]: string } = {
 export class CharacterViewNextService {
 
   constructor(
-    private campService: CampaignService
+    private campService: CampaignService,
+    private http: HttpClient
   ) { }
 
   public verifyEditMode(user: AdventurerUser, char: any): boolean | any {
@@ -111,40 +115,88 @@ export class CharacterViewNextService {
     return character;
   }
 
-  calcSkills(char: any): Skill[] {
-    const result: Skill[] = [];
-    const proficiencyBonus = char.tiriSalvezza.bonusCompetenza;
+  calcSkills(char: any): Observable<Skill[]> {
+    return this.http.get('./assets/settings/skillsDescriptionNext.json').pipe(
+      map((descriptions: any) => {
+        const result: Skill[] = [];
+        const proficiencyBonus = char.tiriSalvezza.bonusCompetenza;
   
-    const LABEL_OVERRIDES: { [key: string]: string } = {
-      furtivita: "furtività",
-      addestrareAnimali: "addestrare animali",
-      rapiditaDiMano: "rapidità di mano",
-    };
+        const LABEL_OVERRIDES: { [key: string]: string } = {
+          furtivita: "furtività",
+          addestrareAnimali: "addestrare animali",
+          rapiditaDiMano: "rapidità di mano",
+        };
   
-    for (const [skill, attribute] of Object.entries(SKILL_TO_ATTRIBUTE_MAP)) {
-      const proficient = char.competenzaAbilita[skill] || false;
-      const mastered = char.competenzaAbilita[`maestria${skill.charAt(0).toUpperCase() + skill.slice(1)}`] || false;
+        for (const [skill, attribute] of Object.entries(SKILL_TO_ATTRIBUTE_MAP)) {
+          const proficient = char.competenzaAbilita[skill] || false;
+          const mastered =
+            char.competenzaAbilita[`maestria${skill.charAt(0).toUpperCase() + skill.slice(1)}`] ||
+            false;
   
-      // Calcolo del modificatore della caratteristica
-      const attributeValue = char.caratteristiche[attribute] || 10; // Default a 10
-      const modifier =
-        Math.floor((attributeValue - 10) / 2) +
-        (proficient ? proficiencyBonus : 0) +
-        (mastered ? proficiencyBonus : 0);
+          // Calcolo del modificatore della caratteristica
+          const attributeValue = char.caratteristiche[attribute] || 10; // Default a 10
+          const modifier =
+            Math.floor((attributeValue - 10) / 2) +
+            (proficient ? proficiencyBonus : 0) +
+            (mastered ? proficiencyBonus : 0);
   
-      // Applica l'override del label, se presente
-      const label = LABEL_OVERRIDES[skill] || skill;
+          // Applica l'override del label, se presente
+          const label = LABEL_OVERRIDES[skill] || skill;
   
-      result.push({
-        param: attribute.charAt(0).toUpperCase() + attribute.slice(1, 3),
-        label,
-        proficient,
-        mastered,
-        modifier,
-      });
-    }
+          result.push({
+            param: attribute.charAt(0).toUpperCase() + attribute.slice(1, 3),
+            label,
+            proficient,
+            mastered,
+            modifier,
+            description: descriptions[label],
+          });
+        }
   
-    console.log("result", result);
-    return result;
+        return result;
+      })
+    );
   }
+
+  // calcSkills(char: any): Skill[] {
+  //   const result: Skill[] = [];
+  //   const proficiencyBonus = char.tiriSalvezza.bonusCompetenza;
+  //   const descriptions = this.http.get('./assets/settings/skillDescription.json').subscribe((data: any) => {
+  //     return data;
+  //   });
+    
+  
+  //   const LABEL_OVERRIDES: { [key: string]: string } = {
+  //     furtivita: "furtività",
+  //     addestrareAnimali: "addestrare animali",
+  //     rapiditaDiMano: "rapidità di mano",
+  //   };
+  
+  //   for (const [skill, attribute] of Object.entries(SKILL_TO_ATTRIBUTE_MAP)) {
+  //     const proficient = char.competenzaAbilita[skill] || false;
+  //     const mastered = char.competenzaAbilita[`maestria${skill.charAt(0).toUpperCase() + skill.slice(1)}`] || false;
+  
+  //     // Calcolo del modificatore della caratteristica
+  //     const attributeValue = char.caratteristiche[attribute] || 10; // Default a 10
+  //     const modifier =
+  //       Math.floor((attributeValue - 10) / 2) +
+  //       (proficient ? proficiencyBonus : 0) +
+  //       (mastered ? proficiencyBonus : 0);
+  
+  //     // Applica l'override del label, se presente
+  //     const label = LABEL_OVERRIDES[skill] || skill;
+  
+  //     result.push({
+  //       param: attribute.charAt(0).toUpperCase() + attribute.slice(1, 3),
+  //       label,
+  //       proficient,
+  //       mastered,
+  //       modifier,
+  //       description: descriptions[skill],
+  //     });
+  //   }
+  
+  //   console.log("result", result);
+  //   return result;
+  // }
 }

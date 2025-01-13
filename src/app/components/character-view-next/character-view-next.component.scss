@@ -237,7 +237,8 @@ $img-size-small: 90px;
 
 .main-content-container {
     // background-color: red;
-    height: 100%;
+    // height: 100%;
+    height: calc(100dvh - 208px);
     width: 100%;
     display: flex;
     justify-content: center;
@@ -317,4 +318,9 @@ $img-size-small: 90px;
     .parameter-container {
         min-width: 120px; /* Aggiusta la dimensione minima */
     }
+}
+
+.inspired {
+    color: gold;
+    text-shadow: 0 0 5px goldenrod;
 }

@@ -120,7 +120,6 @@ import { SharedPipesModule } from "./modules/shared-pipes/shared-pipes.module";
 import { CharacterViewNextComponent } from './components/character-view-next/character-view-next.component';
 import { SkillContainerComponent } from './components/utilities/skill-container/skill-container.component';
 import { CharacterViewNextContentComponent } from './components/character-view-next/character-view-next-content/character-view-next-content.component';
-import { CharNextStatusComponent } from './components/character-view-next/character-view-next-content/sub-components/char-next-status/char-next-status.component';
 
 @NgModule({
     declarations: [

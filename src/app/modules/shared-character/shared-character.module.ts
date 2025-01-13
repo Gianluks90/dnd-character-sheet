@@ -23,15 +23,14 @@ import { CapitalizeStringPipe } from 'src/app/pipes/capitalize-string.pipe';
 import { SharedPipesModule } from '../shared-pipes/shared-pipes.module';
 import { CharacterViewNextComponent } from 'src/app/components/character-view-next/character-view-next.component';
 import { CharacterViewNextContentComponent } from 'src/app/components/character-view-next/character-view-next-content/character-view-next-content.component';
-import { CharNextStatusComponent } from 'src/app/components/character-view-next/character-view-next-content/sub-components/char-next-status/char-next-status.component';
+import { CharNextSkillComponent } from 'src/app/components/character-view-next/character-view-next-content/sub-components/char-next-skill/char-next-skill.component';
 
 
 const components = [
   CharacterViewComponent, 
   CharacterViewNextComponent, 
   CharacterViewNextContentComponent,
-  CharNextStatusComponent,
-
+  CharNextSkillComponent
 ]
 
 const subcomponents = [

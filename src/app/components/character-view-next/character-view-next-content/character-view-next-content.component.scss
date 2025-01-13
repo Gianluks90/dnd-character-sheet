@@ -22,6 +22,14 @@
         box-sizing: border-box;
         padding: 8px;
     }
+
+    .skill-column {
+        color: white !important;
+        overflow: auto;
+        height: 100%;
+        box-sizing: border-box;
+        padding: 8px;
+    }
  
     &>.third-column {
         grid-column: span 2;
