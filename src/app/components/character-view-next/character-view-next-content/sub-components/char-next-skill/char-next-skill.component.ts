@@ -12,6 +12,7 @@ import { SkillTooltipComponent } from 'src/app/components/utilities/skill-toolti
 export class CharNextSkillComponent {
   public characterData: any;
   public saveThrows: any[] = [];
+  public passiveSkills: any[] = [];
   public showAllSaveThrows: boolean = false;
   public showAllSkills: boolean = false;
 
@@ -26,7 +27,9 @@ export class CharNextSkillComponent {
 
   @Input() set char(character: any) {
     this.characterData = character;
-    this.setupStatus();
+    setTimeout(() => {
+      this.setupStatus();
+    }, 100);
   }
 
   public editModeData: boolean = false;
@@ -36,6 +39,7 @@ export class CharNextSkillComponent {
 
   private setupStatus(): void {
     this.initSaveThrows();
+    this.initPassiveSkill();
   }
 
   private initSaveThrows(): void {
@@ -48,6 +52,22 @@ export class CharNextSkillComponent {
         label: p,
         value: this.characterData.tiriSalvezza[p] ? Math.floor((this.characterData.caratteristiche[p] - 10) / 2) + proficiencyBonus : Math.floor((this.characterData.caratteristiche[p] - 10) / 2)
       });
+    });
+  }
+
+  private initPassiveSkill(): void {
+    this.passiveSkills = [];
+    const passives: string[] = ['percezione', 'intuizione', 'indagare'];
+    const proficiencyBonus: number = this.characterData.tiriSalvezza.bonusCompetenza;
+    this.characterData.competenzaAbilita.forEach((a) => {
+      if (passives.includes(a.label)) {
+        const skill = a.label === 'indagare' ? 'intelligenza' : 'saggezza';  
+        this.passiveSkills.push({
+          label: a.label,
+          value: 10 + Math.floor((this.characterData.caratteristiche[skill] - 10) / 2) + (a.proficient ? proficiencyBonus : 0) + (a.mastered ? proficiencyBonus : 0)
+        });
+        this.passiveSkills.sort((a, b) => a.label.localeCompare(b.label));
+      }
     });
   }
 
@@ -90,10 +110,10 @@ export class CharNextSkillComponent {
       top: event.clientY + rect.height > window.innerHeight
         ? window.innerHeight - rect.height - 10
         : event.clientY,
-      left: event.clientX - 175,
+      left: event.clientX + 175,
     };
     tooltipElement.style.top = `${tooltipPosition.top}px`;
-    tooltipElement.style.left = `${tooltipPosition.left+400}px`;
+    tooltipElement.style.left = `${tooltipPosition.left}px`;
     this.appRef.attachView(this.tooltipRef.hostView);
     const domElem = (this.tooltipRef.hostView as any).rootNodes[0] as HTMLElement;
     document.body.appendChild(domElem);

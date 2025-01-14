@@ -1,5 +1,6 @@
 <div class="next-content-main-container">
-    <div class="status-column" [ngStyle]="{'background-color': characterData.status.sheetColor || '#212121', 'color': characterData.status.textColor || '#fff'}">
+    <div class="resources-column">
+        <app-next-char-resources [char]="characterData" [edit]="editModeData"></app-next-char-resources>
     </div>
     <div class="skill-column">
         <app-char-next-skill [char]="characterData" [edit]="editModeData"></app-char-next-skill>

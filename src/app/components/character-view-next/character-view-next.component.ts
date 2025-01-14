@@ -61,10 +61,7 @@ export class CharacterViewNextComponent {
       this.charViewNextService.calcSkills(this.character).subscribe((skills: any) => {
         this.character.competenzaAbilita = skills;
       });
-      // this.character.competenzaAbilita = this.charViewNextService.calcSkills(this.character);
-      console.log('character', this.character);
       
-
       this.http.get('./assets/settings/inclusivityFlags.json').subscribe((data: any[]) => {
         this.prideFlag = data.find((flag) => flag.name === this.character.status.prideFlag) || null as PrideFlag;
       });

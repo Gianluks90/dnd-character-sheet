@@ -1,3 +1,8 @@
+
+div[as-section-title] {
+    font-size: 1rem !important;
+}
+
 .save-throws-container, .skills-container {
     display: flex;
     flex-direction: column;
@@ -62,4 +67,8 @@
         border-radius: 50px;
         background-color: rgba($color: white, $alpha: 0.1);
     }
+}
+
+.passive-container {
+    padding-bottom: 8px;
 }

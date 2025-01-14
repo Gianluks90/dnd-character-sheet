@@ -23,6 +23,7 @@ import { InventoryCampaignComponent } from 'src/app/components/utilities/invento
 import { DocumentDialogComponent } from 'src/app/components/utilities/inventory/item-info-sheet/document-dialog/document-dialog.component';
 import { SkillContainerComponent } from 'src/app/components/utilities/skill-container/skill-container.component';
 import { SkillTooltipComponent } from 'src/app/components/utilities/skill-tooltip/skill-tooltip.component';
+import { EquipmentNextComponent } from 'src/app/components/utilities/equipment-next/equipment-next.component';
 
 const components = [
   MoneyComponent,
@@ -34,6 +35,7 @@ const components = [
   HealthBarComponent,
   ItemTooltipComponent,
   EquipmentComponent,
+  EquipmentNextComponent,
   ManageEquipDialogComponent,
   MoneyControllerComponent,
   EditMoneyControllerDialogComponent,

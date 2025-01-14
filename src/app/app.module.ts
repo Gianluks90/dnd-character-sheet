@@ -116,11 +116,7 @@ import { SharedAdventureModule } from "./modules/shared-adventure/shared-adventu
 import { CharRestDialogComponent } from './components/character-view/char-rest-dialog/char-rest-dialog.component';
 import { ConditionDialogComponent } from './components/utilities/conditions/condition-dialog/condition-dialog.component';
 import { ConditionInfoDialogComponent } from './components/utilities/conditions/condition-info-dialog/condition-info-dialog.component';
-import { SharedPipesModule } from "./modules/shared-pipes/shared-pipes.module";
-import { CharacterViewNextComponent } from './components/character-view-next/character-view-next.component';
-import { SkillContainerComponent } from './components/utilities/skill-container/skill-container.component';
-import { CharacterViewNextContentComponent } from './components/character-view-next/character-view-next-content/character-view-next-content.component';
-import { SkillTooltipComponent } from './components/utilities/skill-tooltip/skill-tooltip.component';
+import { EquipmentNextComponent } from './components/utilities/equipment-next/equipment-next.component';
 
 @NgModule({
     declarations: [

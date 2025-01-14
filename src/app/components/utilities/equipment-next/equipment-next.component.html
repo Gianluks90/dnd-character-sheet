@@ -1,0 +1,58 @@
+<div as-section-title>Equipaggiamento</div>
+@if(_edit) {
+    <div class="equip-buttons-container">
+        <button (click)="openManageDialog()">
+            <div class="material-symbols-outlined material-no-fill">edit</div>
+        </button>
+        <button [disabled]="sets.length <= 1" (click)="changeSet()">
+            <div class="material-symbols-outlined">restart_alt</div>
+        </button>
+    </div>
+}
+<div class="weared-container">
+    @for(i of wearedItems; track i.id; let idx = $index) {
+        <img class="equip-card" [src]="i.icon" [ngStyle]="{'border-color': setColor(i.rarity)}">
+    } @empty {
+        <div class="no-equip">Nessun oggetto equipaggiato</div>
+    }
+</div>
+
+<div class="parameter-grid">
+    @if (sets.length > 0) {
+        @if (sets[setIndex].mainHand && sets[setIndex].mainHand.name !== '') {
+            <div class="grid-item grid-damage">
+                <div class="parameter-label">Danni ({{sets[setIndex].name}})</div>
+                <div class="damage-line" (click)="rollFromSheet(getHitCheckString(setIndex), 'per colpire')">
+                    <div class="parameter-label">Tiro per colpire</div>
+                    <div class="damage-label">
+                        <div class="material-symbols-outlined symbols-90deg">hexagon</div> {{getHitCheckString(setIndex)}}
+                    </div>
+                </div>
+                <div class="damage-line" (click)="rollFromSheet((sets[setIndex].versatile ? getDiceFormula(sets[setIndex].mainHand.versatileDice, sets[setIndex].skill, sets[setIndex].mainHand.extraDamages) : 
+                (sets[setIndex].dualWield ? getDiceFormula(sets[setIndex].mainHand.damageFormula + '+' + sets[setIndex].offHand.damageFormula, sets[setIndex].skill) :
+                (getDiceFormula(sets[setIndex].mainHand.damageFormula, sets[setIndex].skill, sets[setIndex].mainHand.extraDamages) || '1'))), 'per i danni')">
+                    <div class="parameter-label">Tiro per i danni</div>
+                    <div class="damage-label">
+                        <div class="material-symbols-outlined symbols-90deg">hexagon</div> {{
+                                (sets[setIndex].versatile ? getDiceFormula(sets[setIndex].mainHand.versatileDice, sets[setIndex].skill, sets[setIndex].mainHand.extraDamages) : 
+                                (sets[setIndex].dualWield ? getDiceFormula(sets[setIndex].mainHand.damageFormula + '+' + sets[setIndex].offHand.damageFormula, sets[setIndex].skill) :
+                                (getDiceFormula(sets[setIndex].mainHand.damageFormula, sets[setIndex].skill, sets[setIndex].mainHand.extraDamages) || '1'))
+                            )
+                            }}
+                            ({{ 
+                                (sets[setIndex].versatile ? getDamagesString(sets[setIndex].mainHand.versatileDice, sets[setIndex].skill, sets[setIndex].mainHand.extraDamages) : 
+                                    (sets[setIndex].dualWield ? getDamagesString(sets[setIndex].mainHand.damageFormula + '+' + sets[setIndex].offHand.damageFormula, sets[setIndex].skill) :
+                                        (getDamagesString(sets[setIndex].mainHand.damageFormula, sets[setIndex].skill, sets[setIndex].mainHand.extraDamages) || '1')
+                                    )
+                                )
+                            }})
+                    </div>
+                </div>
+            </div>
+        } @else {
+            <div class="grid-item"><span class="parameter-label">Danni ({{sets[setIndex].name}})</span> 1</div>
+        }
+    } @else {
+        <div class="grid-item"><span class="parameter-label">Danni</span> 1</div>
+    }
+</div>

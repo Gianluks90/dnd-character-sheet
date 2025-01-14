@@ -16,7 +16,8 @@
         backdrop-filter: blur(12px);
     }
 
-    &>.status-column {
+    &>.resources-column {
+        color: white !important;
         overflow: auto;
         height: 100%;
         box-sizing: border-box;

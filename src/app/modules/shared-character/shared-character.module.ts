@@ -24,13 +24,15 @@ import { SharedPipesModule } from '../shared-pipes/shared-pipes.module';
 import { CharacterViewNextComponent } from 'src/app/components/character-view-next/character-view-next.component';
 import { CharacterViewNextContentComponent } from 'src/app/components/character-view-next/character-view-next-content/character-view-next-content.component';
 import { CharNextSkillComponent } from 'src/app/components/character-view-next/character-view-next-content/sub-components/char-next-skill/char-next-skill.component';
+import { CharNextResourcesComponent } from 'src/app/components/character-view-next/character-view-next-content/sub-components/char-resources/char-next-resources.component';
 
 
 const components = [
   CharacterViewComponent, 
   CharacterViewNextComponent, 
   CharacterViewNextContentComponent,
-  CharNextSkillComponent
+  CharNextSkillComponent,
+  CharNextResourcesComponent
 ]
 
 const subcomponents = [
