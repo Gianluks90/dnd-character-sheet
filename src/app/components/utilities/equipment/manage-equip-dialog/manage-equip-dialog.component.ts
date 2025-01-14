@@ -13,7 +13,7 @@ export class ManageEquipDialogComponent {
 
   public form: FormGroup;
   public armorsSelection: Item[] = [];
-  public ammoSelection: Item[] = [];
+  // public ammoSelection: Item[] = [];
   public mainHandSelection: Item[] = [];
   public offHandSelection: Item[] = [];
   public othersSelection: Item[] = [];
@@ -30,7 +30,7 @@ export class ManageEquipDialogComponent {
     this.form = this.fb.group({
       armor: '',
       others: [],
-      ammo: '',
+      // ammo: '',
       sets: this.fb.array([])
     });
     this.sets = this.fb.array([]);
@@ -38,10 +38,10 @@ export class ManageEquipDialogComponent {
 
   ngOnInit(): void {
     this.armorsSelection = this.data.inventory.filter(item => item.CA > 0 && !item.shield);
-    this.ammoSelection = this.data.inventory.filter(item => item.category.toLowerCase() === 'munizioni');
+    // this.ammoSelection = this.data.inventory.filter(item => item.category.toLowerCase() === 'munizioni');
 
     this.form.get('armor').setValue(this.armorsSelection.filter(item => item.weared)[0]);
-    this.form.get('ammo').setValue(this.ammoSelection.filter(item => item.weared)[0]);
+    // this.form.get('ammo').setValue(this.ammoSelection.filter(item => item.weared)[0]);
 
     this.mainHandSelection = this.data.inventory.filter(item => item.damageFormula !== '');
     this.originalOffHandSelection = JSON.parse(JSON.stringify(this.mainHandSelection.concat(this.data.inventory.filter(item => item.CA > 0 && item.shield))));
@@ -106,7 +106,7 @@ export class ManageEquipDialogComponent {
   public confirm(): void {
     const result: any[] = [];
     if (this.form.value.armor) result.push(this.form.value.armor);
-    if (this.form.value.ammo) result.push(this.form.value.ammo);
+    // if (this.form.value.ammo) result.push(this.form.value.ammo);
     if (this.form.value.others && this.form.value.others.length > 0) result.push(...this.form.value.others);
     // const result: any[] = [this.form.value.armor, ...this.form.value.others];
     result.forEach(item => {
