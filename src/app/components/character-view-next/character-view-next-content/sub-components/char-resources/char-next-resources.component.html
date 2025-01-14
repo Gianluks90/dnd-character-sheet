@@ -1,1 +1,17 @@
 <app-equipment-next [char]="_char" [edit]="_edit"></app-equipment-next>
+<div as-section-title>Condizioni</div>
+@let conditions = _char.parametriVitali.conditions;
+@if (conditions.length > 0) {
+<div class="conditions-grid-container">
+    @for(c of conditions; track $index) {
+        <img [src]="c.icon" (click)="conditionInfo(c)">
+    }
+    <button class="add-condition-button" (click)="newCondition()">
+        <div class="material-symbols-outlined">add</div>
+    </button>
+</div>
+} @else {
+    <button class="add-condition-button long-button" (click)="newCondition()">
+        <div class="material-symbols-outlined">add</div> Aggiungi nuova
+    </button>
+}

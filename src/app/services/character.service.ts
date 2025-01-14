@@ -489,7 +489,8 @@ export class CharacterService {
       puntiFeritaAttuali: this.character().parametriVitali.massimoPuntiFerita,
       puntiFeritaTemporaneiAttuali: 0,
       massimoPuntiFeritaTemporanei: 0,
-      dadiVita: dadiVita
+      dadiVita: dadiVita,
+      conditions: []
     };
     const risorseAggiuntive = this.character().informazioniBase.risorseAggiuntive.map((resource: any) => {
       if (resource.name !== 'Ispirazione') {

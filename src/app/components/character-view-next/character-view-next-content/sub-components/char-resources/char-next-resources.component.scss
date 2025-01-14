@@ -1,0 +1,42 @@
+.conditions-grid-container {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 8px;
+    margin: 8px 0;
+    min-height: 48px;
+    align-content: center;
+
+    &>img {
+        width: 100%;
+        cursor: pointer;
+        box-sizing: border-box;
+    }
+}
+
+.add-condition-button {
+    border: none;
+    border-radius: 50px;
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    background-color: rgba(255, 255, 255, 0.1);
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+        transition: background-color 0.3s;
+        cursor: pointer;
+    }
+}
+
+.long-button {
+    font-size: .9rem;
+    width: max-content;
+    margin: 12px 0;
+    padding: 0 12px;
+    box-sizing: border-box;
+}
