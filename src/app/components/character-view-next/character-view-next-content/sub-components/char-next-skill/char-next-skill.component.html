@@ -17,12 +17,12 @@
     <div as-section-title>Abilità</div>
     @for (s of characterData.competenzaAbilita; track $index) {
         @if (s.proficient || s.mastered || showAllSkills) {
-            <div class="item-container" (click)="openDiceRoller('1d20+' + s.modifier, 'su ' + s.label)">
+            <div class="item-container" (click)="openDiceRoller('1d20+' + s.modifier, 'su ' + s.label)"
+            (mouseenter)="showTooltip($event, s)" (mouseleave)="hideTooltip()">
                 <div class="material-symbols-outlined" [ngClass]="{'material-no-fill': !s.proficient}">circle</div>
                 <p class="item-label">{{s.label}} ({{s.param}})</p>
                 <p class="item-value">{{s.modifier > 0 ? '+ ' + s.modifier : s.modifier}}</p>
             </div>
-            <!-- <p>{{s.description}}</p> -->
         }
     }
     <div class="show-more-container" (click)="toggleSkills()">

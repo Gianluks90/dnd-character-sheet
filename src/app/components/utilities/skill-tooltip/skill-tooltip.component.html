@@ -1,0 +1,19 @@
+<div class="tooltip-header">
+    <div class="tooltip-title-container">
+        <div class="tooltip-title">{{_skill.label}}</div>
+        <div class="tooltip-param">{{_skill.modifier > 0 ? '+' + _skill.modifier : _skill.modifier}}</div>
+    </div>
+</div>
+<div class="tooltip-content" *ngIf="_skill && _skill.description !== ''">
+    <div class="proficient-container">
+       <div [ngClass]="{'disabled': !_skill.proficient}">
+        <div class="material-symbols-outlined">{{_skill.proficient ? 'check' : 'close'}}</div>
+        <div>Competenza</div>
+       </div>
+       <div [ngClass]="{'disabled': !_skill.mastered}">
+        <div class="material-symbols-outlined">{{_skill.mastered ? 'check' : 'close'}}</div>
+        <div>Maestria</div>
+       </div>
+    </div>
+    <div class="tooltip-description">{{_skill.description}}</div>
+</div>

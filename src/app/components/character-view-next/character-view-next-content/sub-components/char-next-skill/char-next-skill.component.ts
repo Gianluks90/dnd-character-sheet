@@ -1,69 +1,113 @@
-import { Component, Input } from '@angular/core';
+import { ApplicationRef, Component, ComponentFactoryResolver, ComponentRef, Injector, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DiceRollerComponent } from 'src/app/components/utilities/dice-roller/dice-roller.component';
+import { SkillTooltipComponent } from 'src/app/components/utilities/skill-tooltip/skill-tooltip.component';
 
 @Component({
   selector: 'app-char-next-skill',
   standalone: false,
-  
   templateUrl: './char-next-skill.component.html',
   styleUrl: './char-next-skill.component.scss'
 })
 export class CharNextSkillComponent {
-    public characterData: any;
-    public saveThrows: any[] = [];
-    public showAllSaveThrows: boolean = false;
-    public showAllSkills: boolean = false;
+  public characterData: any;
+  public saveThrows: any[] = [];
+  public showAllSaveThrows: boolean = false;
+  public showAllSkills: boolean = false;
 
-    constructor(private matDialog: MatDialog) {}
-
-    @Input() set char(character: any) {
-      this.characterData = character;
-      console.log('character status', character);
-      this.setupStatus();
-    }
+  private tooltipRef: ComponentRef<SkillTooltipComponent> | null = null;
   
-    public editModeData: boolean = false;
-    @Input() set edit(editMode: boolean) {
-      this.editModeData = editMode;
-    }
+  constructor(
+    private matDialog: MatDialog,
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private appRef: ApplicationRef,
+    private injector: Injector
+  ) { }
 
-    private setupStatus(): void {
-      this.initSaveThrows();
-    }
+  @Input() set char(character: any) {
+    this.characterData = character;
+    this.setupStatus();
+  }
 
-    private initSaveThrows(): void {
-      this.saveThrows = [];
-      const parameters = ['forza', 'destrezza', 'costituzione', 'intelligenza', 'saggezza', 'carisma'];
-      const proficiencyBonus: number = this.characterData.tiriSalvezza.bonusCompetenza;
-      parameters.forEach((p) => {
-        this.saveThrows.push({
-          proficient: this.characterData.tiriSalvezza[p],
-          label: p,
-          value: this.characterData.tiriSalvezza[p] ? Math.floor((this.characterData.caratteristiche[p] - 10) / 2) + proficiencyBonus : Math.floor((this.characterData.caratteristiche[p] - 10) / 2)
-        });
+  public editModeData: boolean = false;
+  @Input() set edit(editMode: boolean) {
+    this.editModeData = editMode;
+  }
+
+  private setupStatus(): void {
+    this.initSaveThrows();
+  }
+
+  private initSaveThrows(): void {
+    this.saveThrows = [];
+    const parameters = ['forza', 'destrezza', 'costituzione', 'intelligenza', 'saggezza', 'carisma'];
+    const proficiencyBonus: number = this.characterData.tiriSalvezza.bonusCompetenza;
+    parameters.forEach((p) => {
+      this.saveThrows.push({
+        proficient: this.characterData.tiriSalvezza[p],
+        label: p,
+        value: this.characterData.tiriSalvezza[p] ? Math.floor((this.characterData.caratteristiche[p] - 10) / 2) + proficiencyBonus : Math.floor((this.characterData.caratteristiche[p] - 10) / 2)
       });
-    }
+    });
+  }
 
-    public toggleSaveThrows(): void {
-      this.showAllSaveThrows = !this.showAllSaveThrows;
-    }
+  public toggleSaveThrows(): void {
+    this.showAllSaveThrows = !this.showAllSaveThrows;
+  }
 
-    public toggleSkills(): void {
-      this.showAllSkills = !this.showAllSkills;
-    }
+  public toggleSkills(): void {
+    this.showAllSkills = !this.showAllSkills;
+  }
 
-    public openDiceRoller(formula?: string, extra?: string) {
-        this.matDialog.open(DiceRollerComponent, {
-          width: window.innerWidth < 768 ? '90%' : '500px',
-          autoFocus: false,
-          backdropClass: 'as-dialog-backdrop',
-          disableClose: true,
-          data: {
-            char: this.characterData,
-            formula: formula || '',
-            extra: extra || ''
-          }
-        });
+  public openDiceRoller(formula?: string, extra?: string) {
+    this.matDialog.open(DiceRollerComponent, {
+      width: window.innerWidth < 768 ? '90%' : '500px',
+      autoFocus: false,
+      backdropClass: 'as-dialog-backdrop',
+      disableClose: true,
+      data: {
+        char: this.characterData,
+        formula: formula || '',
+        extra: extra || ''
       }
+    });
+  }
+
+  public currentTooltipItem: any;
+  public showItemTooltip: boolean = false;
+  public tooltipPosition: { top: number | string, left: number | string } = { top: 0, left: 0 };
+
+  public showTooltip(event: MouseEvent, skill: any) {
+    if (window.innerWidth < 768) return;
+    this.removeTooltip();
+    const factory = this.componentFactoryResolver.resolveComponentFactory(SkillTooltipComponent);
+    this.tooltipRef = factory.create(this.injector);
+    const tooltipElement = this.tooltipRef.location.nativeElement;
+    tooltipElement.classList.add('dynamic-tooltip');
+    this.tooltipRef.instance._skill = skill;
+    const rect = (event.target as HTMLElement).getBoundingClientRect();
+    const tooltipPosition = {
+      top: event.clientY + rect.height > window.innerHeight
+        ? window.innerHeight - rect.height - 10
+        : event.clientY,
+      left: event.clientX - 175,
+    };
+    tooltipElement.style.top = `${tooltipPosition.top}px`;
+    tooltipElement.style.left = `${tooltipPosition.left+400}px`;
+    this.appRef.attachView(this.tooltipRef.hostView);
+    const domElem = (this.tooltipRef.hostView as any).rootNodes[0] as HTMLElement;
+    document.body.appendChild(domElem);
+  }
+
+  public hideTooltip() {
+    this.removeTooltip();
+  }
+  
+  private removeTooltip() {
+    if (this.tooltipRef) {
+      this.appRef.detachView(this.tooltipRef.hostView);
+      this.tooltipRef.destroy();
+      this.tooltipRef = null;
+    }
+  }
 }

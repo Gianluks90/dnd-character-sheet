@@ -1,4 +1,3 @@
-import { D } from '@angular/cdk/keycodes';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -14,6 +13,8 @@ export class DescriptionTooltipComponent {
   public infoData: any;
   @Input() set info(info: string) {
     this.infoData = this.infos[info];
+    console.log('info', info);
+    
   }
 
   private infos: any = {

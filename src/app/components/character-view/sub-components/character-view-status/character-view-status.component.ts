@@ -44,9 +44,6 @@ export class CharacterViewStatusComponent {
 
   @Input() set character(character: any) {
     if (!character) return;
-
-    console.log('status', character);
-    
     this.characterData = character;    
     this.dadiVitaData = character.parametriVitali.dadiVita;
     this.risorseAggiuntiveData = character.informazioniBase.risorseAggiuntive;

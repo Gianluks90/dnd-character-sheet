@@ -27,10 +27,10 @@ export class DescriptionTooltipService {
   public tooltipPosition: { top: number | string, left: number | string } = { top: 0, left: 0 };
 
   public showTooltip(event: MouseEvent, position: string, ignore: boolean, id: string, near?: boolean) {
-    
+
     this.id = id;
+    
     if (!ignore) return;
-  
     let positionModifier: number = 0;
     let verticalAdjustment: number = 0; // Aggiunta per l'aggiustamento verticale per la posizione "center"
     switch (position) {
@@ -61,7 +61,11 @@ export class DescriptionTooltipService {
     this.show = true;
     setTimeout(() => {
       const tooltip = document.getElementById(this.id) as HTMLElement;
+      console.log('tooltip', tooltip);
+      
       if (!tooltip) return;
+      console.log('tooltip', tooltip);
+      
       const rect = tooltip.getBoundingClientRect();
       if (event.clientY + rect.height > window.innerHeight) {
         this.tooltipPosition = { top: window.innerHeight + 50 - rect.height, left: event.clientX + positionModifier };

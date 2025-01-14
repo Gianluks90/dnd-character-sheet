@@ -22,6 +22,7 @@ import { DescriptionTooltipComponent } from 'src/app/components/utilities/descri
 import { InventoryCampaignComponent } from 'src/app/components/utilities/inventory-campaign/inventory-campaign.component';
 import { DocumentDialogComponent } from 'src/app/components/utilities/inventory/item-info-sheet/document-dialog/document-dialog.component';
 import { SkillContainerComponent } from 'src/app/components/utilities/skill-container/skill-container.component';
+import { SkillTooltipComponent } from 'src/app/components/utilities/skill-tooltip/skill-tooltip.component';
 
 const components = [
   MoneyComponent,
@@ -43,7 +44,8 @@ const components = [
   DescriptionTooltipComponent,
   InventoryCampaignComponent,
   DocumentDialogComponent,
-  SkillContainerComponent
+  SkillContainerComponent,
+  SkillTooltipComponent
 ]
 
 @NgModule({
