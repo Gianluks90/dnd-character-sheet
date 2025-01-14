@@ -50,7 +50,7 @@ div[as-section-title] {
     display: grid;
     grid-template-columns: 1fr;
     // gap: 4px;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
     border: 1px solid white;
     border-radius: 4px;
     // background-color: rgba($color: white, $alpha: 0.1);
@@ -79,13 +79,8 @@ div[as-section-title] {
         padding: 4px;
         box-sizing: border-box;
         text-transform: uppercase;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
-}
-
-.dice-icon {
-    height: 16px;
-    width: 16px;
 }
 
 .damage-line {
@@ -94,14 +89,19 @@ div[as-section-title] {
     align-items: center;
     justify-content: space-between;
     padding: 8px;
-    // border-radius: 4px;
     box-sizing: border-box;
+    font-size: .8rem;
 }
 
 .damage-line:hover {
     background-color: rgba($color: white, $alpha: 0.3);
     transition: background-color 0.3s;
     cursor: pointer;
+}
+
+.no-hover-effect:hover {
+    background-color: transparent;
+    cursor: default;
 }
 
 .damage-label {
@@ -113,4 +113,49 @@ div[as-section-title] {
 .very-mini-btn {
     height: 20px;
     width: 20px;
+}
+
+.initiative-container {
+    padding: 8px;
+    border: 1px solid white;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.initiative-container:hover {
+    background-color: rgba($color: white, $alpha: 0.3);
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.ammo-actions-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &>.material-symbols-outlined {
+        padding: 2px;
+    }
+
+    &>.material-symbols-outlined:hover {
+        background-color: rgba($color: white, $alpha: 0.3);
+        transition: background-color 0.3s;
+        border-radius: 50px;
+        cursor: pointer;
+    }
+}
+
+.show-more-container {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    cursor: pointer;
+
+    &>p {
+        margin: 0;
+    }
 }

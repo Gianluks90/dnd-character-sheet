@@ -1,58 +1,119 @@
-<div as-section-title>Equipaggiamento</div>
-@if(_edit) {
-    <div class="equip-buttons-container">
-        <button (click)="openManageDialog()">
-            <div class="material-symbols-outlined material-no-fill">edit</div>
-        </button>
-        <button [disabled]="sets.length <= 1" (click)="changeSet()">
-            <div class="material-symbols-outlined">restart_alt</div>
-        </button>
-    </div>
-}
-<div class="weared-container">
-    @for(i of wearedItems; track i.id; let idx = $index) {
-        <img class="equip-card" [src]="i.icon" [ngStyle]="{'border-color': setColor(i.rarity)}">
-    } @empty {
-        <div class="no-equip">Nessun oggetto equipaggiato</div>
+@if (_char) {
+    <div as-section-title>Equipaggiamento</div>
+    @if(_edit) {
+        <div class="equip-buttons-container">
+            <button (click)="openManageDialog()">
+                <div class="material-symbols-outlined material-no-fill">edit</div>
+            </button>
+            <button [disabled]="sets.length <= 1" (click)="changeSet()">
+                <div class="material-symbols-outlined">restart_alt</div>
+            </button>
+        </div>
     }
-</div>
+    <div class="weared-container">
+        @for(i of wearedItems; track i.id; let idx = $index) {
+            <img class="equip-card" [src]="i.icon" [ngStyle]="{'border-color': setColor(i.rarity)}"
+            (mouseenter)="showTooltip($event, i)" (mouseleave)="hideTooltip()" (click)="openInfoSheet(i, idx)">
+        } @empty {
+            <div class="no-equip">Nessun oggetto equipaggiato</div>
+        }
+    </div>
 
-<div class="parameter-grid">
-    @if (sets.length > 0) {
-        @if (sets[setIndex].mainHand && sets[setIndex].mainHand.name !== '') {
-            <div class="grid-item grid-damage">
-                <div class="parameter-label">Danni ({{sets[setIndex].name}})</div>
-                <div class="damage-line" (click)="rollFromSheet(getHitCheckString(setIndex), 'per colpire')">
-                    <div class="parameter-label">Tiro per colpire</div>
-                    <div class="damage-label">
-                        <div class="material-symbols-outlined symbols-90deg">hexagon</div> {{getHitCheckString(setIndex)}}
+    <div class="initiative-container" (click)="rollFromSheet('1d20+' + _char.iniziativa, 'per l\'iniziativa')">
+        <div>Iniziativa</div> {{_char && _char.iniziativa > 0 ? '+' : ''}}{{_char.iniziativa}}
+    </div>
+
+    <div class="parameter-grid">
+        @if (sets.length > 0) {
+            @if (sets[setIndex].mainHand && sets[setIndex].mainHand.name !== '') {
+                <div class="grid-item grid-damage">
+                    <div class="parameter-label">Danni ({{sets[setIndex].name}})</div>
+                    <div class="damage-line" (click)="rollFromSheet(getHitCheckString(setIndex), 'per colpire')">
+                        <div class="parameter-label">Tiro per colpire</div>
+                        <div class="damage-label">
+                            <div class="material-symbols-outlined symbols-90deg">hexagon</div> {{getHitCheckString(setIndex)}}
+                        </div>
+                    </div>
+                    <div class="damage-line" (click)="rollFromSheet((sets[setIndex].versatile ? getDiceFormula(sets[setIndex].mainHand.versatileDice, sets[setIndex].skill, sets[setIndex].mainHand.extraDamages) : 
+                    (sets[setIndex].dualWield ? getDiceFormula(sets[setIndex].mainHand.damageFormula + '+' + sets[setIndex].offHand.damageFormula, sets[setIndex].skill) :
+                    (getDiceFormula(sets[setIndex].mainHand.damageFormula, sets[setIndex].skill, sets[setIndex].mainHand.extraDamages) || '1'))), 'per i danni')">
+                        <div class="parameter-label">Tiro per i danni</div>
+                        <div class="damage-label">
+                            <div class="material-symbols-outlined symbols-90deg">hexagon</div> {{
+                                    (sets[setIndex].versatile ? getDiceFormula(sets[setIndex].mainHand.versatileDice, sets[setIndex].skill, sets[setIndex].mainHand.extraDamages) : 
+                                    (sets[setIndex].dualWield ? getDiceFormula(sets[setIndex].mainHand.damageFormula + '+' + sets[setIndex].offHand.damageFormula, sets[setIndex].skill) :
+                                    (getDiceFormula(sets[setIndex].mainHand.damageFormula, sets[setIndex].skill, sets[setIndex].mainHand.extraDamages) || '1'))
+                                )
+                                }}
+                                ({{ 
+                                    (sets[setIndex].versatile ? getDamagesString(sets[setIndex].mainHand.versatileDice, sets[setIndex].skill, sets[setIndex].mainHand.extraDamages) : 
+                                        (sets[setIndex].dualWield ? getDamagesString(sets[setIndex].mainHand.damageFormula + '+' + sets[setIndex].offHand.damageFormula, sets[setIndex].skill) :
+                                            (getDamagesString(sets[setIndex].mainHand.damageFormula, sets[setIndex].skill, sets[setIndex].mainHand.extraDamages) || '1')
+                                        )
+                                    )
+                                }})
+                        </div>
                     </div>
                 </div>
-                <div class="damage-line" (click)="rollFromSheet((sets[setIndex].versatile ? getDiceFormula(sets[setIndex].mainHand.versatileDice, sets[setIndex].skill, sets[setIndex].mainHand.extraDamages) : 
-                (sets[setIndex].dualWield ? getDiceFormula(sets[setIndex].mainHand.damageFormula + '+' + sets[setIndex].offHand.damageFormula, sets[setIndex].skill) :
-                (getDiceFormula(sets[setIndex].mainHand.damageFormula, sets[setIndex].skill, sets[setIndex].mainHand.extraDamages) || '1'))), 'per i danni')">
-                    <div class="parameter-label">Tiro per i danni</div>
+            } @else {
+                <div class="grid-item"><span class="parameter-label">Danni ({{sets[setIndex].name}})</span> 1</div>
+            }
+        } @else {
+            <div class="grid-item"><span class="parameter-label">Danni</span> 1</div>
+        }
+    </div>
+
+    @if (ammos.length > 0) {
+        <div class="parameter-grid">
+            <div class="grid-item grid-damage">
+                <div class="parameter-label">
+                    Munizioni
+                </div>
+                @for(a of ammos; track a.id; let idx=$index) {
+                    @if (a.quantity > 0) {
+                        <div class="damage-line no-hover-effect">
+                            <div class="parameter-label">{{a.name}}</div>
+                            <div class="damage-label">
+                                <div class="ammo-actions-container">
+                                    <div class="ammo-quantity">
+                                        {{a.quantity}}
+                                    </div>
+                                    <div class="material-symbols-outlined" (click)="ammoAction('add', a.id)">add</div>
+                                    <div class="material-symbols-outlined" (click)="ammoAction('remove', a.id)">remove</div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    }
+    @if (moreInfo) {
+        <div class="parameter-grid">
+            <div class="grid-item grid-damage">
+                <div class="parameter-label">
+                    Altre informazioni
+                </div>
+                <div class="damage-line no-hover-effect">
+                    <div class="parameter-label">CA</div>
+                    <!-- <div class="damage-label">{{_char.CA}}{{_char.CAShield}}</div> -->
                     <div class="damage-label">
-                        <div class="material-symbols-outlined symbols-90deg">hexagon</div> {{
-                                (sets[setIndex].versatile ? getDiceFormula(sets[setIndex].mainHand.versatileDice, sets[setIndex].skill, sets[setIndex].mainHand.extraDamages) : 
-                                (sets[setIndex].dualWield ? getDiceFormula(sets[setIndex].mainHand.damageFormula + '+' + sets[setIndex].offHand.damageFormula, sets[setIndex].skill) :
-                                (getDiceFormula(sets[setIndex].mainHand.damageFormula, sets[setIndex].skill, sets[setIndex].mainHand.extraDamages) || '1'))
-                            )
-                            }}
-                            ({{ 
-                                (sets[setIndex].versatile ? getDamagesString(sets[setIndex].mainHand.versatileDice, sets[setIndex].skill, sets[setIndex].mainHand.extraDamages) : 
-                                    (sets[setIndex].dualWield ? getDamagesString(sets[setIndex].mainHand.damageFormula + '+' + sets[setIndex].offHand.damageFormula, sets[setIndex].skill) :
-                                        (getDamagesString(sets[setIndex].mainHand.damageFormula, sets[setIndex].skill, sets[setIndex].mainHand.extraDamages) || '1')
-                                    )
-                                )
-                            }})
+                        {{_char.CA}}{{_char.CAShield}} 
+                        @if (_char.CAShield !== '') {
+                            ({{totalCA}})
+                        }
                     </div>
+                </div>
+                <div class="damage-line no-hover-effect">
+                    <div class="parameter-label">Velocità</div>
+                    <div class="damage-label">{{_char.velocita}}m ({{_char.velocita/1.5}} spazi)</div>
                 </div>
             </div>
-        } @else {
-            <div class="grid-item"><span class="parameter-label">Danni ({{sets[setIndex].name}})</span> 1</div>
-        }
-    } @else {
-        <div class="grid-item"><span class="parameter-label">Danni</span> 1</div>
+        </div>
     }
-</div>
+
+    <div class="show-more-container" (click)="toggleMoreInfo()">
+        <div class="material-symbols-outlined">{{moreInfo ? 'visibility_off' : 'visibility'}}</div>
+        <p>{{moreInfo ? 'Nascondi' : 'Mostra altre informazioni'}}</p>
+    </div>
+}
