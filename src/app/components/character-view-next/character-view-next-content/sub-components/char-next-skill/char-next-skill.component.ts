@@ -64,6 +64,7 @@ export class CharNextSkillComponent {
         const skill = a.label === 'indagare' ? 'intelligenza' : 'saggezza';  
         this.passiveSkills.push({
           label: a.label,
+          proficient: a.proficient,
           value: 10 + Math.floor((this.characterData.caratteristiche[skill] - 10) / 2) + (a.proficient ? proficiencyBonus : 0) + (a.mastered ? proficiencyBonus : 0)
         });
         this.passiveSkills.sort((a, b) => a.label.localeCompare(b.label));

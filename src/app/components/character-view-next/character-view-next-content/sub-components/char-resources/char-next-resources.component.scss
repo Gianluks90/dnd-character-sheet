@@ -1,3 +1,8 @@
+
+div[as-section-title] {
+    font-size: 1rem !important;
+}
+
 .conditions-grid-container {
     display: grid;
     grid-template-columns: repeat(8, 1fr);

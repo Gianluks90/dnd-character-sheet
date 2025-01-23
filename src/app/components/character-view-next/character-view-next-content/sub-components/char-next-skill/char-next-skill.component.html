@@ -33,7 +33,7 @@
     <div as-section-title>Prove passive</div>
     @for(s of passiveSkills; track $index) {
         <div class="item-container">
-            <div class="material-symbols-outlined material-no-fill">{{s.label === 'indagare' ? 'search' : s.label === 'intuizione' ? 'neurology' : 'visibility' }}</div>
+            <div class="material-symbols-outlined" [ngClass]="{'material-no-fill': !s.proficient}">circle</div>
             <p class="item-label">{{s.label}}</p>
             <p class="item-value">{{s.value}}</p>
         </div>
