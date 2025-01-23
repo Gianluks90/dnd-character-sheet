@@ -212,9 +212,12 @@ export class CharacterService {
   }
 
   // Cambiare i parametri da aggiornare su tutti i PG a piacere prima di lanciare il comando.
-  public async adminCharUpdate(id: string, equip?: any[], campId?: string): Promise<any> {
-    const ref = doc(this.firebaseService.database, 'characters', id);
+  public async adminCharUpdate(char: any): Promise<any> {
+    const ref = doc(this.firebaseService.database, 'characters', char.id);
     return await setDoc(ref, {
+      informazioniBase: {
+        risorseAggiuntive: char.informazioniBase.risorseAggiuntive
+      }
       // sets: [],
       // equipaggiamento: equip,
       // parametriVitali: {

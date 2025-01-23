@@ -1,25 +1,31 @@
 <div mat-dialog-title class="dialog-title">Nuova risorsa aggiuntiva</div>
 <div mat-dialog-content class="dialog-content">
     <form [formGroup]="form" class="form-container">
+        <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Etichetta</mat-label>
+            <input matInput formControlName="label">
+        </mat-form-field>
+        <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Breve descrizione</mat-label>
+            <input matInput formControlName="description" maxlength="180">
+        </mat-form-field>
         <div class="line-container">
             <mat-form-field class="line-input" color="accent" appearance="outline">
-                <mat-label>Nome</mat-label>
-                <input matInput formControlName="nome">
-            </mat-form-field>
-            <mat-form-field class="line-input" color="accent" appearance="outline">
                 <mat-label>Valore massimo</mat-label>
-                <input #valoreRisorsa type="number" matInput formControlName="valoreMassimo" min="1"
-                    (change)="setValoreAttuale(valoreRisorsa.value)">
+                <input type="number" matInput formControlName="max" min="1">
             </mat-form-field>
             <mat-form-field class="line-input" color="accent" appearance="outline">
                 <mat-label>Colore</mat-label>
                 <input matInput type="color" formControlName="color">
             </mat-form-field>
         </div>
-        <mat-checkbox formControlName="isTemporary" color="accent">Temporanea</mat-checkbox>
-        <div as-description-text>Seleziona questa opzione se la risorsa deriva da un oggetto,
-            un'abilità o comunque da qualcosa di temporaneo che prima o poi cesserà di esistere. Verrà mostrato un tasto
-            aggiuntivo per la rimozione rapida.</div>
+        <div class="options-container">
+            <mat-checkbox formControlName="isTemporary" color="accent">Temporanea</mat-checkbox>
+            <mat-checkbox formControlName="automaticResolve" [disabled]="!form.get('isTemporary').value" color="accent">Rimuovi automaticamente</mat-checkbox>
+            <mat-checkbox formControlName="shortRest" color="accent">Recupera con riposo breve</mat-checkbox>
+        </div>
+        <div as-subtitle>Come funziona?</div>
+        <div as-description-text>Seleziona <strong>Temporanea</strong> se la risorsa prima o poi si esaurirà (quando del tutto utilizzata, dopo un riposo, quando lo decreta il DM, ecc...); seleziona anche <strong>Rimuovi automaticamente</strong> se vuoi eliminare in maniera automatica la risorsa una volta esaurita. Seleziona <strong>Recupera con riposo breve</strong> per fare in modo che la risorsa venga interressata dal ripristino automatico della funzione di riposo (icona mezzaluna sulla scheda personaggio).</div>
     </form>
 </div>
 <div mat-dialog-actions align="end" class="buttons-container">

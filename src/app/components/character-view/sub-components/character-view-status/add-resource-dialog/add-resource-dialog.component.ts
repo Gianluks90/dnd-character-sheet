@@ -18,25 +18,20 @@ export class AddResourceDialogComponent {
     private dialogRef: MatDialogRef<AddResourceDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { charId: string }) {
     this.form = this.fb.group({
-      nome: ['', Validators.required],
-      valoreMassimo: [0, Validators.required],
-      valoreAttuale: 0,
-      used: [],
+      label: ['', Validators.required],
+      max: [0, Validators.required],
+      description: ['', Validators.required],
       color: ['#b3b3b3', Validators.required],
-      isTemporary: false
+      isTemporary: true,
+      shortRest: false,
+      automaticResolve: false
     });
   }
 
-  public setValoreAttuale(value: any) {
-    const risorsa = this.form;
-    const used = new Array(parseInt(value)).fill(false);
-    risorsa.removeControl('used');
-    risorsa.addControl('used', this.fb.array(used));
-  }
-
   public confirm() {
-    this.form.value.valoreAttuale = parseInt(this.form.value.valoreMassimo);
-    this.charService.addResource(this.data.charId, this.form.value).then(() => {
+    const result = this.form.value;
+    result.value = result.max;
+    this.charService.addResource(this.data.charId, result).then(() => {
       this.dialogRef.close();
     });
   }

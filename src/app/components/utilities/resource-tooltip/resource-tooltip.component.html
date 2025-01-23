@@ -1,0 +1,28 @@
+@let res = _resource;
+<div class="tooltip-header">
+    <div class="tooltip-title-container">
+        <div class="tooltip-title">
+            <span class="material-symbols-outlined" [ngClass]="{'material-no-fill': res.value <=0}"
+                [ngStyle]="{'color': res.color}">circle</span>
+            {{res.label}}
+        </div>
+        <div class="tooltip-param">{{res.value}}/{{res.max}}</div>
+    </div>
+</div>
+<div class="tooltip-content" *ngIf="res">
+    <div class="proficient-container">
+        <div>
+            <div class="material-symbols-outlined">bedtime</div>
+            <div>Recupera con <strong>{{res.shortRest ? 'riposo breve' : 'riposo lungo'}}</strong></div>
+        </div>
+        <div>
+            <div class="material-symbols-outlined">{{res.isTemporary ? 'hourglass' : 'check'}}</div>
+            <div>{{res.isTemporary ? 'Temporanea' : 'Permanente'}}<span *ngIf="res.automaticResolve && res.isTemporary">, rimozione automatica</span> </div>
+        </div>
+        <div [ngClass]="{'disabled': res.value <=0}">
+            <div class="material-symbols-outlined">{{res.value <=0 ? 'close' : 'check'}}</div>
+            <div>{{res.value <=0 ? 'Utilizzi terminati' : 'Utilizzabile'}}</div>
+        </div>
+    </div>
+    <div class="tooltip-description">{{res.description}}</div>
+</div>

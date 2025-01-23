@@ -41,27 +41,34 @@ export class SettingsDialogComponent {
 
   // COMMENTARE PER INTERO IL METODO PER EVITARE DI RESETTARE I PERSONAGGI
   public resetStatusAllCharacter() {
-    // let allcharacters = []
-    // this.characterService.getCharacters().then((characters) => {
-    //   allcharacters = characters;
-    //   // allcharacters.push(characters[0]);
-    //   allcharacters.forEach(character => {
-    //     // character.campaign = {
-    //     //   id: character.campaignId,
-    //     //   status: 'active'
-    //     // }
-    //     // if (character.id === 'TghUf9a989N9iMWKTGb0tsAv0L12-17') {
-    //       // character.equipaggiamento.map((item) => {
-    //       //   item.createdBy = character.id;
-    //       //   item.previousOwner = null;
-    //       //   return item;
-    //       // })
-    //       // this.characterService.updateInventory(character.id, character.equipaggiamento).then(() => {
-    //         this.characterService.adminCharUpdate(character.id, [], character.campaignId);
-    //       // });
-    //     // }
-    //   });
-    // });
+    let allcharacters = []
+    this.characterService.getCharacters().then((characters) => {
+      allcharacters = characters;
+      // allcharacters.push(characters[0]);
+      allcharacters.forEach(character => {
+        // if (character.id !== 'TghUf9a989N9iMWKTGb0tsAv0L12-17') return;
+        character.informazioniBase.risorseAggiuntive.map((resource) => {
+          resource.value = resource.valoreAttuale;
+          resource.max = resource.valoreMassimo;
+          resource.label = resource.nome;
+          resource.shortRest = false;
+        });
+        // character.campaign = {
+        //   id: character.campaignId,
+        //   status: 'active'
+        // }
+        // if (character.id === 'TghUf9a989N9iMWKTGb0tsAv0L12-17') {
+          // character.equipaggiamento.map((item) => {
+          //   item.createdBy = character.id;
+          //   item.previousOwner = null;
+          //   return item;
+          // })
+          // this.characterService.updateInventory(character.id, character.equipaggiamento).then(() => {
+            this.characterService.adminCharUpdate(character);
+          // });
+        // }
+      });
+    });
   }
 
   // COMMENTARE PER INTERO IL METODO PER EVITARE DI RESETTARE LE CAMPAGNE

@@ -73,3 +73,20 @@ div[as-section-title] {
         border-radius: 25px;
     }
 }
+
+.resource-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    span {
+        opacity: 0.3;
+        font-size: 1rem;
+    }
+
+    span:hover {
+        opacity: 1;
+        transition: opacity 0.3s;
+        cursor: pointer;
+    }
+}

@@ -117,6 +117,7 @@ import { CharRestDialogComponent } from './components/character-view/char-rest-d
 import { ConditionDialogComponent } from './components/utilities/conditions/condition-dialog/condition-dialog.component';
 import { ConditionInfoDialogComponent } from './components/utilities/conditions/condition-info-dialog/condition-info-dialog.component';
 import { EquipmentNextComponent } from './components/utilities/equipment-next/equipment-next.component';
+import { ResourceTooltipComponent } from './components/utilities/resource-tooltip/resource-tooltip.component';
 
 @NgModule({
     declarations: [
@@ -253,6 +254,7 @@ import { EquipmentNextComponent } from './components/utilities/equipment-next/eq
         CharRestDialogComponent,
         ConditionDialogComponent,
         ConditionInfoDialogComponent,
+        ResourceTooltipComponent,
 
         // adventure component
         // AdventuresPageComponent,

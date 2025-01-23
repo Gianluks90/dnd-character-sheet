@@ -29,18 +29,22 @@
         </div>
     </div>
     @for(res of _char.informazioniBase.risorseAggiuntive; let i = $index; track i) {
-    <div as-resource-item>
+    <div as-resource-item (mouseenter)="showTooltip($event, res)" (mouseleave)="hideTooltip()">
         <div class="material-symbols-outlined reduce-icon" [ngStyle]="{'color': res.color}"
-            [ngClass]="{'material-no-fill': res.valoreAttuale === 0}">circle</div>
-        <div class="resource-title">{{res.nome}}</div>
-        <div class="resource-value">{{res.valoreAttuale}}</div>
-        <div class="material-symbols-outlined" [ngClass]="{'disabled-icon' : res.valoreAttuale === res.valoreMassimo}"
+            [ngClass]="{'material-no-fill': res.value === 0}">circle</div>
+        <div class="resource-title">{{res.label}}
+            @if (res.isTemporary) {
+                <span (click)="deleteResource(i)" title="Elimina risorsa temporanea" class="material-symbols-outlined">delete</span>
+            }
+        </div>
+        <div class="resource-value">{{res.value}}</div>
+        <div class="material-symbols-outlined" [ngClass]="{'disabled-icon' : res.value === res.max}"
             (click)="resourceAction('add', i)">add</div>
-        <div class="material-symbols-outlined" [ngClass]="{'disabled-icon': res.valoreAttuale <= 0}"
+        <div class="material-symbols-outlined" [ngClass]="{'disabled-icon': res.value <= 0}"
             (click)="resourceAction('remove', i)">remove</div>
         <div class="resource-progress-container">
             <div class="resource-progress" [ngStyle]="{
-    'width': (res.valoreAttuale / res.valoreMassimo * 100) + '%',
+    'width': (res.value / res.max * 100) + '%',
     'background-color': res.color
   }">
             </div>
