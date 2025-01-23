@@ -664,12 +664,11 @@ div[as-mini-pill] {
 
 // Titolo di sezione, con bordo inferiore.
 div[as-section-title] {
-  margin: 8px 0;
   font-size: large;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-  border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
+  padding: 12px 0;
 }
 
 // Sottotitolo di sezione, con bordo inferiore e leggero rientro a sinistra.
@@ -677,7 +676,7 @@ div[as-subtitle] {
   font-weight: 600;
   letter-spacing: 1px;
   border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
-  margin: 8px 0;
+  padding: 12px 0;
   text-transform: uppercase;
 }
 
@@ -779,6 +778,54 @@ div[as-divider] {
 
 .as-dialog-backdrop {
   backdrop-filter: blur(4px);
+}
+
+div[as-resources-container] {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+
+  div.reduce-icon {
+    font-size: .8rem !important;
+  }
+
+  div[as-resource-item] {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 8px 16px 8px;
+    border: 1px solid white;
+    border-radius: 8px;
+    position: relative;
+
+    .resource-title {
+      flex-grow: 1;
+    }
+
+    &>.material-symbols-outlined {
+      padding: 2px;
+    }
+
+    .disabled-icon {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+
+    .disabled-icon:hover {
+      opacity: .5;
+      cursor: not-allowed !important;
+      background: transparent !important;
+    }
+
+    &>.material-symbols-outlined:hover {
+      background-color: rgba($color: white, $alpha: 0.3);
+      transition: background-color 0.3s;
+      border-radius: 50px;
+      cursor: pointer;
+    }
+  }
 }
 
 

@@ -4,14 +4,50 @@
 @if (conditions.length > 0) {
 <div class="conditions-grid-container">
     @for(c of conditions; track $index) {
-        <img [src]="c.icon" (click)="conditionInfo(c)">
+    <img [src]="c.icon" (click)="conditionInfo(c)">
     }
     <button class="add-condition-button" (click)="newCondition()">
         <div class="material-symbols-outlined">add</div>
     </button>
 </div>
 } @else {
+<div class="add-condition-button-container">
     <button class="add-condition-button long-button" (click)="newCondition()">
         <div class="material-symbols-outlined">add</div> Aggiungi nuova
     </button>
+</div>
 }
+<div as-section-title>Risorse</div>
+<div as-resources-container>
+    <div as-resource-item (click)="toggleInspiration()" class="inspiration-container">
+        <div class="material-symbols-outlined reduce-icon" [ngClass]="{'material-no-fill': !_char.ispirazione}"
+            [ngStyle]="{'color': _char.ispirazione ? 'goldenrod' : 'white'}">circle</div>
+        <div class="resource-title">Ispirazione</div>
+        <div class="resource-progress-container">
+            <div class="resource-progress"
+                [ngStyle]="{'width': _char.ispirazione ? '100%' : '0', 'background-color': 'goldenrod'}"></div>
+        </div>
+    </div>
+    @for(res of _char.informazioniBase.risorseAggiuntive; let i = $index; track i) {
+    <div as-resource-item>
+        <div class="material-symbols-outlined reduce-icon" [ngStyle]="{'color': res.color}"
+            [ngClass]="{'material-no-fill': res.valoreAttuale === 0}">circle</div>
+        <div class="resource-title">{{res.nome}}</div>
+        <div class="resource-value">{{res.valoreAttuale}}</div>
+        <div class="material-symbols-outlined" [ngClass]="{'disabled-icon' : res.valoreAttuale === res.valoreMassimo}"
+            (click)="resourceAction('add', i)">add</div>
+        <div class="material-symbols-outlined" [ngClass]="{'disabled-icon': res.valoreAttuale <= 0}"
+            (click)="resourceAction('remove', i)">remove</div>
+        <div class="resource-progress-container">
+            <div class="resource-progress" [ngStyle]="{
+    'width': (res.valoreAttuale / res.valoreMassimo * 100) + '%',
+    'background-color': res.color
+  }">
+            </div>
+        </div>
+    </div>
+    }
+    <button class="add-condition-button long-button" (click)="addResource()">
+        <div class="material-symbols-outlined">add</div> Aggiungi nuova
+    </button>
+</div>

@@ -15,8 +15,8 @@
             <div class="char-info-container">
                 <div class="name-container">
                     <div class="material-symbols-outlined material-no-fill"
-                        [ngClass]="{'inspired': !character.ispirazione}">{{character.ispirazione ? 'brightness_empty' :
-                        'award_star'}}</div>
+                        [ngClass]="{'inspired': character.ispirazione}">{{character.ispirazione ? 'award_star' :
+                        'brightness_empty'}}</div>
                     <div class="char-name">{{!isMobile && info.nomePersonaggioEsteso !== '' ?
                         info.nomePersonaggioEsteso :
                         info.nomePersonaggio}}</div>
