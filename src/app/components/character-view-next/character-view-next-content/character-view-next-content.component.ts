@@ -17,4 +17,6 @@ export class CharacterViewNextContentComponent {
   @Input() set editMode(editMode: boolean) {
     this.editModeData = editMode;
   }
+
+  public selectedTab: number = 0;
 }

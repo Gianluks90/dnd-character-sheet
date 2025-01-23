@@ -5,5 +5,23 @@
     <div class="skill-column">
         <app-char-next-skill [char]="characterData" [edit]="editModeData"></app-char-next-skill>
     </div>
-    <div class="third-column"></div>
+    <div class="menu-column">
+        <div class="header-menu">
+            <div class="header-item" [ngClass]="{'selected-header-item': selectedTab === 0}" (click)="selectedTab = 0">
+                Privilegi e tratti
+            </div>
+            <div class="header-item" [ngClass]="{'selected-header-item': selectedTab === 1}" (click)="selectedTab = 1">
+                Inventario
+            </div>
+            <div class="header-item" [ngClass]="{'selected-header-item': selectedTab === 2}" (click)="selectedTab = 2">
+                Background
+            </div>
+            <div class="header-item" [ngClass]="{'selected-header-item': selectedTab === 3}" (click)="selectedTab = 3">
+                Seguaci
+            </div>
+            <div class="header-item" [ngClass]="{'selected-header-item': selectedTab === 4}" (click)="selectedTab = 4">
+                Magia
+            </div>
+        </div>
+    </div>
 </div> 
