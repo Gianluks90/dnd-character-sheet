@@ -23,5 +23,12 @@
                 Magia
             </div>
         </div>
+        <div class="menu-content">
+            @switch(selectedTab) {
+                @case (0) {
+                    <app-char-next-privilegi-tratti [char]="characterData" [edit]="editModeData"></app-char-next-privilegi-tratti>
+                }
+            }
+        </div>
     </div>
 </div> 

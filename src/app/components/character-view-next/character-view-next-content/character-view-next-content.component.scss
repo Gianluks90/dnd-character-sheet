@@ -70,6 +70,7 @@
     }
 
     &>div.selected-header-item {
+        // background-color:  rgba($color: white, $alpha: 0.3);
         background-color: white;
         color: black;
     }
@@ -77,6 +78,19 @@
     &>div.selected-header-item:hover {
         background-color: white;
     }
+}
+
+.menu-content {
+    height: calc(100% - 48px);
+    width: 100%;
+    overflow: auto;
+    color: black;
+    // background-color: rgba($color: white, $alpha: 0.3);
+    background-color: white;
+    padding: 8px;
+    box-sizing: border-box;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
 @media (max-width: 768px) {
