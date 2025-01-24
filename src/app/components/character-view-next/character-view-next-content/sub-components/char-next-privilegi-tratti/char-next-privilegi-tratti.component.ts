@@ -55,6 +55,30 @@ export class CharNextPrivilegiTrattiComponent {
       });
     }
 
+    // public openEditDialog(index: number): void {
+    //   this.matDialog.open(EditPrivilegioTrattoDialogComponent, {
+    //     width: window.innerWidth < 768 ? '90%' : '50%',
+    //     autoFocus: false,
+    //     data: {
+    //       privilegioTratto: this.privilegeGroups[index].privileges
+    //     }
+    //   }).afterClosed().subscribe((result: any) => {
+    //     if (result) {
+    //       switch (result.status) {
+    //         case 'success':
+    //           this._char.privilegiTratti[index] = result.data;
+    //           this.charService.updatePrivilegiTratti(this._char.id, this._char.privilegiTratti);
+    //           break;
+  
+    //         case 'delete':
+    //           this._char.privilegiTratti.splice(index, 1);
+    //           this.charService.updatePrivilegiTratti(this._char.id, this._char.privilegiTratti);
+    //           break;
+    //       }
+    //     }
+    //   });
+    // }
+
   public collapseAll() {
     const details: NodeListOf<HTMLDetailsElement> = document.querySelectorAll('details');
     details.forEach((detail: HTMLDetailsElement) => {

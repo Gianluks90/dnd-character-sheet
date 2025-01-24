@@ -6,10 +6,10 @@
         <div class="material-symbols-outlined">add</div>
     </button>
 </div>
-@for(group of privilegeGroups; track $index) {
+@for(group of privilegeGroups; track i; let i = $index) {
     <div as-section-title>{{group.tag}}</div>
     <div class="privileges-container">
-        @for(p of group.privileges; track $index) {
+        @for(p of group.privileges; track j; let j = $index) {
             <details class="privilege-details" id="details-t">
                 <summary>{{p.nome}}</summary>
                 <div class="privilege-info-container">
@@ -20,7 +20,7 @@
                         <p>({{p.riferimento}})</p>
                     }
                 </div>
-                <p>{{p.descrizione}}</p>
+                <p class="privilege-description">{{p.descrizione}}</p>
                 @if (p.bonuses.length > 0) {
                     <div class="bonuses-container">
                         @for(b of p.bonuses; track $index) {
@@ -30,6 +30,9 @@
                         }
                     </div>
                 }
+                <button class="edit-button-details" disabled>
+                    <div class="material-symbols-outlined">edit</div>
+                </button>
             </details>
         }
     </div>
