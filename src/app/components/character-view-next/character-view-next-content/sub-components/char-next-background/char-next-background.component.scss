@@ -1,0 +1,139 @@
+div[as-section-title] {
+    font-size: 1rem !important;
+    padding: 8px 0;
+}
+
+.background-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100%;
+    gap: 8px;
+}
+
+.column-info,
+.column-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+    // flex-grow: 1;
+    margin-top: 8px;
+}
+
+.image-container {
+    border: 1px solid black;
+    border-radius: 4px;
+    box-sizing: border-box;
+
+    .info-header {
+        background-color: black;
+        color: white;
+        padding: 4px;
+    }
+
+    p {
+        margin: 0;
+        text-transform: uppercase;
+        font-size: .7rem;
+    }
+
+    .char-image {
+        width: 100%;
+        height: auto;
+        box-sizing: border-box;
+        object-fit: cover;
+        padding: 6px 6px 0 6px;
+    }
+}
+
+.info-container {
+    border: 1px solid black;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 8px;
+
+    .info-header {
+        background-color: black;
+        color: white;
+        padding: 4px;
+    }
+
+    p {
+        padding: 4px;
+        margin: 0;
+        text-transform: uppercase;
+        font-size: .7rem;
+    }
+
+    .info-item {
+        display: flex;
+        padding: 0 8px;
+        font-size: .8rem;
+        box-sizing: border-box;
+        align-items: center;
+        justify-content: space-between  ;
+    }
+
+    .char-story {
+        padding: 4px;
+        font-style: italic;
+        white-space: pre-wrap;
+        max-width: 90%;
+        align-self: center;
+        font-family: 'Times New Roman', Times, serif;
+        padding-top: 8px;
+    }
+
+    .char-story::first-letter {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    button {
+        align-self: flex-end;
+        border: none;
+        border-radius: 50px;
+        height: 32px;
+        width: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: black;
+        border: 1px solid black;
+        background-color: white;
+        margin-right: 8px;
+    }
+
+    button:hover {
+        background-color: black;
+        color: white;
+        transition: background-color 0.3s, color 0.3s;
+        cursor: pointer;
+    }
+}
+
+.background-details {
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: default;
+    position: relative;
+
+    summary {
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    p {
+        font-style: italic;
+        white-space: pre-wrap;
+    }
+}
+
+details.background-details[open] {
+    summary {
+        margin-bottom: 12px;
+    }
+}

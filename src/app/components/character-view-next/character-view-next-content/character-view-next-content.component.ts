@@ -18,5 +18,5 @@ export class CharacterViewNextContentComponent {
     this.editModeData = editMode;
   }
 
-  public selectedTab: number = 0;
+  public selectedTab: number = 2;
 }

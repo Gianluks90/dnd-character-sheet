@@ -26,6 +26,7 @@ import { CharacterViewNextContentComponent } from 'src/app/components/character-
 import { CharNextSkillComponent } from 'src/app/components/character-view-next/character-view-next-content/sub-components/char-next-skill/char-next-skill.component';
 import { CharNextResourcesComponent } from 'src/app/components/character-view-next/character-view-next-content/sub-components/char-resources/char-next-resources.component';
 import { CharNextPrivilegiTrattiComponent } from 'src/app/components/character-view-next/character-view-next-content/sub-components/char-next-privilegi-tratti/char-next-privilegi-tratti.component';
+import { CharNextBackgroundComponent } from 'src/app/components/character-view-next/character-view-next-content/sub-components/char-next-background/char-next-background.component';
 
 
 const components = [
@@ -34,7 +35,8 @@ const components = [
   CharacterViewNextContentComponent,
   CharNextSkillComponent,
   CharNextResourcesComponent,
-  CharNextPrivilegiTrattiComponent
+  CharNextPrivilegiTrattiComponent,
+  CharNextBackgroundComponent
 ]
 
 const subcomponents = [

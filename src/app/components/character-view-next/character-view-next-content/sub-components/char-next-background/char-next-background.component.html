@@ -1,0 +1,59 @@
+<div class="background-grid-container">
+    <div class="column-info">
+        <div class="image-container">
+            <p class="info-header">Ritratto</p>
+            <img class="char-image" loading="eager" [src]="_char.informazioniBase.urlImmaginePersonaggio">
+        </div>
+        <div class="info-container">
+            <p class="info-header">Caratteristiche fisiche</p>
+            <div class="info-item">
+                <strong>Età</strong> {{_char.caratteristicheFisiche.eta}} anni
+            </div>
+            <div class="info-item">
+                <strong>Altezza</strong> {{_char.caratteristicheFisiche.altezza}} cm
+            </div>
+            <div class="info-item">
+                <strong>Peso</strong> {{_char.caratteristicheFisiche.peso}} Kg
+            </div>
+            <div class="info-item">
+                <strong>Occhi</strong> {{_char.caratteristicheFisiche.occhi}}
+            </div>
+            <div class="info-item">
+                <strong>Carnagione</strong> {{_char.caratteristicheFisiche.carnagione}}
+            </div>
+            <div class="info-item">
+                <strong>Capelli</strong> {{_char.caratteristicheFisiche.capelli}}
+            </div>
+        </div>
+        <div class="info-container">
+            <p class="info-header">Storia</p>
+            <div class="char-story">{{_char.storiaPersonaggio}}</div>
+            @if(_edit) {
+                <button class="edit-button" (click)="openEditStoryDialog()">
+                    <div class="material-symbols-outlined">edit</div>
+                </button>
+            }
+        </div>
+    </div>
+    <div class="column-contacts">
+        <div as-section-title>{{_char.informazioniBase.background}} {{_char.informazioniBase.dettaglioBackground !== '' ? '('+ _char.informazioniBase.dettaglioBackground +')' : ''}}</div>
+        <details class="background-details">
+            <summary>Tratti caratteriali</summary>
+            <p class="background-description">{{_char.trattiBackground.trattiCaratteriali}}</p>
+        </details>
+        <details class="background-details">
+            <summary>Ideali</summary>
+            <p class="background-description">{{_char.trattiBackground.ideali}}</p>
+        </details>
+        <details class="background-details">
+            <summary>Legami</summary>
+            <p class="background-description">{{_char.trattiBackground.legami}}</p>
+        </details>
+        <details class="background-details">
+            <summary>Difetti</summary>
+            <p class="background-description">{{_char.trattiBackground.difetti}}</p>
+        </details>
+        <div as-section-title>Alleati e organizzazioni </div>
+        <!-- <app-npcs [npcs]="_char.allies" [organizations]="_char.organizations" [tab]="false"></app-npcs> -->
+    </div>
+</div>

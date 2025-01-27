@@ -6,7 +6,6 @@ import { CharacterService } from 'src/app/services/character.service';
 @Component({
   selector: 'app-char-next-privilegi-tratti',
   standalone: false,
-
   templateUrl: './char-next-privilegi-tratti.component.html',
   styleUrl: './char-next-privilegi-tratti.component.scss'
 })
