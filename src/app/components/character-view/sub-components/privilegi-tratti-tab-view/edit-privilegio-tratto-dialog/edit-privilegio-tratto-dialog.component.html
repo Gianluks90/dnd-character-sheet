@@ -1,4 +1,4 @@
-<div mat-dialog-title class="dialog-title">Modifica {{form.value.tipologia}}</div>
+<div mat-dialog-title class="dialog-title">{{data ? 'Modifica' : 'Aggiungi'}} {{form.value.tipologia}}</div>
 <div mat-dialog-content class="dialog-content" [formGroup]="form">
     <div as-description-text>
         Correggi o aggiorna il privilegio, tratto o talento selezionato.

@@ -28,13 +28,14 @@ export class CharNextPrivilegiTrattiComponent {
 
   public privilegeGroups: any[] = [];
   private initPrivileges() {
-    const groupedByTag = this._char.privilegiTratti.reduce((acc, privilege) => {
+    const groupedByTag = this._char.privilegiTratti.reduce((acc, privilege, index) => {
       if (!acc[privilege.tag]) {
         acc[privilege.tag] = [];
       }
-      acc[privilege.tag].push(privilege);
+      acc[privilege.tag].push({ ...privilege, id: index });
       return acc;
     }, {});
+
     this.privilegeGroups = Object.keys(groupedByTag).map(tag => {
       return {
         tag,
@@ -43,41 +44,53 @@ export class CharNextPrivilegiTrattiComponent {
     });
   }
 
-    public openAddDialog(): void {
-      this.matDialog.open(EditPrivilegioTrattoDialogComponent, {
-        width: window.innerWidth < 768 ? '90%' : '50%',
-        autoFocus: false,
-        backdropClass: 'as-dialog-backdrop'
-      }).afterClosed().subscribe((result: any) => {
-        if (result && result.status === 'success') {
-          this.charService.addPrivilegioTratto(this._char.id, result.data);
-        }
-      });
-    }
+  public openAddDialog(): void {
+    this.matDialog.open(EditPrivilegioTrattoDialogComponent, {
+      width: window.innerWidth < 768 ? '90%' : '50%',
+      autoFocus: false,
+      backdropClass: 'as-dialog-backdrop',
+    }).afterClosed().subscribe((result: any) => {
+      if (result && result.status === 'success') {
+        this.charService.addPrivilegioTratto(this._char.id, result.data);
+      }
+    });
+  }
 
-    // public openEditDialog(index: number): void {
-    //   this.matDialog.open(EditPrivilegioTrattoDialogComponent, {
-    //     width: window.innerWidth < 768 ? '90%' : '50%',
-    //     autoFocus: false,
-    //     data: {
-    //       privilegioTratto: this.privilegeGroups[index].privileges
-    //     }
-    //   }).afterClosed().subscribe((result: any) => {
-    //     if (result) {
-    //       switch (result.status) {
-    //         case 'success':
-    //           this._char.privilegiTratti[index] = result.data;
-    //           this.charService.updatePrivilegiTratti(this._char.id, this._char.privilegiTratti);
-    //           break;
-  
-    //         case 'delete':
-    //           this._char.privilegiTratti.splice(index, 1);
-    //           this.charService.updatePrivilegiTratti(this._char.id, this._char.privilegiTratti);
-    //           break;
-    //       }
-    //     }
-    //   });
-    // }
+  public openEditDialog(privilege: any): void {
+    this.matDialog.open(EditPrivilegioTrattoDialogComponent, {
+      width: window.innerWidth < 768 ? '90%' : '60%',
+      autoFocus: false,
+      backdropClass: 'as-dialog-backdrop',
+      data: {
+        privilegioTratto: privilege
+      }
+    }).afterClosed().subscribe((result: any) => {
+      if (result) {
+        const group = this.privilegeGroups.find(g => g.tag === privilege.tag);
+        if (!group) return;
+        const privilegeIndex = group.privileges.findIndex(p => p.id === privilege.id);
+        if (privilegeIndex === -1) return;
+
+        switch (result.status) {
+          case 'success':
+            group.privileges[privilegeIndex] = { ...result.data, id: privilege.id };
+            this._char.privilegiTratti[privilege.id] = result.data;
+            this.charService.updatePrivilegiTratti(this._char.id, this._char.privilegiTratti);
+            break;
+
+          case 'delete':
+            group.privileges.splice(privilegeIndex, 1);
+            this._char.privilegiTratti.splice(privilege.id, 1);
+            this.privilegeGroups.forEach(g => {
+              g.privileges.forEach((p, idx) => (p.id = idx));
+            });
+            this._char.privilegiTratti.forEach((p, idx) => (p.id = idx));
+            this.charService.updatePrivilegiTratti(this._char.id, this._char.privilegiTratti);
+            break;
+        }
+      }
+    });
+  }
 
   public collapseAll() {
     const details: NodeListOf<HTMLDetailsElement> = document.querySelectorAll('details');
