@@ -7,7 +7,7 @@
     </button>
 </div>
 @for(group of privilegeGroups; track i; let i = $index) {
-    <div as-section-title>{{group.tag}}</div>
+    <div as-section-title>{{group.tag === '' ? 'Altro' : group.tag}}</div>
     <div class="privileges-container">
         @for(p of group.privileges; track j; let j = $index) {
             <details class="privilege-details" id="details-t">

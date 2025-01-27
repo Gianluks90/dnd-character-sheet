@@ -35,13 +35,17 @@ export class CharNextPrivilegiTrattiComponent {
       acc[privilege.tag].push({ ...privilege, id: index });
       return acc;
     }, {});
-
-    this.privilegeGroups = Object.keys(groupedByTag).map(tag => {
-      return {
-        tag,
-        privileges: groupedByTag[tag]
-      };
-    });
+  
+    this.privilegeGroups = Object.keys(groupedByTag)
+      .sort()
+      .map(tag => {
+        return {
+          tag,
+          privileges: groupedByTag[tag].sort((a, b) =>
+            a.nome.localeCompare(b.nome)
+          )
+        };
+      });
   }
 
   public openAddDialog(): void {
