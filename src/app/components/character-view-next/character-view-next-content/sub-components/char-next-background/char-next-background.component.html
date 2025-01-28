@@ -29,31 +29,93 @@
             <p class="info-header">Storia</p>
             <div class="char-story">{{_char.storiaPersonaggio}}</div>
             @if(_edit) {
-                <button class="edit-button" (click)="openEditStoryDialog()">
-                    <div class="material-symbols-outlined">edit</div>
-                </button>
+            <button class="edit-button" (click)="openEditStoryDialog()">
+                <div class="material-symbols-outlined">edit</div>
+            </button>
             }
         </div>
     </div>
     <div class="column-contacts">
-        <div as-section-title>{{_char.informazioniBase.background}} {{_char.informazioniBase.dettaglioBackground !== '' ? '('+ _char.informazioniBase.dettaglioBackground +')' : ''}}</div>
-        <details class="background-details">
-            <summary>Tratti caratteriali</summary>
-            <p class="background-description">{{_char.trattiBackground.trattiCaratteriali}}</p>
-        </details>
-        <details class="background-details">
-            <summary>Ideali</summary>
-            <p class="background-description">{{_char.trattiBackground.ideali}}</p>
-        </details>
-        <details class="background-details">
-            <summary>Legami</summary>
-            <p class="background-description">{{_char.trattiBackground.legami}}</p>
-        </details>
-        <details class="background-details">
-            <summary>Difetti</summary>
-            <p class="background-description">{{_char.trattiBackground.difetti}}</p>
-        </details>
-        <div as-section-title>Alleati e organizzazioni </div>
-        <!-- <app-npcs [npcs]="_char.allies" [organizations]="_char.organizations" [tab]="false"></app-npcs> -->
+        <!-- <div as-section-title>{{_char.informazioniBase.background}} {{_char.informazioniBase.dettaglioBackground !== '' ? '('+ _char.informazioniBase.dettaglioBackground +')' : ''}}</div> -->
+        <div class="info-container">
+            <p class="info-header">Background</p>
+            <div class="info-item">
+                <p><strong>{{_char.informazioniBase.background}}</strong>
+                    <span *ngIf="_char.informazioniBase.dettaglioBackground !== ''">
+                        ({{_char.informazioniBase.dettaglioBackground}})
+                    </span>
+                </p>
+
+            </div>
+            <details class="background-details">
+                <summary>Tratti caratteriali</summary>
+                <p class="background-description">{{_char.trattiBackground.trattiCaratteriali}}</p>
+            </details>
+            <details class="background-details">
+                <summary>Ideali</summary>
+                <p class="background-description">{{_char.trattiBackground.ideali}}</p>
+            </details>
+            <details class="background-details">
+                <summary>Legami</summary>
+                <p class="background-description">{{_char.trattiBackground.legami}}</p>
+            </details>
+            <details class="background-details">
+                <summary>Difetti</summary>
+                <p class="background-description">{{_char.trattiBackground.difetti}}</p>
+            </details>
+        </div>
+        <div class="info-container">
+            <p class="info-header">Alleati {{_char.allies.length > 0 ? '('+ _char.allies.length +')' : ''}}</p>
+            <div class="buttons-container">
+                <button [disabled]="!_edit && !resourcesReady" (click)="openAlliesResourcesDialog()">
+                    <div class="material-symbols-outlined">create_new_folder</div>
+                </button>
+                <button (click)="openAddAllyDialog()">
+                    <div class="material-symbols-outlined">add</div>
+                </button>
+            </div>
+            @for (ally of _char.allies; track ally.id) {
+                <div class="org-container" (click)="openAddAllyDialog(ally, $index)">
+                    <div class="org-header">
+                        <img [src]="ally.imgUrl !== '' ? ally.imgUrl : './assets/images/unknown_next.png'" loading="lazy">
+                        <div class="org-title">
+                            <p>{{ally.name}}</p>
+                            <p class="last-place">{{ally.lastPlace}}</p>
+                        </div>
+                    </div>
+                </div>
+            } @empty {
+            <p class="empty-info">Ancora nessun alleato. Puoi crearne uno con il tasto qui sopra, importarlo dalle
+                risorse o copiarlo direttamente dalla campagna in cui è presente il tuo personaggio (se consentito dal
+                DM).</p>
+            }
+        </div>
+        <div class="info-container">
+            <p class="info-header">Organizzazioni {{_char.organizations.length > 0 ? '(' + _char.organizations.length +
+                ')' : ''}}</p>
+            <div class="buttons-container">
+                <button [disabled]="!_edit && !resourcesReady" (click)="openOrganizationsResourcesDialog()">
+                    <div class="material-symbols-outlined">create_new_folder</div>
+                </button>
+                <button (click)="openAddOrganizationDialog()">
+                    <div class="material-symbols-outlined">add</div>
+                </button>
+            </div>
+            @for (org of _char.organizations; track org.id) {
+                <div class="org-container" (click)="openAddOrganizationDialog(org, $index)">
+                    <div class="org-header">
+                        <img [src]="org.imgUrl !== '' ? org.imgUrl : './assets/images/unknown_next.png'" loading="lazy">
+                        <div class="org-title">
+                            <p>{{org.name}}</p>
+                            <p class="last-place">{{org.lastPlace}}</p>
+                        </div>
+                    </div>
+                </div>
+            } @empty {
+            <p class="empty-info">Ancora nessuna organizzazione. Puoi crearne una con il tasto qui sopra, importarla
+                dalle risorse o copiarne una dalla campagna in cui è presente il tuo personaggio (se consentito dal DM).
+            </p>
+            }
+        </div>
     </div>
 </div>
