@@ -1,0 +1,160 @@
+.inventory-main-container {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    height: 100%;
+    gap: 4px;
+}
+
+.inventory-column, .detail-column {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .inventory-container {
+        flex-grow: 1;
+        border: 1px solid black;
+        border-radius: 4px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+button.add-item-button {
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+}
+
+button.add-item-button:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    transition: background-color .3s;
+}
+
+.detail-column {
+    gap: 8px;
+}
+
+.detail-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 4px;
+    flex-grow: 1;
+    box-sizing: border-box;
+}
+
+.detail-column {
+    // border: 1px solid black;
+    border-radius: 4px;
+    box-sizing: border-box;
+
+    p.no-item-selected {
+        padding: 8px;
+        margin: 0;
+    }
+}
+
+p.money-header, p.inventory-header, p.detail-header {
+    background-color: black;
+    padding: 4px;
+    font-size: .7rem;
+    color: white;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.money-container {
+    height: auto;
+    border: 1px solid black;
+    border-radius: 4px;
+
+    &>.moneys {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 8px 6px 8px;
+
+        .money-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+
+            img {
+                height: 12px;
+                width: 12px;
+            }
+
+            p {
+                font-size: 1.1rem;
+                margin: 0;
+            }
+        }
+    }
+
+    &>.moneys:hover {
+        cursor: pointer;
+        background-color: whitesmoke;
+        border-radius: 4px;
+        transition: background-color .3s;
+    }
+}
+
+.inventory-search-container {
+    display: grid;
+    grid-template-columns: 1fr 32px;
+    align-items: center;
+    justify-items: center;
+    border: 1px solid black;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin: 4px;
+    padding: 4px;
+
+    input {
+        width: 100%;
+        font-size: 16px;
+        border: none;
+    }
+
+    input:focus {
+        outline: none;
+    }
+}
+
+.items-container {
+    // border: 1px solid red;
+    flex-grow: 1;
+    box-sizing: border-box;
+    overflow-y: auto;
+    scrollbar-width: none;
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(auto-fill, 62px);
+    gap: 4px;
+    align-items: center;
+    justify-content: start;
+
+    padding: 4px;
+    box-sizing: border-box;
+
+    &>img {
+        width: 60px;
+        height: 60px;
+        border: 2px solid black;
+        cursor: pointer;
+        box-sizing: border-box;
+    }
+}

@@ -7,6 +7,7 @@ export class Item {
     filtered: boolean = false;
     quantity: number = 0;
     rarity: string = '';
+    rarityColor?: string;
     category: string = '';
     description: string = '';
     isDocument: boolean = false;

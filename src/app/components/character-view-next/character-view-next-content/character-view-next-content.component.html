@@ -28,8 +28,17 @@
                 @case (0) {
                     <app-char-next-privilegi-tratti [char]="characterData" [edit]="editModeData"></app-char-next-privilegi-tratti>
                 }
+                @case (1) {
+                    <app-char-next-inventory [char]="characterData" [edit]="editModeData"></app-char-next-inventory>
+                }
                 @case (2) {
                      <app-char-next-background [char]="characterData" [edit]="editModeData"></app-char-next-background>
+                }
+                @case (3) {
+                    <p>Coming soon...</p>
+                }
+                @case (4) {
+                    <p>Coming soon...</p>
                 }
             }
         </div>
