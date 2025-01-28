@@ -35,10 +35,27 @@ div[as-section-title] {
     }
 }
 
+.privileges-main-container {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 4px;
+    margin-bottom: 8px;
+
+    &>p.privilege-header {
+        background-color: black;
+        color: white;
+        padding: 4px;
+        font-size: .7rem;
+        text-transform: uppercase;
+    }
+}
+
 .privileges-container {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    padding: 0 8px 8px 8px;
 }
 
 .privilege-details {
@@ -100,7 +117,8 @@ details.privilege-details[open] {
 }
 
 .edit-button-details:hover {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: black;
+    color: white;
     transition: background-color 0.3s;
     cursor: pointer;
 }
