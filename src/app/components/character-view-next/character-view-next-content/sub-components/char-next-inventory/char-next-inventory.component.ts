@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MoneyDialogComponent } from 'src/app/components/character-view/sub-components/equipaggiamento-tab-view/money-dialog/money-dialog.component';
+import { AddItemDialogComponent } from 'src/app/components/utilities/inventory/add-item-dialog/add-item-dialog.component';
 import { EditMoneyControllerDialogComponent } from 'src/app/components/utilities/money-controller/edit-money-controller-dialog/edit-money-controller-dialog.component';
 import { Item } from 'src/app/models/item';
+import { CharacterService } from 'src/app/services/character.service';
 
 interface Moneys {
   copper: {
@@ -35,14 +36,19 @@ interface Moneys {
   styleUrl: './char-next-inventory.component.scss'
 })
 export class CharNextInventoryComponent {
-  constructor(private matDialog: MatDialog) { }
+  constructor(
+    private matDialog: MatDialog,
+    private charService: CharacterService
+  ) { }
 
   public _char: any;
   @Input() set char(char: any) {
     this._char = char;
     if (!this._char) return;
+    this.selectedItem = this._char.equipaggiamento[0];
     this.initMoney();
     this.initItemRarity();
+    this.sortInventory();
   }
 
   public _edit: boolean;
@@ -72,28 +78,20 @@ export class CharNextInventoryComponent {
     switch (rarity) {
       case 'Comune':
         return '#000000'
-        break;
       case 'Non comune':
         return '#00ff01'
-        break;
       case 'Raro':
         return '#6d9eeb'
-        break;
       case 'Molto raro':
         return '#9a00ff'
-        break;
       case 'Leggendario':
         return '#e29138'
-        break;
       case 'Unico':
         return '#e06467'
-        break;
       case 'Oggetto chiave':
         return '#DDD605'
-        break;
       default:
         return '#000000'
-        break;
     }
   }
 
@@ -113,5 +111,61 @@ export class CharNextInventoryComponent {
   public selectedItem: Item | null = null;
   public selectItem(item: Item): void {
     this.selectedItem = item;
+  }
+
+  public openAddItemDialog() {
+    this.matDialog.open(AddItemDialogComponent, {
+      width: window.innerWidth < 768 ? '90%' : '50%',
+      autoFocus: false,
+      disableClose: true,
+      backdropClass: 'as-dialog-backdrop',
+      data: { inventory: this._char.equipaggiamento }
+    }).afterClosed().subscribe((result: any) => {
+      if (result.status === 'success') {
+        this.charService.addItemInventory(window.location.href.split('/').pop(), result.item);
+        this.sortInventory();
+      }
+    })
+  }
+
+  private sortInventory() {
+    this._char.equipaggiamento.sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+  }
+
+  public onItemDetailAction(result: any) {
+    const { status, item } = result;
+    const { id, equipaggiamento } = this._char;
+
+    switch (status) {
+      case 'edited':
+        this._char.equipaggiamento = equipaggiamento.map((invItem: Item) => invItem.id === item.id ? item : invItem);
+        break;
+      case 'deleted':
+        this._char.equipaggiamento = equipaggiamento.filter((invItem: Item) => invItem.id !== item.id);
+        break;
+      case 'duplicate':
+        this.charService.addItemInventory(id, {
+          ...item,
+          name: `${item.name} (Copia)`,
+          id: `${Math.random().toString(36).substring(2, 15)}${Math.random().toString(36).substring(2, 15)}`,
+          quantity: 1
+        });
+        return;
+      case 'consumed':
+        this._char.equipaggiamento = equipaggiamento.map((invItem: Item) => {
+          if (invItem.id === item.id) {
+            invItem.quantity -= 1;
+          }
+          return invItem;
+        });
+        break;
+    }
+    this.charService.updateInventory(id, this._char.equipaggiamento);
   }
 }

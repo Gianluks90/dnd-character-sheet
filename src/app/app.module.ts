@@ -254,7 +254,7 @@ import { CharNextInventoryComponent } from './components/character-view-next/cha
         CharRestDialogComponent,
         ConditionDialogComponent,
         ConditionInfoDialogComponent,
-        ResourceTooltipComponent,
+        ResourceTooltipComponent
 
         // adventure component
         // AdventuresPageComponent,

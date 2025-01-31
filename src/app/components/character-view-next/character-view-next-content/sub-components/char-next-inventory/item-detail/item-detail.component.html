@@ -1,0 +1,33 @@
+<div class="item-detail-main-container">
+    <div class="item-detail-header">
+        <img [src]="_item.icon" alt="item.name">
+        <div class="item-detail-header-text">
+            <p class="item-detail-name">{{_item.name}}</p>
+            <p class="item-detail-rarity" [style]="{'color': _item.rarityColor}">{{_item.rarity}}</p>
+        </div>
+    </div>
+    <p class="item-detail-category">{{_item.category}}</p>
+    <p class="item-detail-description">{{_item.description}}</p>
+    <div class="item-detail-footer">
+        @if (_item.quantity > 0) {
+            <p>Quantità: {{_item.quantity}}</p>
+        } @else {
+            <p>Esaurito</p>
+        }
+        @if (_item.weight > 0) {
+            <p>Peso: {{_item.weight}} kg</p>
+        }
+        <div class="item-detail-value">
+            @if (_item.value > 0) {
+                <p>Valore: {{_item.value}}</p>
+                <img src="./assets/coins/gold.svg" alt="gold">
+            } @else {
+                <p>Senza valore</p>
+            }
+        </div>
+    </div>
+
+    <button class="edit-item-button" (click)="openEditDialog(_item)">
+        <div class="material-symbols-outlined">edit</div>
+    </button>
+</div>

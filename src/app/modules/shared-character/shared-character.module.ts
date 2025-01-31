@@ -28,6 +28,7 @@ import { CharNextResourcesComponent } from 'src/app/components/character-view-ne
 import { CharNextPrivilegiTrattiComponent } from 'src/app/components/character-view-next/character-view-next-content/sub-components/char-next-privilegi-tratti/char-next-privilegi-tratti.component';
 import { CharNextBackgroundComponent } from 'src/app/components/character-view-next/character-view-next-content/sub-components/char-next-background/char-next-background.component';
 import { CharNextInventoryComponent } from 'src/app/components/character-view-next/character-view-next-content/sub-components/char-next-inventory/char-next-inventory.component';
+import { ItemDetailComponent } from 'src/app/components/character-view-next/character-view-next-content/sub-components/char-next-inventory/item-detail/item-detail.component';
 
 
 const components = [
@@ -53,7 +54,8 @@ const subcomponents = [
   EditPrivilegioTrattoDialogComponent,
   AddAttackDialogComponent,
   CompanionTabViewComponent,
-  CharNextInventoryComponent
+  CharNextInventoryComponent,
+  ItemDetailComponent
 ]
 
 
