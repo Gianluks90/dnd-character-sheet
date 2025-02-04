@@ -79,6 +79,10 @@ export class CharacterViewNextComponent {
     }
   }
 
+  ngOnInit() {
+    this.character = null;
+  }
+
   @Input() public set characterId(id: string) {
     this.characterIdData = id;
   }

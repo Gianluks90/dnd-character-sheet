@@ -45,7 +45,7 @@ export class CharNextInventoryComponent {
   @Input() set char(char: any) {
     this._char = char;
     if (!this._char) return;
-    this.selectedItem = this._char.equipaggiamento[0];
+    this.selectedItem = this._char.equipaggiamento[8];
     this.initMoney();
     this.initItemRarity();
     this.sortInventory();
@@ -145,6 +145,7 @@ export class CharNextInventoryComponent {
     switch (status) {
       case 'edited':
         this._char.equipaggiamento = equipaggiamento.map((invItem: Item) => invItem.id === item.id ? item : invItem);
+        this.selectedItem = item;
         break;
       case 'deleted':
         this._char.equipaggiamento = equipaggiamento.filter((invItem: Item) => invItem.id !== item.id);
@@ -167,5 +168,14 @@ export class CharNextInventoryComponent {
         break;
     }
     this.charService.updateInventory(id, this._char.equipaggiamento);
+  }
+
+  public searchItem(word: any) {
+    console.log(word);
+    
+    this._char.equipaggiamento.map((item: Item) => {
+      item.filtered = !item.name.toLowerCase().includes(word.toLowerCase());
+    });
+    
   }
 }

@@ -1,48 +1,21 @@
 .inventory-main-container {
     display: grid;
-    grid-template-columns: repeat(2, 50%);
+    grid-template-columns: repeat(2, 1fr);
     height: 100%;
     gap: 4px;
 }
 
-.inventory-column, .detail-column {
+.inventory-column,
+.detail-column {
     display: flex;
     flex-direction: column;
     height: 100%;
-
-    .inventory-container {
-        flex-grow: 1;
-        border: 1px solid black;
-        border-radius: 4px;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-    }
-}
-
-button.add-item-button {
-    border: 1px solid black;
-    background-color: white;
-    border-radius: 50%;
-    height: 32px;
-    width: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    bottom: 8px;
-    right: 8px;
-}
-
-button.add-item-button:hover {
-    cursor: pointer;
-    background-color: black;
-    color: white;
-    transition: background-color .3s;
-}
-
-.detail-column {
+    overflow: hidden;
     gap: 8px;
+    box-sizing: border-box;
+    border: 1px solid black;
+    padding: 4px;
+    border-radius: 4px;
 }
 
 .detail-container {
@@ -55,9 +28,10 @@ button.add-item-button:hover {
 }
 
 .detail-column {
-    // border: 1px solid black;
-    border-radius: 4px;
+    border: none;
+    padding: 0;
     box-sizing: border-box;
+    overflow: hidden;
 
     p.no-item-selected {
         padding: 8px;
@@ -65,7 +39,9 @@ button.add-item-button:hover {
     }
 }
 
-p.money-header, p.inventory-header, p.detail-header {
+p.money-header,
+p.inventory-header,
+p.detail-header {
     background-color: black;
     padding: 4px;
     font-size: .7rem;
@@ -119,8 +95,7 @@ p.money-header, p.inventory-header, p.detail-header {
     border: 1px solid black;
     border-radius: 4px;
     box-sizing: border-box;
-    margin: 4px;
-    padding: 4px;
+    padding: 8px;
 
     input {
         width: 100%;
@@ -134,27 +109,51 @@ p.money-header, p.inventory-header, p.detail-header {
 }
 
 .items-container {
-    // border: 1px solid red;
-    flex-grow: 1;
-    box-sizing: border-box;
-    overflow-y: auto;
+    overflow-y: hidden;
     scrollbar-width: none;
+    height: 100%;
+    position: relative;
 
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(auto-fill, 62px);
-    gap: 4px;
-    align-items: center;
-    justify-content: start;
+    display: flex;
+    flex-direction: column;
 
-    padding: 4px;
-    box-sizing: border-box;
+    .items-list {
+        overflow: auto;
+        flex-grow: 1;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(auto-fill, 62px);
+        gap: 4px;
+        align-items: center;
+        justify-content: start;
 
-    &>img {
-        width: 60px;
-        height: 60px;
-        border: 2px solid black;
-        cursor: pointer;
-        box-sizing: border-box;
+        img {
+            width: 60px;
+            height: 60px;
+            border: 2px solid black;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
     }
+}
+
+button.add-item-button {
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+}
+
+button.add-item-button:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    transition: background-color .3s;
 }

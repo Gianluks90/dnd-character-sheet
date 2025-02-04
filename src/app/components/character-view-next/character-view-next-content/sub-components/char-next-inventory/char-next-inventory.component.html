@@ -1,14 +1,17 @@
 <div class="inventory-main-container">
     <div class="inventory-column">
-        <div class="inventory-container">
-            <p class="inventory-header">Oggetti</p>
-            <div class="inventory-search-container">
-                <input type="text" class="inventory-search" placeholder="Cerca oggetto...">
-                <div class="material-symbols-outlined">search</div>
-            </div>
-            <div class="items-container">
+        <div class="inventory-search-container">
+            <input #itemSearchInput type="text" class="inventory-search" placeholder="Cosa stai cercando?" (input)="searchItem(itemSearchInput.value)">
+            <div class="material-symbols-outlined">search</div>
+        </div>
+        <div class="items-container">
+            <div class="items-list">
                 @for (item of _char.equipaggiamento; track item.id) {
-                <img [src]="item.icon" alt="item.name" [style]="{'opacity': item.quantity > 0 ? '1' : '.3', 'border': '2px solid ' + item.rarityColor}" (click)="selectItem(item)">
+                    @if (!item.filtered) {
+                        <img [src]="item.icon" alt="item.name"
+                        [style]="{'opacity': item.quantity > 0 ? '1' : '.3', 'border': '2px solid ' + item.rarityColor}"
+                        (click)="selectItem(item)">
+                    }
                 }
             </div>
             <button class="add-item-button" (click)="openAddItemDialog()">
@@ -31,11 +34,10 @@
         <div class="detail-container">
             <p class="detail-header">Dettaglio oggetto</p>
             @if (selectedItem) {
-                <app-item-detail [item]="selectedItem" (itemEdited)="onItemDetailAction($event)"></app-item-detail>
+            <app-item-detail [item]="selectedItem" (itemEdited)="onItemDetailAction($event)"></app-item-detail>
             } @else {
             <p class="no-item-selected">Clicca su un oggetto nell'elenco accanto per vederne qui i dettagli.</p>
             }
         </div>
     </div>
-
 </div>
