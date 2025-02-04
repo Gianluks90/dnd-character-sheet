@@ -17,6 +17,9 @@
             <button class="add-item-button" (click)="openAddItemDialog()">
                 <div class="material-symbols-outlined">add</div>
             </button>
+            <button class="add-item-button resource-add-button" (click)="openResourcesDialog()" [disabled]="!resourcesReady">
+                <div class="material-symbols-outlined">create_new_folder</div>
+            </button>
         </div>
     </div>
     <div class="detail-column">
@@ -34,10 +37,15 @@
         <div class="detail-container">
             <p class="detail-header">Dettaglio oggetto</p>
             @if (selectedItem) {
-            <app-item-detail [item]="selectedItem" (itemEdited)="onItemDetailAction($event)"></app-item-detail>
+            <app-item-detail [item]="selectedItem"></app-item-detail>
             } @else {
             <p class="no-item-selected">Clicca su un oggetto nell'elenco accanto per vederne qui i dettagli.</p>
             }
         </div>
+        @if (selectedItem) {
+            <button class="edit-item-button" (click)="openEditDialog(selectedItem)">
+                <div class="material-symbols-outlined">edit</div>
+            </button>
+        }
     </div>
 </div>

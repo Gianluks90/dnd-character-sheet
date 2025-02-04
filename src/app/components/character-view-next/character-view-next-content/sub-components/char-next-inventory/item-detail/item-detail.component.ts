@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddItemDialogComponent } from 'src/app/components/utilities/inventory/add-item-dialog/add-item-dialog.component';
+import { DocumentDialogComponent } from 'src/app/components/utilities/inventory/item-info-sheet/document-dialog/document-dialog.component';
 import { Damage, Item } from 'src/app/models/item';
 
 @Component({
@@ -19,20 +20,15 @@ export class ItemDetailComponent {
     if (!this._item) return;
     this.fullFormula = this.getFullFormula(this._item);
   }
-
-  @Output() itemEdited: EventEmitter<Item> = new EventEmitter<Item>();
-
-  openEditDialog(item: Item) {
-    this.matDialog.open(AddItemDialogComponent, {
+  
+  public openDocumentDialog() {
+    this.matDialog.open(DocumentDialogComponent, {
       width: window.innerWidth < 768 ? '90%' : '50%',
       autoFocus: false,
       disableClose: true,
-      backdropClass: 'as-backdrop-dialog',
-      data: { inventory: [], item: item }
-    }).afterClosed().subscribe((result: any) => {
-      if (!result) return;
-      this.itemEdited.emit(result);
-    });
+      backdropClass: 'as-dialog-backdrop',
+      data: { item: this._item }
+    })
   }
 
   public getDamagesString(formula, extraDamages?: Damage[]) {

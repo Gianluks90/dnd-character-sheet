@@ -25,13 +25,14 @@
     border-radius: 4px;
     flex-grow: 1;
     box-sizing: border-box;
+    height: 100%;
+    overflow-y: auto;
+    position: relative;
 }
 
 .detail-column {
     border: none;
     padding: 0;
-    box-sizing: border-box;
-    overflow: hidden;
 
     p.no-item-selected {
         padding: 8px;
@@ -48,6 +49,9 @@ p.detail-header {
     color: white;
     text-transform: uppercase;
     margin: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .money-container {
@@ -152,6 +156,40 @@ button.add-item-button {
 }
 
 button.add-item-button:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    transition: background-color .3s;
+}
+
+button.resource-add-button {
+    position: absolute;
+    bottom: 8px;
+    right: 48px;
+}
+
+button[disabled]:hover {
+    cursor: not-allowed;
+    background-color: white;
+    color: black;
+    opacity: 0.4;
+}
+
+button.edit-item-button {
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 28px;
+    right: 28px;
+}
+
+button.edit-item-button:hover {
     cursor: pointer;
     background-color: black;
     color: white;

@@ -64,14 +64,12 @@
 }
 
 .item-detail-footer {
-    position: sticky;
-    bottom: 0;
-    left: 0;
     display: flex;
     justify-content: flex-start;
     gap: 12px;
     border-top: 1px solid black;
     padding-top: 4px;
+    padding-bottom: 48px; // Per evitare sovrapposizioni con i tasti
 
     p {
         margin: 0;
@@ -119,4 +117,49 @@ button.edit-item-button:hover {
 
 .rotate-icon {
     transform: rotate(90deg);
+}
+
+.document-link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.weapon-properties-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    p.weapon-properties-title {
+        font-weight: 600;
+        font-size: .8rem;
+        // margin: 0;
+    }
+}
+
+.weapon-properties-details {
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: default;
+    position: relative;
+
+    summary {
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    p {
+        font-style: italic;
+        white-space: pre-wrap;
+    }
+}
+
+.prop-summary::first-letter {
+    text-transform: uppercase;
+} 
+
+details.weapon-properties-details[open] {
+    summary {
+        margin-bottom: 12px;
+    }
 }

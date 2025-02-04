@@ -1,6 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { getAuth } from 'firebase/auth';
+import { ResourcesService } from 'src/app/components/resources-page/resources.service';
 import { AddItemDialogComponent } from 'src/app/components/utilities/inventory/add-item-dialog/add-item-dialog.component';
+import { AddResourceItemDialogComponent } from 'src/app/components/utilities/inventory/add-resource-item-dialog/add-resource-item-dialog.component';
 import { EditMoneyControllerDialogComponent } from 'src/app/components/utilities/money-controller/edit-money-controller-dialog/edit-money-controller-dialog.component';
 import { Item } from 'src/app/models/item';
 import { CharacterService } from 'src/app/services/character.service';
@@ -38,14 +41,27 @@ interface Moneys {
 export class CharNextInventoryComponent {
   constructor(
     private matDialog: MatDialog,
-    private charService: CharacterService
-  ) { }
+    private charService: CharacterService,
+    private resService: ResourcesService
+  ) {
+    this.resService.getResourcesByUserId(getAuth().currentUser.uid).then((resources: any) => {
+      if (resources) {
+        this.resourcesReady = true;
+        this.itemResources = resources.items.sort((a: Item, b: Item) => a.name.localeCompare(b.name));
+      } else {
+        this.resourcesReady = false;
+      }
+    });
+  }
+
+  public resourcesReady: boolean = false;
+  public itemResources: Item[] = [];
 
   public _char: any;
   @Input() set char(char: any) {
     this._char = char;
     if (!this._char) return;
-    this.selectedItem = this._char.equipaggiamento[8];
+    this.selectedItem = this._char.equipaggiamento[9];
     this.initMoney();
     this.initItemRarity();
     this.sortInventory();
@@ -127,6 +143,40 @@ export class CharNextInventoryComponent {
       }
     })
   }
+
+    openEditDialog(item: Item) {
+      this.matDialog.open(AddItemDialogComponent, {
+        width: window.innerWidth < 768 ? '90%' : '50%',
+        autoFocus: false,
+        disableClose: true,
+        backdropClass: 'as-dialog-backdrop',
+        data: { inventory: [], item: item }
+      }).afterClosed().subscribe((result: any) => {
+        if (!result) return;
+        this.onItemDetailAction(result);
+      });
+    }
+
+    public openResourcesDialog() {
+      this.matDialog.open(AddResourceItemDialogComponent, {
+        width: window.innerWidth < 768 ? '90%' : '50%',
+        autoFocus: false,
+        disableClose: true,
+        backdropClass: 'as-dialog-backdrop',
+        data: { items: this.itemResources }
+      }).afterClosed().subscribe((result: any) => {
+        if (result) {
+          if (result.items.length > 0) {
+            result.items.forEach((item) => {
+              item.quantity = 1;
+              if (!this._char.equipaggiamento.find((i) => i.id === item.id)) this._char.equipaggiamento.push(item);
+            });
+            this.charService.updateInventory(this._char.id, this._char.equipaggiamento);
+            this.sortInventory();
+          }
+        }
+      });
+    }
 
   private sortInventory() {
     this._char.equipaggiamento.sort((a, b) => {

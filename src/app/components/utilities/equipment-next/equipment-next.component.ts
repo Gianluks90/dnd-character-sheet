@@ -84,7 +84,7 @@ export class EquipmentNextComponent {
         }
       });
     });
-    this.checkWeared();
+    // this.checkWeared();
   }
 
   public openManageDialog(): void {
@@ -103,20 +103,20 @@ export class EquipmentNextComponent {
           this.wearedItems.push(result.sets[0].mainHand);
           this.wearedItems.push(result.sets[0].offHand);
         }
-        this.charService.updateSets(this._char.id, result.sets || []);
-
-        this.inventory.forEach(item => {
-          item.weared = false;
-          this.wearedItems.forEach(wearedItem => {
-            if (item.id === wearedItem.id) {
-              item.weared = true;
-            }
+        this.charService.updateSets(this._char.id, result.sets || []).then(() => {
+          this.inventory.forEach(item => {
+            item.weared = false;
+            this.wearedItems.forEach(wearedItem => {
+              if (item.id === wearedItem.id) {
+                item.weared = true;
+              }
+            });
           });
-        });
-        this.checkWeared();
-        this.charService.updateInventory(this._char.id, this.inventory).then(() => {
-          this.setIndex = 0;
-        });
+
+          this.charService.updateInventory(this._char.id, this.inventory).then(() => {
+            this.setIndex = 0;
+          });
+        })
       }
     });
   }
