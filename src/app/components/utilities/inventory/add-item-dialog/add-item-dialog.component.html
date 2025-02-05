@@ -1,146 +1,147 @@
 <div mat-dialog-title class="dialog-title">{{data.item ? 'Modifica' : 'Aggiungi'}} Oggetto</div>
-<div mat-dialog-content class="dialog-content" [formGroup]="form">
-  <div as-section-title>Informazioni basilari</div>
-
-  <div class="line-container">
-    <mat-form-field color="accent" class="line-input" appearance="outline">
-      <mat-label>Nome</mat-label>
-      <input matInput formControlName="name">
+@defer {
+  <div mat-dialog-content class="dialog-content" [formGroup]="form">
+    <div as-section-title>Informazioni basilari</div>
+  
+    <div class="line-container">
+      <mat-form-field color="accent" class="line-input" appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+      <mat-form-field color="accent" class="line-input" appearance="outline">
+        <mat-label>Riferimento (sigla manuale/pagina)</mat-label>
+        <input matInput formControlName="reference" placeholder="Es. PHB 123">
+      </mat-form-field>
+    </div>
+  
+    <div class="line-container">
+      <mat-form-field class="line-input" color="accent" appearance="outline">
+        <mat-label>Quantità</mat-label>
+        <input type="number" matInput formControlName="quantity" min="0" inputmode="numeric">
+      </mat-form-field>
+      <mat-form-field class="line-input" color="accent" appearance="outline">
+        <mat-label>Icona</mat-label>
+        <mat-select formControlName="icon">
+          <mat-option *ngFor="let icon of selectIcons" [value]="icon.link">
+            <div class="option-line">
+              <img class="icon-image" [src]="icon.link" alt="">
+              <div>{{icon.name}}</div>
+            </div>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <div class="line-container">
+      <mat-form-field class="line-input" color="accent" appearance="outline">
+        <mat-label>Categoria</mat-label>
+        <mat-select formControlName="category">
+          <mat-option value="Anello">Anello</mat-option>
+          <mat-option value="Armatura leggera">Armatura leggera</mat-option>
+          <mat-option value="Armatura media">Armatura media</mat-option>
+          <mat-option value="Armatura pesante">Armatura pesante</mat-option>
+          <mat-option value="Arma a distanza da guerra">Arma a distanza da guerra</mat-option>
+          <mat-option value="Arma a distanza semplice">Arma a distanza semplice</mat-option>
+          <mat-option value="Arma da mischia da guerra">Arma da mischia da guerra</mat-option>
+          <mat-option value="Arma da mischia semplice">Arma da mischia semplice</mat-option>
+          <mat-option value="Bacchetta">Bacchetta</mat-option>
+          <mat-option value="Bastone">Bastone</mat-option>
+          <mat-option value="Equipaggiamento d'avventura">Equipaggiamento d'avventura</mat-option>
+          <mat-option value="Munizioni">Munizioni</mat-option>
+          <mat-option value="Oggetto Insolito">Oggetto Insolito</mat-option>
+          <mat-option value="Oggetto Meraviglioso">Oggetto Meraviglioso</mat-option>
+          <mat-option value="Pergamena">Pergamena</mat-option>
+          <mat-option value="Pozione">Pozione</mat-option>
+          <mat-option value="Scudo">Scudo</mat-option>
+          <mat-option value="Strumento">Strumento</mat-option>
+          <mat-option value="Tesoro">Tesoro</mat-option>
+          <mat-option value="Verga">Verga</mat-option>
+          <mat-option value="Altro">Altro</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field class="line-input" color="accent" appearance="outline">
+        <mat-label>Rarità</mat-label>
+        <mat-select formControlName="rarity">
+          <mat-option value="Comune">Comune</mat-option>
+          <mat-option value="Non comune">Non Comune</mat-option>
+          <mat-option value="Raro">Raro</mat-option>
+          <mat-option value="Molto raro">Molto Raro</mat-option>
+          <mat-option value="Leggendario">Leggendario</mat-option>
+          <mat-option value="Unico">Unico</mat-option>
+          <mat-option *ngIf="isCampaign" value="Oggetto chiave">Oggetto Chiave</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <mat-form-field color="accent" appearance="outline" class="text-area-input">
+      <mat-label>Descrizione</mat-label>
+      <textarea matInput formControlName="description" rows="3"></textarea>
     </mat-form-field>
-    <mat-form-field color="accent" class="line-input" appearance="outline">
-      <mat-label>Riferimento (sigla manuale/pagina)</mat-label>
-      <input matInput formControlName="reference" placeholder="Es. PHB 123">
-    </mat-form-field>
-  </div>
-
-  <div class="line-container">
-    <mat-form-field class="line-input" color="accent" appearance="outline">
-      <mat-label>Quantità</mat-label>
-      <input type="number" matInput formControlName="quantity" min="0" inputmode="numeric">
-    </mat-form-field>
-    <mat-form-field class="line-input" color="accent" appearance="outline">
-      <mat-label>Icona</mat-label>
-      <mat-select formControlName="icon">
-        <mat-option *ngFor="let icon of selectIcons" [value]="icon.link">
-          <div class="option-line">
-            <img class="icon-image" [src]="icon.link" alt="">
-            <div>{{icon.name}}</div>
-          </div>
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-  <div class="line-container">
-    <mat-form-field class="line-input" color="accent" appearance="outline">
-      <mat-label>Categoria</mat-label>
-      <mat-select formControlName="category">
-        <mat-option value="Anello">Anello</mat-option>
-        <mat-option value="Armatura leggera">Armatura leggera</mat-option>
-        <mat-option value="Armatura media">Armatura media</mat-option>
-        <mat-option value="Armatura pesante">Armatura pesante</mat-option>
-        <mat-option value="Arma a distanza da guerra">Arma a distanza da guerra</mat-option>
-        <mat-option value="Arma a distanza semplice">Arma a distanza semplice</mat-option>
-        <mat-option value="Arma da mischia da guerra">Arma da mischia da guerra</mat-option>
-        <mat-option value="Arma da mischia semplice">Arma da mischia semplice</mat-option>
-        <mat-option value="Bacchetta">Bacchetta</mat-option>
-        <mat-option value="Bastone">Bastone</mat-option>
-        <mat-option value="Equipaggiamento d'avventura">Equipaggiamento d'avventura</mat-option>
-        <mat-option value="Munizioni">Munizioni</mat-option>
-        <mat-option value="Oggetto Insolito">Oggetto Insolito</mat-option>
-        <mat-option value="Oggetto Meraviglioso">Oggetto Meraviglioso</mat-option>
-        <mat-option value="Pergamena">Pergamena</mat-option>
-        <mat-option value="Pozione">Pozione</mat-option>
-        <mat-option value="Scudo">Scudo</mat-option>
-        <mat-option value="Strumento">Strumento</mat-option>
-        <mat-option value="Tesoro">Tesoro</mat-option>
-        <mat-option value="Verga">Verga</mat-option>
-        <mat-option value="Altro">Altro</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field class="line-input" color="accent" appearance="outline">
-      <mat-label>Rarità</mat-label>
-      <mat-select formControlName="rarity">
-        <mat-option value="Comune">Comune</mat-option>
-        <mat-option value="Non comune">Non Comune</mat-option>
-        <mat-option value="Raro">Raro</mat-option>
-        <mat-option value="Molto raro">Molto Raro</mat-option>
-        <mat-option value="Leggendario">Leggendario</mat-option>
-        <mat-option value="Unico">Unico</mat-option>
-        <mat-option *ngIf="isCampaign" value="Oggetto chiave">Oggetto Chiave</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-  <mat-form-field color="accent" appearance="outline" class="text-area-input">
-    <mat-label>Descrizione</mat-label>
-    <textarea matInput formControlName="description" rows="3"></textarea>
-  </mat-form-field>
-
-  <div class="line-container">
-    <mat-form-field class="line-input" color="accent" appearance="outline">
-      <mat-label>Valore [MO]</mat-label>
-      <input type="number" matInput formControlName="value" min="0" inputmode="numeric">
-    </mat-form-field>
-
-    <mat-form-field class="line-input" color="accent" appearance="outline">
-      <mat-label>Peso [Kg]</mat-label>
-      <input type="number" matInput formControlName="weight" min="0" inputmode="decimal" step="any">
-    </mat-form-field>
-  </div>
-
-  @if (isCampaign) {
-  <div class="checkbox-container">
-    <mat-checkbox formControlName="visible">Visibile</mat-checkbox>
-    <!-- <mat-checkbox formControlName="notEditable">Non modificabile da un giocatore</mat-checkbox> -->
-  </div>
-  }
-
-  <mat-checkbox formControlName="advanced">Avanzate (uso singolo, focus da incantatore, proprietà,
-    ecc...)</mat-checkbox>
-
-  @if (form.value.advanced) {
-  <div as-section-title>Caratteristiche avanzate</div>
-  <div class="checkbox-container">
-    <mat-checkbox formControlName="consumable">
-      Uso singolo
-    </mat-checkbox>
-
-    <mat-checkbox formControlName="isDocument">
-      È un documento
-    </mat-checkbox>
-
-    <!-- <mat-checkbox formControlName="weared"
-      matTooltip="Attualmente questa funzione ha effetto sulle Armature e sugli Scudi e permette di calcolare la CA in base ai parametri indicati"
-      matTooltipPosition="above">
-      Indossato
-    </mat-checkbox> -->
-
-    <mat-checkbox formControlName="focus">
-      Focus da incantatore
-    </mat-checkbox>
-
-    <mat-checkbox formControlName="cursed">
-      Maledetto
-    </mat-checkbox>
-
-    <mat-checkbox formControlName="magicItem">
-      Oggetto Magico
-    </mat-checkbox>
-
-    <mat-checkbox formControlName="artifact">
-      Artefatto
-    </mat-checkbox>
-
-    <mat-checkbox formControlName="attunementRequired" *ngIf="this.form.value.magicItem || this.form.value.artifact">
-      Richiede Sintonia
-    </mat-checkbox>
-  </div>
-
-  @if (form.value.isDocument) {
-  <!-- <div class="line-container"> -->
-  <div as-section-title>Documento</div>
+  
+    <div class="line-container">
+      <mat-form-field class="line-input" color="accent" appearance="outline">
+        <mat-label>Valore [MO]</mat-label>
+        <input type="number" matInput formControlName="value" min="0" inputmode="numeric">
+      </mat-form-field>
+  
+      <mat-form-field class="line-input" color="accent" appearance="outline">
+        <mat-label>Peso [Kg]</mat-label>
+        <input type="number" matInput formControlName="weight" min="0" inputmode="decimal" step="any">
+      </mat-form-field>
+    </div>
+  
+    @if (isCampaign) {
+    <div class="checkbox-container">
+      <mat-checkbox formControlName="visible">Visibile</mat-checkbox>
+      <!-- <mat-checkbox formControlName="notEditable">Non modificabile da un giocatore</mat-checkbox> -->
+    </div>
+    }
+  
+    <mat-checkbox formControlName="advanced">Avanzate (uso singolo, focus da incantatore, proprietà,
+      ecc...)</mat-checkbox>
+  
+    @if (form.value.advanced) {
+    <div as-section-title>Caratteristiche avanzate</div>
+    <div class="checkbox-container">
+      <mat-checkbox formControlName="consumable">
+        Uso singolo
+      </mat-checkbox>
+  
+      <mat-checkbox formControlName="isDocument">
+        È un documento
+      </mat-checkbox>
+  
+      <!-- <mat-checkbox formControlName="weared"
+        matTooltip="Attualmente questa funzione ha effetto sulle Armature e sugli Scudi e permette di calcolare la CA in base ai parametri indicati"
+        matTooltipPosition="above">
+        Indossato
+      </mat-checkbox> -->
+  
+      <mat-checkbox formControlName="focus">
+        Focus da incantatore
+      </mat-checkbox>
+  
+      <mat-checkbox formControlName="cursed">
+        Maledetto
+      </mat-checkbox>
+  
+      <mat-checkbox formControlName="magicItem">
+        Oggetto Magico
+      </mat-checkbox>
+  
+      <mat-checkbox formControlName="artifact">
+        Artefatto
+      </mat-checkbox>
+  
+      <mat-checkbox formControlName="attunementRequired" *ngIf="this.form.value.magicItem || this.form.value.artifact">
+        Richiede Sintonia
+      </mat-checkbox>
+    </div>
+  
+    @if (form.value.isDocument) {
+    <!-- <div class="line-container"> -->
+    <div as-section-title>Documento</div>
     <mat-form-field class="line-input" color="accent" appearance="outline">
       <mat-label>Titolo</mat-label>
       <input matInput formControlName="documentTitle">
@@ -149,242 +150,251 @@
       <mat-label>Contenuto</mat-label>
       <textarea matInput formControlName="documentDescription" rows="5"></textarea>
     </mat-form-field>
-  <!-- </div> -->
-  }
-
-  @if (form.value.cursed) {
-  <div as-section-title>Maledizione</div>
-  <mat-form-field color="accent" appearance="outline" class="text-area-input">
-    <mat-label>Descrizione Maledizione</mat-label>
-    <textarea matInput formControlName="cursedDescription" rows="3"></textarea>
-  </mat-form-field>
-  }
-
-  <div class="magic-item-container" *ngIf="form.value.magicItem">
-    <div as-section-title>Proprietà Magiche</div>
-    <ng-container class="" formArrayName="traits">
-      <ng-container *ngFor="let traitForm of traits.controls; let i = index;">
-        <div class="step-form" [formGroupName]="i">
-          <mat-form-field class="line-input" color="accent" appearance="outline">
-            <mat-label>Titolo</mat-label>
-            <input matInput formControlName="title">
-          </mat-form-field>
-
-          <mat-form-field color="accent" appearance="outline">
-            <mat-label>Descrizione</mat-label>
-            <textarea matInput formControlName="description" rows="3"></textarea>
-          </mat-form-field>
-
-          <div as-buttons-container>
-            <button as-btn as-btn-warn (click)="deleteTrait(i)">
-              <div class="material-symbols-outlined">delete</div>
-              <div>Rimuovi</div>
-            </button>
+    <!-- </div> -->
+    }
+  
+    @if (form.value.cursed) {
+    <div as-section-title>Maledizione</div>
+    <mat-form-field color="accent" appearance="outline" class="text-area-input">
+      <mat-label>Descrizione Maledizione</mat-label>
+      <textarea matInput formControlName="cursedDescription" rows="3"></textarea>
+    </mat-form-field>
+    }
+  
+    <div class="magic-item-container" *ngIf="form.value.magicItem">
+      <div as-section-title>Proprietà Magiche</div>
+      <ng-container class="" formArrayName="traits">
+        <ng-container *ngFor="let traitForm of traits.controls; let i = index;">
+          <div class="step-form" [formGroupName]="i">
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+              <mat-label>Titolo</mat-label>
+              <input matInput formControlName="title">
+            </mat-form-field>
+  
+            <mat-form-field color="accent" appearance="outline">
+              <mat-label>Descrizione</mat-label>
+              <textarea matInput formControlName="description" rows="3"></textarea>
+            </mat-form-field>
+  
+            <div as-buttons-container>
+              <button as-btn as-btn-warn (click)="deleteTrait(i)">
+                <div class="material-symbols-outlined">delete</div>
+                <div>Rimuovi</div>
+              </button>
+            </div>
           </div>
-        </div>
+        </ng-container>
       </ng-container>
-    </ng-container>
-
-    <div class="button-container">
-      <button as-btn (click)="addTrait()">
-        <div class="material-symbols-outlined">add</div>
-        <div>Aggiungi nuova</div>
-      </button>
-    </div>
-  </div>
-
-  <div class="magic-item-container" *ngIf="form.value.artifact">
-    <div as-section-title>Proprietà Artefatto</div>
-    <ng-container class="" formArrayName="artifactProperties">
-      <ng-container *ngFor="let propForm of artifactProperties.controls; let i = index;">
-        <div class="step-form" [formGroupName]="i">
-          <mat-form-field class="line-input" color="accent" appearance="outline">
-            <mat-label>Titolo</mat-label>
-            <input matInput formControlName="title">
-          </mat-form-field>
-
-          <mat-form-field color="accent" appearance="outline">
-            <mat-label>Descrizione</mat-label>
-            <textarea matInput formControlName="description" rows="3"></textarea>
-          </mat-form-field>
-
-          <div as-buttons-container>
-            <button as-btn as-btn-warn (click)="deleteProp(i)">
-              <div class="material-symbols-outlined">delete</div>
-              <div>Rimuovi</div>
-            </button>
-          </div>
-        </div>
-      </ng-container>
-    </ng-container>
-
-    <div class="button-container">
-      <button as-btn (click)="addProp()">
-        <div class="material-symbols-outlined">add</div>
-        <div>Aggiungi nuova</div>
-      </button>
-    </div>
-  </div>
-
-  <div>
-    <mat-button-toggle-group class="toggle-group" [formControl]="getFormControl('type')">
-      <mat-button-toggle class="toggle-button" value="armatura">Armatura</mat-button-toggle>
-      <mat-button-toggle class="toggle-button" value="arma">Arma</mat-button-toggle>
-    </mat-button-toggle-group>
-
-    <div [ngSwitch]="form.value.type">
-
-      <!-- ARMATURA -->
-      <div *ngSwitchCase="'armatura'" class="switch-container">
-        <div class="line-container">
-          <mat-form-field class="line-input" color="accent" appearance="outline">
-            <mat-label>CA</mat-label>
-            <input type="number" matInput formControlName="CA" min="0" inputmode="numeric">
-          </mat-form-field>
-
-          <mat-form-field class="line-input" color="accent" appearance="outline">
-            <mat-label>Forza Minima</mat-label>
-            <input type="number" matInput formControlName="minStrength" min="0" inputmode="numeric">
-          </mat-form-field>
-        </div>
-
-        <div class="checkbox-container">
-          <mat-checkbox formControlName="plusDexterity">
-            Aggiungi modificatore Destrezza
-          </mat-checkbox>
-          <mat-checkbox formControlName="shield">
-            È uno scudo
-          </mat-checkbox>
-          <mat-checkbox formControlName="stealthDisadvantage">
-            Svantaggio (Furtività)
-          </mat-checkbox>
-        </div>
+  
+      <div class="button-container">
+        <button as-btn (click)="addTrait()">
+          <div class="material-symbols-outlined">add</div>
+          <div>Aggiungi nuova</div>
+        </button>
       </div>
-
-      <!-- ARMA -->
-      <div *ngSwitchCase="'arma'" class="switch-container">
-        <mat-form-field class="line-input" color="accent" appearance="outline">
-          <mat-label>Proprietà</mat-label>
-          <mat-select formControlName="weaponProperties" multiple [compareWith]="compareFn">
-            <mat-option *ngFor="let prop of weaponProperties" [value]="prop">
-              <div class="option-label">{{prop.name}}</div>
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <div class="line-container">
+    </div>
+  
+    <div class="magic-item-container" *ngIf="form.value.artifact">
+      <div as-section-title>Proprietà Artefatto</div>
+      <ng-container class="" formArrayName="artifactProperties">
+        <ng-container *ngFor="let propForm of artifactProperties.controls; let i = index;">
+          <div class="step-form" [formGroupName]="i">
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+              <mat-label>Titolo</mat-label>
+              <input matInput formControlName="title">
+            </mat-form-field>
+  
+            <mat-form-field color="accent" appearance="outline">
+              <mat-label>Descrizione</mat-label>
+              <textarea matInput formControlName="description" rows="3"></textarea>
+            </mat-form-field>
+  
+            <div as-buttons-container>
+              <button as-btn as-btn-warn (click)="deleteProp(i)">
+                <div class="material-symbols-outlined">delete</div>
+                <div>Rimuovi</div>
+              </button>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+  
+      <div class="button-container">
+        <button as-btn (click)="addProp()">
+          <div class="material-symbols-outlined">add</div>
+          <div>Aggiungi nuova</div>
+        </button>
+      </div>
+    </div>
+  
+    <div>
+      <mat-button-toggle-group class="toggle-group" [formControl]="getFormControl('type')">
+        <mat-button-toggle class="toggle-button" value="armatura">Armatura</mat-button-toggle>
+        <mat-button-toggle class="toggle-button" value="arma">Arma</mat-button-toggle>
+      </mat-button-toggle-group>
+  
+      <div [ngSwitch]="form.value.type">
+  
+        <!-- ARMATURA -->
+        <div *ngSwitchCase="'armatura'" class="switch-container">
+          <div class="line-container">
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+              <mat-label>CA</mat-label>
+              <input type="number" matInput formControlName="CA" min="0" inputmode="numeric">
+            </mat-form-field>
+  
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+              <mat-label>Forza Minima</mat-label>
+              <input type="number" matInput formControlName="minStrength" min="0" inputmode="numeric">
+            </mat-form-field>
+          </div>
+  
+          <div class="checkbox-container">
+            <mat-checkbox formControlName="plusDexterity">
+              Aggiungi modificatore Destrezza
+            </mat-checkbox>
+            <mat-checkbox formControlName="shield">
+              È uno scudo
+            </mat-checkbox>
+            <mat-checkbox formControlName="stealthDisadvantage">
+              Svantaggio (Furtività)
+            </mat-checkbox>
+          </div>
+        </div>
+  
+        <!-- ARMA -->
+        <div *ngSwitchCase="'arma'" class="switch-container">
           <mat-form-field class="line-input" color="accent" appearance="outline">
-            <mat-label>Formula Danni (senza spazi)</mat-label>
-            <input type="text" matInput formControlName="damageFormula" placeholder="Es. 1d6+1">
-          </mat-form-field>
-
-          <!-- <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
-                <mat-label>Tipologia Danni</mat-label>
-                <input type="text" matInput formControlName="damageType">
-              </mat-form-field> -->
-
-          <mat-form-field class="line-input" color="accent" appearance="outline">
-            <mat-label>Tipo di danno</mat-label>
-            <mat-select formControlName="damageType">
-              <mat-option value="acido">Acido</mat-option>
-              <mat-option value="contundente">Contundente</mat-option>
-              <mat-option value="forza">Forza</mat-option>
-              <mat-option value="freddo">Freddo</mat-option>
-              <mat-option value="fulmine">Fulmine</mat-option>
-              <mat-option value="fuoco">Fuoco</mat-option>
-              <mat-option value="necrotico">Necrotico</mat-option>
-              <mat-option value="perforante">Perforante</mat-option>
-              <mat-option value="psichico">Psichico</mat-option>
-              <mat-option value="radioso">Radioso</mat-option>
-              <mat-option value="tagliente">Tagliente</mat-option>
-              <mat-option value="tuono">Tuono</mat-option>
-              <mat-option value="veleno">Veleno</mat-option>
+            <mat-label>Proprietà</mat-label>
+            <mat-select formControlName="weaponProperties" multiple [compareWith]="compareFn">
+              <mat-option *ngFor="let prop of weaponProperties" [value]="prop">
+                <div class="option-label">{{prop.name}}</div>
+              </mat-option>
             </mat-select>
           </mat-form-field>
-        </div>
-
-        <div class="line-container">
-          <mat-form-field class="line-input" color="accent" appearance="outline" *ngIf="rangeRequired">
-            <mat-label>Gittata</mat-label>
-            <input type="text" matInput formControlName="range">
-          </mat-form-field>
-          <mat-form-field class="line-input" color="accent" appearance="outline" *ngIf="versatileDiceRequired">
-            <mat-label>Danni Versatile</mat-label>
-            <input type="text" matInput formControlName="versatileDice" placeholder="Formula danni (senza spazi)">
-          </mat-form-field>
-        </div>
-        <div as-description-text><strong>Attenzione</strong>: nelle formule dei danni NON inserire il modificatore di caratteristica usato per l'attacco (Forza o Destrezza), sarà compito dello strumento "Equipaggiamento" occuparsi di calcolare il danno <em>pulito</em> creando i Set di armi.</div>
-
-        <div as-section-title>Danni extra</div>
-        <div class="magic-item-container">
-          <ng-container class="" formArrayName="extraDamages">
-            <ng-container *ngFor="let damageForm of extraDamages.controls; let i = index;">
-              <div class="step-form" [formGroupName]="i">
-                <div class="line-container">
-                  <mat-form-field class="line-input" color="accent" appearance="outline">
-                    <mat-label>Formula Danni (senza spazi)</mat-label>
-                    <input matInput formControlName="formula">
-                  </mat-form-field>
-
-                  <mat-form-field color="accent" appearance="outline" class="line-input">
-                    <mat-label>Tipo di danno</mat-label>
-                    <mat-select formControlName="type">
-                      <mat-option value="acido">Acido</mat-option>
-                      <mat-option value="contundente">Contundente</mat-option>
-                      <mat-option value="forza">Forza</mat-option>
-                      <mat-option value="freddo">Freddo</mat-option>
-                      <mat-option value="fulmine">Fulmine</mat-option>
-                      <mat-option value="fuoco">Fuoco</mat-option>
-                      <mat-option value="necrotico">Necrotico</mat-option>
-                      <mat-option value="perforante">Perforante</mat-option>
-                      <mat-option value="psichico">Psichico</mat-option>
-                      <mat-option value="radioso">Radioso</mat-option>
-                      <mat-option value="tagliente">Tagliente</mat-option>
-                      <mat-option value="tuono">Tuono</mat-option>
-                      <mat-option value="veleno">Veleno</mat-option>
-                    </mat-select>
-                  </mat-form-field>
+  
+          <div class="line-container">
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+              <mat-label>Formula Danni (senza spazi)</mat-label>
+              <input type="text" matInput formControlName="damageFormula" placeholder="Es. 1d6+1">
+            </mat-form-field>
+  
+            <!-- <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
+                  <mat-label>Tipologia Danni</mat-label>
+                  <input type="text" matInput formControlName="damageType">
+                </mat-form-field> -->
+  
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+              <mat-label>Tipo di danno</mat-label>
+              <mat-select formControlName="damageType">
+                <mat-option value="acido">Acido</mat-option>
+                <mat-option value="contundente">Contundente</mat-option>
+                <mat-option value="forza">Forza</mat-option>
+                <mat-option value="freddo">Freddo</mat-option>
+                <mat-option value="fulmine">Fulmine</mat-option>
+                <mat-option value="fuoco">Fuoco</mat-option>
+                <mat-option value="necrotico">Necrotico</mat-option>
+                <mat-option value="perforante">Perforante</mat-option>
+                <mat-option value="psichico">Psichico</mat-option>
+                <mat-option value="radioso">Radioso</mat-option>
+                <mat-option value="tagliente">Tagliente</mat-option>
+                <mat-option value="tuono">Tuono</mat-option>
+                <mat-option value="veleno">Veleno</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+  
+          <div class="line-container">
+            <mat-form-field class="line-input" color="accent" appearance="outline" *ngIf="rangeRequired">
+              <mat-label>Gittata</mat-label>
+              <input type="text" matInput formControlName="range">
+            </mat-form-field>
+            <mat-form-field class="line-input" color="accent" appearance="outline" *ngIf="versatileDiceRequired">
+              <mat-label>Danni Versatile</mat-label>
+              <input type="text" matInput formControlName="versatileDice" placeholder="Formula danni (senza spazi)">
+            </mat-form-field>
+          </div>
+          <div as-description-text><strong>Attenzione</strong>: nelle formule dei danni NON inserire il modificatore di
+            caratteristica usato per l'attacco (Forza o Destrezza), sarà compito dello strumento "Equipaggiamento"
+            occuparsi di calcolare il danno <em>pulito</em> creando i Set di armi.</div>
+  
+          <div as-section-title>Danni extra</div>
+          <div class="magic-item-container">
+            <ng-container class="" formArrayName="extraDamages">
+              <ng-container *ngFor="let damageForm of extraDamages.controls; let i = index;">
+                <div class="step-form" [formGroupName]="i">
+                  <div class="line-container">
+                    <mat-form-field class="line-input" color="accent" appearance="outline">
+                      <mat-label>Formula Danni (senza spazi)</mat-label>
+                      <input matInput formControlName="formula">
+                    </mat-form-field>
+  
+                    <mat-form-field color="accent" appearance="outline" class="line-input">
+                      <mat-label>Tipo di danno</mat-label>
+                      <mat-select formControlName="type">
+                        <mat-option value="acido">Acido</mat-option>
+                        <mat-option value="contundente">Contundente</mat-option>
+                        <mat-option value="forza">Forza</mat-option>
+                        <mat-option value="freddo">Freddo</mat-option>
+                        <mat-option value="fulmine">Fulmine</mat-option>
+                        <mat-option value="fuoco">Fuoco</mat-option>
+                        <mat-option value="necrotico">Necrotico</mat-option>
+                        <mat-option value="perforante">Perforante</mat-option>
+                        <mat-option value="psichico">Psichico</mat-option>
+                        <mat-option value="radioso">Radioso</mat-option>
+                        <mat-option value="tagliente">Tagliente</mat-option>
+                        <mat-option value="tuono">Tuono</mat-option>
+                        <mat-option value="veleno">Veleno</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+  
+                  <div class="delete-button">
+                    <button as-btn (click)="deleteDamage(i)">
+                      <div class="material-symbols-outlined">delete</div>
+                      <div>Rimuovi</div>
+                    </button>
+                  </div>
                 </div>
-
-                <div class="delete-button">
-                  <button as-btn (click)="deleteDamage(i)">
-                    <div class="material-symbols-outlined">delete</div> <div>Rimuovi</div>
-                  </button>
-                </div>
-              </div>
+              </ng-container>
             </ng-container>
-          </ng-container>
-
-          <div class="button-container">
-            <button as-btn (click)="addDamage()">
-              <div class="material-symbols-outlined">add</div> <div>Aggiungi nuovo</div>
-            </button>
+  
+            <div class="button-container">
+              <button as-btn (click)="addDamage()">
+                <div class="material-symbols-outlined">add</div>
+                <div>Aggiungi nuovo</div>
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    }
   </div>
-  }
-
-  
-
-</div>
+} @loading (minimum 0.5s) {
+  <p class="loading-data">Caricamento dati...</p>
+}
 <div mat-dialog-actions align="end" class="buttons-container">
   <button as-btn mat-dialog-close>
-    <div class="material-symbols-outlined">close</div><div>Chiudi</div>
+    <div class="material-symbols-outlined">close</div>
+    <div>Chiudi</div>
   </button>
   @if (data.item) {
-    <button as-btn (click)="duplicate()">
-      <div class="material-symbols-outlined">control_point_duplicate</div><div>Duplica</div>
-    </button>
+  <button as-btn (click)="duplicate()">
+    <div class="material-symbols-outlined">control_point_duplicate</div>
+    <div>Duplica</div>
+  </button>
   }
-  <button *ngIf="data.item && !showDeleteButton" as-btn (click)="showDelete()" >
-    <div class="material-symbols-outlined">delete</div><div>Elimina</div>  
+  <button *ngIf="data.item && !showDeleteButton" as-btn (click)="showDelete()">
+    <div class="material-symbols-outlined">delete</div>
+    <div>Elimina</div>
   </button>
   <button *ngIf="data.item && showDeleteButton" as-btn as-btn-warn (click)="delete()">
-    <div class="material-symbols-outlined">delete</div><div>Conferma</div>  
+    <div class="material-symbols-outlined">delete</div>
+    <div>Conferma</div>
   </button>
   <button as-btn [disabled]="!form.valid" (click)="confirm()">
-    <div class="material-symbols-outlined">done</div><div>{{data.item ? 'Modifica' : 'Aggiungi'}}</div>
+    <div class="material-symbols-outlined">done</div>
+    <div>{{data.item ? 'Modifica' : 'Aggiungi'}}</div>
   </button>
 </div>

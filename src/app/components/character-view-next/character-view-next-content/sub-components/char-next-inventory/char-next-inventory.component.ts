@@ -61,7 +61,7 @@ export class CharNextInventoryComponent {
   @Input() set char(char: any) {
     this._char = char;
     if (!this._char) return;
-    this.selectedItem = this._char.equipaggiamento[9];
+    // this.selectedItem = this._char.equipaggiamento[9];
     this.initMoney();
     this.initItemRarity();
     this.sortInventory();
@@ -208,16 +208,26 @@ export class CharNextInventoryComponent {
           quantity: 1
         });
         return;
-      case 'consumed':
-        this._char.equipaggiamento = equipaggiamento.map((invItem: Item) => {
-          if (invItem.id === item.id) {
-            invItem.quantity -= 1;
-          }
-          return invItem;
-        });
-        break;
+      // case 'consumed':
+      //   this._char.equipaggiamento = equipaggiamento.map((invItem: Item) => {
+      //     if (invItem.id === item.id) {
+      //       invItem.quantity -= 1;
+      //     }
+      //     return invItem;
+      //   });
+      //   break;
     }
     this.charService.updateInventory(id, this._char.equipaggiamento);
+  }
+
+  public consumeItem(item: Item) {
+    this._char.equipaggiamento = this._char.equipaggiamento.map((invItem: Item) => {
+      if (invItem.id === item.id) {
+        invItem.quantity -= 1;
+      }
+      return invItem;
+    });
+    this.charService.updateInventory(this._char.id, this._char.equipaggiamento);
   }
 
   public searchItem(word: any) {

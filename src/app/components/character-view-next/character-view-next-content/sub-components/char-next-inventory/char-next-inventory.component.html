@@ -43,6 +43,9 @@
             }
         </div>
         @if (selectedItem) {
+            @if (selectedItem.consumable) {
+                <button class="consume-button" (click)="consumeItem(selectedItem)" >Usa</button>
+            }
             <button class="edit-item-button" (click)="openEditDialog(selectedItem)">
                 <div class="material-symbols-outlined">edit</div>
             </button>

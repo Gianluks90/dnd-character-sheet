@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AddItemDialogComponent } from 'src/app/components/utilities/inventory/add-item-dialog/add-item-dialog.component';
 import { DocumentDialogComponent } from 'src/app/components/utilities/inventory/item-info-sheet/document-dialog/document-dialog.component';
 import { Damage, Item } from 'src/app/models/item';
 
@@ -19,8 +18,9 @@ export class ItemDetailComponent {
     this._item = item;
     if (!this._item) return;
     this.fullFormula = this.getFullFormula(this._item);
+    this.initTags();
   }
-  
+
   public openDocumentDialog() {
     this.matDialog.open(DocumentDialogComponent, {
       width: window.innerWidth < 768 ? '90%' : '50%',
@@ -32,33 +32,26 @@ export class ItemDetailComponent {
   }
 
   public getDamagesString(formula, extraDamages?: Damage[]) {
-    // let skillMod: number = Math.floor((this._char.caratteristiche[skill] - 10) / 2) || 0;
-
     if (!formula) {
       return 'error';
     }
-    // Rimuovi gli spazi bianchi e separa la formula in termini
     const termini = formula.replace(/\s/g, '').split('+');
 
     let minimo = 0;
     let massimo = 0;
 
-    // Calcola il minimo e il massimo per ogni termine
     termini.forEach(termine => {
       if (termine.includes('d')) {
-        // Se il termine contiene 'd', è un termine dei dadi
         const [numDadi, numFacce] = termine.split('d').map(Number);
         minimo += numDadi;
         massimo += numDadi * numFacce;
       } else {
-        // Altrimenti, è un termine costante
         const costante = parseInt(termine);
         minimo += costante;
         massimo += costante;
       }
     });
 
-    // Calcola il danno aggiuntivo, se presente
     if (extraDamages && extraDamages.length > 0) {
       extraDamages.forEach((extraDamage) => {
         let extraMin = 0;
@@ -95,5 +88,37 @@ export class ItemDetailComponent {
       formula += ` +${extraDamage.formula} ${extraDamage.type}`;
     });
     return formula;
+  }
+
+  public itemTags: string[] = [];
+  private initTags(): void {
+    this.itemTags = [];
+    Object.keys(this._item).forEach((key) => {
+      if (!key || !this._item[key]) return;
+      switch (key) {
+        case 'isDocument':
+          this.itemTags.push('Documento');
+          break;
+        case 'cursed':
+          this.itemTags.push('Maledetto');
+          break;
+        case 'magicItem':
+          this.itemTags.push('Oggetto Magico');
+          break;
+        case 'artifact':
+          this.itemTags.push('Artefatto');
+          break;
+        case 'focus':
+          this.itemTags.push('Focus arcano');
+          break;
+        case 'weared':
+          this.itemTags.push('Equipaggiato');
+          break;
+        case 'attunementRequired':
+          this.itemTags.push('Richiede sintonia');
+          break;
+      }
+    });
+    this.itemTags.sort();
   }
 }

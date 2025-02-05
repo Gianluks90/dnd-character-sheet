@@ -3,36 +3,13 @@
         <img [src]="_item.icon" alt="item.name">
         <div class="item-detail-header-text">
             <p class="item-detail-name">{{_item.name}}</p>
-            <p class="item-detail-category">{{_item.category}}, {{_item.rarity}}{{_item.consumable ? ', uso singolo' :
-                ''}}</p>
+            <p class="item-detail-category">{{_item.category}}, {{_item.rarity}}{{_item.consumable ? ', uso singolo' : ''}}</p>
         </div>
     </div>
     @if (_item.damageFormula !== '') {
     <p class="item-detail-info">
         <span class="material-symbols-outlined rotate-icon">hexagon</span>
         <span class="damage-formula">{{fullFormula}}</span>
-    </p>
-    }
-
-    @if (_item.weared) {
-    <p class="item-detail-info">
-        <span class="material-symbols-outlined">check</span> Equipaggiato
-    </p>
-    }
-    @if (_item.focus) {
-    <p class="item-detail-info">
-        <span class="material-symbols-outlined">stat_0</span> Focus arcano
-    </p>
-    }
-    @if (_item.magicItem) {
-    <p class="item-detail-info">
-        <span class="material-symbols-outlined">stat_0</span> Oggetto magico
-    </p>
-    }
-    @if (_item.isDocument) {
-    <p class="item-detail-info">
-        <span class="material-symbols-outlined">stat_0</span> Documento <span class="document-link"
-            (click)="openDocumentDialog()">(leggi)</span>
     </p>
     }
     @if (_item.CA > 0) {
@@ -47,34 +24,67 @@
     </p>
     }
 
+    <div class="item-details-tags-container">
+        @for(t of itemTags; track $index) {
+        <p>{{t}}</p>
+        }
+    </div>
+
     <p class="item-detail-description">{{_item.description}}</p>
+
+    @if (_item.cursed) {
+        <div class="weapon-properties-container">
+            <p class="weapon-properties-title">Maledizione</p>
+            <div class="properties-details-container">
+                {{_item.cursedDescription}}
+            </div>
+        </div>
+    }
 
     @if (_item.weaponProperties && _item.weaponProperties.length > 0) {
     <div class="weapon-properties-container">
-        <p class="weapon-properties-title">Proprietà</p>
-        @for(p of _item.weaponProperties; track $index) {
-        <details class="weapon-properties-details">
-            <summary class="prop-summary">
-                {{p.name | capitalizeString}} {{(p.name === 'lancio' || p.name === 'gittata')? '('+_item.range+')' :
-                ''}} {{p.name === 'versatile' ? '('+_item.versatileDice+')' : ''}}
-            </summary>
-            <p>{{p.description}}</p>
-        </details>
-        }
+        <p class="weapon-properties-title">Proprietà arma</p>
+        <div class="properties-details-container">
+            @for(p of _item.weaponProperties; track $index) {
+                <details class="weapon-properties-details">
+                    <summary class="prop-summary">
+                        {{p.name | capitalizeString}} {{(p.name === 'lancio' || p.name === 'gittata')? '('+_item.range+')' :
+                        ''}} {{p.name === 'versatile' ? '('+_item.versatileDice+')' : ''}}
+                    </summary>
+                    <p>{{p.description}}</p>
+                </details>
+                }
+        </div>
     </div>
     }
     @if (_item.traits && _item.traits.length > 0) {
     <div class="weapon-properties-container">
-        <p class="weapon-properties-title">Tratti</p>
-        @for(t of _item.traits; track $index) {
-        <details class="weapon-properties-details">
-            <summary>{{t.title}}</summary>
-            <p>{{t.description}}</p>
-        </details>
-        }
+        <p class="weapon-properties-title">Proprietà magiche</p>
+        <div class="properties-details-container">
+            @for(t of _item.traits; track $index) {
+            <details class="weapon-properties-details">
+                <summary>{{t.title}}</summary>
+                <p>{{t.description}}</p>
+            </details>
+            }
+        </div>
     </div>
     }
 
+    @if (_item.artifactProperties && _item.artifactProperties.length > 0) {
+        <div class="weapon-properties-container">
+            <p class="weapon-properties-title">Proprietà artefatto</p>
+            <div class="properties-details-container">
+                @for(ap of _item.artifactProperties; track $index) {
+                <details class="weapon-properties-details">
+                    <summary>{{ap.title}}</summary>
+                    <p>{{ap.description}}</p>
+                </details>
+                }
+            </div>
+        </div>
+    }
+    
     <div class="item-detail-footer">
         @if (_item.quantity > 0) {
         <p>Quantità: {{_item.quantity}}</p>
@@ -93,8 +103,4 @@
             }
         </div>
     </div>
-
-    <!-- <button class="edit-item-button" (click)="openEditDialog(_item)">
-        <div class="material-symbols-outlined">edit</div>
-    </button> -->
 </div>
