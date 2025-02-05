@@ -330,14 +330,4 @@ export class EquipmentNextComponent {
       this.tooltipRef = null;
     }
   }
-
-  public openInfoSheet(item: Item, index: number) {
-    this.removeTooltip();
-    this.bottomSheet.open(ItemInfoSheetComponent, {
-      panelClass: 'item-info-sheet',
-      autoFocus: false,
-      backdropClass: 'as-dialog-backdrop',
-      data: { item: item, isOwner: false, fromEquip: true, reclame: false, edit: false }
-    });
-  }
 }

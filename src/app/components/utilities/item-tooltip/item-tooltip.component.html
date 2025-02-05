@@ -4,7 +4,7 @@
 <div class="tooltip-content">
     <div class="tooltip-item-info">{{itemData.category}}, {{itemData.rarity}}<span *ngIf="itemData.magicItem">, Oggetto
             magico</span><span *ngIf="itemData.cursed">, Maledetto</span></div>
-    <div class="tooltip-weared" *ngIf="itemData.weared">Equipaggiato</div>
+    <!-- <div class="tooltip-weared" *ngIf="itemData.weared">Equipaggiato</div> -->
     @if (itemData.CA > 0 || itemData.shield || itemData.damageFormula !== '' || itemData.versatileDice !== '') {
     <div class="weapons-armors-container">
         <div *ngIf="itemData.CA > 0 && !itemData.shield">CA {{itemData.CA}} <span *ngIf="itemData.plusDexterity">+
@@ -18,10 +18,8 @@
     }
     <div class="tooltip-single-use" *ngIf="itemData.consumable">Uso singolo</div>
     <div class="tooltip-single-use" *ngIf="itemData.focus">Focus Arcano</div>
-    <div class="tooltip-description" [ngClass]="{'short-description': itemData.description.length > 300}">
+    <div class="tooltip-description">
         {{itemData.description}}</div>
-    <span class="tooltip-description short-more-info" *ngIf="itemData.description.length > 300">... continua
-        (click).</span>
     <div class="tooltip-traits-label"
         *ngIf="(itemData.weaponProperties && itemData.weaponProperties.length > 0) || itemData.traits.length > 0 || itemData.artifactProperties.length > 0">
         {{getPropsString(itemData)}}</div>

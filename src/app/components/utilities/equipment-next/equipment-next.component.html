@@ -13,7 +13,7 @@
     <div class="weared-container">
         @for(i of wearedItems; track i.id; let idx = $index) {
             <img class="equip-card" [src]="i.icon" [ngStyle]="{'border-color': setColor(i.rarity)}"
-            (mouseenter)="showTooltip($event, i)" (mouseleave)="hideTooltip()" (click)="openInfoSheet(i, idx)">
+            (mouseenter)="showTooltip($event, i)" (mouseleave)="hideTooltip()">
         } @empty {
             <div class="no-equip">Nessun oggetto equipaggiato</div>
         }
