@@ -13,13 +13,9 @@ import { PrivilegiTrattiTabViewComponent } from 'src/app/components/character-vi
 import { SettingsTabViewComponent } from 'src/app/components/character-view/sub-components/settings-tab-view/settings-tab-view.component';
 import { TrucchettiIncantesimiTabViewComponent } from 'src/app/components/character-view/sub-components/trucchetti-incantesimi-tab-view/trucchetti-incantesimi-tab-view.component';
 import { ItemInfoSheetComponent } from 'src/app/components/utilities/inventory/item-info-sheet/item-info-sheet.component';
-import { BonusStringPipe } from 'src/app/pipes/bonus-string.pipe';
-import { ComposeCharInfoStringPipe } from 'src/app/pipes/compose-char-info-string.pipe';
-import { ComposeClassStringPipe } from 'src/app/pipes/compose-class-string.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedUtilitisModule } from '../shared-utilitis/shared-utilitis.module';
 import { CompanionTabViewComponent } from 'src/app/components/character-view/sub-components/companion-tab-view/companion-tab-view.component';
-import { CapitalizeStringPipe } from 'src/app/pipes/capitalize-string.pipe';
 import { SharedPipesModule } from '../shared-pipes/shared-pipes.module';
 import { CharacterViewNextComponent } from 'src/app/components/character-view-next/character-view-next.component';
 import { CharacterViewNextContentComponent } from 'src/app/components/character-view-next/character-view-next-content/character-view-next-content.component';
@@ -29,7 +25,7 @@ import { CharNextPrivilegiTrattiComponent } from 'src/app/components/character-v
 import { CharNextBackgroundComponent } from 'src/app/components/character-view-next/character-view-next-content/sub-components/char-next-background/char-next-background.component';
 import { CharNextInventoryComponent } from 'src/app/components/character-view-next/character-view-next-content/sub-components/char-next-inventory/char-next-inventory.component';
 import { ItemDetailComponent } from 'src/app/components/character-view-next/character-view-next-content/sub-components/char-next-inventory/item-detail/item-detail.component';
-
+import { CharNextMagicComponent } from 'src/app/components/character-view-next/character-view-next-content/sub-components/char-next-magic/char-next-magic.component';
 
 const components = [
   CharacterViewComponent, 
@@ -38,7 +34,8 @@ const components = [
   CharNextSkillComponent,
   CharNextResourcesComponent,
   CharNextPrivilegiTrattiComponent,
-  CharNextBackgroundComponent
+  CharNextBackgroundComponent,
+  CharNextMagicComponent
 ]
 
 const subcomponents = [
@@ -62,11 +59,7 @@ const subcomponents = [
 @NgModule({
   declarations: [
     ...components,
-    ...subcomponents,
-    // BonusStringPipe,
-    // ComposeClassStringPipe,
-    // ComposeCharInfoStringPipe,
-    // CapitalizeStringPipe
+    ...subcomponents
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,55 @@
+.magic-main-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: 100%;
+    gap: 4px;
+}
+
+.info-column,
+.spell-column {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    gap: 8px;
+    box-sizing: border-box;
+    border: 1px solid black;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.info-column {
+    border: none;
+    padding: 0;
+}
+
+.info-container {
+    border: 1px solid black;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 8px;
+
+    .info-header {
+        background-color: black;
+        color: white;
+        padding: 4px;
+    }
+
+    &>p {
+        padding: 4px;
+        margin: 0;
+        text-transform: uppercase;
+        font-size: .7rem;
+    }
+
+    .info-item {
+        display: flex;
+        padding: 0 8px;
+        font-size: .8rem;
+        box-sizing: border-box;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

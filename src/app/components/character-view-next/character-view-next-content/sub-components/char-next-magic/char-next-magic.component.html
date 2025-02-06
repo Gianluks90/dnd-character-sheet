@@ -1,0 +1,39 @@
+<div class="magic-main-container">
+    <div class="info-column">
+        <div class="info-container">
+            <p class="info-header">Informazioni</p>
+            <div class="info-item">
+                <strong>Classe incantatore</strong> {{_char.magia.classeIncantatorePersonalizzata !== '' ? _char.magia.classeIncantatorePersonalizzata : _char.magia.classeIncantatore}}
+            </div>
+            <div class="info-item">
+                <strong>Caratteristica</strong> {{_char.magia.caratteristicaIncantatore}}
+            </div>
+            <div class="info-item">
+                <strong>CD Tiro salvezza</strong> {{_char.magia.CDTiroSalvezza}}
+            </div>
+            <div class="info-item">
+                <strong>Bonus attacco</strong> {{_char.magia.bonusAttaccoIncantesimi ? '+' : ''}}{{_char.magia.bonusAttaccoIncantesimi}}
+            </div>
+        </div>
+        <div class="info-container">
+            <p class="info-header">Slot incantesimi</p>
+        </div>
+    </div>
+    <div class="spell-column">
+        <div class="spell-search-container">
+            <input #itemSearchInput type="text" class="inventory-search" placeholder="Cosa stai cercando?">
+            <div class="material-symbols-outlined">search</div>
+        </div>
+        <div class="spells-container">
+            <div class="spell-list">
+
+            </div>
+            <button class="add-item-button">
+                <div class="material-symbols-outlined">add</div>
+            </button>
+            <button class="add-item-button resource-add-button">
+                <div class="material-symbols-outlined">create_new_folder</div>
+            </button>
+        </div>
+    </div>
+</div>

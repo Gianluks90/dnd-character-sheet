@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-@Component({
+@Component({ 
   selector: 'app-character-view-next-content',
   standalone: false,
   templateUrl: './character-view-next-content.component.html',
@@ -18,5 +18,5 @@ export class CharacterViewNextContentComponent {
     this.editModeData = editMode;
   }
 
-  public selectedTab: number = 1;
+  public selectedTab: number = 4;
 }
