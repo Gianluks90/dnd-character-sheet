@@ -21,6 +21,7 @@ export class EditPrivilegioTrattoDialogComponent {
       tipologia: ['', Validators.required],
       riferimento: [''],
       bonuses: this.fb.array([]),
+      showInMagicTab: [false],
     })
     this.bonuses = this.fb.array([]);
     this.bonuses = this.form.controls['bonuses'] as FormArray;

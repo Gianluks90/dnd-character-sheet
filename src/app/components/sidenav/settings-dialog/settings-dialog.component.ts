@@ -47,11 +47,9 @@ export class SettingsDialogComponent {
       // allcharacters.push(characters[0]);
       allcharacters.forEach(character => {
         // if (character.id !== 'TghUf9a989N9iMWKTGb0tsAv0L12-17') return;
-        character.informazioniBase.risorseAggiuntive.map((resource) => {
-          resource.value = resource.valoreAttuale;
-          resource.max = resource.valoreMassimo;
-          resource.label = resource.nome;
-          resource.shortRest = false;
+        if (!character.magia) return;
+        character.magia.slotIncantesimi.map((slot) => {
+          slot.value = slot.max;
         });
         // character.campaign = {
         //   id: character.campaignId,

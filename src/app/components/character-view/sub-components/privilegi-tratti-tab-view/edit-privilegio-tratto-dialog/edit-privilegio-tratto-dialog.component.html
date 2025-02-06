@@ -31,6 +31,7 @@
         <mat-label>Descrizione</mat-label>
         <textarea matInput formControlName="descrizione" rows="5"></textarea>
     </mat-form-field>
+    <mat-checkbox formControlName="showInMagicTab">Mostra questo {{form.value.tipologia}} anche nel pannello "Magia"</mat-checkbox>
     <div as-subtitle>Bonus</div>
     <div as-description-text>Aggiungi manualmente i bonus tra quelli selezionabili per far in modo che i parametri coinvolti
       siano aggiornati automaticamente.</div>

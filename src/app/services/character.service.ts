@@ -215,8 +215,8 @@ export class CharacterService {
   public async adminCharUpdate(char: any): Promise<any> {
     const ref = doc(this.firebaseService.database, 'characters', char.id);
     return await setDoc(ref, {
-      informazioniBase: {
-        risorseAggiuntive: char.informazioniBase.risorseAggiuntive
+      magia: {
+        slotIncantesimi: char.magia.slotIncantesimi
       }
       // sets: [],
       // equipaggiamento: equip,

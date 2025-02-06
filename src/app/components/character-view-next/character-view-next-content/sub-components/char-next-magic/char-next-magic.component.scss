@@ -5,6 +5,13 @@
     gap: 4px;
 }
 
+.no-magic-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
 .info-column,
 .spell-column {
     display: flex;
@@ -13,14 +20,10 @@
     overflow: hidden;
     gap: 8px;
     box-sizing: border-box;
-    border: 1px solid black;
-    padding: 4px;
-    border-radius: 4px;
 }
 
 .info-column {
-    border: none;
-    padding: 0;
+    overflow: auto;
 }
 
 .info-container {
@@ -44,6 +47,11 @@
         font-size: .7rem;
     }
 
+    &>p.empty-info {
+        text-transform: none;
+        padding: 0 8px;
+    }
+
     .info-item {
         display: flex;
         padding: 0 8px;
@@ -52,4 +60,212 @@
         align-items: center;
         justify-content: space-between;
     }
+}
+
+.magic-info-container {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: white;
+}
+
+.spell-search-container {
+    display: grid;
+    grid-template-columns: 1fr 32px;
+    align-items: center;
+    justify-items: center;
+    border: 1px solid black;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 8px;
+
+    input {
+        width: 100%;
+        font-size: 16px;
+        border: none;
+    }
+
+    input:focus {
+        outline: none;
+    }
+}
+
+.spells-container {
+    overflow-y: hidden;
+    scrollbar-width: none;
+    height: 100%;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    .spell-list {
+        overflow: auto;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding-bottom: 52px;
+
+        img {
+            width: 60px;
+            height: 60px;
+            border: 2px solid black;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+    }
+
+    .spell-category-container {
+        border: 1px solid black;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        box-sizing: border-box;
+        padding-bottom: 4px;
+
+        &>p.spell-category-header {
+            background-color: black;
+            color: white;
+            padding: 4px;
+            margin: 0;
+            font-size: .7rem;
+            text-transform: uppercase;
+        }
+
+        &>details {
+            margin: 0 4px;
+        }
+    }
+}
+
+button {
+    border: 1px solid black;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    transition: background-color .3s;
+
+    &.standard-button {
+        border-radius: 50%;
+        height: 32px;
+        width: 32px;
+        bottom: 8px;
+        right: 8px;
+    }
+
+    &.resource-add-button {
+        bottom: 8px;
+        right: 48px;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: black;
+        color: white;
+    }
+
+    &[disabled]:hover {
+        cursor: not-allowed;
+        background-color: white;
+        color: black;
+        opacity: 0.4;
+    }
+}
+
+.resource-progress-container {
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 8px;
+    box-sizing: border-box;
+
+    &>.resource-progress {
+        height: 2px;
+        transition: width 0.3s;
+        border-radius: 25px;
+    }
+}
+
+.resource-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    span {
+        opacity: 0.3;
+        font-size: 1rem;
+    }
+
+    span:hover {
+        opacity: 1;
+        transition: opacity 0.3s;
+        cursor: pointer;
+    }
+}
+
+.reduce-icon {
+    color: #8982EB;
+}
+
+.resource-progress {
+    background-color: #8982EB;
+}
+
+.privileges-details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .privilege-details {
+        margin: 0 8px;
+    }
+}
+
+.privilege-details {
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: default;
+    position: relative;
+    
+
+    summary {
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    p {
+        font-style: italic;
+        white-space: pre-wrap;
+    }
+}
+
+details.privilege-details[open] {
+    summary {
+        margin-bottom: 12px;
+    }
+}
+
+.privilege-info-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    opacity: 0.7;
+
+    p::first-letter {
+        text-transform: uppercase;
+    }
+}
+
+.bonus-item {
+    display: flex;
+    gap: 8px;
+    align-items: center;
 }
