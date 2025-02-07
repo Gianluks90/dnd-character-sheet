@@ -216,7 +216,7 @@ export class CharacterService {
     const ref = doc(this.firebaseService.database, 'characters', char.id);
     return await setDoc(ref, {
       magia: {
-        slotIncantesimi: char.magia.slotIncantesimi
+        trucchettiIncantesimi: char.magia.trucchettiIncantesimi
       }
       // sets: [],
       // equipaggiamento: equip,

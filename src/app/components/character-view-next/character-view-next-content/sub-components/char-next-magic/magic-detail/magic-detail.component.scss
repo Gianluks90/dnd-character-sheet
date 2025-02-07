@@ -1,0 +1,38 @@
+.spell-details-props-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    padding-bottom: 12px;
+
+    p {
+        font-size: .7rem;
+        margin: 0;
+        border: 1px solid black;
+        border-radius: 25px;
+        padding: 2px 8px;
+        cursor: default;
+        font-style: normal;
+    }
+}
+
+.icon-rotated {
+    transform: rotate(90deg);
+}
+
+.formula-container {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding-bottom: 12px;
+
+    p {
+        margin: 0;
+    }
+}
+
+.spell-description {
+    font-style: italic;
+    font-size: .9rem;
+    white-space: pre-wrap;
+}

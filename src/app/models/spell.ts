@@ -1,6 +1,7 @@
 import { FormBuilder, Validators } from "@angular/forms";
 
 export class Spell {
+    id: string = '';
     tipologia: string = '';
     nome: string = '';
     scuola: string = '';
@@ -17,31 +18,14 @@ export class Spell {
     preparato: boolean = false;
     semprePreparato: boolean = false;
     icon: string = '';
+    rituale: boolean = false;
     filtered: boolean = false;
 
     constructor() {}
 
-    // constructor(tipologia: string, nome: string, scuola: string, scuolaPersonalizzata: string, livello: number, tempoLancio: string, gittata: string, componenti: string, formula: string, durata: string, descrizione: string, livelloSuperiore: string, riferimento: string, preparato: boolean, icon: string, filtered: boolean) {
-    //     this.tipologia = tipologia;
-    //     this.nome = nome;
-    //     this.scuola = scuola;
-    //     this.scuolaPersonalizzata = scuolaPersonalizzata;
-    //     this.livello = livello;
-    //     this.tempoLancio = tempoLancio;
-    //     this.gittata = gittata;
-    //     this.componenti = componenti;
-    //     this.formula = formula;
-    //     this.durata = durata;
-    //     this.descrizione = descrizione;
-    //     this.livelloSuperiore = livelloSuperiore;
-    //     this.riferimento = riferimento;
-    //     this.preparato = preparato;
-    //     this.icon = icon;
-    //     this.filtered = filtered;
-    // }
-
     static create(builder: FormBuilder) {
         return {
+            id: '',
             tipologia: ['trucchetto', Validators.required],
             nome: ['', Validators.required],
             scuola: ['', Validators.required],
@@ -58,6 +42,7 @@ export class Spell {
             preparato: false,
             semprePreparato: false,
             icon: '',
+            rituale: false,
             filtered: false,
         }
     }

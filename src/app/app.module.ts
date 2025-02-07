@@ -58,6 +58,7 @@ import { CharRestDialogComponent } from './components/character-view/char-rest-d
 import { ConditionDialogComponent } from './components/utilities/conditions/condition-dialog/condition-dialog.component';
 import { ConditionInfoDialogComponent } from './components/utilities/conditions/condition-info-dialog/condition-info-dialog.component';
 import { ResourceTooltipComponent } from './components/utilities/resource-tooltip/resource-tooltip.component';
+import { MagicDetailComponent } from './components/character-view-next/character-view-next-content/sub-components/char-next-magic/magic-detail/magic-detail.component';
 
 @NgModule({
     declarations: [

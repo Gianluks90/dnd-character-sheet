@@ -76,9 +76,14 @@
                         <div class="spell-category-container">
                             <p class="spell-category-header">Trucchetti ({{catnips.length}})</p>
                             @for (c of catnips; track $index) {
-                                <details class="privilege-details">
+                                <details class="privilege-details" id="details-t">
                                     <summary>{{c.nome}}</summary>
-                                    <p class="privilege-description">{{c.descrizione}}</p>
+                                    <app-magic-detail [spell]="c"></app-magic-detail>
+                                    <div class="spell-action-container">
+                                        <button class="edit-button" (click)="openAddSpellDialog(c)">
+                                            <div class="material-symbols-outlined">edit</div>
+                                        </button>
+                                    </div>
                                 </details>
                             }
                         </div>
@@ -87,9 +92,14 @@
                         <div class="spell-category-container">
                             <p class="spell-category-header">Sempre preparati ({{alwaysReady.length}})</p>
                             @for (a of alwaysReady; track $index) {
-                                <details class="privilege-details">
+                                <details class="privilege-details" id="details-t">
                                     <summary>{{a.nome}}</summary>
-                                    <p class="privilege-description">{{a.descrizione}}</p>
+                                    <app-magic-detail [spell]="a"></app-magic-detail>
+                                    <div class="spell-action-container">
+                                        <button class="edit-button" (click)="openAddSpellDialog(a)">
+                                            <div class="material-symbols-outlined">edit</div>
+                                        </button>
+                                    </div>
                                 </details>
                             }
                         </div>
@@ -99,9 +109,17 @@
                             <p class="spell-category-header">Incantesimi preparati ({{ready.length}}/{{_char.magia.incantesimiPreparabili}})</p>
                             @for (s of ready; track $index) {
                                 @if (s.preparato) {
-                                    <details class="privilege-details">
+                                    <details class="privilege-details" id="details-t">
                                         <summary>{{s.nome}}</summary>
-                                        <p class="privilege-description">{{s.descrizione}}</p>
+                                        <app-magic-detail [spell]="s"></app-magic-detail>
+                                        <div class="spell-action-container">
+                                            <button class="ready-button" (click)="toggleReady(s)">
+                                                Rimuovi
+                                            </button>
+                                            <button class="edit-button" (click)="openAddSpellDialog(s)">
+                                                <div class="material-symbols-outlined">edit</div>
+                                            </button>
+                                        </div>
                                     </details>
                                 }
                             }
@@ -111,18 +129,26 @@
                         <div class="spell-category-container">
                             <p class="spell-category-header">Non preparati ({{others.length}})</p>
                             @for (o of others; track $index) {
-                                <details class="privilege-details">
+                                <details class="privilege-details" id="details-t">
                                     <summary>{{o.nome}}</summary>
-                                    <p class="privilege-description">{{o.descrizione}}</p>
+                                    <app-magic-detail [spell]="o"></app-magic-detail>
+                                    <div class="spell-action-container">
+                                        <button class="ready-button" (click)="toggleReady(o)">
+                                            Prepara
+                                        </button>
+                                        <button class="edit-button" (click)="openAddSpellDialog(o)">
+                                            <div class="material-symbols-outlined">edit</div>
+                                        </button>
+                                    </div>
                                 </details>
                             }
                         </div>
                     }
                 </div>
-                <button class="standard-button">
+                <button class="standard-button" (click)="openAddSpellDialog()">
                     <div class="material-symbols-outlined">add</div>
                 </button>
-                <button class="standard-button resource-add-button">
+                <button class="standard-button resource-add-button" (click)="openResourcesDialog()">
                     <div class="material-symbols-outlined">create_new_folder</div>
                 </button>
             </div>

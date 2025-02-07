@@ -138,41 +138,41 @@
             margin: 0 4px;
         }
     }
-}
 
-button {
-    border: 1px solid black;
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    transition: background-color .3s;
-
-    &.standard-button {
-        border-radius: 50%;
-        height: 32px;
-        width: 32px;
-        bottom: 8px;
-        right: 8px;
-    }
-
-    &.resource-add-button {
-        bottom: 8px;
-        right: 48px;
-    }
-
-    &:hover {
-        cursor: pointer;
-        background-color: black;
-        color: white;
-    }
-
-    &[disabled]:hover {
-        cursor: not-allowed;
+    &>button {
+        border: 1px solid black;
         background-color: white;
-        color: black;
-        opacity: 0.4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        transition: background-color .3s;
+    
+        &.standard-button {
+            border-radius: 50%;
+            height: 32px;
+            width: 32px;
+            bottom: 8px;
+            right: 8px;
+        }
+    
+        &.resource-add-button {
+            bottom: 8px;
+            right: 48px;
+        }
+    
+        &:hover {
+            cursor: pointer;
+            background-color: black;
+            color: white;
+        }
+    
+        &[disabled]:hover {
+            cursor: not-allowed;
+            background-color: white;
+            color: black;
+            opacity: 0.4;
+        }
     }
 }
 
@@ -238,10 +238,12 @@ button {
     summary {
         font-weight: bold;
         cursor: pointer;
+        user-select: none;
     }
 
     p {
         font-style: italic;
+        font-size: .9rem;
         white-space: pre-wrap;
     }
 }
@@ -268,4 +270,36 @@ details.privilege-details[open] {
     display: flex;
     gap: 8px;
     align-items: center;
+}
+
+.spell-action-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    
+    .edit-button {
+        border: 1px solid black;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+    }
+
+    .ready-button {
+        max-height: 32px;
+        padding: 8px 12px;
+        border: 1px solid black;
+        background-color: white;
+        border-radius: 25px;
+    }
+
+    .edit-button:hover, .ready-button:hover {
+        background-color: black;
+        color: white;
+        transition: background-color .3s;
+        cursor: pointer;
+    }
 }

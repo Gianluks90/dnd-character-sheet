@@ -48,8 +48,9 @@ export class SettingsDialogComponent {
       allcharacters.forEach(character => {
         // if (character.id !== 'TghUf9a989N9iMWKTGb0tsAv0L12-17') return;
         if (!character.magia) return;
-        character.magia.slotIncantesimi.map((slot) => {
-          slot.value = slot.max;
+        if (!character.magia.trucchettiIncantesimi) return;
+        character.magia.trucchettiIncantesimi.forEach((spell) => {
+            spell.id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
         });
         // character.campaign = {
         //   id: character.campaignId,

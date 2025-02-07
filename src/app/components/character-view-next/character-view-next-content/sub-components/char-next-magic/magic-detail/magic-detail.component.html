@@ -1,0 +1,25 @@
+<div class="spell-details-props-container">
+    @let s = _spell;
+    <p>{{s.scuolaPersonalizzata !== '' ? s.scuolaPersonalizzata : s.scuola}}</p>
+    @if (s.livello > 0) {
+        <p>{{s.livello}}° livello {{s.livelloSuperiore ? 'o superiore' : ''}}</p>
+    }
+    <p>{{s.tempoLancio}}</p>
+    <p>{{s.gittata}}</p>
+    <p>{{s.durata}}</p>
+    @if (s.rituale) {
+        <p>Rituale</p>
+    }
+    <p>{{s.riferimento}}</p>
+</div>
+@if (s.formula) {
+    <div class="formula-container">
+        <div class="material-symbols-outlined icon-rotated">hexagon</div>
+        <p>{{s.formula}}</p>
+    </div>
+}
+<p class="spell-description"><u>Componenti</u>: {{s.componenti}}</p>
+<p class="spell-description">{{s.descrizione}}</p>
+@if (s.livelloSuperiore) {
+    <p class="spell-description"><u>Ai livelli superiori</u>: {{s.livelloSuperiore}}</p>
+}

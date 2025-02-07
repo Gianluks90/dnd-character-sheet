@@ -38,7 +38,7 @@ export class AddSpellDialogComponent {
     } else {
       this.dialogRef.close({
         status: 'success',
-        spell: this.form.value
+        spell: {...this.form.value, id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}
       })
     }    
   }

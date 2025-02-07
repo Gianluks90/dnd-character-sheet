@@ -26,6 +26,7 @@ import { CharNextBackgroundComponent } from 'src/app/components/character-view-n
 import { CharNextInventoryComponent } from 'src/app/components/character-view-next/character-view-next-content/sub-components/char-next-inventory/char-next-inventory.component';
 import { ItemDetailComponent } from 'src/app/components/character-view-next/character-view-next-content/sub-components/char-next-inventory/item-detail/item-detail.component';
 import { CharNextMagicComponent } from 'src/app/components/character-view-next/character-view-next-content/sub-components/char-next-magic/char-next-magic.component';
+import { MagicDetailComponent } from 'src/app/components/character-view-next/character-view-next-content/sub-components/char-next-magic/magic-detail/magic-detail.component';
 
 const components = [
   CharacterViewComponent, 
@@ -52,7 +53,8 @@ const subcomponents = [
   AddAttackDialogComponent,
   CompanionTabViewComponent,
   CharNextInventoryComponent,
-  ItemDetailComponent
+  ItemDetailComponent,
+  MagicDetailComponent,
 ]
 
 
