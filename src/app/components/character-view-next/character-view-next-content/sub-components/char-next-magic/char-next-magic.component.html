@@ -76,15 +76,17 @@
                         <div class="spell-category-container">
                             <p class="spell-category-header">Trucchetti ({{catnips.length}})</p>
                             @for (c of catnips; track $index) {
-                                <details class="privilege-details" id="details-t">
-                                    <summary>{{c.nome}}</summary>
-                                    <app-magic-detail [spell]="c"></app-magic-detail>
-                                    <div class="spell-action-container">
-                                        <button class="edit-button" (click)="openAddSpellDialog(c)">
-                                            <div class="material-symbols-outlined">edit</div>
-                                        </button>
-                                    </div>
-                                </details>
+                                @if (!c.filtered) {
+                                    <details class="privilege-details" id="details-t">
+                                        <summary>{{c.nome}}</summary>
+                                        <app-magic-detail [spell]="c"></app-magic-detail>
+                                        <div class="spell-action-container">
+                                            <button class="edit-button" (click)="openAddSpellDialog(c)">
+                                                <div class="material-symbols-outlined">edit</div>
+                                            </button>
+                                        </div>
+                                    </details>
+                                }
                             }
                         </div>
                     }
@@ -92,15 +94,17 @@
                         <div class="spell-category-container">
                             <p class="spell-category-header">Sempre preparati ({{alwaysReady.length}})</p>
                             @for (a of alwaysReady; track $index) {
-                                <details class="privilege-details" id="details-t">
-                                    <summary>{{a.nome}}</summary>
-                                    <app-magic-detail [spell]="a"></app-magic-detail>
-                                    <div class="spell-action-container">
-                                        <button class="edit-button" (click)="openAddSpellDialog(a)">
-                                            <div class="material-symbols-outlined">edit</div>
-                                        </button>
-                                    </div>
-                                </details>
+                                @if (!a.filtered) {
+                                    <details class="privilege-details" id="details-t">
+                                        <summary>{{a.nome}}</summary>
+                                        <app-magic-detail [spell]="a"></app-magic-detail>
+                                        <div class="spell-action-container">
+                                            <button class="edit-button" (click)="openAddSpellDialog(a)">
+                                                <div class="material-symbols-outlined">edit</div>
+                                            </button>
+                                        </div>
+                                    </details>
+                                }
                             }
                         </div>
                     }
@@ -108,7 +112,7 @@
                         <div class="spell-category-container">
                             <p class="spell-category-header">Incantesimi preparati ({{ready.length}}/{{_char.magia.incantesimiPreparabili}})</p>
                             @for (s of ready; track $index) {
-                                @if (s.preparato) {
+                                @if (!s.filtered) {
                                     <details class="privilege-details" id="details-t">
                                         <summary>{{s.nome}}</summary>
                                         <app-magic-detail [spell]="s"></app-magic-detail>
@@ -129,18 +133,20 @@
                         <div class="spell-category-container">
                             <p class="spell-category-header">Non preparati ({{others.length}})</p>
                             @for (o of others; track $index) {
-                                <details class="privilege-details" id="details-t">
-                                    <summary>{{o.nome}}</summary>
-                                    <app-magic-detail [spell]="o"></app-magic-detail>
-                                    <div class="spell-action-container">
-                                        <button class="ready-button" (click)="toggleReady(o)">
-                                            Prepara
-                                        </button>
-                                        <button class="edit-button" (click)="openAddSpellDialog(o)">
-                                            <div class="material-symbols-outlined">edit</div>
-                                        </button>
-                                    </div>
-                                </details>
+                                @if (!o.filtered) {
+                                    <details class="privilege-details" id="details-t">
+                                        <summary>{{o.nome}}</summary>
+                                        <app-magic-detail [spell]="o"></app-magic-detail>
+                                        <div class="spell-action-container">
+                                            <button class="ready-button" (click)="toggleReady(o)">
+                                                Prepara
+                                            </button>
+                                            <button class="edit-button" (click)="openAddSpellDialog(o)">
+                                                <div class="material-symbols-outlined">edit</div>
+                                            </button>
+                                        </div>
+                                    </details>
+                                }
                             }
                         </div>
                     }
