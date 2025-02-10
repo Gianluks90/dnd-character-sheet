@@ -128,4 +128,18 @@ export class CharNextMagicComponent {
       detail.open = false;
     });
   }
+    public searchMagic(word: any) {
+      this.catnips.map((spell: Spell) => {
+        spell.filtered = !spell.nome.toLowerCase().includes(word.toLowerCase());
+      });
+      this.alwaysReady.map((spell: Spell) => {
+        spell.filtered = !spell.nome.toLowerCase().includes(word.toLowerCase());
+      });
+      this.ready.map((spell: Spell) => {
+        spell.filtered = !spell.nome.toLowerCase().includes(word.toLowerCase());
+      });
+      this.others.map((spell: Spell) => {
+        spell.filtered = !spell.nome.toLowerCase().includes(word.toLowerCase());
+      });
+    }
 }

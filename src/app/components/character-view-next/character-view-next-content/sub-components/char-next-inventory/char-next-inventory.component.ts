@@ -231,8 +231,6 @@ export class CharNextInventoryComponent {
   }
 
   public searchItem(word: any) {
-    console.log(word);
-    
     this._char.equipaggiamento.map((item: Item) => {
       item.filtered = !item.name.toLowerCase().includes(word.toLowerCase());
     });

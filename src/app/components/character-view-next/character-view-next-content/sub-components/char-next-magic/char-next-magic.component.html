@@ -67,7 +67,7 @@
         </div>
         <div class="spell-column">
             <div class="spell-search-container">
-                <input #itemSearchInput type="text" class="spell-search" placeholder="Cosa stai cercando?">
+                <input #magicSearchInput type="text" class="spell-search" placeholder="Cosa stai cercando?" (input)="searchMagic(magicSearchInput.value)">
                 <div class="material-symbols-outlined">search</div>
             </div>
             <div class="spells-container">
