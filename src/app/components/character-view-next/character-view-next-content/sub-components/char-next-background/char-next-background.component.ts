@@ -28,8 +28,6 @@ export class CharNextBackgroundComponent {
         this.alliesResources = resources.allies;
         this.addonsResources = resources.addons;
         this.orgResources = resources.organizations;
-        console.log(this.orgResources);
-        
       } else {
         this.resourcesReady = true;
       }

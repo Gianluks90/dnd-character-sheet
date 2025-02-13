@@ -10,7 +10,7 @@ import { SkillTooltipComponent } from 'src/app/components/utilities/skill-toolti
   styleUrl: './char-next-skill.component.scss'
 })
 export class CharNextSkillComponent {
-  public characterData: any;
+  public _char: any;
   public saveThrows: any[] = [];
   public passiveSkills: any[] = [];
   public showAllSaveThrows: boolean = false;
@@ -26,15 +26,16 @@ export class CharNextSkillComponent {
   ) { }
 
   @Input() set char(character: any) {
-    this.characterData = character;
+    this._char = character;
+    if (!this._char) return;
     setTimeout(() => {
       this.setupStatus();
     }, 100);
   }
 
-  public editModeData: boolean = false;
+  public _edit: boolean = false;
   @Input() set edit(editMode: boolean) {
-    this.editModeData = editMode;
+    this._edit = editMode;
   }
 
   private setupStatus(): void {
@@ -45,12 +46,12 @@ export class CharNextSkillComponent {
   private initSaveThrows(): void {
     this.saveThrows = [];
     const parameters = ['forza', 'destrezza', 'costituzione', 'intelligenza', 'saggezza', 'carisma'];
-    const proficiencyBonus: number = this.characterData.tiriSalvezza.bonusCompetenza;
+    const proficiencyBonus: number = this._char.tiriSalvezza.bonusCompetenza;
     parameters.forEach((p) => {
       this.saveThrows.push({
-        proficient: this.characterData.tiriSalvezza[p],
+        proficient: this._char.tiriSalvezza[p],
         label: p,
-        value: this.characterData.tiriSalvezza[p] ? Math.floor((this.characterData.caratteristiche[p] - 10) / 2) + proficiencyBonus : Math.floor((this.characterData.caratteristiche[p] - 10) / 2)
+        value: this._char.tiriSalvezza[p] ? Math.floor((this._char.caratteristiche[p] - 10) / 2) + proficiencyBonus : Math.floor((this._char.caratteristiche[p] - 10) / 2)
       });
     });
   }
@@ -58,14 +59,14 @@ export class CharNextSkillComponent {
   private initPassiveSkill(): void {
     this.passiveSkills = [];
     const passives: string[] = ['percezione', 'intuizione', 'indagare'];
-    const proficiencyBonus: number = this.characterData.tiriSalvezza.bonusCompetenza;
-    this.characterData.competenzaAbilita.forEach((a) => {
+    const proficiencyBonus: number = this._char.tiriSalvezza.bonusCompetenza;
+    this._char.competenzaAbilita.forEach((a) => {
       if (passives.includes(a.label)) {
         const skill = a.label === 'indagare' ? 'intelligenza' : 'saggezza';  
         this.passiveSkills.push({
           label: a.label,
           proficient: a.proficient,
-          value: 10 + Math.floor((this.characterData.caratteristiche[skill] - 10) / 2) + (a.proficient ? proficiencyBonus : 0) + (a.mastered ? proficiencyBonus : 0)
+          value: 10 + Math.floor((this._char.caratteristiche[skill] - 10) / 2) + (a.proficient ? proficiencyBonus : 0) + (a.mastered ? proficiencyBonus : 0)
         });
         this.passiveSkills.sort((a, b) => a.label.localeCompare(b.label));
       }
@@ -87,7 +88,7 @@ export class CharNextSkillComponent {
       backdropClass: 'as-dialog-backdrop',
       disableClose: true,
       data: {
-        char: this.characterData,
+        char: this._char,
         formula: formula || '',
         extra: extra || ''
       }

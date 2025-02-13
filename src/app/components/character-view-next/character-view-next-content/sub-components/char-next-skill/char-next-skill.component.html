@@ -15,7 +15,7 @@
 </div>
 <div class="skills-container">
     <div as-section-title>Abilità</div>
-    @for (s of characterData.competenzaAbilita; track $index) {
+    @for (s of _char.competenzaAbilita; track $index) {
         @if (s.proficient || s.mastered || showAllSkills) {
             <div class="item-container" (click)="openDiceRoller('1d20+' + s.modifier, 'su ' + s.label)"
             (mouseenter)="showTooltip($event, s)" (mouseleave)="hideTooltip()">
@@ -43,7 +43,7 @@
     <div as-section-title>Competenze</div>
     <div as-subtitle>Linguaggi</div>
     <div class="proficient-container">
-        @let languages = characterData.altreCompetenze.linguaggi;
+        @let languages = _char.altreCompetenze.linguaggi;
         @if (languages) {
             @for (l of languages; track $index) {
                 <p>{{l}}</p>
@@ -54,7 +54,7 @@
     </div>
     <div as-subtitle>Armature</div>
     <div class="proficient-container">
-        @let armature = characterData.altreCompetenze.armature;
+        @let armature = _char.altreCompetenze.armature;
         @if (armature) {
             @for (a of armature; track $index) {
                 <p>{{a}}</p>
@@ -65,7 +65,7 @@
     </div>
     <div as-subtitle>Armi</div>
     <div class="proficient-container">
-        @let weapons = characterData.altreCompetenze.armi;
+        @let weapons = _char.altreCompetenze.armi;
         @if (weapons) {
             @for (w of weapons; track $index) {
                 <p>{{w}}</p>
@@ -76,7 +76,7 @@
     </div>
     <div as-subtitle>Strumenti</div>
     <div class="proficient-container">
-        @let tools = characterData.altreCompetenze.strumenti;
+        @let tools = _char.altreCompetenze.strumenti;
         @if (tools) {
             @for (t of tools; track $index) {
                 <p>{{t}}</p>
