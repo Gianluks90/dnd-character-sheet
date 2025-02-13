@@ -114,13 +114,15 @@ export class NPC {
     }
 
     static fromData(data: any): NPC {
-        const result = Object.assign(new NPC(), data);
-        result.strengthMod = Math.floor((result.strength - 10) / 2);
-        result.dexterityMod = Math.floor((result.dexterity - 10) / 2);
-        result.constitutionMod = Math.floor((result.constitution - 10) / 2);
-        result.intelligenceMod = Math.floor((result.intelligence - 10) / 2);
-        result.wisdomMod = Math.floor((result.wisdom - 10) / 2);
-        result.charismaMod = Math.floor((result.charisma - 10) / 2);
+        const result: NPC = Object.assign(new NPC(), data);
+        if (result.parameterRequired) {
+            result.strengthMod = Math.floor((result.strength - 10) / 2);
+            result.dexterityMod = Math.floor((result.dexterity - 10) / 2);
+            result.constitutionMod = Math.floor((result.constitution - 10) / 2);
+            result.intelligenceMod = Math.floor((result.intelligence - 10) / 2);
+            result.wisdomMod = Math.floor((result.wisdom - 10) / 2);
+            result.charismaMod = Math.floor((result.charisma - 10) / 2);
+        }
         return result;
     }
 }

@@ -1,0 +1,143 @@
+<div class="tab-actions-container">
+    <button (click)="openAddonResourcesDialog()" [disabled]="!resourcesReady">
+        <div class="material-symbols-outlined">create_new_folder</div>
+    </button>
+    <button (click)="openAddonDialog()">
+        <div class="material-symbols-outlined">add</div>
+    </button>
+</div>
+@if (addons.length > 0) {
+    <div class="addons-main-container">
+        @for(a of addons; track $index) {
+            <div class="addon-container">
+                <div class="addons-header">
+                    <img [src]="a.imgUrl" alt="Icona {{a.name}}">
+                    <div class="addons-header-text">
+                        <p>{{a.name}}</p>
+                        <p>{{a.category}}, {{a.lastPlace}}</p>
+                    </div>
+                </div>
+                @if (a.parameterRequired) {
+                    <div class="addons-content">
+                        <details class="addons-details" id="details-t">
+                            <summary>Statistiche</summary>
+                            <div class="tags-container">
+                                <p>{{a.race}}</p>
+                                <p>{{a.alignment}}</p>
+                                @if (a.challenge !== '') {
+                                    <p>Sfida {{a.challenge}}</p>
+                                }
+                                @if (a.isMerchant) {
+                                    <p>Mercante</p>
+                                }
+                                @if (a.isDealer) {
+                                    <p>Ricettatore</p>
+                                }
+                            </div>
+                            <div class="stats-container">
+                                <div class="stat-item large-item">
+                                    <p class="stat-label">Punti ferita</p>
+                                    <p class="only-one-stat">
+                                        <span class="material-symbols-outlined">favorite</span>
+                                        <span>{{a.HP}}/{{a.HPmax}}</span>
+                                        @if (a.tempHP !== 0 && a.tempHPmax > 0) {
+                                            <span class="material-symbols-outlined">hourglass_empty</span>
+                                            <span>{{a.tempHP}}</span>
+                                        }
+                                    </p>
+                                </div>
+                                <div class="stat-item large-item">
+                                    <p class="stat-label">Velocità</p>
+                                    <p class="only-one-stat">{{a.speed}}</p>
+                                </div>
+                                <div class="stat-item large-item">
+                                    <p class="stat-label">CA</p>
+                                    <p class="only-one-stat">{{a.CA}}</p>
+                                </div>
+                            </div>
+                            <div class="stats-container">
+                                <div class="stat-item">
+                                    <p class="stat-label">FOR</p>
+                                    <p>{{a.strength}}</p>
+                                    <p class="stat-label">{{a.strengthMod > 0 ? '+' : ''}}{{a.strengthMod}}</p>
+                                </div>
+                                <div class="stat-item">
+                                    <p class="stat-label">DES</p>
+                                    <p>{{a.dexterity}}</p>
+                                    <p class="stat-label">{{a.dexterityMod > 0 ? '+' : ''}}{{a.dexterityMod}}</p>
+                                </div>
+                                <div class="stat-item">
+                                    <p class="stat-label">COS</p>
+                                    <p>{{a.constitution}}</p>
+                                    <p class="stat-label">{{a.constitutionMod > 0 ? '+' : ''}}{{a.constitutionMod}}</p>
+                                </div>
+                                <div class="stat-item">
+                                    <p class="stat-label">INT</p>
+                                    <p>{{a.intelligence}}</p>
+                                    <p class="stat-label">{{a.intelligenceMod > 0 ? '+' : ''}}{{a.intelligenceMod}}</p>
+                                </div>
+                                <div class="stat-item">
+                                    <p class="stat-label">SAG</p>
+                                    <p>{{a.wisdom}}</p>
+                                    <p class="stat-label">{{a.wisdomMod > 0 ? '+' : ''}}{{a.wisdomMod}}</p>
+                                </div>
+                                <div class="stat-item">
+                                    <p class="stat-label">CAR</p>
+                                    <p>{{a.charisma}}</p>
+                                    <p class="stat-label">{{a.charismaMod > 0 ? '+' : ''}}{{a.charismaMod}}</p>
+                                </div>
+                            </div>
+                            @if (a.saveThrows !== '') {
+                                <p><strong>Tiri salvezza</strong>: {{a.saveThrows}}</p>
+                            }
+                            @if (a.skills !== '') {
+                                <p><strong>Abilità</strong>: {{a.skills}}</p>
+                            }
+                            @if (a.immunities !== '') {
+                                <p><strong>Immunità</strong>: {{a.immunities}}</p>
+                            }
+                            @if (a.resistances !== '') {
+                                <p><strong>Resistenze</strong>: {{a.resistances}}</p>
+                            }
+                            @if (a.senses !== '') {
+                                <p><strong>Sensi</strong>: {{a.senses}}</p>
+                            }
+                            @if (a.languages !== '') {
+                                <p><strong>Linguaggi</strong>: {{a.languages}}</p>
+                            }
+
+                            <div class="actions-container">
+                                <p class="actions-header-label">Azioni ({{a.actions.length}})</p>
+                                @for(action of a.actions; track $index) {
+                                    <details class="addons-details">
+                                        <summary>{{action.title}}</summary>
+                                        <p class="action-description">{{action.description}}</p>
+                                    </details>
+                                }
+                            </div>
+                            <div class="actions-container">
+                                <p class="actions-header-label">Tratti ({{a.traits.length}})</p>
+                                @for(trait of a.traits; track $index) {
+                                    <details class="addons-details">
+                                        <summary>{{trait.title}}</summary>
+                                        <p class="action-description">{{trait.description}}</p>
+                                    </details>
+                                }
+                            </div>
+                        </details>
+                    </div>
+                }
+                <div class="addons-footer">
+                    <button (click)="openAddonDialog(a, $index)">
+                        <div class="material-symbols-outlined">edit</div>
+                    </button>
+                    <p>{{a.notes}}</p>
+                </div>
+            </div>
+        }
+    </div>
+} @else {
+    <div class="no-magic-container">
+        <p>Il personaggio non ha alcun seguace, gregario, trasformazione, ecc... al momento.</p>
+    </div>
+}

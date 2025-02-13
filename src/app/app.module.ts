@@ -59,6 +59,7 @@ import { ConditionDialogComponent } from './components/utilities/conditions/cond
 import { ConditionInfoDialogComponent } from './components/utilities/conditions/condition-info-dialog/condition-info-dialog.component';
 import { ResourceTooltipComponent } from './components/utilities/resource-tooltip/resource-tooltip.component';
 import { MagicDetailComponent } from './components/character-view-next/character-view-next-content/sub-components/char-next-magic/magic-detail/magic-detail.component';
+import { CharNextAddonsComponent } from './components/character-view-next/character-view-next-content/sub-components/char-next-addons/char-next-addons.component';
 
 @NgModule({
     declarations: [
